@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "davidanson.vscode-markdownlint",
+        "gruntfuggly.todo-tree",
+        "shd101wyy.markdown-preview-enhanced",
+        "ms-playwright.playwright",
+        "dbaeumer.vscode-eslint",
+        "christian-kohler.npm-intellisense",
+        "jacano.vscode-pnpm",
+        "redhat.vscode-yaml"
+    ]
+}

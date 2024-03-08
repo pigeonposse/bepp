@@ -1,0 +1,432 @@
+{
+	"name": {
+		"message": "Super8",
+		"description": "The name of my extension"
+	},
+	"description": {
+		"message": "Add styles to videos from YouTube, Vimeo, Netflix, Amazon, etc.",
+		"description": "The description of my extension"
+	},
+	"web": {
+		"message": "Web",
+		"description": "For web Links"
+	},
+	"docs": {
+		"message": "Docs",
+		"description": "Per a enllaços web"
+	},
+	"about": {
+		"message": "About",
+		"description": "For about Links"
+	},
+	"moreProjects": {
+		"message": "More projects",
+		"description": "For more-projects Links"
+	},
+	"extMenuDesc": {
+		"message": "About extension",
+		"description": "For extension context Menu description"
+	},
+	"orgMenuDesc": {
+		"message": "Developer Collective information",
+		"description": "For organization context Menu description"
+	},
+	"donate": {
+		"message": "Donate",
+		"description": "For donate Links"
+	},
+	"issues": {
+		"message": "issues",
+		"description": "For issues Links."
+	},
+	"contribute": {
+		"message": "Contribute",
+		"description": "For contribute Links."
+	},
+	"review": {
+		"message": "Review",
+		"description": "For review Links."
+	},
+	"options_page": {
+		"message": "Settings pages",
+		"description": "For options extension Links."
+	},
+	"contextMenu_page_open": {
+		"message": "Open Super8"
+	},
+	"opts_tabs_allowedSites": {
+		"message": "Allowed sites"
+	},
+	"opts_tabs_filters": {
+		"message": "Filters configuration"
+	},
+	"opts_tabs_debug": {
+		"message": "Debug"
+	},
+	"opts_debug": {
+		"message": "Extension Log notifications"
+	},
+	"opts_debug_desctiption": {
+		"message": "In this section you will find the entire extension log. In the event that the extension makes an error, the error will be recorded here and you will be able to check why it happened."
+	},
+	"opts_debug_none": {
+		"message": "Not log notifications."
+	},
+	"opts_allowedSites": {
+		"message": "Allowed sites to display super 8"
+	},
+	"opts_allowedSites_comingsoon": {
+		"message": "Coming soon"
+	},
+	"opts_allowedSites_youtube": {
+		"message": "Activate for Youtube"
+	},
+	"opts_allowedSites_vimeo": {
+		"message": "Activate for Vimeo"
+	},
+	"opts_allowedSites_twitch": {
+		"message": "Activate for Twitch"
+	},
+	"opts_allowedSites_filmin": {
+		"message": "Activate for Filmin"
+	},
+	"opts_allowedSites_netflix": {
+		"message": "Activate for Netflix"
+	},
+	"opts_allowedSites_disney": {
+		"message": "Activate for Disney +"
+	},
+	"opts_allowedSites_primevideo": {
+		"message": "Activate for Prime Video"
+	},
+	"opts_filters_popup": {
+		"message": "Popup"
+	},
+	"opts_filters_popup_description": {
+		"message": "Change popup configuration"
+	},
+	"opts_filters_popup_position": {
+		"message": "Position"
+	},
+	"opts_filters_popup_position_right": {
+		"message": "Right"
+	},
+	"opts_filters_popup_position_left": {
+		"message": "Left"
+	},
+	"opts_filters_btn": {
+		"message": "Popup Button"
+	},
+	"opts_filters_btn_description": {
+		"message": "Change styles or configuration of popup button in page"
+	},
+	"opts_filters_btn_display": {
+		"message": "Button in screen"
+	},
+	"opts_filters_btn_display_description": {
+		"message": "If the button is disabled, then super8 can be accessed through the context menu by right clicking on the screen and selecting super8"
+	},
+	"opts_filters_btn_insidePlaye": {
+		"message": "Button inside player"
+	},
+	"opts_filters_btn_insidePlaye_description": {
+		"message": ""
+	},
+	"opts_filters_btn_position": {
+		"message": "Position in screen"
+	},
+	"opts_filters_btn_position_description": {
+		"message": "By default button is inside video, but if has page error, button there will be floating in page"
+	},
+	"opts_filters_btn_position_none": {
+		"message": "None"
+	},
+	"opts_filters_btn_position_bottomLeft": {
+		"message": "Bottom left"
+	},
+	"opts_filters_btn_position_bottomRight": {
+		"message": "Bottom right"
+	},
+	"opts_filters_btn_position_topLeft": {
+		"message": "Top left"
+	},
+	"opts_filters_btn_position_topRight": {
+		"message": "Top right"
+	},
+	"opts_filters_btn_theme": {
+		"message": "Style"
+	},
+	"opts_filters_btn_theme_description": {
+		"message": "This option is visible when button is floating."
+	},
+	"opts_filters_btn_theme_default": {
+		"message": "Default"
+	},
+	"opts_filters_btn_theme_minimal": {
+		"message": "Minimal"
+	},
+	"opts_filters_btn_theme_minimal_dark": {
+		"message": "Minimal (dark)"
+	},
+	"filters_btn": {
+		"message": "Super8"
+	},
+	"filters_reset": {
+		"message": "Reset"
+	},
+	"filters_reset_desc": {
+		"message": "Reset custom filters"
+	},
+	"filters_hide": {
+		"message": "Hide"
+	},
+	"filters_hide_desc": {
+		"message": ""
+	},
+	"filters_show": {
+		"message": "Show"
+	},
+	"filters_show_desc": {
+		"message": ""
+	},
+	"filters_presets": {
+		"message": "Presets"
+	},
+	"filters_presets_desc": {
+		"message": ""
+	},
+	"filters_presets_official": {
+		"message": "Official presets"
+	},
+	"filters_presets_official_desc": {
+		"message": ""
+	},
+	"filters_presets_user": {
+		"message": "User presets"
+	},
+	"filters_presets_user_desc": {
+		"message": ""
+	},
+	"filters_presets_user_none": {
+		"message": "Any custom preset is set."
+	},
+	"filters_presets_user_none_desc": {
+		"message": ""
+	},
+	"filters_presets_user_btnRemove": {
+		"message": "Remove preset"
+	},
+	"filters_more": {
+		"message": "+"
+	},
+	"filters_more_desc": {
+		"message": "Extra tools"
+	},
+	"filters_more_copy": {
+		"message": "Custom values"
+	},
+	"filters_more_copy_desc": {
+		"message": ""
+	},
+	"filters_more_copy_btn": {
+		"message": "Copy values"
+	},
+	"filters_more_copy_btn_onClick": {
+		"message": "Copied succesfully"
+	},
+	"filters_more_copy_nots_success": {
+		"message": "Values copied successfully"
+	},
+	"filters_more_addPresets": {
+		"message": "Create user preset"
+	},
+	"filters_more_addPresets_desc": {
+		"message": "If you dont know how its work, check out our guide page"
+	},
+	"filters_more_addPresets_inputName": {
+		"message": "Name"
+	},
+	"filters_more_addPresets_inputName_desc": {
+		"message": "Add name of your preset"
+	},
+	"filters_more_addPresets_inputName_placeholder": {
+		"message": "Add name of your preset"
+	},
+	"filters_more_addPresets_inputObject": {
+		"message": "Custom values"
+	},
+	"filters_more_addPresets_inputObject_desc": {
+		"message": "Add object of custom values for your preset. Remember that the values that are omitted in your configuration will be added with the default values. For this reason, it is always better to add all fields to your configuration"
+	},
+	"filters_more_addPresets_inputObject_placeholder": {
+		"message": "Add object of custom values for your preset. Remember that the values that are omitted in your configuration will be added with the default values. For this reason, it is always better to add all fields to your configuration"
+	},
+	"filters_more_addPresets_btn": {
+		"message": "Create user preset"
+	},
+	"filters_more_addPresets_nots_success": {
+		"message": "Preset added successfully"
+	},
+	"filters_more_addPresets_nots_errorName": {
+		"message": "Is invalid text value"
+	},
+	"filters_more_addPresets_nots_errorObject": {
+		"message": "Is invalid object value"
+	},
+	"filters_custom": {
+		"message": "Custom"
+	},
+	"filters_custom_desc": {
+		"message": ""
+	},
+	"filters_custom_border": {
+		"message": "Border"
+	},
+	"filters_custom_border_desc": {
+		"message": "Change border style to video"
+	},
+	"filters_custom_values_borderWidth": {
+		"message": "Size"
+	},
+	"filters_custom_values_borderWidth_desc": {
+		"message": ""
+	},
+	"filters_custom_values_borderRadius": {
+		"message": "Radius"
+	},
+	"filters_custom_values_borderRadius_desc": {
+		"message": ""
+	},
+	"filters_custom_values_borderStyle": {
+		"message": "Style"
+	},
+	"filters_custom_values_borderStyle_desc": {
+		"message": ""
+	},
+	"filters_custom_values_borderColor": {
+		"message": "Color"
+	},
+	"filters_custom_values_borderColor_desc": {
+		"message": ""
+	},
+	"filters_custom_values_shadow": {
+		"message": "Shadow"
+	},
+	"filters_custom_values_shadow_desc": {
+		"message": "Change shadow to video"
+	},
+	"filters_custom_values_shadowX": {
+		"message": "Shift horizontal"
+	},
+	"filters_custom_values_shadowX_desc": {
+		"message": ""
+	},
+	"filters_custom_values_shadowY": {
+		"message": "Shift Vertical"
+	},
+	"filters_custom_values_shadowY_desc": {
+		"message": ""
+	},
+	"filters_custom_values_shadowSpread": {
+		"message": "Spread"
+	},
+	"filters_custom_values_shadowSpread_desc": {
+		"message": ""
+	},
+	"filters_custom_values_shadowBlur": {
+		"message": "Blur"
+	},
+	"filters_custom_values_shadowBlur_desc": {
+		"message": ""
+	},
+	"filters_custom_values_shadowInset": {
+		"message": "Inset"
+	},
+	"filters_custom_values_shadowInset_desc": {
+		"message": ""
+	},
+	"filters_custom_values_shadowColor": {
+		"message": "Color"
+	},
+	"filters_custom_values_shadowColor_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filter": {
+		"message": "Filters"
+	},
+	"filters_custom_values_filter_desc": {
+		"message": "Add filters to video"
+	},
+	"filters_custom_values_filterBlur": {
+		"message": "Blur"
+	},
+	"filters_custom_values_filterBlur_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterBrightness": {
+		"message": "Brightness"
+	},
+	"filters_custom_values_filterBrightness_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterContrast": {
+		"message": "Contrast"
+	},
+	"filters_custom_values_filterContrast_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterGrayscale": {
+		"message": "Grayscale"
+	},
+	"filters_custom_values_filterGrayscale_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterHueRotate": {
+		"message": "Hue Rotate"
+	},
+	"filters_custom_values_filterHueRotate_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterInvert": {
+		"message": "Invert"
+	},
+	"filters_custom_values_filterInvert_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterOpacity": {
+		"message": "Opacity"
+	},
+	"filters_custom_values_filterOpacity_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterSaturation": {
+		"message": "Saturate"
+	},
+	"filters_custom_values_filterSaturation_desc": {
+		"message": ""
+	},
+	"filters_custom_values_filterSepia": {
+		"message": "Sepia"
+	},
+	"filters_custom_values_filterSepia_desc": {
+		"message": ""
+	},
+	"filters_custom_values_animation": {
+		"message": "Animation"
+	},
+	"filters_custom_values_animation_desc": {
+		"message": "Add animations"
+	},
+	"filters_custom_values_animation_nots_comingsoon": {
+		"message": "Coming soon"
+	},
+	"filters_custom_values_animation_nots_comingsoon_desc": {
+		"message": "This section will be available in later versions. Consider contributing to the project if you want it to be available as quickly as possible."
+	},
+	"filters_custom_values_addPreset": {
+		"message": "Create user preset"
+	},
+	"filters_custom_values_addPreset_desc": {
+		"message": "Create user preset with the custom config that you set."
+	}
+}

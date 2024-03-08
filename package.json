@@ -1,0 +1,156 @@
+{
+	"private": true,
+	"name": "bepp",
+	"description": "A tool for package your extension for multiple browsers quickly and easily (Including Safari)",
+	"version": "0.1.0",
+	"license": "GPL-3.0",
+	"workspaces": [
+		"packages/*"
+	],
+	"type": "module",
+	"packageManager": "pnpm@8.11.0",
+	"engines": {
+		"node": ">=20.0.0",
+		"pnpm": ">=8.10.0"
+	},
+	"keywords": [
+		"chrome-extension",
+		"firefox-extension",
+		"safari-extension",
+		"opera-extension",
+		"opera-gx-extension",
+		"brave-extension",
+		"yandex-extension",
+		"edge-extension",
+		"chromium-extension",
+		"browser-extension",
+		"extension"
+	],
+	"scripts": {
+		"core": "pnpm --filter core $@",
+		"bepp": "pnpm --filter @bepp/bepp $@",
+		"doc": "pnpm --filter docs $@",
+		"dev": "turbo dev",
+		"dev:core": "turbo dev --filter=core",
+		"dev:cli": "turbo dev --filter=core --filter=cli",
+		"lint": "pnpm eslint .",
+		"lint-fix": "pnpm eslint . --fix",
+		"prepare": "husky install .dev/husky",
+		"cm": "cz",
+		"cm-origin": "git add . && pnpm cm && git push -f origin $@",
+		"update-version": "changeset && changeset version",
+		"publish-npm": "pnpm build:core && pnpm update-version && changeset publish",
+		"push-main": "pnpm cm-origin main",
+		"push-dev": "pnpm cm-origin dev",
+		"todo": "node .dev/todo.js"
+	},
+	"devDependencies": {
+		"@changesets/changelog-github": "0.4.8",
+		"@changesets/cli": "2.26.2",
+		"@commitlint/cli": "^18.4.1",
+		"@pigeon-posse/eslint-config": "1.0.1",
+		"@typescript-eslint/eslint-plugin": "7.1.1",
+		"@typescript-eslint/parser": "7.1.1",
+		"cli-markdown": "3.2.2",
+		"comment-json": "1.1.3",
+		"eslint": "8.56.0",
+		"eslint-plugin-align-assignments": "1.1.2",
+		"eslint-plugin-align-import": "1.0.0",
+		"eslint-plugin-html": "7.1.0",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-jsdoc": "46.10.1",
+		"eslint-plugin-json": "3.1.0",
+		"eslint-plugin-jsonc": "2.13.0",
+		"eslint-plugin-promise": "6.1.1",
+		"eslint-plugin-yaml": "0.5.0",
+		"git-cz": "3.0.1",
+		"husky": "8.0.3",
+		"commitizen": "^4.3.0",
+		"commitlint-config-gitmoji": "^2.3.1",
+		"cz-customizable": "^7.0.0",
+		"cz-emoji": "1.3.2-canary.2",
+		"inquirer": "9.2.12",
+		"jsonc-eslint-parser": "2.4.0",
+		"lint-staged": "15.2.0",
+		"markdownlint": "0.31.1",
+		"ts-json-schema-generator": "1.5.0",
+		"ts-node": "10.9.2",
+		"tslib": "2.6.2",
+		"typescript": "5.3.3",
+		"typescript-json-schema": "0.63.0",
+		"vite": "5.1.5",
+		"vite-plugin-dts": "3.7.3",
+		"vitest": "1.3.1"
+	},
+	"commitlint": {
+		"extends": [
+			"gitmoji"
+		],
+		"rules": {
+			"header-max-length": [
+				0,
+				"always",
+				100
+			]
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-customizable"
+		},
+		"cz-customizable": {
+			"config": ".dev/cz-config.cjs"
+		}
+	},
+	"lint-staged": {
+		"*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,json}": "eslint"
+	},
+	"homepage": "https://bepp.pigeonposse.com/",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/bepp/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pigeonposse/bepp"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/?popup=donate"
+	},
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://pigeonposse.com"
+	},
+	"extra": {
+		"productName": "Bepp",
+		"docsUrl": "https://bepp.pigeonposse.com",
+		"collective": {
+			"name": "PigeonPosse",
+			"gh": "https://github.com/pigeonposse",
+			"about": "https://pigeonposse.com?popup=about",
+			"url": "https://pigeonposse.com",
+			"web": "https://pigeonposse.com",
+			"email": "dev@pigeonposse.com"
+		},
+		"socialLinks": [
+			{
+				"icon": "github",
+				"link": "https://github.com/pigeonposse"
+			},
+			{
+				"icon": "twitter",
+				"link": "https://twitter.com/pigeonposse_"
+			},
+			{
+				"icon": "instagram",
+				"link": "https://www.instagram.com/pigeon.posse/"
+			},
+			{
+				"icon": "medium",
+				"link": "https://medium.com/@pigeonposse"
+			}
+		]
+	}
+}

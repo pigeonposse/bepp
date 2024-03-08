@@ -1,0 +1,32 @@
+
+###############################################################################
+# FOR PIGEONPOSSE USAGE
+###############################################################################
+
+web:
+  
+  - id: "{{package.name}}"
+    name: "{{package.name}}"
+    type: "library"
+    subtypes:
+		- Chromiun
+		- Chrome
+		- Firefox
+		- Safari
+		- Edge
+		- Brave
+		- Opera
+		- OperaGX
+		- yandex
+    version: "{{package.version}}"
+    description: "{{package.description}}"
+    homepage: "{{package.homepage}}"
+    repo: "{{package.extra.licenseUrl"
+    license: "{{package.extra.licenseUrl}}"
+    tags: "{{package.keywords}}"
+    logo: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/logo.png"
+    banner: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/header.png"
+    status: "active"
+
+
+###############################################################################

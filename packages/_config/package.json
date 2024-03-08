@@ -1,0 +1,9 @@
+{
+	"name": "@bepp/config",
+	"version": "0.1.0",
+	"description": "Configuration files for monorepo",
+	"type": "module",
+	"exports": {
+		"./tsconfig.json": "./tsconfig.json"
+	}
+}

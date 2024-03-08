@@ -1,0 +1,8 @@
+{
+	"name": "@webext-bundler/exts",
+	"version": "0.1.0",
+	"description": "Examples for use in webext-bundler",
+	"files": [
+		"chrome/"
+	]
+}

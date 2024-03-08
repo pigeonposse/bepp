@@ -1,0 +1,12 @@
+# #############################################################################
+# .npmignore config.
+# #############################################################################
+#
+# @description Specifies which files and directories should be ignored 
+#              when publishing a package to npm.
+# @see https://docs.npmjs.com/cli/v8/configuring-npm/npmrc#ignores
+#
+# #############################################################################
+
+!dist
+!package.json
