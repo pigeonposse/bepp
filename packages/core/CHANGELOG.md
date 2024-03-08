@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.0.2
+
+### Patch Changes
+
+- fix deploy issue
+
 ## 1.0.1
 
 ### Patch Changes
