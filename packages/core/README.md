@@ -1,6 +1,6 @@
 # BEPP - Core
 
-![banner](../../docs/public/banner.png)
+![banner](https://github.com/pigeonposse/bepp/blob/main/docs/public/banner.png)
 
 **Bepp** is a _Cross-Browser Extension Builder_, a tool for package your extension for multiple browsers quickly and easily.
 This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, etc.
@@ -19,7 +19,7 @@ This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, 
 
 **BEPP** is an open-source project and its development is open to anyone who wants to participate.
 
-[![Readmore](https://img.shields.io/badge/Read%20more-grey?style=flat-square)](https://bepp.pigeonposse.com/dev-getting-started)
+[![Read more](https://img.shields.io/badge/Read%20more-grey?style=flat-square)](https://bepp.pigeonposse.com/dev-getting-started)
 
 ## ☕ Donate
 

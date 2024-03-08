@@ -1,6 +1,6 @@
 # BEPP - A Cross-Browser Extension Builder
 
-![banner](../../docs/public/banner.png)
+![banner](https://github.com/pigeonposse/bepp/blob/main/docs/public/banner.png)
 
 A tool for package your extension for multiple browsers quickly and easily _(Including Safari)_
 
@@ -18,7 +18,7 @@ This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, 
 **Bepp** is easy and fast 🚀🌈
 > Build 13 types of extensions _(including Safari)_ in **21s**
 
-![demo](../../docs/public/demo.gif)
+![demo](https://github.com/pigeonposse/bepp/blob/main/docs/public/demo.gif)
 
 - [Documentation](https://bepp.pigeonposse.com)
 - [Installation](https://bepp.pigeonposse.com/guide/getting-started#installation)

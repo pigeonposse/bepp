@@ -59,6 +59,9 @@ module.exports = {
 	
 	scopes : [
 		{
+			name : 'config', 
+		},
+		{
 			name : 'core', 
 		},
 		{

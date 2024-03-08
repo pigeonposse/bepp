@@ -1,0 +1,77 @@
+###############################################################################
+# DEPLOY DOCS WEB TO CLOUDFLARE
+###############################################################################
+
+name: Deploy docs web
+
+
+###############################################################################
+# ON
+###############################################################################
+
+on:
+  
+    push:
+      branches:
+        - main
+      paths:
+        - 'docs/**'
+        - 'packages/docs/package.json'
+
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+
+    deploy:
+
+        name: Deploy documentation web
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            deployments: write
+
+        #######################################################################
+        # STEPS
+        #######################################################################
+
+        steps:
+
+            #########################################################################
+            # INIT & BUILD PKG
+            #########################################################################
+            
+            - name: 🛎 Checkout
+              uses: actions/checkout@v3
+
+
+            #########################################################################
+            # BUILD PKG
+            #########################################################################
+
+            - name: 🔑 Install PNPM
+              uses: pnpm/action-setup@v2
+              id: pnpm-install
+
+            - name: 📦 Install pkg dependencies
+              run: pnpm install --no-frozen-lockfile
+
+            ###################################################################
+            # BUILD AND DEPLOY
+            ###################################################################
+
+            - name: 🏗 Build package
+              run: pnpm run build:docs
+
+            - name: 🌥 Deploy in cloudflare pages
+              uses: cloudflare/pages-action@v1
+              with:
+               apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+               accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+               gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+               branch: main
+               projectName: "bepp"
+               directory: 'packages/docs/dist'
+               wranglerVersion: '3'
