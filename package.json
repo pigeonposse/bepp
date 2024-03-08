@@ -33,6 +33,7 @@
 		"dev": "turbo dev",
 		"dev:core": "turbo dev --filter=core",
 		"build:core": "turbo build --filter=core",
+		"build:docs": "turbo build --filter=docs",
 		"lint": "pnpm eslint .",
 		"lint-fix": "pnpm eslint . --fix",
 		"prepare": "husky install .dev/husky",

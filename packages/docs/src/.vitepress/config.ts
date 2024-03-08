@@ -7,8 +7,11 @@
  */
 import { defineConfig } from 'vitepress'
 import { name, description, license, funding, extra, repository, bugs} from "../../../../package.json"
-const repoUrl = repository.url.endsWith('/') ? repository.url : repository.url +'/' ;
 import MarkdownItTaskList from 'markdown-it-task-lists'
+
+const repoUrl = repository.url.endsWith('/') ? repository.url : repository.url +'/' ;
+const isDev = process.env.NODE_ENV !== 'production'
+const srcDir = isDev ? '../../../docs' : './__temp__/docs'
 
 export default defineConfig({
 
@@ -23,7 +26,7 @@ export default defineConfig({
   },
   cacheDir: '../__cache__',
   outDir: '../dist',
-  srcDir: '../../../docs',
+  srcDir,
   cleanUrls: true,
   ignoreDeadLinks: true,
   head: [[

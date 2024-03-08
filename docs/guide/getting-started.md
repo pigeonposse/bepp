@@ -12,6 +12,13 @@ This tool include support for browsers as [_Safari_](build/safari.md), [_Chrome_
 
 <!--@include: ../partials/installation.md-->
 
+## Preview
+
+Build **13** types of extensions (including **_Safari_**) in **21s**
+> **Extensions built**: _chrome, chrome-mv2, chromium, chromium-mv2, firefox, firefox-mv2, edge, edge-mv2, opera, opera-gx, brave, safari, custom (vilvaldi)_
+
+![Preview](/public/demo.gif)
+
 ## Usage
 
 ### init
@@ -155,10 +162,3 @@ try {
 ```
 
 :::
-
-## Preview
-
-Build **13** types of extensions (including **_Safari_**) in **21s**
-> **Extensions built**: _chrome, chrome-mv2, chromium, chromium-mv2, firefox, firefox-mv2, edge, edge-mv2, opera, opera-gx, brave, safari, custom (vilvaldi)_
-
-![Preview](/public/demo.gif)

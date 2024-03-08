@@ -1,18 +1,21 @@
 {
 	"name": "@bepp/docs",
-	"version": "0.1.0",
-	"description": "Documentation for beb",
+	"version": "0.1.1",
+	"description": "Documentation for bepp",
 	"type": "module",
-	"devDependencies": {
-		"@bepp/config": "workspace:*"
-	},
 	"dependencies": {
-		"markdown-it-task-lists": "2.1.1",
-		"vitepress": "1.0.0-rc.44"
+		"markdown-it-task-lists": "2.1.1"
+	},
+	"devDependencies": {
+		"@bepp/config": "workspace:*",
+		"vitepress": "1.0.0-rc.24",
+		"vue": "3.3.7"
 	},
 	"scripts": {
 		"dev": "vitepress dev src",
-		"build": "vitepress build src",
-		"preview": "vitepress preview src"
+		"build": "pnpm copy-docs && vitepress build src --force && pnpm rm-docs",
+		"preview": "vitepress preview src",
+		"copy-docs": "node src/copy-docs.js",
+		"rm-docs": "node src/copy-docs.js --rm-dest"
 	}
 }

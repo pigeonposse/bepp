@@ -2,78 +2,71 @@
 # PUBLISH CORE IN NPM 
 ###############################################################################
 
-name: Deploy webs
-
+name: Publish package in npm
 
 ###############################################################################
 # ON
 ###############################################################################
 
 on:
-  
-    push:
-        branches:
-            - main
-        paths:
-            - 'packages/core/package.json'
-            - 'packages/bepp/package.json'
-
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/core/package.json'
+      - 'packages/bepp/package.json'
 
 ###############################################################################
 # JOBS
 ###############################################################################
 
 jobs:
+  build:
+    name: Publish core
+    runs-on: ubuntu-latest
 
-    build:
-  
-        name: Publish core
-        runs-on: ubuntu-latest
+    ###########################################################################
+    # STEPS
+    ###########################################################################
 
-        ###########################################################################
-        # STEPS
-        ###########################################################################
+    steps:
 
-        steps:
+      #########################################################################
+      # INIT & BUILD PKG
+      #########################################################################
+      
+      - name: 🛎 Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-            #########################################################################
-            # INIT & BUILD PKG
-            #########################################################################
-            
-            - name: 🛎 Checkout
-              uses: actions/checkout@v3
+      #########################################################################
+      # BUILD PKG
+      #########################################################################
 
+      - name: 🏗 Install pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
 
-            #########################################################################
-            # BUILD PKG
-            #########################################################################
+      - name: 👨🏻‍💻 Install pkg dependencies
+        run: |
+          pnpm install --no-frozen-lockfile
 
-            - name: 🏗 Install pnpm
-              uses: pnpm/action-setup@v2
-              id: pnpm-install
+      ###################################################################
+      # BUILD
+      ###################################################################
+      
+      - name: 🏗 Build package
+        run: pnpm build:core
 
-            - name: 👨🏻‍💻 Install pkg dependencies
-              run: |
-                pnpm install --no-frozen-lockfile
+      ###################################################################
+      # PUBLISH
+      ###################################################################
 
-
-            ###################################################################
-            # BUILD
-            ###################################################################
-            
-            - name: 🏗 Build package
-              run:  pnpm build:core
-
-            ###################################################################
-            # PUBLISH
-            ###################################################################
-
-            - name: Publish to NPM
-              id: changesets
-              uses: changesets/action@v1
-              # with:
-              #   publish: pnpm release:core
-              env:
-                GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
-                NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-  
+      - name: Publish to NPM
+        id: changesets
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}

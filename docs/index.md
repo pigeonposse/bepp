@@ -52,25 +52,3 @@ features:
 
 ---
 
-
-<div class="home-custom">
-
-### Preview
-
-![Preview](/public/demo.gif)
-
-### Installation
-
-<!--@include: ./partials/installation.md-->
-
-</div>
-
-<!-- <div class="home-custom">
-
-![HEADER](images/banner.png)
-
-```bash
-bepp init [options]
-```
-
-</div> -->
