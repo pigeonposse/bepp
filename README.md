@@ -7,19 +7,6 @@ A tool for package your extension for multiple browsers quickly and easily _(Inc
 **Bepp** is a Cross-Browser Extension Builder, a tool for package your extension for multiple browsers quickly and easily.
 This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, etc.
 
-```bash [npm]
-npm install @bepp/bepp 
-# or
-pnpm i @bepp/bepp
-# or
-yarn add @bepp/bepp 
-```
-
-**Bepp** is easy and fast 🚀🌈
-> Build 13 types of extensions _(including Safari)_ in **21s**
-
-![demo](docs/public/demo.gif)
-
 - [Documentation](https://bepp.pigeonposse.com)
 - [Installation](https://bepp.pigeonposse.com/guide/getting-started#installation)
 - [Init](https://bepp.pigeonposse.com/guide/init)
@@ -27,6 +14,51 @@ yarn add @bepp/bepp
 - [Build extensions with config file](https://bepp.pigeonposse.com/guide/build/config-file)
 - [Build Safari extension](https://bepp.pigeonposse.com/guide/build/safari)
 - [GitHub action Documentation](https://bepp.pigeonposse.com/guide/gh-action)
+
+## Installation _(CLI and Libary)_
+
+```bash
+npm install @bepp/bepp 
+# or
+pnpm i @bepp/bepp
+# or
+yarn add @bepp/bepp 
+```
+
+## Preview
+
+**Bepp** is easy and fast 🚀🌈
+> Build 13 types of extensions _(including Safari)_ in **21s**
+
+![demo](docs/public/demo.gif)
+
+## Github action
+
+You can use bepp as a GitHub action.
+
+## Example
+
+```yaml
+name: Build extensions
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build extensions with bepp
+    runs-on: macos-latest # Must be macos for safari extension build
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        uses: pigeonposse/bepp
+        # For custom config file input
+        # Default looks for file in workspace path bepp.config.json, bepp.config.yaml, bepp.config.toml
+        # with:
+        #   file: './custom-bepp.config.json'
+  
+```
 
 ## 👨‍💻 Development
 
