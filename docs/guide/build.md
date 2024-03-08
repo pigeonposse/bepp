@@ -23,7 +23,6 @@ Create extensions tailored for specific browsers.
 - [Firefox](build/firefox.md) _(manifest 3 and 2)_
 - [Edge](build/edge.md) _(manifest 3 and 2)_
 - [Safari](build/safari.md)
-- [Brave](build/brave.md)
 - [Opera](build/opera.md)
 - [Opera GX](build/opera-gx.md)
 - [Yandex](build/yandex.md) _(manifest 3 and 2)_

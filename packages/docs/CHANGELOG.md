@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.0.1
+
+### Patch Changes
+
+- update build page
+
 ## 1.0.0
 
 ### Major Changes
