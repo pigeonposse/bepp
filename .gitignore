@@ -21,7 +21,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-build
+/build
+pacakges/**/build
 *.local
 
 # misc
@@ -55,4 +56,4 @@ build
 /__cache__
 **/__cache__
 **/*.timestamp-*
-!**/docs/guide/build
+

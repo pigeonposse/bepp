@@ -2,7 +2,7 @@
 # PUBLISH CORE IN NPM 
 ###############################################################################
 
-name: Publish package in npm
+name: Publish packages in npm
 
 ###############################################################################
 # ON
@@ -22,7 +22,7 @@ on:
 
 jobs:
   build:
-    name: Publish core
+    name: Publish packages in npm
     runs-on: ubuntu-latest
 
     ###########################################################################
