@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.0.3
+
+### Patch Changes
+
+- linked core, bepp and action
+
 ## 1.0.2
 
 ### Patch Changes

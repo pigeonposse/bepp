@@ -1,0 +1,11 @@
+{
+	"extends": "./node_modules/@bepp/config/tsconfig.json",
+	"include": [
+		"./src/",
+		"../../package.json"
+	],
+	"compilerOptions": {
+		"outDir": "./dist",
+		"baseUrl": "./src"
+	}
+}

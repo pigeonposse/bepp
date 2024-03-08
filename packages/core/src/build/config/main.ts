@@ -13,6 +13,7 @@ export class BuildConfigCore extends BuildSharedCore {
     defaultConfigPaths = [
         this.id+'.config.json',
         this.id+'.config.yaml',
+		this.id+'.config.yml',
         this.id+'.config.toml'
     ]
 

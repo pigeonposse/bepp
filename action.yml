@@ -1,0 +1,15 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+
+name: 'BEPP - A Cross-Browser Extension Builder'
+description: 'Package your extension for multiple browsers quickly and easily (Including Safari)'
+author: 'pigeonposse'
+inputs:
+  file:
+    required: false
+    description: 'Path for config file.'
+runs:
+  using: 'node20'
+  main: './action/index.js'
+branding:
+  icon: 'package'
+  color: 'purple'

@@ -1,5 +1,12 @@
 # @bepp/bepp
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @bepp/core@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

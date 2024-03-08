@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/core",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"bin": {
@@ -21,6 +21,8 @@
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
 	},
+	"license": "GPL-3.0",
+	"homepage": "https://bepp.pigeonposse.com/",
 	"scripts": {
 		"dev": "pnpm build && pnpm preview",
 		"preview": "node dist/main.js $@",
@@ -36,8 +38,6 @@
 		"@types/js-yaml": "4.0.9",
 		"@types/node": "20.11.19"
 	},
-	"license": "GPL-3.0",
-	"homepage": "https://bepp.pigeonposse.com/",
 	"dependencies": {
 		"@commander-js/extra-typings": "12.0.0",
 		"@topcli/spinner": "2.1.2",

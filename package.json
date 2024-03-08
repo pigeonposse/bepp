@@ -30,6 +30,7 @@
 		"core": "pnpm --filter core $@",
 		"bepp": "pnpm --filter @bepp/bepp $@",
 		"doc": "pnpm --filter docs $@",
+		"action": "pnpm --filter gh-action $@",
 		"dev": "turbo dev",
 		"dev:core": "turbo dev --filter=core",
 		"build:core": "turbo build --filter=core",

@@ -1,0 +1,23 @@
+{
+	"name": "@bepp/gh-action",
+	"version": "1.0.3",
+	"description": "Github action for package extension with bepp",
+	"type": "module",
+	"scripts": {
+		"build": "pnpm build:src && pnpm build:package",
+		"build:src": "vite build",
+		"build:package": "ncc build dist/main.js -o ../../action --license license.txt",
+		"lint": "eslint . --ext .ts"
+	},
+	"dependencies": {
+		"@actions/core": "1.10.1",
+		"@bepp/core": "workspace:*"
+	},
+	"optionalDependencies": {
+		"appdmg": "0.6.6"
+	},
+	"devDependencies": {
+		"@bepp/config": "workspace:*",
+		"@vercel/ncc": "0.38.1"
+	}
+}
