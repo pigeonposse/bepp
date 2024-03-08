@@ -34,7 +34,9 @@ yarn add @bepp/bepp
 
 ## Github action
 
-You can use bepp as a GitHub action.
+You can use bepp as a **GitHub action**.
+
+- [Read more](https://bepp.pigeonposse.com/guide/gh-action)
 
 ## Example
 
@@ -59,6 +61,8 @@ jobs:
         #   file: './custom-bepp.config.json'
   
 ```
+
+- [Read more documentation](https://bepp.pigeonposse.com/guide/gh-action)
 
 ## 👨‍💻 Development
 
