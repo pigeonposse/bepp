@@ -1,5 +1,16 @@
 # @bepp/bepp
 
+## 1.0.0
+
+### Major Changes
+
+- update to v1
+
+### Patch Changes
+
+- Updated dependencies
+  - @bepp/core@1.0.0
+
 ## 0.1.2
 
 ### Patch Changes

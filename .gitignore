@@ -55,3 +55,4 @@ build
 /__cache__
 **/__cache__
 **/*.timestamp-*
+!**/docs/guide/build

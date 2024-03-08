@@ -28,7 +28,7 @@ export default defineConfig({
   outDir: '../dist',
   srcDir,
   cleanUrls: true,
-  ignoreDeadLinks: true,
+//   ignoreDeadLinks: true,
   head: [[
     'link', 
     { 
@@ -68,7 +68,7 @@ export default defineConfig({
           { text: 'Init', link: '/guide/init' },
           { 
 			text: 'Build', 
-			link: '/guide/build', 
+			link: '/guide/build/index', 
 			collapsed: true, 
 			items: [
 			{ text: 'With Config file', link: '/guide/build/config-file' },
