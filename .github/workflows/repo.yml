@@ -50,8 +50,7 @@ jobs:
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
-          # end of optional handling for multi line json
-          echo "::set-output name=packageJson::$content"
+          echo "{packageJson}={$content}" >> $GITHUB_OUTPUT
 
       #########################################################################
       # UPDATE
@@ -62,5 +61,6 @@ jobs:
           gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} -d "${{fromJson(steps.pkg.outputs.packageJson).description}}"
           gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} --add-topic ${{fromJson(steps.pkg.outputs.packageJson).keywords}}
           gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} --homepage ${{fromJson(steps.pkg.outputs.packageJson).homepage}}
-
+        env:
+            GH_TOKEN: ${{ github.token }}
 ###############################################################################
