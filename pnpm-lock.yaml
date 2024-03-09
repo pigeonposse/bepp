@@ -74,6 +74,9 @@ importers:
       eslint-plugin-yaml:
         specifier: 0.5.0
         version: 0.5.0
+      figlet:
+        specifier: ^1.7.0
+        version: 1.7.0
       git-cz:
         specifier: 3.0.1
         version: 3.0.1
@@ -4384,6 +4387,12 @@ packages:
     dependencies:
       pend: 1.2.0
     dev: false
+
+  /figlet@1.7.0:
+    resolution: {integrity: sha512-gO8l3wvqo0V7wEFLXPbkX83b7MVjRrk1oRLfYlZXol8nEpb/ON9pcKLI4qpBv5YtOTfrINtqb7b40iYY2FTWFg==}
+    engines: {node: '>= 0.4.0'}
+    hasBin: true
+    dev: true
 
   /figures@2.0.0:
     resolution: {integrity: sha512-Oa2M9atig69ZkfwiApY8F2Yy+tzMbazyvqv21R0NsSC8floSOC09BbT1ITWAdoMGQvJ/aZnR1KMwdx9tvHnTNA==}

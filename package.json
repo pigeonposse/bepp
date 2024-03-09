@@ -2,12 +2,10 @@
 	"private": true,
 	"name": "bepp",
 	"description": "A tool for package your extension for multiple browsers quickly and easily (Including Safari)",
-	"version": "0.1.0",
 	"license": "GPL-3.0",
 	"workspaces": [
 		"packages/*"
 	],
-	"type": "module",
 	"packageManager": "pnpm@8.11.0",
 	"engines": {
 		"node": ">=20.0.0",
@@ -24,7 +22,15 @@
 		"edge-extension",
 		"chromium-extension",
 		"browser-extension",
-		"extension"
+		"extension",
+		"safari",
+		"chrome",
+		"firefox",
+		"node",
+		"node-js",
+		"js",
+		"bin",
+		"cli"
 	],
 	"scripts": {
 		"core": "pnpm --filter core $@",
@@ -33,18 +39,19 @@
 		"action": "pnpm --filter gh-action $@",
 		"dev": "turbo dev",
 		"dev:core": "turbo dev --filter=core",
-		"build:core": "turbo build --filter=core",
+		"build:core": "turbo build --filter=core --filter=gh-action",
 		"build:docs": "turbo build --filter=docs",
 		"lint": "pnpm eslint .",
 		"lint-fix": "pnpm eslint . --fix",
 		"prepare": "husky install .dev/husky",
 		"cm": "cz",
 		"cm-origin": "git add . && pnpm cm && git push -f origin $@",
-		"update-version": "changeset && changeset version",
-		"publish-npm": "pnpm build:core && pnpm update-version && changeset publish",
 		"push-main": "pnpm cm-origin main",
 		"push-dev": "pnpm cm-origin dev",
-		"todo": "node .dev/todo.js"
+		"update-version": "changeset && changeset version",
+		"release": "pnpm build:core && pnpm update-version && changeset publish",
+		"todo": "node --experimental-modules .dev/todo.mjs",
+		"readme": "node --experimental-modules .dev/readme.mjs"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "0.4.8",
@@ -69,6 +76,7 @@
 		"eslint-plugin-jsonc": "2.13.0",
 		"eslint-plugin-promise": "6.1.1",
 		"eslint-plugin-yaml": "0.5.0",
+		"figlet": "^1.7.0",
 		"git-cz": "3.0.1",
 		"husky": "8.0.3",
 		"inquirer": "9.2.12",
@@ -124,36 +132,33 @@
 	"author": {
 		"name": "Angelo",
 		"email": "angelo@pigeonposse.com",
-		"url": "https://pigeonposse.com"
+		"url": "https://github.com/angelespejo"
 	},
+	"contributors": [
+		{
+			"name": "Alejo",
+			"email": "alejo@pigeonposse.com",
+			"url": "https://github.com/alejomalia"
+		}
+	],
 	"extra": {
 		"productName": "Bepp",
 		"docsUrl": "https://bepp.pigeonposse.com",
+		"libraryUrl": "https://www.npmjs.com/package/@bepp/bepp",
+		"ghActionUrl": "https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder",
 		"collective": {
+			"id": "pigeonposse",
 			"name": "PigeonPosse",
 			"gh": "https://github.com/pigeonposse",
 			"about": "https://pigeonposse.com?popup=about",
 			"url": "https://pigeonposse.com",
 			"web": "https://pigeonposse.com",
-			"email": "dev@pigeonposse.com"
-		},
-		"socialLinks": [
-			{
-				"icon": "github",
-				"link": "https://github.com/pigeonposse"
-			},
-			{
-				"icon": "twitter",
-				"link": "https://twitter.com/pigeonposse_"
-			},
-			{
-				"icon": "instagram",
-				"link": "https://www.instagram.com/pigeon.posse/"
-			},
-			{
-				"icon": "medium",
-				"link": "https://medium.com/@pigeonposse"
+			"email": "dev@pigeonposse.com",
+			"social": {
+				"twitter": "https://twitter.com/pigeonposse_",
+				"instagram": "https://www.instagram.com/pigeon.posse/",
+				"medium": "https://medium.com/@pigeonposse"
 			}
-		]
+		}
 	}
 }

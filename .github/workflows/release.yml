@@ -36,7 +36,7 @@ jobs:
       #########################################################################
       
       - name: 🛎 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -64,9 +64,12 @@ jobs:
       # PUBLISH
       ###################################################################
 
-      - name: Publish to NPM
-        id: changesets
-        uses: changesets/action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+    #   - name: Publish to NPM
+    #     id: changesets
+    #     uses: changesets/action@v1
+    #     with:
+    #       # This expects you to have a script called release which does a build for your packages and calls changeset publish
+    #       publish: pnpm release
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
+    #       NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}

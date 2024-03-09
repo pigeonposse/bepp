@@ -1,10 +1,71 @@
+<!-- PIGEONPOSSE START MARK -->
+<!--
+██████╗ ██╗ ██████╗ ███████╗ ██████╗ ███╗   ██╗
+██╔══██╗██║██╔════╝ ██╔════╝██╔═══██╗████╗  ██║
+██████╔╝██║██║  ███╗█████╗  ██║   ██║██╔██╗ ██║
+██╔═══╝ ██║██║   ██║██╔══╝  ██║   ██║██║╚██╗██║
+██║     ██║╚██████╔╝███████╗╚██████╔╝██║ ╚████║
+╚═╝     ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝
+                                               
+██████╗  ██████╗ ███████╗███████╗███████╗      
+██╔══██╗██╔═══██╗██╔════╝██╔════╝██╔════╝      
+██████╔╝██║   ██║███████╗███████╗█████╗        
+██╔═══╝ ██║   ██║╚════██║╚════██║██╔══╝        
+██║     ╚██████╔╝███████║███████║███████╗      
+╚═╝      ╚═════╝ ╚══════╝╚══════╝╚══════╝      
+                                               
+                                               
+                                               
+█████╗█████╗█████╗█████╗█████╗█████╗█████╗     
+╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝     
+                                               
+                                               
+                                               
+██████╗ ███████╗██████╗ ██████╗                
+██╔══██╗██╔════╝██╔══██╗██╔══██╗               
+██████╔╝█████╗  ██████╔╝██████╔╝               
+██╔══██╗██╔══╝  ██╔═══╝ ██╔═══╝                
+██████╔╝███████╗██║     ██║                    
+╚═════╝ ╚══════╝╚═╝     ╚═╝                    
+                                                                   
+                                                
+REPOSITORY: https://github.com/pigeonposse/bepp
+AUTHORS: 
+	- Angelo (https://github.com/angelespejo)
+
+DEVELOPED BY Angelo 🐦🌈
+
+-->
+<!-- PIGEONPOSSE END MARK -->
+
 # BEPP - A Cross-Browser Extension Builder
 
-![banner](https://github.com/pigeonposse/bepp/blob/main/docs/public/banner.png)
+<!-- PIGEONPOSSE START HEADER -->
+
+[![HEADER](https:/github.com/pigeonposse/bepp/blob/main/docs/public/banner.png)](https://bepp.pigeonposse.com/)
+
+[![Web](https://img.shields.io/badge/Web-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com)
+[![About Us](https://img.shields.io/badge/About%20Us-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com?popup=about)
+[![Donate](https://img.shields.io/badge/Donate-pink?style=for-the-badge&logoColor=white)](https://pigeonposse.com/?popup=donate)
+[![Github](https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pigeonposse)
+[![Twitter](https://img.shields.io/badge/Twitter-black?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/pigeonposse_)
+[![Instagram](https://img.shields.io/badge/Instagram-black?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/pigeon.posse/)
+[![Medium](https://img.shields.io/badge/Medium-black?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@pigeonposse)
+
+[![License](https://img.shields.io/github/license/pigeonposse/bepp?color=green&style=for-the-badge&logoColor=white)](/LICENSE)
+[![Github Releases](https://img.shields.io/github/package-json/v/pigeonposse/bepp?color=blue&style=for-the-badge&logoColor=white)](https://www.npmjs.com/package/@bepp/bepp)
+[![Github Action](https://img.shields.io/github/package-json/v/pigeonposse/bepp?color=blue&style=for-the-badge&logoColor=white)](https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder)
 
 A tool for package your extension for multiple browsers quickly and easily _(Including Safari)_
 
-```bash [npm]
+**BEPP** is a Cross-Browser Extension Builder, a tool for package your extension for multiple browsers quickly and easily.
+This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, etc.
+<!-- PIGEONPOSSE END HEADER -->
+
+<!-- PIGEONPOSSE START CONTENT -->
+## Installation _(CLI and Library)_
+
+```bash
 npm install @bepp/bepp 
 # or
 pnpm i @bepp/bepp
@@ -12,27 +73,73 @@ pnpm i @bepp/bepp
 yarn add @bepp/bepp 
 ```
 
-**Bepp** is a Cross-Browser Extension Builder, a tool for package your extension for multiple browsers quickly and easily.
-This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, etc.
+## Preview
 
 **Bepp** is easy and fast 🚀🌈
 > Build 13 types of extensions _(including Safari)_ in **21s**
 
-![demo](https://github.com/pigeonposse/bepp/blob/main/docs/public/demo.gif)
+![demo](https:/github.com/pigeonposse/bepp/blob/main/docs/public/demo.gif)
 
-- [Documentation](https://bepp.pigeonposse.com)
-- [Installation](https://bepp.pigeonposse.com/guide/getting-started#installation)
-- [Init](https://bepp.pigeonposse.com/guide/init)
-- [Build multiple extensions](https://bepp.pigeonposse.com/guide/build)
-- [Build extensions with config file](https://bepp.pigeonposse.com/guide/build/config-file)
-- [Build Safari extension](https://bepp.pigeonposse.com/guide/build/safari)
-- [GitHub action](https://bepp.pigeonposse.com/guide/gh-action)
+## Github action
 
+You can use bepp as a **GitHub action**.
+
+- [Read more](https:/bepp.pigeonposse.com/guide/gh-action)
+
+## Example
+
+```yaml
+name: Build extensions
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build extensions with bepp
+    runs-on: macos-latest # Must be macos for Safari extension build
+    steps:
+
+      - name: 🛎 Checkout
+        uses: actions/checkout@v4
+  
+      - name: Build extension with BEPP
+        uses: pigeonposse/bepp@1.0.4
+        ##########################################################################################
+        # For custom config file input
+        # Default looks for file in workspace path bepp.config.json, bepp.config.yaml, bepp.config.toml
+        # More info for config file: https:/bepp.pigeonposse.com/guide/build/config-file
+        ##########################################################################################
+        # with:
+        #   file: './custom-bepp.config.json'
+  
+```
+
+- [GH action documentation](https:/bepp.pigeonposse.com/guide/gh-action)
+- [Config file documentation](https:/bepp.pigeonposse.com/guide/build/config-file)
+
+<!-- PIGEONPOSSE END CONTENT -->
+
+<!-- PIGEONPOSSE START INDEX -->
+
+- [Documentation](https://bepp.pigeonposse.com/)
+- [Installation](https:/bepp.pigeonposse.com/guide/getting-started#installation)
+- [Init](https:/bepp.pigeonposse.com/guide/init)
+- [Build multiple extensions](https:/bepp.pigeonposse.com/guide/build)
+- [Build extensions with config file](https:/bepp.pigeonposse.com/guide/build/config-file)
+- [Build Safari extension](https:/bepp.pigeonposse.com/guide/build/safari)
+- [GitHub action Documentation]( https:/bepp.pigeonposse.com/guide/gh-action )
+
+<!-- PIGEONPOSSE END INDEX -->
+
+<!-- PIGEONPOSSE START ORG -->
 ## 👨‍💻 Development
 
 **BEPP** is an open-source project and its development is open to anyone who wants to participate.
 
-[![Readmore](https://img.shields.io/badge/Read%20more-grey?style=flat-square)](https://bepp.pigeonposse.com/dev-getting-started)
+[![Issues](https://img.shields.io/badge/Issues-grey?style=for-the-badge)](https:/github.com/pigeonposse/bepp/issues)
+[![Pull requests](https://img.shields.io/badge/Pulls-grey?style=for-the-badge)](https:/github.com/pigeonposse/bepp/pulls)
+[![Read more](https://img.shields.io/badge/Read%20more-grey?style=flat-square)](https://bepp.pigeonposse.com/)
 
 ## ☕ Donate
 
@@ -42,22 +149,34 @@ Help us to develop more interesting things.
 
 ## 📜 License
 
-This software is licensed with GPLv3 (GNU GENERAL PUBLIC LICENSE Version 3).
+This software is licensed with **[GPL-3.0](/LICENSE)**.
 
-[![Read more](https://img.shields.io/badge/Read-more-grey?style=flat-square)](https://github.com/pigeonposse/bepp/blob/main/LICENSE)
+[![Read more](https://img.shields.io/badge/Read-more-grey?style=flat-square)](/LICENSE)
 
 ## 🐦 About us
 
 *PigeonPosse* is a ✨ **code development collective** ✨ focused on creating practical and interesting tools that help developers and users enjoy a more agile and comfortable experience. Our projects cover various programming sectors and we do not have a thematic limitation in terms of projects.
 
-[![More](https://img.shields.io/badge/Read-more-grey?style=flat-square)](https://github.com/PigeonPosse/PigeonPosse)
+[![More](https://img.shields.io/badge/Read-more-grey?style=flat-square)](https://github.com/pigeonposse)
 
 ### Collaborators
 
-|                                                                                    | Name         | Role         | Contribution | GitHub                                         |
-| ---------------------------------------------------------------------------------- | ------------ | ------------ | ------------ | ---------------------------------------------- |
-| <img src="https://github.com/AngelEspejo.png?size=72" style="border-radius:100%" alt="logo"/> | Ángel Espejo | Author       | Idea & Development | [@AngelEspejo](https://github.com/AngelEspejo) |
-| <img src="https://github.com/AlejoMalia.png?size=72" style="border-radius:100%" alt="logo"/> | Alejo Malia  | Developer       | Logo & banner design | [@AlejoMalia](https://github.com/AlejoMalia) |
-| <img src="https://github.com/PigeonPosse.png?size=72" style="border-radius:100%" alt="logo"/> | PigeonPosse  | Collective   | Distribution | [@PigeonPosse](https://github.com/PigeonPosse) |
+|                                                                                    | Name        | Role         | GitHub                                         |
+| ---------------------------------------------------------------------------------- | ----------- | ------------ | ---------------------------------------------- |
+| <img src="https://github.com/angelespejo.png?size=72" alt="Angelo" style="border-radius:100%"/> | Angelo |   Author & Development   | [@Angelo](https://github.com/angelespejo) |
+| <img src="https://github.com/alejomalia.png?size=72" alt="Alejo" style="border-radius:100%"/> | Alejo |   Author & Design   | [@Alejo](https://github.com/alejomalia) |
+| <img src="https://github.com/PigeonPosse.png?size=72" alt="PigeonPosse" style="border-radius:100%"/> | PigeonPosse | Collective | [@PigeonPosse](https://github.com/PigeonPosse) |
 
 <br>
+<p align="center">
+
+[![Web](https://img.shields.io/badge/Web-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com)
+[![About Us](https://img.shields.io/badge/About%20Us-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com?popup=about)
+[![Donate](https://img.shields.io/badge/Donate-pink?style=for-the-badge&logoColor=white)](https://pigeonposse.com/?popup=donate)
+[![Github](https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pigeonposse)
+[![Twitter](https://img.shields.io/badge/Twitter-black?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/pigeonposse_)
+[![Instagram](https://img.shields.io/badge/Instagram-black?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/pigeon.posse/)
+[![Medium](https://img.shields.io/badge/Medium-black?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@pigeonposse)
+
+</p>
+<!-- PIGEONPOSSE END ORG -->

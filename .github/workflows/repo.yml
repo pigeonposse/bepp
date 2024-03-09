@@ -1,0 +1,73 @@
+###############################################################################
+# UPDATE REPO INFO
+###############################################################################
+
+name: Update repo info
+
+###############################################################################
+# ON
+###############################################################################
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+  workflow_dispatch:
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+  build:
+    name: Update repo info
+    runs-on: ubuntu-latest
+
+    ###########################################################################
+    # STEPS
+    ###########################################################################
+
+    steps:
+
+      #########################################################################
+      # INIT REPO
+      #########################################################################
+
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - name: Install GH CLI
+        uses: dev-hanz-ops/install-gh-cli-action@v0.1.0
+
+      - name: Authenticate with GitHub CLI
+        run: |
+          echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
+
+
+      #########################################################################
+      # GET DATA
+      #########################################################################
+
+      - name: Get PACKAGE data
+        id: package
+        uses: kekedaine/github-action-json-property-by-lodash@0.2.0
+        with:
+          path: 'package.json'
+          description: 'description' 
+          keywords: 'keywords'
+          repository: 'repository.url'
+          homepage: 'homepage'
+
+      #########################################################################
+      # UPDATE
+      #########################################################################
+
+      - name: Change GitHub data
+        run: |
+          gh repo edit ${{ steps.package.outputs.repository }} -d "${{ steps.package.outputs.description }}"
+          gh repo edit ${{ steps.package.outputs.repository }} --add-topic ${{ steps.package.outputs.keywords }}
+          gh repo edit ${{ steps.package.outputs.repository }} --homepage ${{ steps.package.outputs.homepage }}
+
+###############################################################################

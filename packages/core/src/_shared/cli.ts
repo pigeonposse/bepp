@@ -3,18 +3,20 @@
  *
  * @description File for set cli functions.
  */
-import type { OptionValues } from '@commander-js/extra-typings'
+import {
+	name, description, 
+} from '../../../../package.json'
+import { version } from '../../package.json'
+
 import {
 	Command, Option, 
-}                                                                             from '@commander-js/extra-typings'
-import { Logger }              from './logger'
-import {
-	version, name, description,
-}                                                                                  from '../../../../package.json'
+} from '@commander-js/extra-typings'
+import { Logger }                                                                                              from './logger'
+import chalk                                                                                                   from 'chalk'
 import type {
 	CLIParams, CmdConstructor, CmdParams, OptionArrayParams, OptionBooleanParams, OptionStringParams, Program, 
 } from './types'
-import chalk from 'chalk'
+import type { OptionValues } from '@commander-js/extra-typings'
 
 const moreInfoLink = ( path: string | undefined = undefined ) => `\nMore info: ${chalk.italic.gray.underline( 'https://bepp.pigeonposse.com/guide/' + ( path ? path : '' ) )}\n`
 
