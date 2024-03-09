@@ -1,6 +1,7 @@
 {
 	"private": true,
 	"name": "bepp",
+	"version": "1.0.6",
 	"description": "A tool for package your extension for multiple browsers quickly and easily (Including Safari)",
 	"license": "GPL-3.0",
 	"workspaces": [
