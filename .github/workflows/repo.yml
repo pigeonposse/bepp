@@ -44,14 +44,14 @@ jobs:
       #########################################################################
 
       - name: Get PACKAGE data
-        id: package
-        uses: kekedaine/github-action-json-property-by-lodash@0.2.0
-        with:
-          path: 'package.json'
-          description: 'description' 
-          keywords: 'keywords'
-          repository: 'repository.url'
-          homepage: 'homepage'
+        id: pkg
+        run: |
+          content=`cat ./package.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
 
       #########################################################################
       # UPDATE
@@ -59,8 +59,8 @@ jobs:
 
       - name: Change GitHub data
         run: |
-          gh repo edit ${{ steps.package.outputs.repository }} -d "${{ steps.package.outputs.description }}"
-          gh repo edit ${{ steps.package.outputs.repository }} --add-topic ${{ steps.package.outputs.keywords }}
-          gh repo edit ${{ steps.package.outputs.repository }} --homepage ${{ steps.package.outputs.homepage }}
+          gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} -d "${{fromJson(steps.pkg.outputs.packageJson).description}}"
+          gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} --add-topic ${{fromJson(steps.pkg.outputs.packageJson).keywords}}
+          gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} --homepage ${{fromJson(steps.pkg.outputs.packageJson).homepage}}
 
 ###############################################################################

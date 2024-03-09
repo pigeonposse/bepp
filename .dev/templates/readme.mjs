@@ -58,7 +58,7 @@ const markFunct = pkg => {
 const header    = pkg => {
 
 	return `
-[![HEADER](${joinPath( pkg.data.repository.url, '/blob/main/docs/public/banner.png' )})](${pkg.data.homepage})
+[![HEADER](${joinPath( pkg.data.repository.url, '/raw/main/docs/public/banner.png' )})](${pkg.data.homepage})
 
 ${collectiveImgLInks( pkg )}
 
@@ -126,7 +126,7 @@ yarn add @bepp/bepp
 **Bepp** is easy and fast 🚀🌈
 > Build 13 types of extensions _(including Safari)_ in **21s**
 
-![demo](${joinPath( pkg.data.repository.url, '/blob/main/docs/public/demo.gif' )})
+![demo](${joinPath( pkg.data.repository.url, '/raw/main/docs/public/demo.gif' )})
 
 ## Github action
 

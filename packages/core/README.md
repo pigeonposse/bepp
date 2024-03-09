@@ -42,7 +42,7 @@ DEVELOPED BY Angelo 🐦🌈
 
 <!-- PIGEONPOSSE START HEADER -->
 
-[![HEADER](https:/github.com/pigeonposse/bepp/blob/main/docs/public/banner.png)](https://bepp.pigeonposse.com/)
+[![HEADER](https:/github.com/pigeonposse/bepp/raw/main/docs/public/banner.png)](https://bepp.pigeonposse.com/)
 
 [![Web](https://img.shields.io/badge/Web-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com)
 [![About Us](https://img.shields.io/badge/About%20Us-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com?popup=about)
