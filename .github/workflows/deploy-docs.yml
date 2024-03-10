@@ -12,9 +12,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'docs/**'
-      - 'packages/docs/package.json'
+  workflow_dispatch:
+
 
 ###############################################################################
 # JOBS

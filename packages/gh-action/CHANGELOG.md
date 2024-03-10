@@ -1,5 +1,11 @@
 # @bepp/gh-action
 
+## 1.0.8
+
+### Patch Changes
+
+- change dist folder
+
 ## 1.0.7
 
 ### Patch Changes

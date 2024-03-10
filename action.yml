@@ -9,7 +9,7 @@ inputs:
     description: 'Path for config file.'
 runs:
   using: 'node20'
-  main: './packages/gh-action/dist/index.js'
+  main: './action/index.js'
 branding:
   icon: 'package'
   color: 'purple'
