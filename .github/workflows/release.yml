@@ -2,7 +2,7 @@
 # RELEASE 
 ###############################################################################
 
-name: 🚀 Release
+name: 🚀 Release packages
 
 on:
   push:
@@ -23,7 +23,9 @@ env:
 
 jobs:
   release:
+  
     name: 🚀 Release
+    timeout-minutes: 15
     runs-on: macos-latest
     steps:
 
