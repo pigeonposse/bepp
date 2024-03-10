@@ -51,6 +51,9 @@ export class BuildConfigCore extends BuildSharedCore {
                     if(!configPath) throw new Error (`There is no supported configuration file. Supported files: ${this.defaultConfigPaths.join(" or ")}`)
     
                 }else {
+
+					// necesary for library mode
+					if( typeof values.file !== 'string' ) throw Error( 'File property must be a string' )
                     configPath = values.file
                 }
     
@@ -147,6 +150,14 @@ export class BuildConfigCore extends BuildSharedCore {
 }
 
 const core = new BuildConfigCore()
+
+/**
+ * Build extenxions with a config file.
+ *
+ * @param   {BuildConfigParams | undefined} [values] - Optional initialization parameters.
+ * @returns {Promise<void>}                    
+ * @see https://bepp.pigeonposse.com/guide/config-file
+ */
 // @ts-ignore
 const buildConfig = async (values?: BuildConfigParams) => await core.create(values)
 

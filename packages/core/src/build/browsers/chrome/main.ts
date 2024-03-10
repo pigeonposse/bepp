@@ -46,8 +46,20 @@ const coreMv2 = new BuildChromeMV2Core()
 
 export default {
     props: core.props,
+	/**
+	 * Build Chrome extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/chrome
+	 */
     build: core.create.bind(core),
     mv2: {
+		/**
+		 * Build Chrome extension (manifest 2).
+		 *
+		 * @returns {Promise<void>}                    
+		 * @see https://bepp.pigeonposse.com/guide/build/chrome
+		 */
         build: coreMv2.create.bind(coreMv2),
         props: coreMv2.props
     },

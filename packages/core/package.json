@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/core",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"bin": {
@@ -26,8 +26,10 @@
 	"scripts": {
 		"dev": "pnpm build && pnpm preview",
 		"preview": "node dist/main.js $@",
-		"test": "vitest -r src --watch",
+		"watch": "vitest watch -r src",
+		"test": "vitest run -r src",
 		"build": "pnpm schema && vite build",
+		"lint": "eslint . --ext .ts",
 		"schema": "node src/build/config/schema.js"
 	},
 	"devDependencies": {

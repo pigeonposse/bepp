@@ -24,5 +24,11 @@ const core = new BuildOperaGXCore()
 
 export default {
     props: core.props,
+	/**
+	 * Build Oera GX extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/opera-gx
+	 */
     build: core.create.bind(core),
 }

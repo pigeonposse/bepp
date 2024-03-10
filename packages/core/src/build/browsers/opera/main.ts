@@ -22,5 +22,11 @@ const core = new BuildOperaCore()
 
 export default {
     props: core.props,
+	/**
+	 * Build Opera extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/opera
+	 */
     build: core.create.bind(core),
 }

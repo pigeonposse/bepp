@@ -101,7 +101,10 @@ export class InitCore extends SuperCore {
 
 				const fileExists      = await this.existsConfigFile()
 				let override: boolean = true
-                
+				
+				// necesary for function mode
+				if( typeof values.input !== 'string' || typeof values.input !== 'undefined' ) throw Error( 'Input must be a string | undefined' )
+				
 				if ( !values.y && fileExists ) override = await this.askOverwriteConfigFile()
                 
 				if( !override && fileExists ) { 
@@ -142,6 +145,14 @@ export class InitCore extends SuperCore {
 }
 
 const core = new InitCore()
+
+/**
+ * Initializes config file creation with the specified parameters.
+ *
+ * @param   {InitParams | undefined} [values] - Optional initialization parameters.
+ * @returns {Promise<void>}                   - A promise representing the creation.
+ * @see https://bepp.pigeonposse.com/guide/init
+ */
 // @ts-ignore
 const init = async ( values?: InitParams ) => await core.create( values )
 

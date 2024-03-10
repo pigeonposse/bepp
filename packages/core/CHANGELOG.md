@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.0.7
+
+### Patch Changes
+
+- Add docs and force safari extension build with swift
+
 ## 1.0.6
 
 ### Patch Changes

@@ -23,5 +23,11 @@ const core = new BuildBraveCore()
 
 export default {
     props: core.props,
+	/**
+	 * Build Brave extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/brave
+	 */
     build: core.create.bind(core),
 }

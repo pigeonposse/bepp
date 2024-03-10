@@ -45,8 +45,20 @@ const coreMv2 = new BuildChromiumMV2Core()
 
 export default {
     props: core.props,
+	/**
+	 * Build Chromium extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/chromium
+	 */
     build: core.create.bind(core),
     mv2: {
+		/**
+		 * Build Chromium extension (manifest 2).
+		 *
+		 * @returns {Promise<void>}                    
+		 * @see https://bepp.pigeonposse.com/guide/build/chromium
+		 */
         build: coreMv2.create.bind(coreMv2),
         props: coreMv2.props
     },

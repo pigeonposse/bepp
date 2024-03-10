@@ -44,8 +44,20 @@ const coreMv2 = new BuildEdgeMV2Core()
 
 export default {
     props: core.props,
+	/**
+	 * Build Edge extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/edge
+	 */
     build: core.create.bind(core),
     mv2: {
+		/**
+		 * Build Edge extension (manifest 2).
+		 *
+		 * @returns {Promise<void>}                    
+		 * @see https://bepp.pigeonposse.com/guide/build/edge
+		 */
         build: coreMv2.create.bind(coreMv2),
         props: coreMv2.props
     },

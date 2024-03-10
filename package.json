@@ -41,8 +41,8 @@
 		"dev": "turbo dev",
 		"dev:core": "turbo dev --filter=core",
 		"build:core": "turbo build --filter=core",
-		"build:lib": "turbo build --filter=core --filter=gh-action",
 		"build:docs": "turbo build --filter=docs",
+		"build:packages": "turbo build --filter=core --filter=gh-action",
 		"lint": "pnpm eslint .",
 		"lint-fix": "pnpm eslint . --fix",
 		"prepare": "husky install .dev/husky",
@@ -50,6 +50,7 @@
 		"cm-origin": "git add . && pnpm cm && git push -f origin $@",
 		"push-main": "pnpm cm-origin main",
 		"push-dev": "pnpm cm-origin dev",
+
 		"update-version": "changeset && changeset version",
 		"release": "pnpm build:core && pnpm update-version && changeset publish",
 		"todo": "node --experimental-modules .dev/todo.mjs",

@@ -44,8 +44,20 @@ const coreMv2 = new BuildYandexMV2Core()
 
 export default {
     props: core.props,
+	/**
+	 * Build Yandex extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/yandex
+	 */
     build: core.create.bind(core),
     mv2: {
+		/**
+		 * Build Yandex extension (Manifest 2).
+		 *
+		 * @returns {Promise<void>}                    
+		 * @see https://bepp.pigeonposse.com/guide/build/yandex
+		 */
         build: coreMv2.create.bind(coreMv2),
         props: coreMv2.props
     },

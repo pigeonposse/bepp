@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <script type="module" src="http://localhost:5173/@vite/client"></script>
-
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <title>Popup</title>
         
-      <script type="module" crossorigin src="/modulepreload-polyfill.js"></script>
-      <link rel="stylesheet" href="/main.css">
-    </head><body>
+    <script type="module" crossorigin src="/src/popup/main.js"></script>
+    <link rel="modulepreload" crossorigin href="/vendor.js">
+    <link rel="modulepreload" crossorigin href="/content.js">
+    <link rel="stylesheet" href="/content.css">
+    <link rel="stylesheet" href="/vendor.css">
+    <link rel="stylesheet" href="/main2.css">
+
+    <body>
         <div id="pp-s8-content"></div>
-        <script type="module" src="http://localhost:5173/src/popup/main.ts"></script>
+        
     </body>
 </html>

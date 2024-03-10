@@ -45,8 +45,20 @@ const coreMv2 = new BuildFirefoxMV2Core()
 
 export default {
     props: core.props,
+	/**
+	 * Build Firefox extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/firefox
+	 */
     build: core.create.bind(core),
     mv2: {
+		/**
+		 * Build Firefox extension (manifest 2).
+		 *
+		 * @returns {Promise<void>}                    
+		 * @see https://bepp.pigeonposse.com/guide/build/firefox
+		 */
         build: coreMv2.create.bind(coreMv2),
         props: coreMv2.props
     },

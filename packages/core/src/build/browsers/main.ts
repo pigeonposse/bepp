@@ -30,6 +30,13 @@ const allBrowsers = {
     [browserTypes.custom]: custom
 }
 
+
+/**
+ * Build extension for a specific browser.
+ *
+ * @returns {Promise<void>}                    
+ * @see https://bepp.pigeonposse.com/guide/build
+ */
 const buildBrowser = async <T extends BrowserTypes>(
     type: T,
     args: BrowserArgs<T>
@@ -41,7 +48,12 @@ const buildBrowser = async <T extends BrowserTypes>(
 
 
 }
-
+/**
+ * Build multiple extensions using object.
+ *
+ * @returns {Promise<void>}                    
+ * @see https://bepp.pigeonposse.com/guide/build/all
+ */
 const buildAllBrowsers = async <T extends BrowserTypes>(
     args: {[key in T]: BrowserArgs<T>},
 ) => {

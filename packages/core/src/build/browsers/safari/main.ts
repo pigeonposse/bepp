@@ -150,6 +150,7 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
                 --project-location "${SAFARI_TEMP_PATH}" \
                 --app-name "${PRODUCT_NAME}" \
                 --bundle-identifier ${BUNDLE_ID} \
+				--swift \
                 --force \
                 --no-prompt \
                 --no-open
@@ -292,5 +293,11 @@ const core = new BuildSafariCore()
 
 export default {
     props: core.props,
+	/**
+	 * Build Safari extension.
+	 *
+	 * @returns {Promise<void>}                    
+	 * @see https://bepp.pigeonposse.com/guide/build/safari
+	 */
     build: core.create.bind(core),
 }
