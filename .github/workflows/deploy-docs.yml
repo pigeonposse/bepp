@@ -51,7 +51,6 @@ jobs:
 
       - name: 🔑 Install PNPM
         uses: pnpm/action-setup@v2
-        id: pnpm-install
 
       - name: 📦 Install pkg dependencies
         run: pnpm install --no-frozen-lockfile

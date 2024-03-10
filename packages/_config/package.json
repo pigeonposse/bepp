@@ -1,4 +1,5 @@
 {
+	"private": true,
 	"name": "@bepp/config",
 	"version": "1.0.2",
 	"description": "Configuration files for monorepo",

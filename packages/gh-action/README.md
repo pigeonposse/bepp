@@ -42,7 +42,7 @@ DEVELOPED BY Angelo 🐦🌈
 
 <!-- PIGEONPOSSE START HEADER -->
 
-[![HEADER](https:/github.com/pigeonposse/bepp/raw/main/docs/public/banner.png)](https://bepp.pigeonposse.com/)
+[![HEADER](https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/banner.png)](https://bepp.pigeonposse.com/)
 
 [![Web](https://img.shields.io/badge/Web-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com)
 [![About Us](https://img.shields.io/badge/About%20Us-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com?popup=about)
@@ -53,8 +53,8 @@ DEVELOPED BY Angelo 🐦🌈
 [![Medium](https://img.shields.io/badge/Medium-black?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@pigeonposse)
 
 [![License](https://img.shields.io/github/license/pigeonposse/bepp?color=green&style=for-the-badge&logoColor=white)](/LICENSE)
-[![Github Releases](https://img.shields.io/github/package-json/v/pigeonposse/bepp?color=blue&style=for-the-badge&logoColor=white)](https://www.npmjs.com/package/@bepp/bepp)
-[![Github Action](https://img.shields.io/github/package-json/v/pigeonposse/bepp?color=blue&style=for-the-badge&logoColor=white)](https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder)
+[![NPM Version](https://img.shields.io/npm/v/@bepp/bepp?color=blue&style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@bepp/bepp)
+[![GitHub Marketplace](https://img.shields.io/github/v/release/pigeonposse/bepp?color=blue&style=for-the-badge&logo=github)](https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder)
 
 A tool for package your extension for multiple browsers quickly and easily _(Including Safari)_
 
@@ -67,12 +67,12 @@ This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, 
 <!-- PIGEONPOSSE START INDEX -->
 
 - [Documentation](https://bepp.pigeonposse.com/)
-- [Installation](https:/bepp.pigeonposse.com/guide/getting-started#installation)
-- [Init](https:/bepp.pigeonposse.com/guide/init)
-- [Build multiple extensions](https:/bepp.pigeonposse.com/guide/build)
-- [Build extensions with config file](https:/bepp.pigeonposse.com/guide/build/config-file)
-- [Build Safari extension](https:/bepp.pigeonposse.com/guide/build/safari)
-- [GitHub action Documentation]( https:/bepp.pigeonposse.com/guide/gh-action )
+- [Installation](https://bepp.pigeonposse.com/guide/getting-started#installation)
+- [Init](https://bepp.pigeonposse.com/guide/init)
+- [Build multiple extensions](https://bepp.pigeonposse.com/guide/build)
+- [Build extensions with config file](https://bepp.pigeonposse.com/guide/build/config-file)
+- [Build Safari extension](https://bepp.pigeonposse.com/guide/build/safari)
+- [GitHub action Documentation]( https://bepp.pigeonposse.com/guide/gh-action )
 
 <!-- PIGEONPOSSE END INDEX -->
 
@@ -81,27 +81,27 @@ This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, 
 
 **BEPP** is an open-source project and its development is open to anyone who wants to participate.
 
-[![Issues](https://img.shields.io/badge/Issues-grey?style=for-the-badge)](https:/github.com/pigeonposse/bepp/issues)
-[![Pull requests](https://img.shields.io/badge/Pulls-grey?style=for-the-badge)](https:/github.com/pigeonposse/bepp/pulls)
-[![Read more](https://img.shields.io/badge/Read%20more-grey?style=flat-square)](https://bepp.pigeonposse.com/)
+[![Issues](https://img.shields.io/badge/Issues-grey?style=for-the-badge)](https://github.com/pigeonposse/bepp/issues)
+[![Pull requests](https://img.shields.io/badge/Pulls-grey?style=for-the-badge)](https://github.com/pigeonposse/bepp/pulls)
+[![Read more](https://img.shields.io/badge/Read%20more-grey?style=for-the-badge)](https://bepp.pigeonposse.com/)
 
 ## ☕ Donate
 
 Help us to develop more interesting things.
 
-[![Donate](https://img.shields.io/badge/Donate-grey?style=flat-square)](https://pigeonposse.com/?popup=donate)
+[![Donate](https://img.shields.io/badge/Donate-grey?style=for-the-badge)](https://pigeonposse.com/?popup=donate)
 
 ## 📜 License
 
 This software is licensed with **[GPL-3.0](/LICENSE)**.
 
-[![Read more](https://img.shields.io/badge/Read-more-grey?style=flat-square)](/LICENSE)
+[![Read more](https://img.shields.io/badge/Read-more-grey?style=for-the-badge)](/LICENSE)
 
 ## 🐦 About us
 
 *PigeonPosse* is a ✨ **code development collective** ✨ focused on creating practical and interesting tools that help developers and users enjoy a more agile and comfortable experience. Our projects cover various programming sectors and we do not have a thematic limitation in terms of projects.
 
-[![More](https://img.shields.io/badge/Read-more-grey?style=flat-square)](https://github.com/pigeonposse)
+[![More](https://img.shields.io/badge/Read-more-grey?style=for-the-badge)](https://github.com/pigeonposse)
 
 ### Collaborators
 

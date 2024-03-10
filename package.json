@@ -40,7 +40,8 @@
 		"action": "pnpm --filter gh-action $@",
 		"dev": "turbo dev",
 		"dev:core": "turbo dev --filter=core",
-		"build:core": "turbo build --filter=core --filter=gh-action",
+		"build:core": "turbo build --filter=core",
+		"build:lib": "turbo build --filter=core --filter=gh-action",
 		"build:docs": "turbo build --filter=docs",
 		"lint": "pnpm eslint .",
 		"lint-fix": "pnpm eslint . --fix",
@@ -146,6 +147,8 @@
 		"productName": "Bepp",
 		"docsUrl": "https://bepp.pigeonposse.com",
 		"libraryUrl": "https://www.npmjs.com/package/@bepp/bepp",
+		"libraryId": "@bepp/bepp",
+		"rawRepoUrl": "https://raw.githubusercontent.com/pigeonposse/bepp",
 		"ghActionUrl": "https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder",
 		"collective": {
 			"id": "pigeonposse",

@@ -96,6 +96,14 @@ export const generateASCII = ( projectName = '', collectiveName = 'PIGEON\nPOSSE
 
 }
 export const joinPath = path.join
+export const joinUrl = ( ...parts ) => {
+
+	// Eliminar barras inclinadas adicionales al principio y al final de cada parte
+	parts = parts.map( part => part.replace( /^\/+|\/+$/g, '' ) )
+	// Unir las partes con una barra inclinada entre ellas
+	return parts.join( '/' )
+
+}
 export const constructorLinks = ( links, type = 'link' ) => {
 	
 	let res = ''
