@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.0.5
+
+### Patch Changes
+
+- Update gh-action documentation
+
 ## 1.0.4
 
 ### Patch Changes

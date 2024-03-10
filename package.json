@@ -50,9 +50,8 @@
 		"cm-origin": "git add . && pnpm cm && git push -f origin $@",
 		"push-main": "pnpm cm-origin main",
 		"push-dev": "pnpm cm-origin dev",
-
 		"update-version": "changeset && changeset version",
-		"release": "pnpm build:core && pnpm update-version && changeset publish",
+		"release": "changeset publish",
 		"todo": "node --experimental-modules .dev/todo.mjs",
 		"readme": "node --experimental-modules .dev/readme.mjs"
 	},

@@ -9,7 +9,11 @@
   "commit": false,
   "fixed": [],
   "linked": [
-	["@bepp/bepp", "@bepp/core", "@bepp/gh-action"]
+	[
+		"@bepp/bepp",
+		"@bepp/core", 
+		"@bepp/gh-action"
+	]
   ],
   "access": "restricted",
   "baseBranch": "main",
