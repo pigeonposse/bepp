@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.0.9
+
+### Patch Changes
+
+- update core
+
 ## 1.0.7
 
 ### Patch Changes

@@ -7,13 +7,14 @@
 	}
   ],
   "commit": false,
-  "fixed": [],
-  "linked": [
+  "fixed": [
 	[
 		"@bepp/bepp",
 		"@bepp/core", 
 		"@bepp/gh-action"
 	]
+  ],
+  "linked": [
   ],
   "access": "restricted",
   "baseBranch": "main",

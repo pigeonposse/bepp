@@ -53,6 +53,9 @@ jobs:
         run: |
           pnpm install --no-frozen-lockfile
 
+      - name: '📦 Setup jq'
+        uses: dcarbone/install-jq-action@v2
+
       #########################################################################
       # BUILD
       #########################################################################
@@ -78,10 +81,17 @@ jobs:
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
       - name: Release action if is @bepp/core is updated
+        id: core_version
+        if: steps.changesets.outputs.published == 'true' && contains(steps.changesets.outputs.publishedPackages, '{"name":"@bepp/core"')
+        run: |
+          version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/core") | .version')
+          echo "::set-output name=core_version::$version"
+
+      - name: Release action if is @bepp/core is updated
         uses: ncipollo/release-action@v1
         if: steps.changesets.outputs.published == 'true' && contains(steps.changesets.outputs.publishedPackages, '{"name":"@bepp/core"')
         with:
-          tag: ${{ steps.changesets.outputs.publishedPackages[ index(steps.changesets.outputs.publishedPackages, '{"name":"@bepp/core"') ].version }}
+          tag: ${{ steps.core_version.outputs.core_version }}
 
       - name: 🌥 Deploy docs in Cloudflare pages if is @bepp/docs is updated
         uses: cloudflare/pages-action@v1
