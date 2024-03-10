@@ -81,7 +81,6 @@ jobs:
           publish: pnpm exec changeset publish
           version: pnpm exec changeset version
           commit: "chore(release): version packages 🦋 [skip ci]"
-          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
