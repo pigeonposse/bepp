@@ -1,7 +1,7 @@
 #!/bin/bash
 
-major_version="v1"
-version="v1.0.17"
+major_version="v$2"
+version="v$1"
 
 # Check if branch v1 exists
 if ! git show-ref --verify --quiet "refs/heads/$major_version"; then
