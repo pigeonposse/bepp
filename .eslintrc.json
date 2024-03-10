@@ -175,7 +175,7 @@
 		"**/.svelte-kit/*",
 		"**/*.timestamp-*",
 		"**/*.d.ts",
-		"packages/exts/*.html"
+		"packages/_config/*"
 	],
 	"overrides": [
 		{
