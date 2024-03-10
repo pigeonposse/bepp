@@ -28,10 +28,10 @@ jobs:
     runs-on: macos-latest
 
     timeout-minutes: 10
-    permissions:
-      actions: write
-      contents: read
-      deployments: write
+    # permissions:
+    #   actions: write
+    #   contents: read
+    #   deployments: write
 
     steps:
 
@@ -78,9 +78,10 @@ jobs:
         uses: changesets/action@v1
         with:
           title: "chore(release): version packages 🦋"
-          publish: pnpm exec changeset publish
+          publish: pnpm exec changeset publish --no-git-tag
           version: pnpm exec changeset version
           commit: "chore(release): version packages 🦋 [skip ci]"
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
