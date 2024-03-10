@@ -41,6 +41,9 @@ jobs:
       - name: ⬇️ Checkout
         uses: actions/checkout@v4
 
+      - name: '📦 Setup jq'
+        uses: dcarbone/install-jq-action@v2
+
       - name: 🟢 Setup node
         uses: actions/setup-node@v3
         with:
@@ -52,9 +55,6 @@ jobs:
       - name: 🧩 Install dependencies
         run: |
           pnpm install --no-frozen-lockfile
-
-      - name: '📦 Setup jq'
-        uses: dcarbone/install-jq-action@v2
 
       #########################################################################
       # BUILD
@@ -72,12 +72,12 @@ jobs:
         uses: changesets/action@v1
         with:
           title: "chore(release): version packages 🦋"
-          publish: pnpm exec changeset publish --no-git-tag
+          publish: pnpm exec changeset publish
           version: pnpm exec changeset version
           commit: "chore(release): version packages 🦋 [skip ci]"
           createGithubReleases: false
         env:
-        #   GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
       - name: Release action if is @bepp/core is updated
