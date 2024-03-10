@@ -86,22 +86,27 @@ jobs:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
-      - name: Release action if is @bepp/core is updated
-        id: core_version
-        if: steps.changesets.outputs.published == 'true' && contains(steps.changesets.outputs.publishedPackages, '{"name":"@bepp/core"')
+      - name: Get updated versions if exists
+        id: updated
         run: |
-          version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/core") | .version')
-          echo "::set-output name=core_version::$version"
+          docs_version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/docs") | .version')
+          core_version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/core") | .version')
+          echo Set publishedPackages
+          echo ${{ steps.changesets.outputs.publishedPackages }
+          echo Set updated versions
+          echo "CORE=$core_version DOCS=$docs_version"
+          echo "core_version=$core_version" >> $GITHUB_OUTPUT
+          echo "docs_version=$docs_version" >> $GITHUB_OUTPUT
 
       - name: Release action if is @bepp/core is updated
         uses: ncipollo/release-action@v1
-        if: steps.changesets.outputs.published == 'true' && contains(steps.changesets.outputs.publishedPackages, '{"name":"@bepp/core"')
+        if: steps.updated.outputs.core_version != ''
         with:
-          tag: ${{ steps.core_version.outputs.core_version }}
+          tag: ${{ steps.updated.outputs.core_version }}
 
       - name: 🌥 Deploy docs in Cloudflare pages if is @bepp/docs is updated
         uses: cloudflare/pages-action@v1
-        if: steps.changesets.outputs.published == 'true' && contains(steps.changesets.outputs.publishedPackages, '{"name":"@bepp/docs"')
+        if: steps.updated.outputs.docs_version != ''
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
