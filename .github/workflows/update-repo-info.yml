@@ -46,12 +46,8 @@ jobs:
       - name: Get PACKAGE data
         id: pkg
         run: |
-          content=`cat ./package.json`
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo "packageJson=$content" >> $GITHUB_OUTPUT
-          echo $GITHUB_OUTPUT
+          content=$(jq -c . ./package.json)
+          echo "::set-output name=packageJson::$content"
 
       #########################################################################
       # UPDATE
@@ -59,9 +55,10 @@ jobs:
 
       - name: Change GitHub data
         run: |
-          gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} -d "${{fromJson(steps.pkg.outputs.packageJson).description}}"
-          gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} --add-topic ${{fromJson(steps.pkg.outputs.packageJson).keywords}}
-          gh repo edit ${{fromJson(steps.pkg.outputs.packageJson).repository.url}} --homepage ${{fromJson(steps.pkg.outputs.packageJson).homepage}}
+          gh repo edit $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.repository.url') -d "$(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.description')"
+          gh repo edit $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.repository.url') --add-topic $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.keywords | join(",")')
+          gh repo edit $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.repository.url') --homepage $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.homepage')
         env:
-            GH_TOKEN: ${{ github.token }}
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}
+			
 ###############################################################################
