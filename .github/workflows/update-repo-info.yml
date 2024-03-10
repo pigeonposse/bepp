@@ -62,6 +62,6 @@ jobs:
             gh repo edit "$repo_url" --homepage "$homepage"
           fi
         env:
-            GH_TOKEN: ${{ github.token }}
+            GH_TOKEN: ${{ secrets.GH_API_TOKEN }}
 
 ###############################################################################
