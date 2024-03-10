@@ -38,15 +38,6 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v3
 
-      #########################################################################
-      # GET DATA
-      #########################################################################
-
-      - name: Get PACKAGE data
-        id: pkg
-        run: |
-          content=$(jq -r . ./package.json)
-          echo "::set-output name=packageJson::$content"
 
       #########################################################################
       # UPDATE
@@ -54,16 +45,16 @@ jobs:
 
       - name: Change GitHub data
         run: |
-          repo_url=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.repository.url')
-          description=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.description')
-          homepage=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.homepage')
-          keywords=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.keywords | join(",")')
+          repo_url=$(echo $(jq -r . ./package.json) | jq -r '.repository.url')
+          description=$(echo $(jq -r . ./package.json) | jq -r '.description')
+          homepage=$(echo $(jq -r . ./package.json) | jq -r '.homepage')
+          keywords=$(echo $(jq -r . ./package.json) | jq -r '.keywords | join(",")')
 
           if [[ -n $repo_url ]]; then
             gh repo edit "$repo_url" -d "$description"
           fi
 
-          if [[ -n $keywords ]]; then
+          if [[ -n e ]]; then
             gh repo edit "$repo_url" --add-topic "$keywords"
           fi
 
