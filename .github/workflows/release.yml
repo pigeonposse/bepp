@@ -89,8 +89,8 @@ jobs:
       - name: Get updated versions if exists
         id: updated
         run: |
-          docs_version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/docs") | .version')
-          core_version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/core") | .version')
+          docs_version=$(echo ${{ steps.changesets.outputs.publishedPackages }} | jq -r '.[] | select(.name == "@bepp/docs") | .version')
+          core_version=$(echo ${{ steps.changesets.outputs.publishedPackages }} | jq -r '.[] | select(.name == "@bepp/core") | .version')
           echo Set changesets outputs
           echo ${{ steps.changesets.outputs }}
           echo Set updated versions
