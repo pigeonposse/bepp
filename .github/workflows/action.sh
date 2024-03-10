@@ -34,7 +34,7 @@ create_release() {
     gh release create "$v" -t "$release_name" -n "$release_body"
 }
 
-create_release "$version"
 create_release "$major_version"
+create_release "$version"
 
 git push origin main

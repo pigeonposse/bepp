@@ -55,6 +55,20 @@ jobs:
         with:
           node-version: 20
 
+      - name: Check GitHub API Rate Limit
+        id: rate_limit
+        run: |
+          response=$(gh api rate_limit)
+          limit=$(echo "$response" | jq -r '.resources.core.limit')
+          remaining=$(echo "$response" | jq -r '.resources.core.remaining')
+          echo "GitHub API Rate Limit: $remaining/$limit"
+          if [ "$remaining" -lt 10 ]; then
+              echo "¡Cuidado! ¡Te estás acercando al límite de velocidad de la API de GitHub!"
+              exit 1
+          fi
+        env:
+            GH_TOKEN: ${{ env.GITHUB_TOKEN }}
+
       - name: 🥡 Install pnpm
         uses: pnpm/action-setup@v3
 
@@ -97,12 +111,6 @@ jobs:
           echo "CORE=$core_version DOCS=$docs_version"
           echo "core_version=$core_version" >> $GITHUB_OUTPUT
           echo "docs_version=$docs_version" >> $GITHUB_OUTPUT
-
-      - name: Release action if is @bepp/core is updated
-        uses: ncipollo/release-action@v1
-        if: steps.updated.outputs.core_version != ''
-        with:
-          tag: ${{ steps.updated.outputs.core_version }}
 
       - name: 🌥 Deploy docs in Cloudflare pages if is @bepp/docs is updated
         uses: cloudflare/pages-action@v1
