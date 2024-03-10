@@ -38,7 +38,6 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v3
 
-
       #########################################################################
       # GET DATA
       #########################################################################
@@ -46,7 +45,7 @@ jobs:
       - name: Get PACKAGE data
         id: pkg
         run: |
-          content=$(jq -c . ./package.json)
+          content=$(jq -r . ./package.json)
           echo "::set-output name=packageJson::$content"
 
       #########################################################################
@@ -55,10 +54,23 @@ jobs:
 
       - name: Change GitHub data
         run: |
-          gh repo edit $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.repository.url') -d "$(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.description')"
-          gh repo edit $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.repository.url') --add-topic $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.keywords | join(",")')
-          gh repo edit $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.repository.url') --homepage $(echo ${{ steps.pkg.outputs.packageJson }} | jq -r '.homepage')
+          repo_url=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.repository.url')
+          description=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.description')
+          homepage=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.homepage')
+          keywords=$(echo "${{ steps.pkg.outputs.packageJson }}" | jq -r '.keywords | join(",")')
+
+          if [[ -n $repo_url ]]; then
+            gh repo edit "$repo_url" -d "$description"
+          fi
+
+          if [[ -n $keywords ]]; then
+            gh repo edit "$repo_url" --add-topic "$keywords"
+          fi
+
+          if [[ -n $homepage ]]; then
+            gh repo edit "$repo_url" --homepage "$homepage"
+          fi
         env:
             GH_TOKEN: ${{ secrets.GH_TOKEN }}
-			
+
 ###############################################################################
