@@ -41,7 +41,7 @@
 		"dev:core": "turbo dev --filter=core",
 		"build:core": "turbo build --filter=core",
 		"build:docs": "turbo build --filter=docs",
-		"build:packages": "turbo build --filter=core --filter=gh-action",
+		"build:packages": "turbo build",
 		"lint": "pnpm eslint .",
 		"lint-fix": "pnpm eslint . --fix",
 		"prepare": "husky install .dev/husky",
