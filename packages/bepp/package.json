@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/bepp",
-	"version": "1.0.14",
+	"version": "1.0.16",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"publishConfig": {

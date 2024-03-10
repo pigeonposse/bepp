@@ -1,5 +1,19 @@
 # @bepp/gh-action
 
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @bepp/core@1.0.16
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @bepp/core@1.0.15
+
 ## 1.0.14
 
 ### Patch Changes

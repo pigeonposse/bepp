@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.0.7
+
+### Patch Changes
+
+- fix ci
+
 ## 1.0.6
 
 ### Patch Changes

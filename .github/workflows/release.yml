@@ -91,8 +91,8 @@ jobs:
         run: |
           docs_version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/docs") | .version')
           core_version=$(echo "${{ steps.changesets.outputs.publishedPackages }}" | jq -r '.[] | select(.name == "@bepp/core") | .version')
-          echo Set publishedPackages
-          echo ${{ steps.changesets.outputs.publishedPackages }}
+          echo Set changesets outputs
+          echo ${{ steps.changesets.outputs }}
           echo Set updated versions
           echo "CORE=$core_version DOCS=$docs_version"
           echo "core_version=$core_version" >> $GITHUB_OUTPUT

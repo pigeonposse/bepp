@@ -1,5 +1,17 @@
 # @bepp/core
 
+## 1.0.16
+
+### Patch Changes
+
+- fix ci
+
+## 1.0.15
+
+### Patch Changes
+
+- fix ci
+
 ## 1.0.14
 
 ### Patch Changes
