@@ -1,5 +1,14 @@
 # @bepp/bepp
 
+## 1.0.20
+
+### Patch Changes
+
+- fix test
+
+- Updated dependencies []:
+  - @bepp/core@1.0.20
+
 ## 1.0.19
 
 ### Patch Changes

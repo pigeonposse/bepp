@@ -34,16 +34,17 @@ describe( 'Test BIN', async () => {
 
 	it( 'Execute build in existent config file', async () => {
 
-		expect( build ).toBe( macos ? true : false ) // because we have a safari extension
+		expect( build ).toBe( true ) 
 
 	} )
+	
 	if( !macos ){
 
 		const buildLinux = await ChildProcess.execBool( bin + ' build --file tests/bepp.linux.config.json' )	
 		
 		it( 'Execute build in linux existent config file', async () => {
 
-			expect( buildLinux ).toBe( true ) // because we have a safari extension
+			expect( buildLinux ).toBe( true ) 
 	
 		} )
 	
