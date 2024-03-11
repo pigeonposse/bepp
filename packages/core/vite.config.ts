@@ -8,6 +8,9 @@
 import { defineConfig } from 'vite'
 import dts              from 'vite-plugin-dts'
 import { name }         from '../../package.json'
+import { platform }     from 'node:os'
+
+const macos = platform() === 'darwin'
 
 export default defineConfig( {
 	esbuild : { 
@@ -29,6 +32,11 @@ export default defineConfig( {
 				'es', 
 			],
 		},
+		rollupOptions : !macos ? {
+			external : [
+				'appdmg',
+			],
+		} : {},
 	},
 	plugins : [ 
 		dts( {

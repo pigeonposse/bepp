@@ -2,6 +2,10 @@ import {
 	describe, expect, it, 
 } from 'vitest'
 import { ChildProcess } from './process'
+import { platform }     from 'node:os'
+
+const macos = platform() === 'darwin'
+
 const bin = 'node bin/main.js'
 describe( 'Test BIN', async () => {
 
@@ -21,7 +25,7 @@ describe( 'Test BIN', async () => {
 
 	const build   = await ChildProcess.execBool( bin + ' build --file tests/bepp.config.json' )	
 	const noBuild = await ChildProcess.execBool( bin + ' build --file noexist.json' )
-	
+
 	it( 'Error because no exists custom file', async () => {
 
 		expect( noBuild ).toBe( false )
@@ -30,8 +34,19 @@ describe( 'Test BIN', async () => {
 
 	it( 'Execute build in existent config file', async () => {
 
-		expect( build ).toBe( true )
+		expect( build ).toBe( macos ? true : false ) // because we have a safari extension
 
 	} )
+	if( !macos ){
+
+		const buildLinux = await ChildProcess.execBool( bin + ' build --file tests/bepp.linux.config.json' )	
+		
+		it( 'Execute build in linux existent config file', async () => {
+
+			expect( buildLinux ).toBe( true ) // because we have a safari extension
+	
+		} )
+	
+	}
 
 } )

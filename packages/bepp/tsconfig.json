@@ -1,3 +1,9 @@
 {
-	"extends": "./node_modules/@bepp/config/tsconfig.json"
+	"extends": "./node_modules/@bepp/config/tsconfig.json",
+	"include": [
+		"./tests/"
+	],
+	"compilerOptions": {
+		"baseUrl": "./tests"
+	}
 }
