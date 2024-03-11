@@ -62,9 +62,10 @@ jobs:
         id: rate_limit
         run: |
           response=$(gh api rate_limit)
-          limit=$(echo '$response' | jq -r '.resources.core.limit')
-          remaining=$(echo '$response' | jq -r '.resources.core.remaining')
+          limit=$(echo $response | jq -r '.resources.core.limit')
+          remaining=$(echo $response | jq -r '.resources.core.remaining')
           echo "GitHub API Rate Limit: $remaining/$limit"
+
           if [ "$remaining" -lt 10 ]; then
               exit 1
           fi
