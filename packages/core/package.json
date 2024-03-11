@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/core",
-	"version": "1.0.20",
+	"version": "1.0.21",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"bin": {

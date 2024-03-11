@@ -135,7 +135,7 @@ jobs:
         id: updated
         run: |
           docs_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "@bepp/docs") | .version')
-          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "@bepp/gh-action" or .name == "@bepp/core" or .name == "@bepp/bepp") | .version')
+          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r 'map(select(.name == "@bepp/gh-action" or .name == "@bepp/core" or .name == "@bepp/bepp")) | .[0].version // empty' )
           core_version_major=${core_version%%.*}
           echo Set changesets outputs
           echo '${{ steps.changesets.outputs }}'
