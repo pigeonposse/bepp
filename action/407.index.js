@@ -5136,7 +5136,7 @@ module.exports = TempWriteStream
 "use strict";
 
 
-const addon = __webpack_require__(85582)
+const addon = __webpack_require__(70860)
 
 function validateArgument (key, val) {
   switch (key) {
@@ -7732,7 +7732,7 @@ var path = __webpack_require__(71017)
 var assert = __webpack_require__(39491)
 var encode = __webpack_require__(4945)
 
-var addon = __webpack_require__(14755)
+var addon = __webpack_require__(71558)
 
 var findVolume = function (startPath, startStat) {
   var lastDev = startStat.dev
@@ -11380,17 +11380,19 @@ function whichSync (cmd, opt) {
 
 /***/ }),
 
-/***/ 85582:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ 71558:
+/***/ ((module) => {
 
-module.exports = require(__webpack_require__.ab + "build/Release/xattr.node")
+module.exports = eval("require")("../build/Release/volume.node");
+
 
 /***/ }),
 
-/***/ 14755:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ 70860:
+/***/ ((module) => {
 
-module.exports = require(__webpack_require__.ab + "build/Release/volume.node")
+module.exports = eval("require")("./build/Release/xattr");
+
 
 /***/ }),
 
