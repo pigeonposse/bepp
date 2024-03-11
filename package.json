@@ -46,6 +46,7 @@
 		"lint-fix": "pnpm eslint . --fix",
 		"prepare": "husky install .dev/husky",
 		"cm": "cz",
+		"test:bin": "pnpm bepp test-bin",
 		"push-origin": "git add . && pnpm cm && git push -f origin $@",
 		"push-main": "pnpm push-origin main",
 		"push-dev": "pnpm push-origin dev",

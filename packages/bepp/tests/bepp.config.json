@@ -1,0 +1,18 @@
+{
+	"shared": {
+		"id": "Twifiner",
+		"input": {
+			"chromium": "../_config/exts-examples/chromium"
+		},
+		"output": "./dist"
+	},
+	"build": [
+		{
+			"type": "chrome" 
+		},
+		{ 
+			"type": "safari"
+		}
+	]
+}
+  

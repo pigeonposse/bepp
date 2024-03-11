@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/bepp",
-	"version": "1.0.17",
+	"version": "1.0.18",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"publishConfig": {
@@ -24,7 +24,8 @@
 	},
 	"scripts": {
 		"dev": "node src/main.js",
-		"dev:bin": "node bin/main.js"
+		"dev:bin": "node bin/main.js",
+		"test-bin": "vitest run -r tests"
 	},
 	"dependencies": {
 		"@bepp/core": "workspace:*"
@@ -33,5 +34,8 @@
 		"appdmg": "0.6.6"
 	},
 	"license": "GPL-3.0",
-	"homepage": "https://bepp.pigeonposse.com/"
+	"homepage": "https://bepp.pigeonposse.com/",
+	"devDependencies": {
+		"@bepp/config": "workspace:^"
+	}
 }

@@ -22,27 +22,57 @@ env:
 ###############################################################################
 
 jobs:
+
+  #########################################################################
+  # CHECK LINUX BUILD
+  #########################################################################
+  check-build-ubuntu:
+    name: 🛠️ Check Build on Linux
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+        with:
+          access_token: ${{ env.GITHUB_TOKEN }}
+
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 🥡 Install pnpm
+        uses: pnpm/action-setup@v3
+      
+      - name: 🧩 Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: 🏗 Build packages
+        run: |
+          pnpm build:packages # execute lint. tests and build
+          pnpm test:bin # execute special test for bin
+
+      - name: 📢 Notify if successful
+        run: echo "Build on Ubuntu completed successfully."
+
+
+  #########################################################################
+  # RELESE ON MACOS
+  #########################################################################
   release:
   
     name: 🚀 Release
     runs-on: macos-latest
-
     timeout-minutes: 10
-    # permissions:
-    #   actions: write
-    #   contents: read
-    #   deployments: write
 
     steps:
 
       #########################################################################
       # INIT & INSTALL
       #########################################################################
-
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.1
-        with:
-          access_token: ${{ env.GITHUB_TOKEN }}
 
       - name: ⬇️ Checkout
         uses: actions/checkout@v4

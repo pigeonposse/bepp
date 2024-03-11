@@ -2,7 +2,6 @@
 import { browserTypes, extTypes, manVersions } from "../../../_shared/types";
 import { BuildBrowserSharedCore } from "../_shared/main";
 import { BuildDmgParams, BuildSafariParams, DmgType, dmgTypes } from "./types";
-import appdmg from 'appdmg'
 
 export class BuildSafariCore extends BuildBrowserSharedCore {
     
@@ -47,15 +46,18 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
         onLog: (data: string) => void
     } ) {
 
-        // const appdmg = import('appdmg')
+		const appdmgImported = await import('appdmg')
+		const appdmg = appdmgImported.default
 
         return new Promise((resolve, reject) => {
+	
+			
             // @ts-ignore
             const DMG = appdmg({
                 source: source,
                 target: target,
             })
-    
+    		// @ts-ignore
             DMG.on('progress', (info ) => {
                 // info.current is the current step
                 // info.total is the total number of steps

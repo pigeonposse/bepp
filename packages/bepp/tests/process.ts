@@ -14,7 +14,7 @@ export type ChildProcessExecuteParams = {
 
 export class ChildProcess {
 
-	async execute( {
+	static async execute( {
 		cmd, 
 		onError, 
 		onLog,
@@ -73,7 +73,7 @@ export class ChildProcess {
 	
 	}
 
-	async exec( cmd: string ) {
+	static async exec( cmd: string ) {
      
 		await new Promise( ( resolve, reject ) => {
     
@@ -103,6 +103,35 @@ export class ChildProcess {
             
 		} )
     
+	}
+
+	static async execBool( cmd: string ): Promise<boolean> {
+
+		return new Promise<boolean>( resolve => {
+
+			const childProcess = spawn( cmd, {
+				shell : true,
+				stdio : 'inherit',
+			} )
+
+			childProcess.on( 'close', code => {
+
+				if ( code === 0 ) {
+
+					resolve( true )
+				
+				} else {
+
+					// const error = new Error( `Command failed with code ${code}` )
+					// console.error( error )
+					resolve( false )
+				
+				}
+			
+			} )
+		
+		} )
+	
 	}
 
 }

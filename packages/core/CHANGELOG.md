@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.0.18
+
+### Patch Changes
+
+- fix appdmg and add tests
+
 ## 1.0.17
 
 ### Patch Changes
