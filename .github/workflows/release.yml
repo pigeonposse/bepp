@@ -129,7 +129,7 @@ jobs:
       - name: Release action if is @bepp/core is updated
         if: steps.updated.outputs.core_version != '' && steps.updated.outputs.core_version_major != ''
         run: |
-          . ${{github.workspace}}/.github/workflows/action.sh "${{steps.updated.outputs.core_version}}" "${{steps.updated.outputs.core_version_major}}"
+          bash ${{github.workspace}}/.github/workflows/action.sh "${{steps.updated.outputs.core_version}}" "${{steps.updated.outputs.core_version_major}}"
 	
 
 ###############################################################################
