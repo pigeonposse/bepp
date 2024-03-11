@@ -50,6 +50,7 @@
 		"push-main": "pnpm push-origin main",
 		"push-dev": "pnpm push-origin dev",
 		"update-version": "changeset && changeset version",
+		"release-action": "bash ./.dev/action.sh $@",
 		"release": "changeset publish",
 		"todo": "node --experimental-modules .dev/todo.mjs",
 		"readme": "node --experimental-modules .dev/readme.mjs"
