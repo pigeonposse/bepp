@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@bepp/gh-action",
-	"version": "1.0.21",
+	"version": "1.0.22",
 	"description": "Github action for package extension with bepp",
 	"scripts": {
 		"build": "ncc build src/main.ts -o ../../action -m --target es2020 --license license.txt",

@@ -24,7 +24,7 @@ create_release() {
     fi
 	#  create tag
 	git tag $v
-	git push origin --tags
+	git push --force origin refs/tags/$v
 
     local release_name="BEPP action $v"
     local release_body="Release $v"
@@ -35,8 +35,8 @@ create_release() {
     fi
 
     # Create release
-    gh release create "$v" -t "$release_name" -n "$release_body"
-}
+    gh release create "$v" -t "$release_name" -n "$release_body" -f ../packages/gh-action/CHANGELOG.md
+} 
 
 create_release "$major_version"
 create_release "$version"
