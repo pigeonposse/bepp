@@ -111,7 +111,7 @@ jobs:
           echo "CORE=$core_version CORE_MAJOR=$core_version_major DOCS=$docs_version"
           echo "core_version=$core_version" >> $GITHUB_OUTPUT
           echo "docs_version=$docs_version" >> $GITHUB_OUTPUT
-          echo "docs_version=$core_version_major" >> $GITHUB_OUTPUT
+          echo "core_version_major=$core_version_major" >> $GITHUB_OUTPUT
 
 
       - name: 🌥 Deploy docs in Cloudflare pages if is @bepp/docs is updated
