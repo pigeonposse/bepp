@@ -16,11 +16,15 @@ git push origin $major_version
 
 create_release() {
     local v="$1"
-    # Create tag if it does not exist
-    if ! git rev-parse "$v" >/dev/null 2>&1; then
-        git tag "$v"
-        git push origin "$major_version"
+    # Delete tag if it does exist
+    if git rev-parse "$v" >/dev/null 2>&1; then
+        git tag :$v
     fi
+    if git ls-remote --tags origin | grep -q "refs/tags/$v"; then
+        git push origin :$v
+    fi
+	git tag $v
+	git push origin --tags
 
     local release_name="BEPP action $v"
     local release_body="Release $v"
