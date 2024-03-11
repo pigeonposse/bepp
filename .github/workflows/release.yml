@@ -58,6 +58,19 @@ jobs:
       - name: 🥡 Install pnpm
         uses: pnpm/action-setup@v3
 
+      - name: Check GitHub API Rate Limit
+        id: rate_limit
+        run: |
+          response=$(gh api rate_limit)
+          limit=$(echo '$response' | jq -r '.resources.core.limit')
+          remaining=$(echo '$response' | jq -r '.resources.core.remaining')
+          echo "GitHub API Rate Limit: $remaining/$limit"
+          if [ "$remaining" -lt 10 ]; then
+              exit 1
+          fi
+        env:
+            GH_TOKEN: ${{ env.GITHUB_TOKEN }}
+
       - name: 🧩 Install dependencies
         run: |
           pnpm install --no-frozen-lockfile
@@ -78,7 +91,7 @@ jobs:
         uses: changesets/action@v1
         with:
           title: "chore(release): version packages 🦋"
-          publish: pnpm exec changeset publish --no-git-tag
+          publish: pnpm exec changeset publish
           version: pnpm exec changeset version
           commit: "chore(release): version packages 🦋 [skip ci]"
           createGithubReleases: false
@@ -89,20 +102,17 @@ jobs:
       - name: Get updated versions if exists
         id: updated
         run: |
-          docs_version=$(echo ${{ steps.changesets.outputs.publishedPackages }} | jq -r '.[] | select(.name == "@bepp/docs") | .version')
-          core_version=$(echo ${{ steps.changesets.outputs.publishedPackages }} | jq -r '.[] | select(.name == "@bepp/core") | .version')
+          docs_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "@bepp/docs") | .version')
+          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "@bepp/gh-action" or .name == "@bepp/core" or .name == "@bepp/bepp") | .version')
+          core_version_major=${core_version%%.*}
           echo Set changesets outputs
-          echo ${{ steps.changesets.outputs }}
+          echo '${{ steps.changesets.outputs }}'
           echo Set updated versions
-          echo "CORE=$core_version DOCS=$docs_version"
+          echo "CORE=$core_version CORE_MAJOR=$core_version_major DOCS=$docs_version"
           echo "core_version=$core_version" >> $GITHUB_OUTPUT
           echo "docs_version=$docs_version" >> $GITHUB_OUTPUT
+          echo "docs_version=$core_version_major" >> $GITHUB_OUTPUT
 
-      - name: Release action if is @bepp/core is updated
-        uses: ncipollo/release-action@v1
-        if: steps.updated.outputs.core_version != ''
-        with:
-          tag: ${{ steps.updated.outputs.core_version }}
 
       - name: 🌥 Deploy docs in Cloudflare pages if is @bepp/docs is updated
         uses: cloudflare/pages-action@v1
@@ -116,5 +126,9 @@ jobs:
           directory: 'packages/docs/dist'
           wranglerVersion: '3'
 
+      - name: Release action if is @bepp/core is updated
+        if: steps.updated.outputs.core_version != '' && steps.updated.outputs.core_version_major != ''
+        run: . action.sh "${{steps.updated.outputs.core_version}}" "${{steps.updated.outputs.core_version_major}}"
+	
 
 ###############################################################################
