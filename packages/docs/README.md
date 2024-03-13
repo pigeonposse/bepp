@@ -62,7 +62,7 @@ A tool for package your extension for multiple browsers quickly and easily _(Inc
 This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, etc.
 <!-- PIGEONPOSSE END HEADER -->
 
-> This package contains _**BEPP** Documentation
+> This package contains **_BEPP_** Documentation
 
 <!-- PIGEONPOSSE START INDEX -->
 
