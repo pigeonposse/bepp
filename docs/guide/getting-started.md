@@ -12,6 +12,8 @@ This tool include support for browsers as [_Safari_](build/safari.md), [_Chrome_
 
 <!--@include: ../partials/installation.md-->
 
+You can also use **BEPP** as a [_Github action_](https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder).
+
 ## Preview
 
 Build **13** types of extensions (including **_Safari_**) in **21s**

@@ -2,6 +2,10 @@
 
 **Bepp** includes a functionality to package extensions for the [**Brave**](https://brave.com/) Browser using **Chromium** extensions with [**Manifest V3**](https://developer.chrome.com/docs/extensions/reference/manifest). This feature streamlines the process, allowing developers to extend their **Chrome** extensions to [**Brave**](https://brave.com/) with ease.
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ::: code-group

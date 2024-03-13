@@ -3,6 +3,10 @@
 **Bepp** includes a functionality to package extensions for the [**Yandex**](https://browser.yandex.com/) Browser using **Chromium** extensions with [**Manifest V3**](https://developer.chrome.com/docs/extensions/reference/manifest). This feature streamlines the process, allowing developers to extend their **Chrome** extensions to [**Yandex**](https://browser.yandex.com/) with ease.
 Additionally, compatibility with [**Manifest V2**](<https://developer.chrome.com/docs/extensions/mv2>) is also supported.
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ::: code-group

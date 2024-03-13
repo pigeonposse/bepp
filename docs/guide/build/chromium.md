@@ -2,6 +2,10 @@
 
 Package your [**chromium**](https://www.chromium.org/getting-involved/download-chromium/) extensions quickly. compatible for [**Manifest V3**](<https://developer.chrome.com/docs/extensions/reference/manifest>) and [**Manifest V2**](<https://developer.chrome.com/docs/extensions/mv2>)
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ::: code-group

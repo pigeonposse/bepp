@@ -3,6 +3,10 @@
 **Bepp** includes a functionality to package extensions for the [**firefox**](https://www.mozilla.org/firefox) Browser using **Firefox** extensions with [**Manifest V3**](https://extensionworkshop.com/documentation/develop/manifest-v3-migration-guide). This feature streamlines the process, allowing developers to extend their **Chrome** extensions to [**firefox**](https://www.mozilla.org/firefox) with ease.
 Additionally, compatibility with [**Manifest V2**](https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/manifest.json) is also supported.
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ::: code-group

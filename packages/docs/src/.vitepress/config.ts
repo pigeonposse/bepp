@@ -71,12 +71,12 @@ export default defineConfig({
           { 
 			text: 'Build', 
 			link: '/guide/build/index', 
-			collapsed: true, 
+			collapsed: false, 
 			items: [
 			{ text: 'With Config file', link: '/guide/build/config-file' },
 			{ 
 				text: 'Browsers', 
-				collapsed: true, 
+				collapsed: false, 
 				items: [
 					{ text: 'Chromium', link: '/guide/build/chromium' },
 					{ text: 'Chrome', link: '/guide/build/chrome' },

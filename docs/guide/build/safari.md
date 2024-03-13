@@ -1,11 +1,10 @@
 # Build _Safari_ extension
 
-**Bepp**'s _Safari_ extension packaging feature allows you to effortlessly adapt your **Chromium** extensions for **Safari**. This experimental capability is specifically designed for straightforward Chrome extensions. It provides a seamless transition process, enabling you to leverage your existing Chrome extensions on Safari with ease. Please note that this feature is currently in its experimental stage and is only supported on macOS.
+**Bepp**'s _Safari_ extension packaging feature allows you to effortlessly adapt your **_Chromium_** extensions for **_Safari_**. This experimental capability is specifically designed for straightforward _Chrome_ extensions. It provides a seamless transition process, enabling you to leverage your existing _Chrome_ extensions on _Safari_ with ease. Please note that this feature is currently in its experimental stage and is only supported on macOS.
 
-[Install BEPP](/guide/getting-started#installation)
+## Prerequisites
 
-## Requirements
-
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
 - **macOS** (mac Operating System)
 - **Xcode Command Line Tools**. _(installation: `xcode-select --install`)_
 
@@ -134,3 +133,13 @@ buildBrowser('safari',{
     id: 'my-extension-name'
 })
 ```
+
+## What does this?
+
+::: info Documentation will be available soon
+:::
+
+## Useful Links
+
+- [Assessing your Safari web extension's browser compatibility
+](https://developer.apple.com/documentation/safariservices/safari_web_extensions/assessing_your_safari_web_extension_s_browser_compatibility)

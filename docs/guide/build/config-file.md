@@ -2,6 +2,10 @@
 
 This `bepp` feature allows you to create multi-browser extensions using one configuration file.
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ::: code-group

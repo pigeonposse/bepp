@@ -2,6 +2,12 @@
 
 **Bepp** includes a functionality to package extensions for **custom browser**. This feature streamlines the process and allows developers to extend their extensions to other browsers not available in **bepp** with ease.
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
+## Usage
+
 ::: code-group
 
 ```bash

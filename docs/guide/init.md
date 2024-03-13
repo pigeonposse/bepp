@@ -2,6 +2,10 @@
 
 The `init` feature is used to create a config file for building extensions.
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ::: code-group

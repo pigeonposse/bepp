@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.1.1
+
+### Patch Changes
+
+- Update documentation
+
 ## 1.1.0
 
 ### Minor Changes

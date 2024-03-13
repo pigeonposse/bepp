@@ -2,6 +2,10 @@
 
 **Bepp** includes a functionality to package extensions for the [**Opera**](https://www.opera.com/) Browser using **Chromium** extensions with [**Manifest V2**](https://developer.chrome.com/docs/extensions/mv2). This feature streamlines the process, allowing developers to extend their **Chrome** extensions to [**Opera**](https://www.opera.com/) with ease.
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ::: code-group

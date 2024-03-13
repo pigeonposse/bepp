@@ -104,7 +104,7 @@ jobs:
         uses: actions/checkout@v4
   
       - name: Build extension with BEPP
-        uses: pigeonposse/bepp@1.1.0
+        uses: pigeonposse/bepp@v1.1.0
         ##########################################################################################
         # For custom config file input
         # Default looks for file in workspace path bepp.config.json, bepp.config.yaml, bepp.config.toml

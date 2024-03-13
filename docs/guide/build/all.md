@@ -2,6 +2,10 @@
 
 This **Bepp** feature is exclusively available for `js` and allows packaging extensions for multiple browsers. For packaging extensions for multiple browsers using the `bin`, refer to the [config file](config-file.md).
 
+## Prerequisites
+
+- **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
+
 ## Usage
 
 ```js
