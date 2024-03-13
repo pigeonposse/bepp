@@ -35,7 +35,8 @@ create_release() {
     fi
 
     # Create release
-    gh release create "$v" -t "$release_name" -n "$release_body" -F ../packages/gh-action/CHANGELOG.md
+    gh release create "$v" -t "$release_name" -n "$release_body"
+	# gh release create "$v" -t "$release_name" -n "$release_body" -F ../packages/gh-action/CHANGELOG.md
 } 
 
 create_release "$major_version"
