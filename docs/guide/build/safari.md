@@ -109,6 +109,8 @@ Define a custom filename for the readme file included in the DMG (Disk Image) fi
 
 ## Examples
 
+::: code-group
+
 ```bash
 bepp build-safari \
  --input "/my/chromium/path" \
@@ -117,6 +119,12 @@ bepp build-safari \
 ```
 
 ```js
+/**
+ * Build Safari extension.
+ * 
+ * @see https://bepp.pigeonposse.com/
+ * @see https://bepp.pigeonposse.com/guide/build/safari
+ */
 import {safari, buildBrowser} from 'bepp'
 
 safari.build({
@@ -133,6 +141,8 @@ buildBrowser('safari',{
     id: 'my-extension-name'
 })
 ```
+
+:::
 
 ## What does this?
 
