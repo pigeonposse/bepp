@@ -4,19 +4,24 @@
  * @description Vite config.
  * @see https://vitejs.dev/guide
  */
+import {
+	fileURLToPath, URL, 
+} from 'url'
 
 import { defineConfig } from 'vite'
 import dts              from 'vite-plugin-dts'
 import { name }         from '../../package.json'
-import { platform }     from 'node:os'
-
-const macos = platform() === 'darwin'
+// @ts-ignore
+import dmgScript from './assets/create-dmg.txt'
 
 export default defineConfig( {
 	esbuild : { 
 		platform : 'node',
 		target   : 'node18',
 	},
+	assetsInclude : [
+		'**/*.png',
+	],
 	build : {
 		ssr    : true,
 		target : 'node18',
@@ -32,11 +37,17 @@ export default defineConfig( {
 				'es', 
 			],
 		},
-		rollupOptions : !macos ? {
-			external : [
-				'appdmg',
-			],
-		} : {},
+	},
+	resolve : {
+		alias : [
+			{
+				find        : '@assets', 
+				replacement : fileURLToPath( new URL( './assets', import.meta.url ) ),  
+			},
+		],
+	},
+	define : {
+		DMG_SCRIPT_CONTENT : JSON.stringify( dmgScript ),
 	},
 	plugins : [ 
 		dts( {

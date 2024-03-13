@@ -6,6 +6,11 @@
 		"./package.json"
 	],
 	"compilerOptions": {
+		"paths": {
+			"@assets/*": [
+				"./assets/*"
+			]
+		},
 		"outDir": "./dist",
 		"baseUrl": "./src"
 	}

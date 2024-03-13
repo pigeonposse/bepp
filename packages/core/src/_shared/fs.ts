@@ -36,7 +36,25 @@ export class Fs {
 		return this.getAbsolutePath( resolvedPath )
 	
 	}
+	async createImageFromBase64( base64String: string, outputPath: string ) {
 
+		// Extract the content type and base64 data
+		// eslint-disable-next-line no-useless-escape
+		const matches = base64String.match( /^data:([A-Za-z-+\/]+);base64,(.+)$/ )
+		// const contentType = matches[1]
+		if ( !matches ) throw Error( 'Invalid base image' )
+		const base64Data = matches[2]
+	
+		// Convert base64 to buffer
+		const buffer = Buffer.from( base64Data, 'base64' )
+	
+		// Write the buffer to a file
+		await this.writeFile( outputPath, buffer )
+		// fs.writeFileSync( outputPath, buffer )
+	
+		console.log( 'Image saved:', outputPath )
+	
+	}
 	async isDirectory( path: string ){
 
 		path        = this.validateHomeDir( path )
@@ -107,7 +125,7 @@ export class Fs {
 	
 	}
     
-	async writeFile( path: string, content: string ) {
+	async writeFile( path: string, content: string | Buffer ) {
 
 		path = this.validateHomeDir( path )
 		await writeFile( path, content )

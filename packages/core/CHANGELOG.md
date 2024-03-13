@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.1.0
+
+### Minor Changes
+
+- Safari extension build changed
+
 ## 1.0.22
 
 ### Patch Changes

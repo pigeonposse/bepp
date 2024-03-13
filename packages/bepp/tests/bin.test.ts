@@ -23,7 +23,7 @@ describe( 'Test BIN', async () => {
 
 	} )
 
-	const build   = await ChildProcess.execBool( bin + ' build --file tests/bepp.config.json' )	
+	const build   = await ChildProcess.execBool( bin + ' build --file tests/bepp.config.json --verbose' )	
 	const noBuild = await ChildProcess.execBool( bin + ' build --file noexist.json' )
 
 	it( 'Error because no exists custom file', async () => {

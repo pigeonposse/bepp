@@ -108,7 +108,7 @@ This software is licensed with **[GPL-3.0](/LICENSE)**.
 |                                                                                    | Name        | Role         | GitHub                                         |
 | ---------------------------------------------------------------------------------- | ----------- | ------------ | ---------------------------------------------- |
 | <img src="https://github.com/angelespejo.png?size=72" alt="Angelo" style="border-radius:100%"/> | Angelo |   Author & Development   | [@Angelo](https://github.com/angelespejo) |
-| <img src="https://github.com/alejomalia.png?size=72" alt="Alejo" style="border-radius:100%"/> | Alejo |   Author & Design   | [@Alejo](https://github.com/alejomalia) |
+| <img src="https://github.com/alejomalia.png?size=72" alt="Alejo" style="border-radius:100%"/> | Alejo |   Logo Design   | [@Alejo](https://github.com/alejomalia) |
 | <img src="https://github.com/PigeonPosse.png?size=72" alt="PigeonPosse" style="border-radius:100%"/> | PigeonPosse | Collective | [@PigeonPosse](https://github.com/PigeonPosse) |
 
 <br>

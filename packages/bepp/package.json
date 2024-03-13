@@ -1,8 +1,14 @@
 {
 	"name": "@bepp/bepp",
-	"version": "1.0.22",
+	"version": "1.1.0",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
+	"license": "GPL-3.0",
+	"homepage": "https://bepp.pigeonposse.com/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pigeonposse/bepp"
+	},
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
@@ -30,11 +36,6 @@
 	"dependencies": {
 		"@bepp/core": "workspace:*"
 	},
-	"optionalDependencies": {
-		"appdmg": "0.6.6"
-	},
-	"license": "GPL-3.0",
-	"homepage": "https://bepp.pigeonposse.com/",
 	"devDependencies": {
 		"@bepp/config": "workspace:^"
 	}

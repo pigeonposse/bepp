@@ -1,7 +1,19 @@
 
 import { browserTypes, extTypes, manVersions } from "../../../_shared/types";
 import { BuildBrowserSharedCore } from "../_shared/main";
-import { BuildDmgParams, BuildSafariParams, DmgType, dmgTypes } from "./types";
+import { BuildDmgParams, BuildSafariParams, DmgType, dmgTypes } from "./types"
+// @ts-ignore
+import bgURL from '@assets/dmg-bg-c.png?url'
+
+interface Options {
+    DMG_OUTPUT_PATH: string;
+    TITLE: string;
+    ICON: string;
+    APP_SOURCE: string;
+    README_PATH?: string;
+	README_FILE_NAME?: string
+    BG_IMG_PATH: string;
+}
 
 export class BuildSafariCore extends BuildBrowserSharedCore {
     
@@ -39,54 +51,51 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
 
     }
     
-    protected async createDMG({source, target, onError, onLog}: {
-        source: string, 
-        target: string,
-        onError: (error: Error) => void,
-        onLog: (data: string) => void
-    } ) {
-
-		const appdmgImported = await import('appdmg')
-		const appdmg = appdmgImported.default
-
-        return new Promise((resolve, reject) => {
+	protected async command_createDMG(scriptPath: string, options: Options){
+		// @ts-ignore
+		const CREATE_DMG_SCRIPT = scriptPath
+		const {
+			DMG_OUTPUT_PATH,
+			TITLE,
+			ICON,
+			APP_SOURCE,
+			README_PATH,
+			README_FILE_NAME,
+			BG_IMG_PATH
+		} = options;
 	
-			
-            // @ts-ignore
-            const DMG = appdmg({
-                source: source,
-                target: target,
-            })
-    		// @ts-ignore
-            DMG.on('progress', (info ) => {
-                // info.current is the current step
-                // info.total is the total number of steps
-                // info.type is on of 'step-begin', 'step-end'
+		let command;
+		if (README_PATH) {
+			command = `bash ${CREATE_DMG_SCRIPT} \
+				--volname "${TITLE}" \
+				--volicon "${ICON}" \
+				--background "${BG_IMG_PATH}" \
+				--window-size 660 400 \
+				--icon-size 80 \
+				--text-size 12 \
+				--add-file "${README_FILE_NAME}" "${README_PATH}" 330 120 \
+				--app-drop-link 448 240 \
+				--icon "${TITLE}.app" 192 240 \
+				--hide-extension "${TITLE}.app" \
+				"${DMG_OUTPUT_PATH}" \
+				"${APP_SOURCE}"`;
+		} else {
+			command = `bash ${CREATE_DMG_SCRIPT} \
+				--volname "${TITLE}" \
+				--volicon "${ICON}" \
+				--background "${BG_IMG_PATH}" \
+				--window-size 660 400 \
+				--icon-size 80 \
+				--text-size 12 \
+				--app-drop-link 448 200 \
+				--icon "${TITLE}.app" 192 200 \
+				--hide-extension "${TITLE}.app" \
+				"${DMG_OUTPUT_PATH}" \
+				"${APP_SOURCE}"`;
+		}
+        return command
 
-                // 'step-begin'
-                // info.title is the title of the current step
-
-                // 'step-end'
-                // info.status is one of 'ok', 'skip', 'fail'
-                onLog(info.title)
-            })
-    
-            DMG.on('finish', function () {
-                // Cuando se completa la creación del DMG
-                // console.log('DMG creado correctamente.');
-                // @ts-ignore
-                resolve();
-            });
-    
-            DMG.on('error', function (err: Error) {
-                // En caso de error
-                // console.error('Error creando DMG:', err)
-                onError(err)
-                reject(err)
-            });
-        });
-    }
-
+	}
     protected getSafariParams(values: BuildDmgParams ){
         const params = {
             ...values,
@@ -138,7 +147,6 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
             const PRODUCT_NAME                  = params.dmgTitle as string
             const CHROME_PATH                   = params.input
             const BUNDLE_ID                     = params.dmgBundleId
-            const APPDMG_JSON                   = this.fs.getAbsolutePath( SAFARI_TEMP_PATH, 'appdmg.json' )
             const SAFARI_XCODEPROJECT_PATH      = this.fs.join( SAFARI_TEMP_PATH, PRODUCT_NAME, `${PRODUCT_NAME}.xcodeproj`)
             const SAFARI_APP_BUILD_PATH         = this.fs.join( SAFARI_TEMP_PATH, `app-${type}`)
             const SAFARI_APP_BUILD_RELEASE_PATH = this.fs.join( SAFARI_APP_BUILD_PATH, 'Build','Products','Release',`${PRODUCT_NAME}.app`)
@@ -169,11 +177,13 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
         
             params.log.changeText( '🚀 Building safari app' )
             
-            const cmdBuildApp = `xcodebuild -project "${SAFARI_XCODEPROJECT_PATH}" \
+            let cmdBuildApp = `xcodebuild -project "${SAFARI_XCODEPROJECT_PATH}" \
             -scheme "${PRODUCT_NAME} (${type})" \
             -configuration Release \
             -derivedDataPath "${SAFARI_APP_BUILD_PATH}"`
             
+			if(type !== dmgTypes.macos ) cmdBuildApp += '\n -destination generic/platform=iOS'
+
             params.log.verbose({
                 title: 'Building safari app',
                 value: cmdBuildApp
@@ -187,62 +197,49 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
 
             // Create DMG
             params.log.changeText( '🚀 Creating DMG' )
-            const dmgOpts = {
-                title    : PRODUCT_NAME,
-                icon     : this.fs.getAbsolutePath(SAFARI_APP_ICNS_PATH),
-                // "background": "test-background.png",
-                contents : [
-                    { 
-                        'x'    : 448, 
-                        'y'    : 344, 
-                        'type' : 'link', 
-                        'path' : '/Applications', 
-                    },
-                    { 
-                        'x'    : 192,
-                        'y'    : 344, 
-                        'type' : 'file', 
-                        'path' :  this.fs.getAbsolutePath(SAFARI_APP_BUILD_RELEASE_PATH),
-                    },
-                ],
-            }
+			const BG_IMG_PATH = this.fs.join( SAFARI_TEMP_PATH, 'bg.png' )
+			await this.fs.createImageFromBase64(bgURL, BG_IMG_PATH)
+			
+			const DMG_CMD_PARAMS: Options = {
+				DMG_OUTPUT_PATH: SAFARI_DMG_OUTPUT,
+				TITLE: PRODUCT_NAME,
+				ICON: this.fs.getAbsolutePath(SAFARI_APP_ICNS_PATH),
+				APP_SOURCE: this.fs.getAbsolutePath(SAFARI_APP_BUILD_RELEASE_PATH),
+				README_PATH: undefined,
+				README_FILE_NAME: params.dmgReadmeFilename,
+				BG_IMG_PATH,
+			}
 
             if(!params.dmgNoReadme){
                 
-                const README_DEFAULT_PATH =  this.fs.join( SAFARI_TEMP_PATH, 'safari-unsigned-info.md' )
+                const README_DEFAULT_PATH = this.fs.join( SAFARI_TEMP_PATH, 'safari-unsigned-info.md' )
                 if(!params.dmgReadmePath) await this.fs.writeFile( README_DEFAULT_PATH, this.requirementFileData( params.id ) )
 
                 const README_PATH               = params.dmgReadmePath || README_DEFAULT_PATH
                 const README_ABSOLUTE_PATH      = this.fs.getAbsolutePath( README_PATH )
-                const README_FILENAME           = params.dmgReadmeFilename
 
-                dmgOpts.contents = [...dmgOpts.contents, { 
-                    'x'    : 192,
-                    'y'    : 172, 
-                    'type' : 'file', 
-                    'path' : README_ABSOLUTE_PATH,
-                    // @ts-ignore
-                    'name' : README_FILENAME,
-                }]
+				DMG_CMD_PARAMS.README_PATH = README_ABSOLUTE_PATH
+ 
             }
+			const DMG_SCRIPT = {
+				path: this.fs.join( SAFARI_TEMP_PATH, 'create-dmg.sh' ),
+				// @ts-ignore
+				content: DMG_SCRIPT_CONTENT
+			}
+			
+			await this.fs.writeFile( DMG_SCRIPT.path, DMG_SCRIPT.content )
+			const DMG_CMD = await this.command_createDMG(DMG_SCRIPT.path, DMG_CMD_PARAMS)
 
             params.log.verbose({
                 title: 'DMG params',
-                value: dmgOpts
+                value: DMG_CMD_PARAMS
             })
-
-            await this.fs.writeFile( APPDMG_JSON, JSON.stringify( dmgOpts, null, 2 ) )
         
-            // await this.childProcess.execute( {
-            //     cmd:`appdmg ${APPDMG_JSON} ${SAFARI_DMG_OUTPUT}`,
-            //     ...logFuncts
-            // })
-
-            await this.createDMG({
-                source: APPDMG_JSON,
-                target: SAFARI_DMG_OUTPUT,
+            await this.childProcess.execute( {
+                cmd: DMG_CMD,
                 ...logFuncts
             })
+
 
             params.log.changeText( '🚀 Creating compress file' )
         

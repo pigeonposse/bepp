@@ -1,19 +1,15 @@
 {
 	"private": true,
 	"name": "@bepp/gh-action",
-	"version": "1.0.22",
+	"version": "1.1.0",
 	"description": "Github action for package extension with bepp",
 	"scripts": {
-		"build": "ncc build src/main.ts -o ../../action -m --target es2020 --license license.txt",
+		"build": "ncc build src/main.ts -o ../../action -m -C --target es2020 --license license.txt",
 		"lint": "eslint . --ext .ts"
 	},
 	"dependencies": {
 		"@actions/core": "1.10.1",
-		"@bepp/core": "workspace:*",
-		"appdmg": "0.6.6"
-	},
-	"optionalDependencies": {
-		"appdmg": "0.6.6"
+		"@bepp/core": "workspace:*"
 	},
 	"devDependencies": {
 		"@bepp/config": "workspace:*",

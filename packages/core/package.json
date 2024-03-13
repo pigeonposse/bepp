@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/core",
-	"version": "1.0.22",
+	"version": "1.1.0",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"bin": {
@@ -16,6 +16,11 @@
 		"./types": "./dist/lib.d.ts",
 		".": "./dist/lib.js",
 		"./cli": "./dist/cli.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pigeonposse/bepp",
+		"directory": "packages/core"
 	},
 	"publishConfig": {
 		"access": "public",
@@ -34,7 +39,6 @@
 	},
 	"devDependencies": {
 		"@bepp/config": "workspace:*",
-		"@types/appdmg": "0.5.5",
 		"@types/archiver": "6.0.2",
 		"@types/inquirer": "9.0.7",
 		"@types/js-yaml": "4.0.9",
@@ -53,8 +57,5 @@
 		"pino": "8.18.0",
 		"pino-pretty": "10.3.1",
 		"toml": "3.0.0"
-	},
-	"optionalDependencies": {
-		"appdmg": "0.6.6"
 	}
 }
