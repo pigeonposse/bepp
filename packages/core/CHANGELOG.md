@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.1.2
+
+### Patch Changes
+
+- remove console.log
+
 ## 1.1.1
 
 ### Patch Changes

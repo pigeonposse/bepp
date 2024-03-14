@@ -50,10 +50,7 @@ export class Fs {
 	
 		// Write the buffer to a file
 		await this.writeFile( outputPath, buffer )
-		// fs.writeFileSync( outputPath, buffer )
-	
-		console.log( 'Image saved:', outputPath )
-	
+
 	}
 	async isDirectory( path: string ){
 
