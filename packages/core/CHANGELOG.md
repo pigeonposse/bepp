@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.1.1
+
+### Patch Changes
+
+- Change compress default to tgz and add docs
+
 ## 1.1.0
 
 ### Minor Changes

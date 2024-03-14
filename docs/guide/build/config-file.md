@@ -38,7 +38,7 @@ Path for config file.
 
 If this option is not specified, the relative path will automatically be searched for configuration files with the following names: `bepp.config.json`, `bepp.config.yaml`, `bepp.config.toml`
 
-- **Option in CLI**: `-f,--file <config-file-path>`
+- **Option in CLI**: `-f` `--file`
 - **Key in JavaScript**: `file`
 - **Type**: `string`
 

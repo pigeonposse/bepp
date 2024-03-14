@@ -1,3 +1,8 @@
+<script setup>
+ // At the moment it is the only way I know for a string with {{}} to be rendered with vitepress
+  const filename = '{{id}}-{{browser}}-{{version}}'
+</script>
+
 ### `id`
 
 Identification for build. Used in filename build.
@@ -12,7 +17,7 @@ The `id` option allows you to provide an identification string for the build. Th
 
 Specify the output directory where the packaged extension will be stored.
 
-- **CLI option**: `-o,--output`
+- **CLI option**: `-o` `--output`
 - **JS key**: `output`
 - **Type**: `string`
 - **Default**: `build/extensions`
@@ -22,10 +27,10 @@ Specify the output directory where the packaged extension will be stored.
 Compression format for packaging
 Choose the compression format for packaging the extension.
 
-- **CLI option**: `-c,--compress`
+- **CLI option**: `-c` `--compress`
 - **JS key**: `compress`
 - **Type**: `tar` `tgz` `gzip` `zip`
-- **Default**: `zip`
+- **Default**: `tgz`
 
 ### `filename`
 
@@ -40,7 +45,7 @@ The `filename` can include placeholders such:
 - `browser` takes the browser's identification name.
 :::
 
-- **CLI option**: `-f,--filename`
+- **CLI option**: `-f` `--filename`
 - **JS key**: `filename`
 - **Type**: `string`
-- **Default**: ```{{ id }}-{{browser}}-{{version}}```
+- **Default**: ```{{filename}}```

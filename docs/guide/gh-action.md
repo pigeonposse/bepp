@@ -7,18 +7,6 @@ This is perfect for when you don't have access to a macOS operating system but s
 - [Build with a Bepp config file](/guide/build/config-file)
 - [GitHub Action Documentation](https://docs.github.com/actions)
 
-## inputs
-
-The following are optional as `step.with` keys
-
-### `file`
-
-Path for config file.
-
-If this option is not specified, the relative path will automatically be searched for configuration files with the following names: `bepp.config.json`, `bepp.config.yaml`, `bepp.config.toml`
-
-- **type**: string
-
 ## Usage
 
 To use the GitHub Action, you'll need to understand how extension building works through a configuration file called `bepp`.
@@ -99,6 +87,18 @@ jobs:
 ```
 
 :::
+
+## inputs
+
+The following are optional as `step.with` keys
+
+### `file`
+
+Path for config file.
+
+If this option is not specified, the relative path will automatically be searched for configuration files with the following names: `bepp.config.json`, `bepp.config.yaml`, `bepp.config.toml`
+
+- **type**: string
 
 ## Examples
 

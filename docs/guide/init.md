@@ -54,7 +54,7 @@ Identification for build. Used in filename build.
 
 Input directory for Chromium extension.
 
-- **CLI option**: `-i, --input`
+- **CLI option**: `-i` `--input`
 - **JS key**: `input`
 - **Type**: `string`
 
@@ -62,7 +62,7 @@ Input directory for Chromium extension.
 
 List for browser builds.
 
-- **CLI option**: `-b, --build`
+- **CLI option**: `-b` `--build`
 - **JS key**: `build`
 - **Type**: `( chrome | chrome-mv2 | chromium | chromium-mv2 | firefox | firefox-mv2 | yandex | yandex-mv2 | edge | edge-mv2 | safari | brave | opera | opera-gx )[]`
 

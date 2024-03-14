@@ -8,7 +8,7 @@ export class BuildSharedCore extends SuperCore {
         ...this.globalDefaultParams,
         id: this.id,
         output: this.fs.join('build', 'extensions'),
-        compress: compressTypes.zip,
+        compress: compressTypes.tgz,
         filename: '{{id}}-{{browser}}-{{version}}',
     }
 

@@ -1,12 +1,26 @@
 # Build _Safari_ extension
 
-**Bepp**'s _Safari_ extension packaging feature allows you to effortlessly adapt your **_Chromium_** extensions for **_Safari_**. This experimental capability is specifically designed for straightforward _Chrome_ extensions. It provides a seamless transition process, enabling you to leverage your existing _Chrome_ extensions on _Safari_ with ease. Please note that this feature is currently in its experimental stage and is only supported on macOS.
+<script>
+ // At the moment it is the only way I know for a string with {{}} to be rendered with vitepress
+ const dmgTitle = '{{id}} (Safari extension)'
+ const dmgBundleId = 'com.bepp.{{id}}'
+</script>
+
+**Bepp**'s _Safari_ extension packaging feature allows you to effortlessly adapt your **_Chromium_** extensions for **_Safari_**. This capability is specifically designed for straightforward **_Chrome_** extensions. It provides a seamless transition process, enabling you to leverage your existing **_Chrome_** extensions on **_Safari_** with ease.
+
+::: info Important
+Please note that this feature is currently in its **experimental** stage and is only supported on _macOS_.
+:::
 
 ## Prerequisites
 
 - **__BEPP_ installation_** [_How to_](/guide/getting-started#installation)
 - **macOS** (mac Operating System)
 - **Xcode Command Line Tools**. _(installation: `xcode-select --install`)_
+
+::: tip Note
+info If you don't have a **macOS** you can use our [GitHub action](/guide/gh-action)
+:::
 
 ## Usage
 
@@ -45,23 +59,23 @@ buildBrowser('safari',{
 
 Custom bundle ID for DMG (macOS)
 
-Customize the bundle ID used for the DMG (Disk Image) file on macOS. By default, it's set to `com.bepp.{{id}}`, where `{{id}}` represents the identification string provided during the build process.
+Customize the bundle ID used for the DMG (Disk Image) file on macOS. By default, it's set to `{{dmgBundleId}}`, where `id` represents the identification string provided during the build process.
 
-- **CLI option**: `--dmg-bundle-id <dmg-bundle-id>`
+- **CLI option**: `--dmg-bundle-id`
 - **Key in JavaScript**: `dmgBundleId`
 - **Type**: `string`
-- **Default**: `com.bepp.{{id}}`
+- **Default**: `{{dmgBundleId}}`
 
 ### `dmgTitle`
 
 Custom title for DMG (macOS)
 
-Set a custom title for the DMG (Disk Image) file on macOS. By default, it's set to `{{id}} (Safari extension)`, where `{{id}}` represents the identification string provided during the build process.
+Set a custom title for the DMG (Disk Image) file on macOS. By default, it's set to `{{dmgTitle}}`, where `id` represents the identification string provided during the build process.
 
-- **Option in CLI**: `--dmg-title <dmg-title>`
+- **Option in CLI**: `--dmg-title`
 - **Key in JavaScript**: `dmgTitle`
 - **Type**: `string`
-- **Default**: `{{id}} (Safari extension)`
+- **Default**: `{{dmgTitle}}`
 
 ### `dmgIcon`
 
@@ -69,7 +83,7 @@ Custom icon for DMG (macOS)
 
 Specify a custom icon to be used for the DMG (Disk Image) file on macOS.
 
-- **Option in CLI**: `--dmg-icon <dmg-icon>`
+- **Option in CLI**: `--dmg-icon`
 - **Key in JavaScript**: `dmgIcon`
 - **Type**: `string`
 
@@ -90,7 +104,7 @@ Custom readme path for DMG (macOS)
 
 Specify a custom path for the readme file to be included in the DMG (Disk Image) file on macOS.
 
-- **Option in CLI**: `--dmg-readme-path <dmg-readme-path>`
+- **Option in CLI**: `--dmg-readme-path`
 - **Key in JavaScript**: `dmgReadmePath`
 - **Type**: `string`
 
@@ -100,7 +114,7 @@ Change readme filename for DMG (macOS)
 
 Define a custom filename for the readme file included in the DMG (Disk Image) file on macOS.
 
-- **Option in CLI**: `--dmg-readme-filename <dmg-readme-filename>`
+- **Option in CLI**: `--dmg-readme-filename`
 - **Key in JavaScript**: `dmgReadmeFilename`
 - **Type**: `string`
 - **Default**: `README.md`
@@ -114,7 +128,7 @@ Define a custom filename for the readme file included in the DMG (Disk Image) fi
 ```bash
 bepp build-safari \
  --input "/my/chromium/path" \
- --dmg-title "{{id}} (Safari extension)" \
+ --dmg-title "{{dmgTitle}}" \
  --id "my-extension-name"
 ```
 
@@ -129,7 +143,7 @@ import {safari, buildBrowser} from 'bepp'
 
 safari.build({
     input: '/my/chromium/path',
-    dmgTitle: '{{id}} (Safari extension)',
+    dmgTitle: '{{dmgTitle}}',
     id: 'my-extension-name'
 })
 
@@ -137,7 +151,7 @@ safari.build({
 
 buildBrowser('safari',{
     input: '/my/chromium/path',
-    dmgTitle: '{{id}} (Safari extension)',
+    dmgTitle: '{{dmgTitle}}',
     id: 'my-extension-name'
 })
 ```

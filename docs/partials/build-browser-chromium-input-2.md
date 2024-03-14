@@ -8,6 +8,6 @@ The input directory must be a directory path for a **Chromium** extension with _
 
 The provided path should point to the directory containing the necessary files for building the extension.
 
-- **CLI option**: `-i-2, --input-mv2`
+- **CLI option**: `-i-2` `--input-mv2`
 - **JS key**: `inputMv2`
 - **Type**: `string`

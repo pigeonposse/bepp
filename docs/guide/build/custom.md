@@ -43,7 +43,7 @@ buildBrowser('custom',{
 
 Specify browser name for use in `filename` option.
 
-- **Option in CLI**: `--b,--browser-name`
+- **Option in CLI**: `--b` `--browser-name`
 - **Key in JavaScript**: `browserName`
 - **Type**: `string`
 

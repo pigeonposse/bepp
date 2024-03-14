@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.1.3
+
+### Patch Changes
+
+- Change compress default to tgz and add docs
+
 ## 1.1.2
 
 ### Patch Changes

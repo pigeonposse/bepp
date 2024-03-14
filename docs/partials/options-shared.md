@@ -2,7 +2,7 @@
 
 Use verbose output.
 
-- **CLI option**: `-v,--verbose`
+- **CLI option**: `-v` `--verbose`
 - **JS key**: `verbose`
 - **Type**: `boolean`
 
@@ -10,7 +10,7 @@ Use verbose output.
 
 Print execution time.
 
-- **CLI option**: `-t,--time`
+- **CLI option**: `-t` `--time`
 - **JS key**: `time`
 - **Type**: `boolean`
 
@@ -18,6 +18,6 @@ Print execution time.
 
 Force exit from process on error.
 
-- **CLI option**: `-e,--exit`
+- **CLI option**: `-e` `--exit`
 - **JS key**: `exit`
 - **Type**: `boolean`
