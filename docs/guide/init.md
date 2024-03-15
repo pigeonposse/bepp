@@ -21,7 +21,7 @@ bepp init [options]
  * @see https://bepp.pigeonposse.com/
  * @see https://bepp.pigeonposse.com/guide/init
  */
-import {init} from 'bepp'
+import {init} from '@bepp/bepp'
 
 init({/** options **/})
 
@@ -75,7 +75,7 @@ bepp init -y --id bepp  -i /path/to/extension --build chrome firefox
 ```
 
 ```js
-import {init} from 'bepp'
+import {init} from '@bepp/bepp'
 
 init({
     id: 'my-extension-name',

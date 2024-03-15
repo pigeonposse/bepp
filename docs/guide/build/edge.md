@@ -23,7 +23,7 @@ bepp build-edge [options]
  * @see https://bepp.pigeonposse.com/guide/build/edge
  */
 
-import {edge, buildBrowser} from 'bepp'
+import {edge, buildBrowser} from '@bepp/bepp'
 
 edge.build({
     /** options **/

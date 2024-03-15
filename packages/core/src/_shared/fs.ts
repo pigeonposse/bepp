@@ -263,6 +263,7 @@ export class Fs {
 			path = this.validateHomeDir( path )
 			await rm( path, {
 				recursive : true, 
+				force     : true,
 			} )
 		
 		} catch ( error ) {

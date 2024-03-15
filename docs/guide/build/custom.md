@@ -22,7 +22,7 @@ bepp build-custom [options]
  * @see https://bepp.pigeonposse.com/guide/build/custom
  */
 
-import {custom, buildBrowser} from 'bepp'
+import {custom, buildBrowser} from '@bepp/bepp'
 
 custom.build({
     /** options **/
@@ -68,7 +68,7 @@ bepp build-custom \
  * @see https://bepp.pigeonposse.com/guide/build/custom
  */
 
-import {custom, buildBrowser} from 'bepp'
+import {custom, buildBrowser} from '@bepp/bepp'
 
 custom.build({
     input: '/my/chromium/path',

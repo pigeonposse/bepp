@@ -1,8 +1,8 @@
 
 import { BuildSafariCore } from "./main";
-import { BuildBrowserSharedCLI } from "../_shared/cli";
+import { BuildSafariSharedCLI } from "../_shared/cli";
 
-export class BuildSafariCLI extends BuildBrowserSharedCLI {
+export class BuildSafariCLI extends BuildSafariSharedCLI {
 
     protected core = new BuildSafariCore()
 
@@ -10,22 +10,13 @@ export class BuildSafariCLI extends BuildBrowserSharedCLI {
         this.baseBrowserConstructor({
             id: this.core.browsersIds.safari,
             name: 'Safari',
+			man2: true,
             experimental: true,
             options: [
-                {
-                    type: 'string',
-                    value: ['--dmg-bundle-id'],
-                    name: 'dmg-bundle-id',
-                    desc: 'Custom bundle ID for DMG (macOS)',
-                    defaultValue: this.core.defaultSafariParams.dmgBundleId,
-                },
-                {
-                    type: 'string',
-                    value: ['--dmg-title'],
-                    name: 'dmg-title',
-                    desc: 'Custom title for DMG (macOS)',
-                    defaultValue: this.core.defaultSafariParams.dmgTitle,
-                },
+                ...this.getSharedOpts(
+					this.core.defaultSafariParams.appId,
+					this.core.defaultSafariParams.appTitle
+				),
                 {
                     type: 'string',
                     value: ['--dmg-icon'],

@@ -22,7 +22,7 @@ bepp build [options]
  * @see https://bepp.pigeonposse.com/guide/build/config-file
  */
 
-import {buildConfig} from 'bepp'
+import {buildConfig} from '@bepp/bepp'
 
 buildConfig({/** options **/})
 

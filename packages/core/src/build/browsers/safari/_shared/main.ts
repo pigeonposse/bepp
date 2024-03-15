@@ -1,35 +1,20 @@
 
-import { browserTypes, extTypes, manVersions } from "../../../_shared/types";
-import { BuildBrowserSharedCore } from "../_shared/main";
-import { BuildDmgParams, BuildSafariParams, DmgType, dmgTypes } from "./types"
+import { BuildBrowserSharedCore } from "../../_shared/main";
+import { BuildBrowserProps } from "../../_shared/types";
+import { BuildDmgParams, DmgOptions, AppType, appTypes, BuildSafariMacosParams, BuildSafariIosParams } from "./types"
 // @ts-ignore
 import bgURL from '@assets/dmg-bg-c.png?url'
 
-interface Options {
-    DMG_OUTPUT_PATH: string;
-    TITLE: string;
-    ICON: string;
-    APP_SOURCE: string;
-    README_PATH?: string;
-	README_FILE_NAME?: string
-    BG_IMG_PATH: string;
-}
-
-export class BuildSafariCore extends BuildBrowserSharedCore {
-    
-    props = {
-        name: browserTypes.safari, 
-        target: extTypes.chromium, 
-        man: manVersions[3]
-    }
+export class BuildSafariSharedCore extends BuildBrowserSharedCore {
 
     defaultSafariParams = {
-        dmgBundleId: `com.${this.id}.{{id}}`,
-        dmgTitle: '{{id}} (Safari extension)',
+        appId: `com.${this.id}.{{id}}`,
+        appTitle: '{{id}} (Safari extension)',
         dmgIcon: undefined,
         dmgNoReadme: undefined,
         dmgReadmeFilename: 'README.md',
         dmgReadmePath: undefined,
+		onlyXcodeProject: false
     }
 
     protected requirementFileData(name:string){
@@ -51,7 +36,7 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
 
     }
     
-	protected async command_createDMG(scriptPath: string, options: Options){
+	protected async command_createDMG(scriptPath: string, options: DmgOptions){
 		// @ts-ignore
 		const CREATE_DMG_SCRIPT = scriptPath
 		const {
@@ -96,33 +81,34 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
         return command
 
 	}
-    protected getSafariParams(values: BuildDmgParams ){
+    protected getSafariParams(props: BuildBrowserProps, values: BuildDmgParams ){
         const params = {
             ...values,
-            dmgBundleId: values.dmgBundleId || this.defaultSafariParams.dmgBundleId,
-            dmgTitle: values.dmgTitle || this.defaultSafariParams.dmgTitle,
+            appId: values.appId || this.defaultSafariParams.appId,
+            appTitle: values.appTitle || this.defaultSafariParams.appTitle,
             dmgIcon: values.dmgIcon || this.defaultSafariParams.dmgIcon,
             dmgNoReadme: values.dmgNoReadme || this.defaultSafariParams.dmgNoReadme,
             dmgReadmeFilename: values.dmgReadmeFilename || this.defaultSafariParams.dmgReadmeFilename,
             dmgReadmePath: values.dmgReadmePath || this.defaultSafariParams.dmgReadmePath,
+			onlyXcodeProject: values.onlyXcodeProject || this.defaultSafariParams.onlyXcodeProject,
         }
         const placeholderProps = { 
             id: params.id,
-            browser: this.props.name,
+            browser: props.name,
             version: params.manifestProps.version || ''
         }
-        params.dmgTitle = this.type.string.replacePlaceholders( params.dmgTitle, placeholderProps)
-        params.dmgBundleId = this.type.string.replacePlaceholders( params.dmgBundleId, placeholderProps)
+        params.appTitle = this.type.string.replacePlaceholders( params.appTitle, placeholderProps)
+        params.appTitle = this.type.string.replacePlaceholders( params.appTitle, placeholderProps)
         return params
     }
 
-    async buildDmg(params: BuildDmgParams, type: DmgType){
+	protected async buildDmg(props: BuildBrowserProps, params: BuildDmgParams, type: AppType){
         
-        const SAFARI_TEMP_PATH  = this.fs.join( params.output, '__temp_safari')
+        const SAFARI_TEMP_PATH  = this.fs.join( params.output, '__temp-'+props.name+'-'+type)
 
         try{
 
-            params = this.getSafariParams(params)
+            params = this.getSafariParams(props,params)
             
             params.log.verbose({
                 title: 'Debug Safari params',
@@ -140,26 +126,27 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
                 }
             }
 
-            if ( type !== dmgTypes.ios && type !== dmgTypes.macos ) throw Error( 'Type incorrect. Must be "iOS" or "macOS".' )
+            if ( type !== appTypes.ios && type !== appTypes.macos ) throw Error( 'Type incorrect. Must be "iOS" or "macOS".' )
         
             await this.fs.removeDirIfExist(SAFARI_TEMP_PATH)
 
-            const PRODUCT_NAME                  = params.dmgTitle as string
+            const PRODUCT_NAME                  = params.appTitle as string
             const CHROME_PATH                   = params.input
-            const BUNDLE_ID                     = params.dmgBundleId
-            const SAFARI_XCODEPROJECT_PATH      = this.fs.join( SAFARI_TEMP_PATH, PRODUCT_NAME, `${PRODUCT_NAME}.xcodeproj`)
+            const APP_ID                        = params.appId
+			const SAFARI_XCODEPROJECT_DIR_PATH  = this.fs.join( SAFARI_TEMP_PATH, PRODUCT_NAME)
+            const SAFARI_XCODEPROJECT_PATH      = this.fs.join( SAFARI_XCODEPROJECT_DIR_PATH, `${PRODUCT_NAME}.xcodeproj`)
             const SAFARI_APP_BUILD_PATH         = this.fs.join( SAFARI_TEMP_PATH, `app-${type}`)
             const SAFARI_APP_BUILD_RELEASE_PATH = this.fs.join( SAFARI_APP_BUILD_PATH, 'Build','Products','Release',`${PRODUCT_NAME}.app`)
             const SAFARI_APP_ICNS_PATH          = params.dmgIcon ? params.dmgIcon : this.fs.join(SAFARI_APP_BUILD_RELEASE_PATH,'Contents','Resources','AppIcon.icns')
-            const SAFARI_DMG_NAME               = type === dmgTypes.macos ? `${params.filename}.dmg` : `${type.toLowerCase()}-${params.filename}.dmg`
-            const SAFARI_DMG_OUTPUT             = this.fs.join(SAFARI_TEMP_PATH, SAFARI_DMG_NAME)
 
+			const typeFlag = type === appTypes.macos ? '--macos-only' : '--ios-only'
             params.log.changeText( '🚀 Converting chrome to safari extension' )
             
             const cmdConvertExt =`xcrun safari-web-extension-converter ${CHROME_PATH} \
+			    ${typeFlag} \
                 --project-location "${SAFARI_TEMP_PATH}" \
                 --app-name "${PRODUCT_NAME}" \
-                --bundle-identifier ${BUNDLE_ID} \
+                --bundle-identifier ${APP_ID} \
 				--swift \
                 --force \
                 --no-prompt \
@@ -170,85 +157,99 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
                 value: cmdConvertExt
             })
 
-            await this.childProcess.execute( {
-                cmd: cmdConvertExt,
-                ...logFuncts
-            })
-        
-            params.log.changeText( '🚀 Building safari app' )
-            
-            let cmdBuildApp = `xcodebuild -project "${SAFARI_XCODEPROJECT_PATH}" \
-            -scheme "${PRODUCT_NAME} (${type})" \
-            -configuration Release \
-            -derivedDataPath "${SAFARI_APP_BUILD_PATH}"`
-            
-			if(type !== dmgTypes.macos ) cmdBuildApp += '\n -destination generic/platform=iOS'
+			await this.childProcess.execute( {
+				cmd: cmdConvertExt,
+				...logFuncts
+			})
+	
+			if(!params.onlyXcodeProject){
+				params.log.changeText( '🚀 Building safari app' )
+				
+				let cmdBuildApp = `xcodebuild -project "${SAFARI_XCODEPROJECT_PATH}" \
+				-scheme "${PRODUCT_NAME}" \
+				-configuration Release \
+				-derivedDataPath "${SAFARI_APP_BUILD_PATH}"`
+				
+				// if(type !== appTypes.macos ) cmdBuildApp += '\n -sdk iphoneos'
 
-            params.log.verbose({
-                title: 'Building safari app',
-                value: cmdBuildApp
-            })
+				params.log.verbose({
+					title: 'Building safari app',
+					value: cmdBuildApp
+				})
 
-            await this.childProcess.execute( {
-                cmd:cmdBuildApp,
-                ...logFuncts
-             })
-
-
-            // Create DMG
-            params.log.changeText( '🚀 Creating DMG' )
-			const BG_IMG_PATH = this.fs.join( SAFARI_TEMP_PATH, 'bg.png' )
-			await this.fs.createImageFromBase64(bgURL, BG_IMG_PATH)
-			
-			const DMG_CMD_PARAMS: Options = {
-				DMG_OUTPUT_PATH: SAFARI_DMG_OUTPUT,
-				TITLE: PRODUCT_NAME,
-				ICON: this.fs.getAbsolutePath(SAFARI_APP_ICNS_PATH),
-				APP_SOURCE: this.fs.getAbsolutePath(SAFARI_APP_BUILD_RELEASE_PATH),
-				README_PATH: undefined,
-				README_FILE_NAME: params.dmgReadmeFilename,
-				BG_IMG_PATH,
+				await this.childProcess.execute( {
+					cmd:cmdBuildApp,
+					...logFuncts
+				})
 			}
 
-            if(!params.dmgNoReadme){
-                
-                const README_DEFAULT_PATH = this.fs.join( SAFARI_TEMP_PATH, 'safari-unsigned-info.md' )
-                if(!params.dmgReadmePath) await this.fs.writeFile( README_DEFAULT_PATH, this.requirementFileData( params.id ) )
-
-                const README_PATH               = params.dmgReadmePath || README_DEFAULT_PATH
-                const README_ABSOLUTE_PATH      = this.fs.getAbsolutePath( README_PATH )
-
-				DMG_CMD_PARAMS.README_PATH = README_ABSOLUTE_PATH
- 
-            }
-			const DMG_SCRIPT = {
-				path: this.fs.join( SAFARI_TEMP_PATH, 'create-dmg.sh' ),
-				// @ts-ignore
-				content: DMG_SCRIPT_CONTENT
-			}
+			let SAFARI_OOTPUT: string
 			
-			await this.fs.writeFile( DMG_SCRIPT.path, DMG_SCRIPT.content )
-			const DMG_CMD = await this.command_createDMG(DMG_SCRIPT.path, DMG_CMD_PARAMS)
+			if(type === appTypes.macos && !params.onlyXcodeProject) {
 
-            params.log.verbose({
-                title: 'DMG params',
-                value: DMG_CMD_PARAMS
-            })
-        
-            await this.childProcess.execute( {
-                cmd: DMG_CMD,
-                ...logFuncts
-            })
+				// Create DMG
+				params.log.changeText( '🚀 Creating DMG' )
+				const SAFARI_DMG_OUTPUT             = this.fs.join(SAFARI_TEMP_PATH, `${params.filename}.dmg`)
+				const BG_IMG_PATH = this.fs.join( SAFARI_TEMP_PATH, 'bg.png' )
+				await this.fs.createImageFromBase64(bgURL, BG_IMG_PATH)
+				
+				const DMG_CMD_PARAMS: DmgOptions = {
+					DMG_OUTPUT_PATH: SAFARI_DMG_OUTPUT,
+					TITLE: PRODUCT_NAME,
+					ICON: this.fs.getAbsolutePath(SAFARI_APP_ICNS_PATH),
+					APP_SOURCE: this.fs.getAbsolutePath(SAFARI_APP_BUILD_RELEASE_PATH),
+					README_PATH: undefined,
+					README_FILE_NAME: params.dmgReadmeFilename,
+					BG_IMG_PATH,
+				}
 
+				if(!params.dmgNoReadme){
+					
+					const README_DEFAULT_PATH = this.fs.join( SAFARI_TEMP_PATH, 'safari-unsigned-info.md' )
+					if(!params.dmgReadmePath) await this.fs.writeFile( README_DEFAULT_PATH, this.requirementFileData( params.id ) )
+
+					const README_PATH               = params.dmgReadmePath || README_DEFAULT_PATH
+					const README_ABSOLUTE_PATH      = this.fs.getAbsolutePath( README_PATH )
+
+					DMG_CMD_PARAMS.README_PATH = README_ABSOLUTE_PATH
+	
+				}
+				const DMG_SCRIPT = {
+					path: this.fs.join( SAFARI_TEMP_PATH, 'create-dmg.sh' ),
+					// @ts-ignore
+					content: DMG_SCRIPT_CONTENT
+				}
+				
+				await this.fs.writeFile( DMG_SCRIPT.path, DMG_SCRIPT.content )
+				const DMG_CMD = await this.command_createDMG(DMG_SCRIPT.path, DMG_CMD_PARAMS)
+
+				params.log.verbose({
+					title: 'DMG params',
+					value: DMG_CMD_PARAMS
+				})
+			
+				await this.childProcess.execute( {
+					cmd: DMG_CMD,
+					...logFuncts
+				})
+				SAFARI_OOTPUT = this.fs.getAbsolutePath(SAFARI_DMG_OUTPUT)
+			}else if(type === appTypes.macos && params.onlyXcodeProject) {
+				SAFARI_OOTPUT = SAFARI_XCODEPROJECT_DIR_PATH
+			}else {
+
+				SAFARI_OOTPUT = this.fs.getAbsolutePath(SAFARI_APP_BUILD_RELEASE_PATH)
+
+			}
 
             params.log.changeText( '🚀 Creating compress file' )
         
             const compressParams = {
-                inputPath: this.fs.getAbsolutePath(SAFARI_DMG_OUTPUT), 
+                inputPath: SAFARI_OOTPUT, 
                 outputPath: this.fs.getAbsolutePath(params.output),
                 outputName: params.filename,
                 format: params.compress
             }
+
             params.log.verbose({
                 title: 'Compress params',
                 values: compressParams
@@ -266,37 +267,42 @@ export class BuildSafariCore extends BuildBrowserSharedCore {
 
     }
 
+	protected async buildSafariBrowserWithProps(props: BuildBrowserProps, values: BuildSafariMacosParams){
 
-    async create(values: BuildSafariParams){
-
-        await this.buildBrowserConstructor<BuildSafariParams>({
+        await this.buildBrowserConstructor<BuildSafariMacosParams>({
             props: {
                 inputPath: values.input, 
                 values, 
-                ...this.props
+                ...props
             },
             cb: async (params)=> {
                 if(!this.isMacos()) throw Error('You must be on macOS to build a safari extension')
-                await this.buildDmg(params, dmgTypes.macos)
+                await this.buildDmg(props, params, appTypes.macos)
             },
             onError: ({log, error}) => {
                 log.failed(error)
             }
         })
 
-    }
+	}
 
+	protected async buildSafariIosBrowserWithProps(props: BuildBrowserProps, values: BuildSafariIosParams){
+
+        await this.buildBrowserConstructor<BuildSafariIosParams>({
+            props: {
+                inputPath: values.input, 
+                values, 
+                ...props
+            },
+            cb: async (params)=> {
+                if(!this.isMacos()) throw Error('You must be on macOS to build a safari extension')
+                await this.buildDmg(props, params, appTypes.ios)
+            },
+            onError: ({log, error}) => {
+                log.failed(error)
+            }
+        })
+
+	}
 }
 
-const core = new BuildSafariCore()
-
-export default {
-    props: core.props,
-	/**
-	 * Build Safari extension.
-	 *
-	 * @returns {Promise<void>}                    
-	 * @see https://bepp.pigeonposse.com/guide/build/safari
-	 */
-    build: core.create.bind(core),
-}

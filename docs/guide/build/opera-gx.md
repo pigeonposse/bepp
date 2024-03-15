@@ -22,7 +22,7 @@ bepp build-opera-gx [options]
  * @see https://bepp.pigeonposse.com/guide/build/opera-gx
  */
 
-import {operaGx, buildBrowser} from 'bepp'
+import {operaGx, buildBrowser} from '@bepp/bepp'
 
 operaGx.build({
     /** options **/

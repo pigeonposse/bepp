@@ -42,7 +42,7 @@ bepp init [options]
  * @see https://bepp.pigeonposse.com/guide/init
  */
 
-import {init} from 'bepp'
+import {init} from '@bepp/bepp'
 
 init({/** options **/})
 
@@ -74,7 +74,7 @@ bepp build [options]
  * @see https://bepp.pigeonposse.com/guide/build/config-file
  */
 
-import {buildConfig} from 'bepp'
+import {buildConfig} from '@bepp/bepp'
 
 buildConfig({/** options **/})
 
@@ -114,7 +114,7 @@ import {
   operaGx, 
   yandex, 
   custom 
-} from 'bepp'
+} from '@bepp/bepp'
 
 /**
  * Build browser extensions.

@@ -23,7 +23,7 @@ bepp build-firefox [options]
  * @see https://bepp.pigeonposse.com/guide/build/firefox
  */
 
-import {firefox, buildBrowser} from 'bepp'
+import {firefox, buildBrowser} from '@bepp/bepp'
 
 firefox.build({
     /** options **/

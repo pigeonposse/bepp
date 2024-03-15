@@ -21,7 +21,7 @@ bepp build-brave [options]
  * @see https://bepp.pigeonposse.com/
  * @see https://bepp.pigeonposse.com/guide/build/brave
  */
-import {brave, buildBrowser} from 'bepp'
+import {brave, buildBrowser} from '@bepp/bepp'
 
 brave.build({
     /** options **/

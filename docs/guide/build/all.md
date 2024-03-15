@@ -16,7 +16,7 @@ This **Bepp** feature is exclusively available for `js` and allows packaging ext
  * @see https://bepp.pigeonposse.com/guide/build/all
  */
 
-import { buildAllBrowsers } from 'bepp'
+import { buildAllBrowsers } from '@bepp/bepp'
 
 buildAllBrowsers({
     /** options **/
@@ -42,7 +42,7 @@ To know more about the configuration of each browser, read more [here](../build.
  * @see https://bepp.pigeonposse.com/guide/build/all
  */
 
-import { buildAll } from 'bepp'
+import { buildAll } from '@bepp/bepp'
 
 buildAllBrowsers({
     safari: {

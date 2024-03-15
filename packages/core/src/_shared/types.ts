@@ -54,6 +54,8 @@ export const browserTypes = {
 	edge        : 'edge',
 	edgeMv2     : 'edge-mv2',
 	safari      : 'safari',
+	safariMv2   : 'safari-mv2',
+	// safariIos   : 'safari-ios',
 	brave       : 'brave',
 	opera       : 'opera',
 	operagx     : 'opera-gx',

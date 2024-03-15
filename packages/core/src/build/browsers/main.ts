@@ -3,7 +3,8 @@ import chrome from "./chrome/main";
 import chromium from "./chromium/main";
 import firefox from "./firefox/main";
 import edge from "./edge/main";
-import safari from "./safari/main";
+import safari from "./safari/macos/main";
+// import safariIos from "./safari/ios/main";
 import brave from "./brave/main";
 import custom from "./custom/main";
 import operaGx from "./opera-gx/main";
@@ -13,7 +14,9 @@ import yandex from "./yandex/main";
 type BrowserArgs<T> =  T extends keyof typeof allBrowsers ? Parameters<typeof allBrowsers[T]['build']>[0] : never
 
 const allBrowsers = {
-    [browserTypes.safari]: safari,
+    [browserTypes.safari]: {...safari, mv2: undefined},
+	[browserTypes.safariMv2]: safari.mv2,
+	// [browserTypes.safariIos]: safariIos,
     [browserTypes.chrome]: {...chrome, mv2: undefined},
     [browserTypes.chromeMv2]: chrome.mv2,
     [browserTypes.firefox]: {...firefox, mv2: undefined},
@@ -70,6 +73,7 @@ export {
     firefox,
     edge,
     safari,
+	// safariIos,
     brave,
     custom,
     operaGx,

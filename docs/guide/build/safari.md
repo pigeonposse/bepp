@@ -2,8 +2,8 @@
 
 <script>
  // At the moment it is the only way I know for a string with {{}} to be rendered with vitepress
- const dmgTitle = '{{id}} (Safari extension)'
- const dmgBundleId = 'com.bepp.{{id}}'
+ const appTitle = '{{id}} (Safari extension)'
+ const appId = 'com.bepp.{{id}}'
 </script>
 
 **Bepp**'s _Safari_ extension packaging feature allows you to effortlessly adapt your **_Chromium_** extensions for **_Safari_**. This capability is specifically designed for straightforward **_Chrome_** extensions. It provides a seamless transition process, enabling you to leverage your existing **_Chrome_** extensions on **_Safari_** with ease.
@@ -38,7 +38,7 @@ bepp build-safari [options]
  * @see https://bepp.pigeonposse.com/guide/build/safari
  */
 
-import {safari, buildBrowser} from 'bepp'
+import {safari, buildBrowser} from '@bepp/bepp'
 
 safari.build({
     /** options **/
@@ -53,29 +53,34 @@ buildBrowser('safari',{
 ## Options
 
 <!--@include: ../../partials/build-browser-chromium-input.md-->
+<!--@include: ../../partials/build-browser-chromium-input-2.md-->
+::: warning
+It is not recommended to use this option.
+:::
+
 <!--@include: ../../partials/build-browser-shared.md-->
 
-### `dmgBundleId`
+### `appId`
 
-Custom bundle ID for DMG (macOS)
+Bundle identifier for the generated app.
 
-Customize the bundle ID used for the DMG (Disk Image) file on macOS. By default, it's set to `{{dmgBundleId}}`, where `id` represents the identification string provided during the build process.
+Customize the bundle ID used for macOS app. By default, it's set to `{{appId}}`, where `id` represents the identification string provided during the build process.
 
-- **CLI option**: `--dmg-bundle-id`
-- **Key in JavaScript**: `dmgBundleId`
+- **CLI option**: `--app-Id`
+- **Key in JavaScript**: `appId`
 - **Type**: `string`
-- **Default**: `{{dmgBundleId}}`
+- **Default**: `{{appId}}`
 
-### `dmgTitle`
+### `appTitle`
 
-Custom title for DMG (macOS)
+Title for the generated app.
 
-Set a custom title for the DMG (Disk Image) file on macOS. By default, it's set to `{{dmgTitle}}`, where `id` represents the identification string provided during the build process.
+Set a custom title for macOS app. By default, it's set to `{{appTitle}}`, where `id` represents the identification string provided during the build process.
 
-- **Option in CLI**: `--dmg-title`
-- **Key in JavaScript**: `dmgTitle`
+- **Option in CLI**: `--app-title`
+- **Key in JavaScript**: `appTitle`
 - **Type**: `string`
-- **Default**: `{{dmgTitle}}`
+- **Default**: `{{appTitle}}`
 
 ### `dmgIcon`
 
@@ -119,6 +124,16 @@ Define a custom filename for the readme file included in the DMG (Disk Image) fi
 - **Type**: `string`
 - **Default**: `README.md`
 
+### `onlyXcodeProject`
+
+Packages only the xcode project.
+This is useful in case you want to develop after converting from chromium to safari
+
+- **Option in CLI**: `--only-xcode-project`
+- **Key in JavaScript**: `onlyXcodeProject`
+- **Type**: `boolean`
+- **Default**: `false`
+
 <!--@include: ../../partials/options-shared.md-->
 
 ## Examples
@@ -128,7 +143,7 @@ Define a custom filename for the readme file included in the DMG (Disk Image) fi
 ```bash
 bepp build-safari \
  --input "/my/chromium/path" \
- --dmg-title "{{dmgTitle}}" \
+ --app-title "{{appTitle}}" \
  --id "my-extension-name"
 ```
 
@@ -139,11 +154,11 @@ bepp build-safari \
  * @see https://bepp.pigeonposse.com/
  * @see https://bepp.pigeonposse.com/guide/build/safari
  */
-import {safari, buildBrowser} from 'bepp'
+import {safari, buildBrowser} from '@bepp/bepp'
 
 safari.build({
     input: '/my/chromium/path',
-    dmgTitle: '{{dmgTitle}}',
+    appTitle: '{{appTitle}}',
     id: 'my-extension-name'
 })
 
@@ -151,7 +166,7 @@ safari.build({
 
 buildBrowser('safari',{
     input: '/my/chromium/path',
-    dmgTitle: '{{dmgTitle}}',
+    appTitle: '{{appTitle}}',
     id: 'my-extension-name'
 })
 ```
@@ -165,5 +180,5 @@ buildBrowser('safari',{
 
 ## Useful Links
 
-- [Assessing your Safari web extension's browser compatibility
-](https://developer.apple.com/documentation/safariservices/safari_web_extensions/assessing_your_safari_web_extension_s_browser_compatibility)
+- [Assessing your Safari web extension's browser compatibility](https://developer.apple.com/documentation/safariservices/safari_web_extensions/assessing_your_safari_web_extension_s_browser_compatibility)
+- [Browser compatibility for manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Browser_compatibility_for_manifest.json)

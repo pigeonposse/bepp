@@ -361,11 +361,14 @@
                   "input": {
                     "type": "string"
                   },
-                  "dmgBundleId": {
+                  "appId": {
                     "type": "string"
                   },
-                  "dmgTitle": {
+                  "appTitle": {
                     "type": "string"
+                  },
+                  "onlyXcodeProject": {
+                    "type": "boolean"
                   },
                   "dmgIcon": {
                     "type": "string"
@@ -382,6 +385,71 @@
                   "type": {
                     "type": "string",
                     "const": "safari"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "verbose": {
+                    "type": "boolean"
+                  },
+                  "time": {
+                    "type": "boolean"
+                  },
+                  "exit": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "output": {
+                    "type": "string"
+                  },
+                  "compress": {
+                    "type": "string",
+                    "enum": [
+                      "tar",
+                      "tgz",
+                      "gzip",
+                      "zip"
+                    ],
+                    "description": "Compression type."
+                  },
+                  "filename": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "appId": {
+                    "type": "string"
+                  },
+                  "appTitle": {
+                    "type": "string"
+                  },
+                  "onlyXcodeProject": {
+                    "type": "boolean"
+                  },
+                  "dmgIcon": {
+                    "type": "string"
+                  },
+                  "dmgNoReadme": {
+                    "type": "boolean"
+                  },
+                  "dmgReadmePath": {
+                    "type": "string"
+                  },
+                  "dmgReadmeFilename": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "safari-mv2"
                   }
                 },
                 "required": [
@@ -641,9 +709,6 @@
                     "type": "string"
                   },
                   "input": {
-                    "type": "string"
-                  },
-                  "inputMv2": {
                     "type": "string"
                   },
                   "type": {

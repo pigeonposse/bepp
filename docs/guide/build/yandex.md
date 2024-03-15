@@ -23,7 +23,7 @@ bepp build-yandex [options]
  * @see https://bepp.pigeonposse.com/guide/build/yandex
  */
 
-import {yandex, buildBrowser} from 'bepp'
+import {yandex, buildBrowser} from '@bepp/bepp'
 
 yandex.build({
     /** options **/

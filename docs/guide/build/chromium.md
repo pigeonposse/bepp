@@ -21,7 +21,7 @@ bepp build-chromium [options]
  * @see https://bepp.pigeonposse.com/
  * @see https://bepp.pigeonposse.com/guide/build/chromium
  */
-import {chromium, buildBrowser} from 'bepp'
+import {chromium, buildBrowser} from '@bepp/bepp'
 
 chromium.build({
     /** options **/

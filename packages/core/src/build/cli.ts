@@ -1,7 +1,6 @@
 
 import { SuperCLI }         from '../_shared/cli'
 import { BuildConfigCLI }   from './config/cli'
-import { BuildSafariCLI }   from './browsers/safari/cli'
 import { BuildChromiumCLI } from './browsers/chromium/cli'
 import { BuildEdgeCLI }     from './browsers/edge/cli'
 import { BuildBraveCLI }    from './browsers/brave/cli'
@@ -11,6 +10,8 @@ import { BuildChromeCLI }   from './browsers/chrome/cli'
 import { BuildFirefoxCLI }  from './browsers/firefox/cli'
 import { BuildCustomCLI }   from './browsers/custom/cli'
 import { BuildYandexCLI }   from './browsers/yandex/cli'
+import { BuildSafariCLI }   from './browsers/safari/macos/cli'
+// import { BuildSafariIOSCLI } from './browsers/safari/ios/cli'
 
 export class BuildCLI extends SuperCLI {
 
@@ -20,6 +21,7 @@ export class BuildCLI extends SuperCLI {
 
 		const config   = new BuildConfigCLI( args )
 		const safari   = new BuildSafariCLI( args )
+		// const safariIos= new BuildSafariIOSCLI( args )
 		const chrome   = new BuildChromeCLI( args )
 		const firefox  = new BuildFirefoxCLI( args )
 		const chromium = new BuildChromiumCLI( args )
@@ -34,6 +36,7 @@ export class BuildCLI extends SuperCLI {
 		chrome.run()
 		firefox.run()
 		safari.run()
+		// safariIos.run()
 		chromium.run()
 		edge.run()
 		brave.run()

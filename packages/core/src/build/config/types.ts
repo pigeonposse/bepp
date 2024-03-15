@@ -8,8 +8,8 @@ import { BuildEdgeSharedParams } from "../browsers/edge/types";
 import { BuildFirefoxSharedParams } from "../browsers/firefox/types";
 import { BuildOperaGXParams } from "../browsers/opera-gx/types";
 import { BuildOperaParams } from "../browsers/opera/types";
-import { BuildSafariParams } from "../browsers/safari/types";
-import { BuildYandexParams, BuildYandexSharedParams } from "../browsers/yandex/types";
+import { BuildSafariIosParams, BuildSafariMacosParams } from "../browsers/safari/_shared/types";
+import { BuildYandexSharedParams } from "../browsers/yandex/types";
 
 export type BuildConfigParams = CmdSharedOptions & {
     file?: string
@@ -36,13 +36,15 @@ export type BuildConfigBuild = (
 	| BuildTypeParams<BrowserTypesMap['chromiumMv2'], BuildChromiumSharedParams>
 	| BuildTypeParams<BrowserTypesMap['firefox'], BuildFirefoxSharedParams>
 	| BuildTypeParams<BrowserTypesMap['firefoxMv2'], BuildFirefoxSharedParams>
-	| BuildTypeParams<BrowserTypesMap['safari'], BuildSafariParams>
+	| BuildTypeParams<BrowserTypesMap['safari'], BuildSafariMacosParams>
+	| BuildTypeParams<BrowserTypesMap['safariMv2'], BuildSafariMacosParams>
+	// | BuildTypeParams<BrowserTypesMap['safariIos'], BuildSafariIosParams>
 	| BuildTypeParams<BrowserTypesMap['edge'], BuildEdgeSharedParams>
 	| BuildTypeParams<BrowserTypesMap['edgeMv2'], BuildEdgeSharedParams>
 	| BuildTypeParams<BrowserTypesMap['brave'], BuildBraveParams>
 	| BuildTypeParams<BrowserTypesMap['opera'], BuildOperaParams>
 	| BuildTypeParams<BrowserTypesMap['operagx'], BuildOperaGXParams>
-	| BuildTypeParams<BrowserTypesMap['yandex'], BuildYandexParams>
+	| BuildTypeParams<BrowserTypesMap['yandex'], BuildYandexSharedParams>
 	| BuildTypeParams<BrowserTypesMap['yandexMv2'], BuildYandexSharedParams>
 	| BuildTypeParams<BrowserTypesMap['custom'], BuildCustomParams>
 )[]
