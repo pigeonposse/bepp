@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@bepp/bin",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"description": "bepp binary for use without node enviroment",
 	"scripts": {
 		"build": "pnpm build:cjs && pnpm build:bin && pnpm build:zip",

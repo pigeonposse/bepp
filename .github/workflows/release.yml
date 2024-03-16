@@ -166,7 +166,7 @@ jobs:
         if: ${{ steps.updated.outputs.core_version != '' && steps.updated.outputs.core_version_major != '' }}
         uses: ncipollo/release-action@v1
         with: 
-          tagName: "v${{ steps.updated.outputs.core_version }}"
+          tag: "v${{ steps.updated.outputs.core_version }}"
           draft: false
           prerelease: false
           allowUpdates: true

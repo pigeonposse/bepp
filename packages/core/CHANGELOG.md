@@ -1,5 +1,11 @@
 # @bepp/core
 
+## 1.2.3
+
+### Patch Changes
+
+- update ci
+
 ## 1.2.2
 
 ## 1.2.1
