@@ -5,5 +5,4 @@ import yandex from "./main";
 testBuildBrowser(
     browserTypes.yandex, 
     yandex,
-    () => {}
 )

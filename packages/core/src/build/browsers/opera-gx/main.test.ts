@@ -5,5 +5,4 @@ import operaGX from "./main";
 testBuildBrowser(
     browserTypes.operagx, 
     operaGX,
-    () => {}
 )

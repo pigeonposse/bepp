@@ -5,5 +5,4 @@ import chrome from "./main";
 testBuildBrowser(
 	browserTypes.chrome, 
     chrome,
-    () => {}
 )

@@ -5,5 +5,4 @@ import brave from "./main";
 testBuildBrowser(
     browserTypes.brave, 
     brave,
-    () => {}
 )

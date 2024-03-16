@@ -6,5 +6,4 @@ import safari from "./main";
 testBuildBrowser(
     browserTypes.safari, 
     safari,
-    () => {}
 )

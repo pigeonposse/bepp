@@ -5,5 +5,4 @@ import opera from "./main";
 testBuildBrowser(
     browserTypes.opera, 
     opera,
-    () => {}
 )
