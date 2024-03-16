@@ -22,7 +22,7 @@ node_modules
 dist
 dist-ssr
 /build
-pacakges/**/build
+packages/**/build
 *.local
 
 # misc

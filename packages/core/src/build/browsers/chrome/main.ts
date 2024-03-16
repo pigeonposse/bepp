@@ -29,13 +29,10 @@ export class BuildChromeCore extends BuildBrowserSharedCore {
 
     async create(values:BuildChromeParams){
 
-        await this.buildBrowserWithProps(this.props, values)
-
-        if(values.inputMv2){
-            const coreMv2 = new BuildChromeMV2Core()
-            await coreMv2.create({...values, input: values.inputMv2})
-
-        }
+		await Promise.all([
+			this.buildBrowserWithProps(this.props, values),
+			values.inputMv2 ? new BuildChromeMV2Core().create({...values, input: values.inputMv2}) : Promise.resolve()
+		]);
 
     }
 

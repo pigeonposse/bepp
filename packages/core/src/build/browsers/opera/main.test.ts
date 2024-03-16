@@ -1,8 +1,9 @@
-import { testBuildBrowser } from "../_shared/tests";
+import { browserTypes } from "../../../_shared/types"
+import { testBuildBrowser } from "../_shared/tests"
 import opera from "./main";
 
 testBuildBrowser(
-    'opera', 
+    browserTypes.opera, 
     opera,
     () => {}
 )

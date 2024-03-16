@@ -33,7 +33,7 @@ export class BuildSafariCore extends BuildSafariSharedCore {
 		const coreMv2Promise = values.inputMv2 ? new BuildSafariMV2Core().create({...values, input: values.inputMv2}) : Promise.resolve();
 	
 		// Espera a que ambas promesas se resuelvan
-		await Promise.all([buildSafariBrowserPromise, coreMv2Promise]);
+		await Promise.all([buildSafariBrowserPromise, coreMv2Promise])
 
     }
 

@@ -5,30 +5,45 @@
  */
 import { describe, expect, it } from "../../../_shared/tests"
 
-const testBuildFunction = (name: string, brwoser: unknown, opts: object) => {
-    const run = async (cb: unknown, opts: object) => {
-        try{
-            // @ts-ignore
-            await cb()
-        }catch(e){
-            throw e
-        }
-    }
+type BrowserSharedType<T> = {
+	build: (opts: T) => Promise<void>
+	props: unknown
+}
+
+type BrowserType<T> = BrowserSharedType<T> & {
+	mv2?: BrowserSharedType<T>
+}
+const testBuildFunction = <T>(name: string, brwoser: BrowserType<T>, opts: object) => {
 
     it(name, () => {
 
-        // @ts-ignore
-        expect(async () => await run(brwoser.build), opts).rejects.toThrowError();
-        // @ts-ignore
-        if(brwoser.mv2){
-            // @ts-ignore
-            expect(async () => await run(brwoser.mv2.build, opts)).rejects.toThrowError();
+        expect(async () => {
+			try{
+				// @ts-ignore
+				await brwoser.build(opts)
+			}catch(e){
+				throw e
+			}
+			
+		}).toThrowError;
+
+        if(brwoser.mv2 && typeof brwoser.mv2 === 'object' && 'build' in brwoser.mv2){
+			
+            expect(async () => {
+				try{
+					// @ts-ignore
+					await brwoser.mv2.build(opts)
+				}catch(e){
+					throw e
+				}
+			}).toThrowError;
         }
     })
     
 }
 
-export const testBuildBrowser = (id: string, brwoser: unknown, cb: unknown) => {
+export const testBuildBrowser= <T>(id: string, brwoser: BrowserType<T>, cb?: () => Promise<void>) => {
+
 describe(`Build ${id}`, () => {
 
     testBuildFunction(
@@ -55,10 +70,10 @@ describe(`Build ${id}`, () => {
     testBuildFunction(
         'Error because [compress-type] is not valid',
         brwoser,
-        {input: 'non-existent/path', compres: 'zzip'}
+        {input: 'non-existent/path', compress: 'zzip'}
     )
-    // @ts-ignore
+
     if(cb) cb()
-});
+})
 
 }
