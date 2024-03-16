@@ -165,11 +165,12 @@ jobs:
       - name: Release binary if @bepp/core is updated
         if: ${{ steps.updated.outputs.core_version != '' && steps.updated.outputs.core_version_major != '' }}
         uses: ncipollo/release-action@v1
-        with:
+        with: 
           tagName: "v${{ steps.updated.outputs.core_version }}"
           draft: false
           prerelease: false
           allowUpdates: true
           artifacts: "packages/bin/dist/zip/*"
+          omitBodyDuringUpdate: true
 
 ###############################################################################
