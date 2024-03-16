@@ -26,7 +26,7 @@ create_release() {
 	git tag $v
 	git push --force origin refs/tags/$v
 
-    local release_name="BEPP action $v"
+    local release_name="BEPP $v"
     local release_body="Release $v"
     
     # Delete release

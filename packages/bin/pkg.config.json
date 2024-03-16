@@ -1,0 +1,17 @@
+{
+	"bin": "dist/cjs/index.js",
+	"name": "bepp",
+	"pkg": {
+		"outputPath": "dist/bin",
+		"targets": [
+			"node18-alpine-x64",
+			"node18-alpine-arm64",
+			"node18-linux-x64",
+			"node18-linux-arm64",
+			"node18-macos-x64",
+			"node18-macos-arm64", 
+			"node18-win-x64",
+			"node18-win-x64-arm64"
+		]
+	}
+}

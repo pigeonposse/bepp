@@ -11,7 +11,8 @@
 	[
 		"@bepp/bepp",
 		"@bepp/core", 
-		"@bepp/gh-action"
+		"@bepp/gh-action",
+		"@bepp/bin"
 	]
   ],
   "linked": [

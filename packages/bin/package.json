@@ -1,0 +1,22 @@
+{
+	"private": true,
+	"name": "@bepp/bin",
+	"version": "1.2.2",
+	"description": "bepp binary for use without node enviroment",
+	"scripts": {
+		"build": "pnpm build:cjs && pnpm build:bin && pnpm build:zip",
+		"build:cjs": "ncc build index.js -o dist/cjs -m -C --target es2020",
+		"build:bin": "pkg pkg.config.json --compress GZip",
+		"build:zip": "node zip.js ./dist/bin ./dist/zip",
+		"lint": "eslint . --ext .ts"
+	},
+	"dependencies": {
+		"@bepp/core": "workspace:*",
+		"pkg": "5.8.1"
+	},
+	"devDependencies": {
+		"@bepp/config": "workspace:*",
+		"@vercel/ncc": "0.38.1",
+		"archiver": "6.0.1"
+	}
+}

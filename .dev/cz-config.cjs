@@ -74,6 +74,9 @@ module.exports = {
 			name : 'gh-action', 
 		},
 		{
+			name : 'bin', 
+		},
+		{
 			name : 'all', 
 		},
 	],
