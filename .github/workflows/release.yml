@@ -65,7 +65,7 @@ jobs:
   release:
   
     name: 🚀 Release
-    runs-on: macos-latest
+    runs-on: macos-13-large
     timeout-minutes: 10
     needs: check-build-ubuntu
 
