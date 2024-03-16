@@ -11,10 +11,10 @@
 		"lint": "eslint . --ext .ts"
 	},
 	"dependencies": {
-		"@bepp/core": "workspace:*",
-		"pkg": "5.8.1"
+		"@bepp/core": "workspace:*"
 	},
 	"devDependencies": {
+		"pkg": "5.8.1",
 		"@bepp/config": "workspace:*",
 		"@vercel/ncc": "0.38.1",
 		"archiver": "6.0.1"
