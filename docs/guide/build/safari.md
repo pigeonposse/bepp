@@ -66,7 +66,7 @@ Bundle identifier for the generated app.
 
 Customize the bundle ID used for macOS app. By default, it's set to `{{appId}}`, where `id` represents the identification string provided during the build process.
 
-- **CLI option**: `--app-Id`
+- **CLI option**: `--app-id`
 - **Key in JavaScript**: `appId`
 - **Type**: `string`
 - **Default**: `{{appId}}`

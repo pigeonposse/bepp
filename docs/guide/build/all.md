@@ -28,7 +28,7 @@ buildAllBrowsers({
 
 Options is an object parameter where the keys represent the browser IDs, and the values are the configurations specific to each browser.
 
-Available browser IDs: `chrome` | `chrome-mv2` | `chromium` | `chromium-mv2` | `firefox` | `firefox-mv2` | `yandex` | `yandex-mv2` | `edge` | `edge-mv2` | `safari` | `brave` | `opera` | `opera-gx`
+Available browser IDs: `chrome` | `chrome-mv2` | `chromium` | `chromium-mv2` | `firefox` | `firefox-mv2` | `yandex` | `yandex-mv2` | `edge` | `edge-mv2` | `safari` | `safari-mv2` | `brave` | `opera` | `opera-gx`
 
 To know more about the configuration of each browser, read more [here](../build.md#build-for-a-specific-browser)
 

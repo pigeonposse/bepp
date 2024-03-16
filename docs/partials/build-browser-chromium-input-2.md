@@ -1,4 +1,4 @@
-### `input-mv2`
+### `inputMv2`
 
 Specify the input directory for extension.
 

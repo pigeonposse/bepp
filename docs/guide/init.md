@@ -64,7 +64,7 @@ List for browser builds.
 
 - **CLI option**: `-b` `--build`
 - **JS key**: `build`
-- **Type**: `( chrome | chrome-mv2 | chromium | chromium-mv2 | firefox | firefox-mv2 | yandex | yandex-mv2 | edge | edge-mv2 | safari | brave | opera | opera-gx )[]`
+- **Type**: `( chrome | chrome-mv2 | chromium | chromium-mv2 | firefox | firefox-mv2 | yandex | yandex-mv2 | edge | edge-mv2 | safari |  safari-mv2 | brave | opera | opera-gx )[]`
 
 ## Examples
 
