@@ -11,11 +11,11 @@ hero:
       alt: BEPP
   actions:
     - theme: brand
-      text: Documentation
+      text: Get started
       link: /guide/getting-started
-    # - theme: alt
-    #   text: API Examples
-    #   link: /api-examples
+    - theme: alt
+      text: View on GitHub
+      link: https://pigeonposse.com
 
 features:
 

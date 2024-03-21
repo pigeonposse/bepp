@@ -32,7 +32,8 @@
     "markdownlint.ignore": [
         "**/LICENSE",
 		"docs/partials/**",
-		"docs/index"
+		"docs/index",
+		"docs/post/**"
     ],
     "terminal.integrated.defaultProfile.linux": "zsh", 
     "terminal.integrated.profiles.linux": {

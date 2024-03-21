@@ -18,8 +18,8 @@ Please note that this feature is currently in its **experimental** stage and is 
 - **macOS** (mac Operating System)
 - **Xcode Command Line Tools**. _(installation: `xcode-select --install`)_
 
-::: tip Note
-info If you don't have a **macOS** you can use our [GitHub action](/guide/gh-action)
+::: tip Info
+If you don't have a **macOS** you can use our [GitHub action](/guide/gh-action)
 :::
 
 ## Usage

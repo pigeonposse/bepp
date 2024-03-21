@@ -7,6 +7,7 @@
         "dbaeumer.vscode-eslint",
         "christian-kohler.npm-intellisense",
         "jacano.vscode-pnpm",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "vue.volar"
     ]
 }

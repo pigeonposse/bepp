@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.2.3
+
+### Patch Changes
+
+- add blog
+
 ## 1.2.2
 
 ### Patch Changes

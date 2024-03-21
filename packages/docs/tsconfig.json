@@ -31,6 +31,9 @@
 		"importHelpers": true,
 		"removeComments": true,
 		"allowSyntheticDefaultImports": true
-	}
+	},
+	"include": [
+		"./src/*.vue"
+	]
 }
   
