@@ -69,7 +69,7 @@ Once you have **Bepp** installed, you'll need to create a **configuration file**
 shared: 
   id: 'My extension name'
   input: 
-    chrome: 'my-extension/path/' 
+    chromium: 'my-extension/path/' 
   output: 'dist'
 build: 
   - type: safari

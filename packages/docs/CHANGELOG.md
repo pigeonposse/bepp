@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.2.4
+
+### Patch Changes
+
+- fix yaml of post
+
 ## 1.2.3
 
 ### Patch Changes

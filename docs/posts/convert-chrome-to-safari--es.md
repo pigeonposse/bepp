@@ -69,7 +69,7 @@ Mi ejemplo será con un archivo `yaml`:
 shared: 
   id: 'My extension name'
   input: 
-    chrome: 'my-extension/path/' 
+    chromium: 'my-extension/path/' 
   output: 'dist'
 build: 
   - type: safari
