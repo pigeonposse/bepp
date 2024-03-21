@@ -147,7 +147,7 @@ jobs:
           draft: false
           prerelease: false
           allowUpdates: true
-          artifacts: "dist/*" # This must be the path where extension builds are
+          artifacts: "dist/*" # This should be the path where the extensions are built.
           body: "releases for v {{  github.event.inputs.version }}""
 
 
