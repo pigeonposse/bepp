@@ -32,7 +32,8 @@ export class BuildSafariSharedCore extends BuildBrowserSharedCore {
     5. Find your new extension in the list on the left, and enable it by selecting its checkbox.
     6. Close Safari Settings.
 
-[More info](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension#2957925)`
+- [More info](http://pigeonposse.com/posts/how-to-open-unsigned-safari-extensions)
+- [More Apple info](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension#2957925)`
 
     }
     

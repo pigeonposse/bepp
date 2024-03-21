@@ -1,19 +1,20 @@
 ---
-date: 2024-21-03
-title: Convert a Chrome Extension to Safari
+date: 2024-03-20
+title: Convert a Chrome extension to Safari extension
 description: Convert a Chrome extension to Safari (easy and fast)
-image: '/chrome-to-safari.png'
+image: '/convert-chrome-to-safari-banner.png'
 author: 
   name: Ángel Espejo
   gravatar: cd98740b9cdd458c9353bb01faeac089
   link: https://github.com/angelespejo
 category: Tutorial
 lastUpdated: true
+outline: 2
 ---
 
-![banner](/chrome-to-safari.png)
+![banner](/convert-chrome-to-safari-banner.png)
 
-# Convert a Chrome Extension to Safari (easy and fast) <Badge type="info" :text="$frontmatter.category" />
+# Convert a Chrome Extension to Safari Extension _(easy and fast)_ <Badge type="info" :text="$frontmatter.category" />
 
 ::: details Index
 [[toc]]
@@ -21,11 +22,11 @@ lastUpdated: true
 
 ## Introduction
 
-Hola Amigos 🌟,
+Hola _Amigos_ 🌟,
 
 I'm [Ángel](https://github.com/angelespejo), one of the members of the [**PigeonPosse** collective](https://github.com/pigeonposse), and today I want to share with you how to convert a **Chrome** extension to **Safari** easily and quickly using [Bepp](https://bepp.pigeonposse.com).
 
-**Bepp** is an open-source tool designed to facilitate the creation of cross-platform extensions for modern web browsers, including _Safari_, _Chrome_, _Firefox_, _Edge_, _Brave_, etc. With **Bepp**, you can package your extension for 13 or more types of browsers by simply filling out a configuration file.
+**Bepp** is an _open-source_ tool designed to facilitate the creation of cross-platform extensions for modern web browsers, including _Safari_, _Chrome_, _Firefox_, _Edge_, _Brave_, etc. With **Bepp**, you can package your extension for 13 or more types of browsers by simply filling out a configuration file.
 
 > The idea behind **Bepp** is for developers to focus solely on developing the extension, leaving the process of converting to other browsers to the tool itself. [Read more](https://bepp.pigeonposse.com/guide/getting-started)
 
@@ -62,17 +63,34 @@ yarn add @bepp/bepp
 
 ## Configuration File
 
-Once you have **Bepp** installed, you'll need to create a **configuration file** for your extension. This file specifies the details of your extension, such as the name, input path, target platforms, etc. You can use a `YAML`, `TOML`, or `JSON` file for this. My example will use a `yaml` file:
+Once you have **Bepp** installed, you'll need to create a [**configuration file**](https://bepp.pigeonposse.com/guide/build/config-file#file) for your extension. This file specifies the details of your extension, such as the _name_, _input_ path, _target platforms_, _etc_. You can use a `YAML`, `TOML`, or `JSON` file for this.
+
+My example will use a `yaml` file and an extension called [**supe8**](https://github.com/pigeonposse/super8/tree/main/packages/exts).
+The idea of using **super8** is that apart from being an _opern-source_ project, it is a fairly complete extension: it contains a **popup**, an **options page**, a **context menu** , **injects js** into the content and has **translations** to other languages. That is, it is perfect to see how the conversion works perfectly with a complex extension. [check **super8** code](https://github.com/pigeonposse/super8/tree/main/packages/exts)
+
+config file:
 
 ```yaml
 # ./bepp.config.yml
+
+##########################################################################
+# Data for shared with your builds.
+# @see https://bepp.pigeonposse.com/guide/build/config-file#shared
+##########################################################################
 shared: 
-  id: 'My extension name'
+  id: 'Super8' # name/id of your extension
   input: 
-    chromium: 'my-extension/path/' 
-  output: 'dist'
+    chromium: 'build/chromium-mv3/' # input of your man 3 extension path
+  output: 'dist' # [optional] output path for your built extensions
+
+##########################################################################
+# Set the browsers you want build.
+# @see https://bepp.pigeonposse.com/guide/build/config-file#build
+##########################################################################
 build: 
-  - type: safari
+  - type: safari # tells bepp to build your safari extension
+
+##########################################################################
 ```
 
 ### Additional Configuration
@@ -88,7 +106,7 @@ bepp help build-safari
 
 ## Execution
 
-Once the **configuration file** is set up, you'll need to execute Bepp to convert your extension from _Chrome_ to _Safari_. You can do this easily by running:
+Once the **configuration file** is set up, you'll need to execute **Bepp** to convert your extension from _Chrome_ to _Safari_. You can do this easily by running:
 
 ```bash
 bepp build
@@ -124,7 +142,7 @@ jobs:
           node-version: 20
 
       - name: 🚀 Build extension with Bepp GH
-        uses: pigeonposse/bepp@v1.1.0
+        uses: pigeonposse/bepp@v1.2.3
         ##########################################################################################
         # For custom config file input
         # Default looks for file in workspace path bepp.config.json, bepp.config.yaml, bepp.config.toml
@@ -143,21 +161,83 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: "${{  github.event.inputs.version }}"
-          name: 'v${{ github.event.inputs.version }}'
+          name: 'Super8 v${{ github.event.inputs.version }}'
           draft: false
           prerelease: false
           allowUpdates: true
           artifacts: "dist/*" # This should be the path where the extensions are built.
-          body: "releases for v {{  github.event.inputs.version }}""
+          body: "releases for v{{  github.event.inputs.version }}""
 
 
 ```
+
+## Result
+
+Once the conversion is done we will have our extension ready. Below I put images of the **super8 safari extension** created and the process to activate it.
+
+### Open compressed extension
+
+![TGZ](/super8-safari-extension--open-tgz.png)
+
+### Open DMG
+
+![DMG OPENED](/super8-safari-extension--dmg.png)
+
+### In the DMG window, drag the app to the `Applications` folder
+
+![DMG open](/super8-safari-extension--dmg-open.png)
+
+### Go to lauchpad
+
+![Launchpad](/super8-safari-extension--app-launchpad.png)
+
+### Open safari extension app
+
+![Open App](/super8-safari-extension--open-app+dock.png)
+
+### In safari settings, allow unsigned extension
+
+![Unsigned](/super8-safari-extension--safari-settings-prerequisits.png)
+
+::: warning
+Maybe this option does not appear, to make it appear you can read more about this in:
+[how to open unsigned safari extensions in macos](./how-to-open-unsigned-safari-extensions.md)
+:::
+
+### Now you can activate extension in safari settings
+
+![DMG OPENED](/super8-safari-extension--safari-settings-activate.png)
+
+### Extension in use
+
+![Preview](/super8-safari-extension--extension-preview.gif)
+
+#### Extension popup
+
+![extension popup](/super8-safari-extension--extension-popup.png)
+
+#### Extension options page
+
+![extension options](/super8-safari-extension--extension-options.png)
+
+#### Extension content
+
+![extension content](/super8-safari-extension--extension-content.png)
+
+As you can see, everything works perfectly. ✨
 
 ## Conclusion
 
 With **Bepp**, the process of converting a _Chrome_ extension to _Safari_ is greatly simplified. You no longer have to worry about the technical details or the differences between platforms; **Bepp** takes care of everything for you.
 
 We hope this guide has been helpful and that you can make the most of this tool in your web browser extension development projects.
+
+## Notes
+
+- This post explains how **bepp** works in version [1.2.3](https://www.npmjs.com/package/@bepp/bepp/v/1.2.3), any future version could be subject to change.
+- To date, **bepp** only converts extensions for unsigned _safari_. Read more about [how to open unsigned safari extensions in macos](./how-to-open-unsigned-safari-extensions.md)
+
+---
 
 Remember that **Bepp** is open source, and we are open to _suggestions_ and _pull requests_.
 

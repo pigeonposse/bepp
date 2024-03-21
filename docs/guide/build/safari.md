@@ -6,6 +6,8 @@
  const appId = 'com.bepp.{{id}}'
 </script>
 
+![BANNER](/convert-chrome-to-safari.png)
+
 **Bepp**'s _Safari_ extension packaging feature allows you to effortlessly adapt your **_Chromium_** extensions for **_Safari_**. This capability is specifically designed for straightforward **_Chrome_** extensions. It provides a seamless transition process, enabling you to leverage your existing **_Chrome_** extensions on **_Safari_** with ease.
 
 ::: info Important

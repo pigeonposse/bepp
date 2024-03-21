@@ -28,18 +28,9 @@ function truncateText(text, length) {
 
 function formatDate(raw) {
     const date = new Date(raw)
-    date.setUTCHours(12)
     return {
         time: +date,
-        string: date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        })
+        string: date.toDateString()
     }
 }
 
-function getImagePath(url) {
-    const filename = url.split('/').slice(-1)[0].split('.')[0]
-    return filename + '.png'
-}

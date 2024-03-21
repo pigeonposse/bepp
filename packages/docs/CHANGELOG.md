@@ -1,5 +1,11 @@
 # @bepp/docs
 
+## 1.2.6
+
+### Patch Changes
+
+- Update docs
+
 ## 1.2.5
 
 ### Patch Changes
