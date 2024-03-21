@@ -96,7 +96,9 @@ const index = pkg => {
 
 const content = pkg => {
 
-	return `## Installation _(CLI and Library)_
+	return `[![SCHEMA](${joinUrl( pkg.data.extra.rawRepoUrl, '/main/docs/public/schema.png' )})](${pkg.data.homepage})
+
+## Installation _(CLI and Library)_
 
 \`\`\`bash
 npm install @bepp/bepp 

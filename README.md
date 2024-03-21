@@ -75,6 +75,8 @@ This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, 
 <!-- PIGEONPOSSE END INDEX -->
 
 <!-- PIGEONPOSSE START CONTENT -->
+[![SCHEMA](https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/schema.png)](https://bepp.pigeonposse.com/)
+
 ## Installation _(CLI and Library)_
 
 ```bash
