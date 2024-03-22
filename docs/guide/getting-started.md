@@ -3,7 +3,7 @@ outline: 2
 ---
 # What is BEPP?
 
-![HEADER](/public/banner.png)
+![HEADER](/banner.png)
 
 Bepp is a **Cross-Browser Extension Builder**, a tool for package your extension for multiple browsers quickly and easily.
 This tool include support for browsers as [_Safari_](build/safari.md), [_Chrome_](build/chrome.md), [_Firefox_](build/firefox.md), [_Edge_](build/edge.md), [_Brave_](build/brave.md), _etc_.
@@ -17,7 +17,7 @@ This tool include support for browsers as [_Safari_](build/safari.md), [_Chrome_
 Build **13** types of extensions (including **_Safari_**) in **21s**
 > **Extensions built**: _chrome, chrome-mv2, chromium, chromium-mv2, firefox, firefox-mv2, edge, edge-mv2, opera, opera-gx, brave, safari, custom (vilvaldi)_
 
-![Preview](/public/demo.gif)
+![Preview](/demo.gif)
 
 ## Usage
 

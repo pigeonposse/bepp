@@ -3,15 +3,17 @@
     <a :href="href" class="card">
 		<img class="image" :src="image" :alt="title" />
 		<div class="info">
-			<Badge type="info" :text=date />
-			
-			<h3 class="title">{{ title }}<span class="tag category">{{ category }}</span></h3>
+			<div class="tags">
+				<span class="tag">{{ date }}</span>
+				<span class="tag category">{{ category }}</span>
+			</div>
+			<h3 class="title">{{ title }}</h3>
 			<p class="desc">{{ excerpt }}</p>
 		</div>
     </a>
 </template>
 
-<style>
+<style scoped>
 .card {
     display: flex;
     flex-direction: column;
@@ -35,7 +37,13 @@
     padding: 10px;
     flex-wrap: nowrap;
     justify-content: center;
+	text-align: center;
     align-items: center;
+}
+.tags {
+	display: flex;
+	gap: 5px;
+	margin: 5px;
 }
 .info .tag {
 	background-color: var(--vp-c-bg);
@@ -83,7 +91,7 @@ export default {
 				type: String,
             	required: true,
 			},
-			gravatar: {
+			github: {
 				type: String,
             	required: true,
 			},

@@ -26,7 +26,7 @@ function truncateText(text, length) {
     return text;
 }
 
-function formatDate(raw) {
+export function formatDate(raw) {
     const date = new Date(raw)
     return {
         time: +date,

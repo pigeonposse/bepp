@@ -4,17 +4,14 @@ title: Convert a Chrome extension to Safari extension
 description: Convert a Chrome extension to Safari (easy and fast)
 image: '/convert-chrome-to-safari-banner.png'
 author: 
-  name: Ángel Espejo
-  gravatar: cd98740b9cdd458c9353bb01faeac089
-  link: https://github.com/angelespejo
-category: Tutorial
-lastUpdated: true
+  name: Angelo
+  github: angelespejo
+  url: https://github.com/angelespejo
+category: tutorial
 outline: 2
 ---
 
-![banner](/convert-chrome-to-safari-banner.png)
-
-# Convert a Chrome Extension to Safari Extension _(easy and fast)_ <Badge type="info" :text="$frontmatter.category" />
+# Convert a Chrome Extension to Safari Extension _(easy and fast)_
 
 ::: details Index
 [[toc]]

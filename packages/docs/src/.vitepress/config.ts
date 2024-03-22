@@ -7,7 +7,7 @@
  */
 
 import { defineConfig } from 'vitepress'
-import { name, description, license, funding, extra, repository, bugs} from "../../../../package.json"
+import { name, description, funding, extra, repository, bugs, license} from "../../../../package.json"
 import MarkdownItTaskList from 'markdown-it-task-lists'
 
 const isDev = process.env.NODE_ENV !== 'production'
@@ -139,11 +139,18 @@ export default defineConfig({
 		},
       	{ icon: 'github', link: repository.url },
     ],
-
-    footer: {
-      message: `Released under the ${license} License.`,
-      copyright: `Copyright © ${new Date().getFullYear()} PigeonPosse`,
-    }
-
+	// @ts-ignore
+	collectiveLinks : {
+		...extra.collective.social,
+		web: extra.collective.web,
+		email: extra.collective.email
+	},
+	customFooter: {
+		license,
+		copy: {
+			name: extra.collective.name,
+			url: extra.collective.url
+		}
+	},
   }
 })

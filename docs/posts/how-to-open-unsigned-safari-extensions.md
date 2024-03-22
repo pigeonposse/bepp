@@ -4,17 +4,14 @@ title: How to allow unsigned safari extensions in macOS
 description: How to allow and open unsigned safari extensions in macOS
 image: '/allow-unsigned-safari-extensions-in-macos--banner.png'
 author: 
-  name: Ángel Espejo
-  gravatar: cd98740b9cdd458c9353bb01faeac089
-  link: https://github.com/angelespejo
+  name: Angelo
+  github: angelespejo
+  url: https://github.com/angelespejo
 category: tutorial
 outline: 2
-
 ---
 
-![banner](/allow-unsigned-safari-extensions-in-macos--banner.png)
-
-# How to open **Unsigned** _Safari_ extensions on _macOS_ <Badge type="info" :text="$frontmatter.category" />
+# How to open **Unsigned** _Safari_ extensions on _macOS_
 
 ::: details Index
 [[toc]]

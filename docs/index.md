@@ -1,7 +1,6 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
-
 hero:
   name: "BEPP"
   text: "A Cross-Browser Extension Builder"
@@ -49,6 +48,7 @@ features:
     details: Create custom extensions for different browsers according to the specific project needs.
     link: guide/build/custom
 
+# demo: /demo.gif
 
 ---
 
