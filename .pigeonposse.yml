@@ -1,10 +1,8 @@
-
 ###############################################################################
 # FOR PIGEONPOSSE USAGE
 ###############################################################################
 
 web:
-  
   - id: "{{package.name}}"
     name: "{{package.name}}"
     type: "library"
@@ -27,6 +25,5 @@ web:
     logo: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/logo.png"
     banner: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/banner.png"
     status: "active"
-
 
 ###############################################################################
