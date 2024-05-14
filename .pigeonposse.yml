@@ -20,7 +20,6 @@ web:
     description: "{{package.description}}"
     homepage: "{{package.homepage}}"
     license: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/LICENSE"
-    tags: "{{package.keywords}}"
     logo: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/logo.png"
     banner: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/banner.png"
     status: "active"
