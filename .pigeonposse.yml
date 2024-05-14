@@ -19,7 +19,7 @@ web:
     version: "1.2.3"
     description: "{{package.description}}"
     homepage: "{{package.homepage}}"
-    license: "{{package.extra.licenseUrl}}"
+    license: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/LICENSE"
     tags: "{{package.keywords}}"
     logo: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/logo.png"
     banner: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/banner.png"
