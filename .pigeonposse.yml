@@ -19,7 +19,6 @@ web:
     version: "1.2.3"
     description: "{{package.description}}"
     homepage: "{{package.homepage}}"
-    repo: "{{package.extra.licenseUrl}}"
     license: "{{package.extra.licenseUrl}}"
     tags: "{{package.keywords}}"
     logo: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/logo.png"
