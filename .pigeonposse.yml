@@ -21,7 +21,7 @@ web:
     version: "{{package.version}}"
     description: "{{package.description}}"
     homepage: "{{package.homepage}}"
-    repo: "{{package.extra.licenseUrl"
+    repo: "{{package.extra.licenseUrl}}"
     license: "{{package.extra.licenseUrl}}"
     tags: "{{package.keywords}}"
     logo: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/logo.png"
