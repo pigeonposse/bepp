@@ -16,7 +16,7 @@ web:
       - Opera
       - OperaGX
       - Yandex
-    version: "{{package.version}}"
+    version: "1.2.3"
     description: "{{package.description}}"
     homepage: "{{package.homepage}}"
     repo: "{{package.extra.licenseUrl}}"
