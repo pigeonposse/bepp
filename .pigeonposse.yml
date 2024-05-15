@@ -19,9 +19,9 @@ web:
     version: "1.2.3"
     description: "{{package.description}}"
     homepage: "{{package.homepage}}"
-    license: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/LICENSE"
-    logo: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/logo.png"
-    banner: "https://raw.githubusercontent.com/pigeonposse/{{package.name}}/main/docs/public/banner.png"
+    license: "https://raw.githubusercontent.com/pigeonposse/bepp/main/LICENSE"
+    logo: "https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/logo.png"
+    banner: "https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/banner.png"
     status: "active"
 
 ###############################################################################
