@@ -3,8 +3,8 @@
 ###############################################################################
 
 web:
-  - id: "{{package.name}}"
-    name: "{{package.name}}"
+  - id: "bepp"
+    name: "Bepp"
     type: "library"
     subtypes:
       - Chromiun
