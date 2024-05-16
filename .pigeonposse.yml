@@ -18,8 +18,8 @@ web:
       - Yandex
     version: "1.2.3"
     description: "{{package.description}}"
-    homepage: "{{package.homepage}}"
-    docs: "{{package.homepage}}/guide/getting-started"
+    homepage: "https://bepp.pigeonposse.com"
+    docs: "https://bepp.pigeonposse.com/guide/getting-started"
     license: "https://raw.githubusercontent.com/pigeonposse/bepp/main/LICENSE"
     logo: "https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/logo.png"
     banner: "https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/banner.png"
