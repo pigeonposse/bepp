@@ -5,7 +5,9 @@
 web:
   - id: "bepp"
     name: "Bepp"
-    type: "library"
+    type: 
+      - library
+      - cli
     subtypes:
       - Chromiun
       - Chrome
