@@ -51,6 +51,7 @@ const buildBrowser = async <T extends BrowserTypes>(
 
 
 }
+
 /**
  * Build multiple extensions using object.
  *

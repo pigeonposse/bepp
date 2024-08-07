@@ -1,0 +1,19 @@
+.search {
+    @apply transition-all border-2 flex flex-row gap-2 items-center justify-between w-full px-4 rounded-2xl text-primary-100 bg-primary-900/30 backdrop-blur-lg border-primary-900/20
+}
+.search .search__icon {
+    @apply text-primary-50
+}
+.search .search__input {
+    @apply py-1 px-2 border-none bg-transparent placeholder-primary-100/50 focus:!outline-none focus:ring-0 focus:shadow-none w-full
+}
+.search .search__command__key {
+    @apply text-[14px] font-bold text-primary-50/50 [&_svg]:fill-primary-50/50 [&_svg]:w-[12px] [&_svg]:h-[12px] 
+}
+
+.search.focused {
+    @apply border-primary-500
+}
+.search.focused .search__icon {
+    @apply text-primary-500
+}

@@ -4,21 +4,35 @@
  * @description File for set fylesystem functions.
  */
 import {
-	join, resolve, 
-}                                                     from 'node:path'
-import { homedir }                                          from 'node:os'
+	basename,
+	join,
+	resolve, 
+}  from 'node:path'
+import { homedir } from 'node:os'
 import {
-	stat, readFile, writeFile, access, constants, mkdir, rm,
-}             from 'node:fs/promises'
+	stat, 
+	readFile, 
+	writeFile, 
+	access, 
+	constants, 
+	mkdir, 
+	rm,
+} from 'node:fs/promises'
 import type {
-	CompressFunct, CompressTypes,
-}     from './types'
-import {
-	compressTypes, compressionExtsTypes, 
+	CompressFunct, 
+	CompressTypes,
+	UncompressFunct,
 } from './types'
-import yaml        from 'js-yaml'
-import toml        from 'toml'
-import compressing from 'compressing'
+import {
+	compressTypes, 
+	compressionExtsTypes, 
+} from './types'
+import yaml                  from 'js-yaml'
+import toml                  from 'toml'
+import compressing           from 'compressing'
+import { createWriteStream } from 'node:fs'
+// @ts-ignore
+import zipDir from 'zip-dir'
 
 export class Fs {
     
@@ -36,6 +50,7 @@ export class Fs {
 		return this.getAbsolutePath( resolvedPath )
 	
 	}
+
 	async createImageFromBase64( base64String: string, outputPath: string ) {
 
 		// Extract the content type and base64 data
@@ -44,11 +59,8 @@ export class Fs {
 		// const contentType = matches[1]
 		if ( !matches ) throw Error( 'Invalid base image' )
 		const base64Data = matches[2]
-	
-		// Convert base64 to buffer
+
 		const buffer = Buffer.from( base64Data, 'base64' )
-	
-		// Write the buffer to a file
 		await this.writeFile( outputPath, buffer )
 
 	}
@@ -221,16 +233,12 @@ export class Fs {
 
 				data = await this.getDataFromTOMLFile( path )
 			
-			} else {
-
+			} else 
 				throw new Error( 'Unsupported file format. Expected JSON, YAML or TOML.' )
-			
-			}
-			if ( typeof data !== 'object' || data === null ) {
 
+			if ( typeof data !== 'object' || data === null ) 
 				throw new Error( 'Data is not an object.' )
-			
-			}
+
 			return data as object | unknown[]
 
 		} catch ( error ) {
@@ -278,42 +286,79 @@ export class Fs {
 
 		try {
 
-			const compressOutputPath = this.getCompressOutputPath( outputPath,outputName, format )
-			let opts                 = {
-				ignoreBase : true,relativePath : outputName, 
-			}
-			inputPath                = this.validateHomeDir( inputPath )
-			const isDir              = await this.existsDir( inputPath )
-			const compressFunct      = isDir ? 'compressDir' : 'compressFile'
-			// @ts-ignore
-			if( !isDir ) opts = undefined
-
-			if ( format === compressTypes.tar ) {
-
+			const compressOutputPath = this.getCompressOutputPath( outputPath, outputName, format )
+	
+			inputPath           = this.validateHomeDir( inputPath )
+			const isDir         = await this.existsDir( inputPath )
+			const compressFunct = isDir ? 'compressDir' : 'compressFile'
+	
+			const opts = isDir ? {
+				ignoreBase   : true,
+				relativePath : outputName, 
+			} : undefined
+		
+			if ( format === compressTypes.tar ) 
 				await compressing.tar[compressFunct]( inputPath, compressOutputPath, opts )
-			
-			} else if ( format === compressTypes.tgz ) {
-
+			else if ( format === compressTypes.tgz ) 
 				await compressing.tgz[compressFunct]( inputPath, compressOutputPath, opts )
-			
-			} else if ( format === compressTypes.gzip ) {
-
+			else if ( format === compressTypes.gzip ) 
 				await compressing.tgz[compressFunct]( inputPath, compressOutputPath, opts )
-			
-			} else if ( format === compressTypes.zip ) {
+			else if ( format === compressTypes.zip ) {
 
-				await compressing.zip[compressFunct]( inputPath, compressOutputPath, opts )
-			
-			} else {
+				if( isDir ){
 
-				throw 'Format no supported'
+					const buffer       = await zipDir( inputPath, {
+						filter : ( path: string ) => basename( path ) !== '.DS_Store',
+					} )
+					const outputStream = createWriteStream( compressOutputPath )
+
+					outputStream.write( buffer )
+					outputStream.end()
 			
-			}
+					await new Promise( ( resolve, reject ) => {
+
+						outputStream.on( 'close', resolve )
+						outputStream.on( 'error', reject )
+					
+					} )
+				
+				}else
+					await compressing.zip[compressFunct]( inputPath, createWriteStream( compressOutputPath ), opts )
+				// await compressing.zip[compressFunct]( inputPath, compressOutputPath, opts )
+
+			} else throw 'Format no supported'
 		
 		}catch ( error ) {
 
 			// @ts-ignore
 			throw new Error( `Error in compression ${inputPath}: ${ error.message }` )
+		
+		}
+	
+	}
+
+	async decompress( { inputPath, outputPath, format }: UncompressFunct ) {
+
+		try {
+
+			outputPath  = this.validateHomeDir( outputPath )
+			const isDir = await this.existsDir( outputPath )
+			if ( !isDir ) throw new Error( `Output path ${outputPath} is not a directory.` )
+	
+			if ( format === compressTypes.tar ) 
+				await compressing.tar.uncompress( inputPath, outputPath )
+			else if ( format === compressTypes.tgz ) 
+				await compressing.tgz.uncompress( inputPath, outputPath )
+			else if ( format === compressTypes.gzip ) 
+				await compressing.gzip.uncompress( inputPath, outputPath )
+			else if ( format === compressTypes.zip )
+				await compressing.zip.uncompress( inputPath, outputPath )
+			else throw new Error( 'Format not supported' )
+		
+		} catch ( error ) {
+
+			// @ts-ignore
+			throw new Error( `Error in decompression ${inputPath}: ${error.message}` )
 		
 		}
 	

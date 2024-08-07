@@ -1,0 +1,9 @@
+{
+	"lang": {
+		"title": "Canviar idioma"
+	},
+	"autostart": {
+		"title": "Inici automàtic",
+		"desc": "Fer que l'aplicació s'iniciï quan iniciï sessió al vostre ordinador."
+	}
+}

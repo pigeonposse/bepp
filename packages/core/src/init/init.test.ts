@@ -1,22 +1,35 @@
-import {
-	describe, expect, it, 
-} from '../_shared/tests'
+import { test } from '@bepp/config/tests'
 import { init } from './main'
 
-describe( 'Init', () => {
+test( async ( { section } ) => ( section( {
+	title : 'Init',
+	fn    : async ( { addBooleanTest } ) => {
 
-	it( 'Error bacause input is not string', () => {
+		addBooleanTest( {
+			title    : 'Error because input is not string or undefined',
+			expected : false,
+			fn       : async ( ) => {
 
-		// @ts-ignore
-		expect( async () => {
+				try {
 
-			await init( {
-				// @ts-ignore
-				input : 2,
-			} )
-		
-		} ).rejects.toThrowError()
+					await init( {
+						// @ts-ignore
+						input : 2,
+						y     : true,
+					} ) 
+					return true
+				
+				}catch( e ){
 
-	} )
-
-} )
+					// console.error( {
+					// 	error : 'init error', e,
+					// } )
+					return false
+				
+				}
+			
+			},
+		} )
+	
+	},
+} ) ) )

@@ -11,9 +11,10 @@ import { BuildOperaParams } from "../browsers/opera/types";
 import { BuildSafariIosParams, BuildSafariMacosParams } from "../browsers/safari/_shared/types";
 import { BuildYandexSharedParams } from "../browsers/yandex/types";
 
-export type BuildConfigParams = CmdSharedOptions & {
-    file?: string
-}
+type buildConfigProps = {
+    config?: string | BuildConfig
+} 
+export type BuildConfigParams = CmdSharedOptions & buildConfigProps
 
 export type BuildTypeParams<TypeString,BrowserType extends BuildBrowserSharedParams> = {
     type: TypeString,
@@ -59,4 +60,11 @@ export type BuildConfig = {
      *
      */
     build?: BuildConfigBuild
+}
+export type BuildConfigSchema = BuildConfig & {
+    /**
+     * The JSON schema for the bepp config. Bepp has his own schema in: https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/src/build/config/schema.json
+     *
+     */
+    $schema?: string | null
 }

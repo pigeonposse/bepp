@@ -1,0 +1,155 @@
+###############################################################################
+# RELEASE APPS
+# @observations: Only compatible commands must be entered for all platforms. 
+#                For example: avoid $@, since windows does not accept it
+###############################################################################
+name: 🚀🖥️ Release APPs
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Set number for release version'
+        type: string
+        required: true
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+  REPO_TEST: ${{ github.repository }}:test
+  REPO_LATEST: ${{ github.repository }}:latest
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+  release_apps:
+    permissions:
+      contents: write
+      deployments: write
+    strategy:
+      fail-fast: false
+      matrix:
+        # @see https://github.com/actions/runner-images
+        settings:
+          - platform: 'macos-14' # this is arm64
+          - platform: 'macos-13' 
+          - platform: 'ubuntu-22.04'
+          - platform: 'windows-latest'
+
+    timeout-minutes: 20
+    runs-on: ${{ matrix.settings.platform }}
+    env:
+      UPDATED_VERSION: ${{ github.event.inputs.version }}
+
+    steps:
+
+      #########################################################################
+      # INIT & INSTALL
+      #########################################################################
+
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🦀 Rust setup
+        if: matrix.settings.platform == 'macos-latest'
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: 'aarch64-apple-darwin'
+          toolchain: stable
+
+      - name: 🦀 Rust setup
+        if: matrix.settings.platform != 'macos-latest'
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable 
+
+      - name: 🦀 Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+
+      - name: 📦 Sync node version and setup cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm' # Set this to npm, yarn or pnpm.
+
+      - name: 📦📄 Get package.json name
+        id: pkg
+        run: |
+          echo "name=$(jq -r '.extra.productName' ./package.json)" >> $GITHUB_OUTPUT
+          echo "description=$(jq -r '.description' ./package.json)" >> $GITHUB_OUTPUT
+          echo "homepage=$(jq -r '.homepage' ./package.json)" >> $GITHUB_OUTPUT
+          echo "docs=$(jq -r '.extra.docsUrl' ./package.json)" >> $GITHUB_OUTPUT
+          echo "repo=$(jq -r '.repository.url' ./package.json)" >> $GITHUB_OUTPUT
+
+      - name: 🦀 install dependencies (ubuntu only)
+        if: matrix.settings.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: ⬇️📦 Install dependencies
+        run: |
+          pnpm install --no-frozen-lockfile
+
+      #########################################################################
+      # BUILD
+      #########################################################################
+   
+      # important because app works with the core local package
+      - name: 🏗 Build
+        run: pnpm --filter @bepp/core build && pnpm --filter @bepp/api build && pnpm --filter @bepp/app build # Is necesary set manually for windows 
+
+      #########################################################################
+      # APP - BUILD & RELEASE DESKTOP APP
+      #########################################################################
+
+      - name: 🖥️ Build the app
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          # @see https://github.com/tauri-apps/tauri-action?tab=readme-ov-file#inputs
+          projectPath: 'packages/app'
+          tagName: "${{ env.UPDATED_VERSION }}" 
+          releaseName: '${{ steps.pkg.outputs.name }} v${{ env.UPDATED_VERSION }}'
+          releaseBody: |
+            <p><b>Releases for ${{steps.pkg.outputs.name}} v${{ env.UPDATED_VERSION }}</b></p>
+            <p>${{ steps.pkg.outputs.description }}</p>
+
+            🌐 [WEB](${{ steps.pkg.outputs.homepage }})
+            📚 [DOCUMENTATION](${{ steps.pkg.outputs.docs }})
+            🧩 [CHANGELOG](${{ steps.pkg.outputs.repo }}/blob/main/packages/app/CHANGELOG.md)
+            📜 [LICENSE](${{ steps.pkg.outputs.repo }}/blob/main/LICENSE)
+          releaseDraft: false
+          prerelease: false
+          includeUpdaterJson: true
+          updaterJsonKeepUniversal: true # @see https://github.com/tauri-apps/tauri-action?tab=readme-ov-file#build-options
+          includeRelease: true
+          tauriScript: pnpm exec tauri # This is because the tauri script has $@ and Windows does not support it.
+        #   args: ${{ matrix.settings.args }}
+
+      #########################################################################
+      # APP - BUILD & RELEASE ARM LINUX
+      #########################################################################
+    #   - name: 🖥️ Build linux APP ARM
+    #     if: matrix.settings.platform == 'ubuntu-22.04'
+    #     uses: Shiritai/xc-tauri-rasp-action@v0.1.2
+    #     with:
+    #         path: packages/app
+    #         arch: arm64
+    #         project-name: super8-aarch64
+    #     continue-on-error: true
+
+
+############################################################################### 

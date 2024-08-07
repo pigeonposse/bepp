@@ -1,0 +1,35 @@
+{
+	"info": {
+		"1": "Converteix qualsevol tipus d'extensió a un altre tipus d'extensió de navegador, incloent Safari.",
+		"2": "Pots seleccionar l'extensió des d'un .zip local o cercar-la al motor de cerca mitjançant paraules clau o enganxant l'enllaç de l'extensió des de la seva botiga (botigues suportades: Chrome Store, Microsoft Store, Mozilla Store)."
+	},
+	"search": {
+		"title": "Cercar",
+		"placeholder": "Cercar...",
+		"results": "Resultats",
+		"desc": "Cercar extensions a internet.",
+		"none": "No hi ha extensions amb el valor:"
+	},
+	"local": {
+		"title": "Carregar",
+		"dropzoneDesc": "Arrossega i deixa anar l'extensió"
+	},
+	"content": {
+		"manifest": "Manifest",
+		"store": "Webstore",
+		"system": "Sistema",
+		"from": "De",
+		"remove": "Eliminar l'extensió"
+	},
+	"convert": {
+		"loading": "Convertint extensió...",
+		"success": "Extensió convertida",
+		"failed": "Error en la conversió",
+		"btnStop": "Aturar conversió",
+		"btnBack": "Convertir una altra",
+		"btnView": "Veure l'extensió convertida",
+		"dialogSave": "Seleccioneu la ruta per a guardar la conversió convertida",
+		"log": "Registre de conversió",
+		"curiosities": "Curiositats web"
+	}
+}

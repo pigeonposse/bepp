@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bepp conversion with local extension</title>
+	<link rel="icon" href="https://bepp.pigeonposse.com/favicon.png">
+	<!-- Bulma CSS -->
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
+	>
+	<!-- Prism.js -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.css" rel="stylesheet" />
+
+</head>
+<body>
+    <section class="section">
+        <div class="container block">
+            <h1 class="title">Bepp conversion with local extension</h1>
+            <form  class="box" id="upload-form">
+                <div class="field">
+                    <div class="file has-name is-fullwidth">
+                        <label class="file-label">
+                            <input 
+								class="file-input" 
+								type="file" 
+								id="file-input"
+								multiple
+								accept=".zip,.rar,.7zip"
+							>
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Choose files…
+                                </span>
+                            </span>
+                            <span class="file-name">
+                                No file selected
+                            </span>
+                        </label>
+                    </div>
+                </div>
+				<div class="field">
+					<label class="label">
+						Zip extensions
+					</label>
+					<div class="control">
+						<input type="checkbox" checked id="zip" />
+					</div>
+				</div>
+				<div class="field">
+                    <label class="label" for="server-url">Server URL</label>
+                    <div class="control">
+                        <input 
+							class="input" 
+							type="text" 
+							id="server-url" 
+							placeholder="Enter url like: http://localhost:13129"
+							value="http://localhost:13129"
+						>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="output">Output Path</label>
+                    <div class="control">
+                        <input class="input" type="text" id="output" placeholder="Enter output path">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Upload</button>
+                    </div>
+                </div>
+            </form>
+		</div>
+		<div class="container block box">
+			<h2 class="subtitle">Response</h2>
+			<article class="message is-info">
+				<div class="message-header">Time taken</div>
+				<div class="message-body">
+					<div id="time"></div>
+				</div>
+			</article>
+			<article class="message is-success">
+				<div class="message-header">GET response</div>
+				<div class="message-body">
+					<div id="get-details"></div>
+					<div id="get-message"></div>
+				</div>
+			</article>
+			<article class="message is-success">
+				<div class="message-header">CONVERT response</div>
+				<div class="message-body">
+					<div id="convert-message"></div>
+				</div>
+			</article>
+			<article class="message is-danger">
+				<div class="message-header">Error response</div>
+				<div class="message-body">
+					<div id="error"></div>
+				</div>
+			</article>
+        </div>
+    </section>
+	<script>
+		const fileInput    = document.querySelector( "#upload-form input[type=file]" )
+		fileInput.onchange = () => {
+
+			if ( !( fileInput.files.length > 0 ) ) return
+			const fileName       = document.querySelector( "#upload-form .file-name" )
+			fileName.textContent = fileInput.files[0].name
+		
+		}
+	</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-json.min.js"></script>
+<!-- SCRIPT -->
+<script>
+try {
+
+	const printJSON    = data => {
+
+		return '<pre><code class="language-json">' + 
+	window.Prism.highlight( JSON.stringify( data, null, 2 ), window.Prism.languages.json, 'json' ) + 
+	'</code></pre>'
+
+	}
+	const writeMessage = ( input, message, isFirst = false ) => {
+
+		if( isFirst ) input.innerHTML   = message
+		else input.textContent = input.textContent + message
+		input.scrollTop = input.scrollHeight
+	
+	}
+	document.getElementById( 'upload-form' ).addEventListener( 'submit', async event => {
+
+		event.preventDefault()
+		const startTime = performance.now()
+
+		const timeDiv       = document.getElementById( 'time' )
+		const zipInput      = document.getElementById( 'zip' )
+		const fileInput     = document.getElementById( 'file-input' )
+		const serverInput   = document.getElementById( 'server-url' )
+		const outputDiv     = document.getElementById( 'output' )
+		const errorDiv      = document.getElementById( 'error' )
+		const getDetailsDiv = document.getElementById( 'get-details' )
+		const getDiv        = document.getElementById( 'get-message' )
+		const convertDiv    = document.getElementById( 'convert-message' )
+
+		let res
+	
+		const server     = serverInput.value || 'http://localhost:13129'
+		const url        = server.endsWith( '/' ) ? server + 'exts/' : server + '/exts/'
+		const getURL     = url + 'get'
+		const convertURL = url + 'convert'
+
+		getDiv.innerHTML        = 'Uploading...'
+		getDetailsDiv.innerHTML = ''
+		errorDiv.innerHTML      = ''
+		timeDiv.innerHTML       = ''
+		convertDiv.innerHTML    = ''
+
+		try {
+
+			const file        = fileInput.files[0]
+			const getFileData = async file => {
+
+				return new Promise( ( resolve, reject ) => {
+
+					const reader = new FileReader()
+
+					reader.onloadend = () => {
+
+						const base64File = reader.result.split( ',' )[1]
+						resolve( {
+							fileName       : file.name,
+							fileType       : file.type,
+							fileBase64Data : base64File,
+						} )
+					
+					}
+
+					reader.onerror = () => reject( new Error( 'Error reading file' ) )
+
+					reader.readAsDataURL( file )
+				
+				} )
+			
+			}
+			
+			const fileData = await getFileData( file )
+
+			const getRes = await fetch( getURL, {
+				method  : 'POST',
+				headers : {
+					'Content-Type' : 'application/json',
+				},
+				body : JSON.stringify( {
+					from  : 'local',
+					value : fileData, 
+				} ),
+			} )
+
+			res = getRes
+
+			if ( !getRes.ok ) throw new Error( `Network response in ${getURL} was not ok ${getRes.statusText}` )
+			const getData = await getRes.json()
+			res           = getData
+			
+			writeMessage(
+				getDiv,
+				printJSON( {
+					...getData, files : '',
+				} ),
+				true,
+			)
+
+			const fileDetail = document.createElement( 'div' )
+			const image      = document.createElement( 'img' )
+			image.src        = getData.iconUrl
+			image.width      = '50'
+
+			getDetailsDiv.appendChild( fileDetail )
+			getDetailsDiv.appendChild( image )
+
+			writeMessage( 
+				fileDetail, 
+				`Archive: ${file.name}, Size: ${file.size} bytes, Type: ${file.type}`,
+			)
+
+			// CONVERT DATA
+			console.log( zipInput.checked )
+			const convertRes = await fetch( convertURL, {
+				method  : 'POST',
+				headers : {
+					'Content-Type' : 'application/json',
+				},
+				body : JSON.stringify( {
+					outputPath : outputDiv.value,
+					data       : getData,
+					zip        : zipInput.checked || false,
+					remove     : true,
+				} ),
+			} )
+
+			if ( !convertRes.ok ) throw new Error( `Network response in ${convertURL} was not ok ${convertRes.statusText}` )
+			const reader = convertRes.body.pipeThrough( new TextDecoderStream() ).getReader()
+
+			writeMessage( convertDiv, '', true )
+			
+			let reading = true
+		
+			while ( reading ) {
+
+				const { value, done } = await reader.read()
+			
+				if ( done ) {
+
+					reading = false
+					break
+			
+				}
+
+				writeMessage( 
+					convertDiv, 
+					value ? value + '\n' : '', 
+					false,
+				)
+		
+			}
+
+		} catch ( error ) {
+
+			writeMessage(
+				errorDiv, 
+				printJSON( {
+					message  : error.message,
+					stack    : error.stack || '',
+					response : res ? res : 'No error in fetch function',
+				} ),
+				true,
+			)
+
+			console.error( error )
+
+		}finally {
+
+			const endTime     = performance.now()
+			const timeTaken   = ( endTime - startTime ).toFixed( 2 )
+			const timeSeconds = ( ( endTime - startTime ) / 1000 ).toFixed( 2 )
+
+			writeMessage(
+				timeDiv,
+				`${timeTaken} ms [${timeSeconds}s]`,
+			)
+			
+			console.log( {
+				output    : outputDiv.value,
+				res       : res,
+				typeofRes : typeof res,
+			} )
+
+		}
+
+	} )
+
+}
+catch( e ){
+
+	const errorDiv     = document.getElementById( 'error' )
+	errorDiv.innerHTML = `[GLOBAL] Error: ${e.message}`
+
+}
+
+</script>
+<style>
+	code[class*="language-"], pre[class*="language-"] {
+		text-shadow: none !important;
+	}
+	.message-body > div{
+	    max-height: 400px;
+    	overflow: scroll;
+	}
+</style>
+</body>
+</html>

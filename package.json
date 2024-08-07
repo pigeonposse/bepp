@@ -6,7 +6,7 @@
 	"workspaces": [
 		"packages/*"
 	],
-	"packageManager": "pnpm@8.11.0",
+	"packageManager": "pnpm@9.7.0",
 	"engines": {
 		"node": ">=20.0.0",
 		"pnpm": ">=8.10.0"
@@ -34,69 +34,85 @@
 	],
 	"scripts": {
 		"core": "pnpm --filter core $@",
+		"conf": "pnpm --filter @bepp/config $@",
 		"bepp": "pnpm --filter @bepp/bepp $@",
+		"app": "pnpm --filter @bepp/app $@",
+		"api": "pnpm --filter @bepp/api $@",
+		"container": "pnpm --filter container $@",
 		"doc": "pnpm --filter docs $@",
 		"action": "pnpm --filter gh-action $@",
-		"bins": "pnpm --filter @bepp/bin $@",
 		"dev": "turbo dev",
 		"dev:core": "turbo dev --filter=core",
+		"dev:app": "turbo build --filter=core --filter=api && turbo dev --filter=dev",
 		"build:core": "turbo build --filter=core",
 		"build:docs": "turbo build --filter=docs",
 		"build:packages": "turbo build",
+		"start": "concurrently \"pnpm api start\" \"pnpm app start\"",
 		"lint": "pnpm eslint .",
 		"lint-fix": "pnpm eslint . --fix",
-		"prepare": "husky install .dev/husky",
+		"prepare": "husky .dev/husky",
 		"cm": "cz",
 		"test:bin": "pnpm bepp test-bin",
 		"push-origin": "git add . && pnpm cm && git push -f origin $@",
 		"push-main": "pnpm push-origin main",
 		"push-dev": "pnpm push-origin dev",
-		"update-version": "changeset && changeset version",
+		"update-version": "changeset && changeset version && pnpm update-version-files",
+		"update-version-files": "node .dev/update-version/main.mjs",
 		"release-action": "bash ./.dev/action.sh $@",
 		"release": "changeset publish",
 		"todo": "node --experimental-modules .dev/todo.mjs",
 		"readme": "node --experimental-modules .dev/readme.mjs"
 	},
 	"devDependencies": {
-		"@changesets/changelog-github": "0.4.8",
-		"@changesets/cli": "2.26.2",
-		"@commitlint/cli": "18.4.1",
+		"@changesets/changelog-github": "0.5.0",
+		"@changesets/cli": "2.27.7",
+		"@commitlint/cli": "19.3.0",
 		"@pigeon-posse/eslint-config": "1.0.1",
-		"@types/node": "20.11.19",
-		"@typescript-eslint/eslint-plugin": "7.1.1",
-		"@typescript-eslint/parser": "7.1.1",
-		"cli-markdown": "3.2.2",
-		"comment-json": "1.1.3",
+		"@playwright/test": "1.46.0",
+		"@types/archiver": "6.0.2",
+		"@types/figlet": "^1.5.8",
+		"@types/node": "22.1.0",
+		"@typescript-eslint/eslint-plugin": "7.18.0",
+		"@typescript-eslint/parser": "7.18.0",
+		"@vercel/ncc": "0.38.1",
+		"@yao-pkg/pkg": "5.12.0",
+		"archiver": "7.0.1",
+		"cli-markdown": "3.4.0",
 		"commitizen": "4.3.0",
 		"commitlint-config-gitmoji": "2.3.1",
-		"cz-customizable": "7.0.0",
+		"cz-customizable": "7.2.1",
 		"cz-emoji": "1.3.2-canary.2",
-		"eslint": "8.56.0",
+		"decompress": "4.2.1",
+		"decompress-targz": "4.1.1",
+		"esbuild": "0.23.0",
+		"eslint": "8.57.0",
 		"eslint-plugin-align-assignments": "1.1.2",
 		"eslint-plugin-align-import": "1.0.0",
 		"eslint-plugin-html": "7.1.0",
 		"eslint-plugin-import": "2.29.1",
 		"eslint-plugin-jsdoc": "46.10.1",
 		"eslint-plugin-json": "3.1.0",
-		"eslint-plugin-jsonc": "2.13.0",
-		"eslint-plugin-promise": "6.1.1",
+		"eslint-plugin-jsonc": "2.16.0",
+		"eslint-plugin-promise": "6.6.0",
 		"eslint-plugin-yaml": "0.5.0",
 		"figlet": "1.7.0",
-		"git-cz": "3.0.1",
-		"husky": "8.0.3",
-		"inquirer": "9.2.12",
+		"git-cz": "4.9.0",
+		"husky": "9.1.4",
+		"inquirer": "10.1.8",
+		"internal-ip": "8.0.0",
 		"jsonc-eslint-parser": "2.4.0",
-		"lint-staged": "15.2.0",
-		"markdownlint": "0.31.1",
-		"ts-json-schema-generator": "1.5.0",
+		"lint-staged": "15.2.8",
+		"markdownlint": "0.34.0",
+		"npm-run-all": "4.1.5",
+		"rimraf": "6.0.1",
+		"ts-json-schema-generator": "2.3.0",
 		"ts-node": "10.9.2",
-		"tslib": "2.6.2",
-		"turbo": "1.12.5",
-		"typescript": "5.3.3",
-		"typescript-json-schema": "0.63.0",
-		"vite": "5.1.5",
-		"vite-plugin-dts": "3.7.3",
-		"vitest": "1.3.1"
+		"tslib": "2.6.3",
+		"turbo": "2.0.12",
+		"typescript": "5.5.4",
+		"vite": "5.3.5",
+		"vite-plugin-dts": "4.0.0",
+		"vitest": "2.0.5"
 	},
 	"commitlint": {
 		"extends": [
@@ -165,6 +181,163 @@
 				"twitter": "https://twitter.com/pigeonposse_",
 				"instagram": "https://www.instagram.com/pigeon.posse/",
 				"medium": "https://medium.com/@pigeonposse"
+			}
+		},
+		"downloadUrl": {
+			"containerUI": {
+				"name": "Docker image",
+				"logo": "docker",
+				"url": "https://hub.docker.com/r/pigeonposse/bepp",
+				"type": "container"
+			},
+			"macosUniversal": {
+				"name": "MacOS App (Universal)",
+				"logo": "apple",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_x64.app.tar.gz",
+				"type": "desktop"
+			},
+			"macosIntel": {
+				"name": "MacOS App (Intel)",
+				"logo": "apple",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_x64.app.tar.gz",
+				"type": "desktop"
+			},
+			"macosArm": {
+				"name": "MacOS App (ARM)",
+				"logo": "apple",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_aarch64.app.tar.gz",
+				"type": "desktop"
+			},
+			"windowsExe": {
+				"name": "Windows App (.exe)",
+				"logo": "windows",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_x64-setup.exe",
+				"type": "desktop",
+				"update-version": true
+			},
+			"windowsMSI": {
+				"name": "Windows App (.msi)",
+				"logo": "windows",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_x64-setup.nsis.zip",
+				"type": "desktop",
+				"update-version": true
+			},
+			"linuxAppImage": {
+				"name": "Linux App (.AppImage)",
+				"logo": "linux",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_amd64.AppImage.tar.gz",
+				"type": "desktop",
+				"update-version": true
+			},
+			"linuxDeb": {
+				"name": "Linux App (.deb)",
+				"logo": "linux",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_amd64.deb",
+				"type": "desktop",
+				"update-version": true
+			},
+			"linuxRpm": {
+				"name": "Linux App (.rpm)",
+				"logo": "linux",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-0.2.8-1.x86_64.rpm",
+				"type": "desktop",
+				"update-version": true
+			},
+			"binLinuxX64": {
+				"name": "bepp-core (Linux x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-linux-x64.zip",
+				"type": "bin"
+			},
+			"binLinuxArm64": {
+				"name": "bepp-core (Linux Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-linux-arm64.zip",
+				"type": "bin"
+			},
+			"binMacosX64": {
+				"name": "bepp-core (MacOS x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-macos-x64.zip",
+				"type": "bin"
+			},
+			"binMacosArm64": {
+				"name": "bepp-core (MacOS Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-macos-arm64.zip",
+				"type": "bin"
+			},
+			"binAlpineX64": {
+				"name": "bepp-core (Alpine x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-alpine-x64.zip",
+				"type": "bin"
+			},
+			"binAlpineArm64": {
+				"name": "bepp-core (Alpine Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-alpine-arm64.zip",
+				"type": "bin"
+			},
+			"binWinX64": {
+				"name": "bepp-core (Windows x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-win-x64.exe.zip",
+				"type": "bin"
+			},
+			"binWinArm64": {
+				"name": "bepp-core (Windows Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-core-win-arm64.exe.zip",
+				"type": "bin"
+			},
+			"binApiLinuxX64": {
+				"name": "bepp-api (Linux x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-linux-x64.zip",
+				"type": "bin"
+			},
+			"binApiLinuxArm64": {
+				"name": "bepp-api (Linux Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-linux-arm64.zip",
+				"type": "bin"
+			},
+			"binApiMacosX64": {
+				"name": "bepp-api (MacOS x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-macos-x64.zip",
+				"type": "bin"
+			},
+			"binApiMacosArm64": {
+				"name": "bepp-api (MacOS Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-macos-arm64.zip",
+				"type": "bin"
+			},
+			"binApiAlpineX64": {
+				"name": "bepp-api (Alpine x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-alpine-x64.zip",
+				"type": "bin"
+			},
+			"binApiAlpineArm64": {
+				"name": "bepp-api (Alpine Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-alpine-arm64.zip",
+				"type": "bin"
+			},
+			"binApiWinX64": {
+				"name": "bepp-api (Windows x64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-win-x64.exe.zip",
+				"type": "bin"
+			},
+			"binApiWinArm64": {
+				"name": "bepp-api (Windows Arm64)",
+				"logo": "gnubash",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-api-win-arm64.exe.zip",
+				"type": "bin"
 			}
 		}
 	}

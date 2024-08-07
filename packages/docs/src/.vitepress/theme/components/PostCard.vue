@@ -27,9 +27,12 @@
 	height: -webkit-fill-available;
 	padding: 10px;
 	transition: border-color .25s,background-color .25s;
+	color: var(--vp-c-text-1);
+    text-decoration: auto;
 }
 .card:hover {
-	border-color: var(--vp-c-brand-1);
+	border-color: var(--vp-c-brand-1) !important;;
+	color: var(--vp-c-text-1);
 }
 .info {
 	display: flex;

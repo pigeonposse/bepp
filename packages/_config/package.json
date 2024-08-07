@@ -1,10 +1,15 @@
 {
 	"private": true,
 	"name": "@bepp/config",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Configuration files for monorepo",
 	"type": "module",
+	"scripts": {
+		"test": "vitest run -r tests --passWithNoTests"
+	},
 	"exports": {
-		"./tsconfig.json": "./tsconfig.json"
+		"./tsconfig.json": "./tsconfig.json",
+		"./tests": "./tests/main.ts",
+		"./core": "./src/core.mjs"
 	}
 }

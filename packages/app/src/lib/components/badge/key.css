@@ -1,0 +1,6 @@
+.badge__command {
+	@apply flex flex-row gap-2 items-center
+}
+.badge__command__key {
+    @apply text-[14px] font-bold text-primary-50/80 [&_svg]:fill-primary-50/50 [&_svg]:w-[12px] [&_svg]:h-[12px] 
+}

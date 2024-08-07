@@ -17,7 +17,7 @@ export class BuildConfigCLI extends SuperCLI {
             options: [
                 {
                     type: 'string',
-                    value: ['-f', '--file'],
+                    value: ['-c', '--config'],
                     name: 'config-file-path',
                     desc: 'Path for config file'
                 },

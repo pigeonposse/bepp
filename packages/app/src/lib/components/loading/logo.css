@@ -1,0 +1,44 @@
+.logo {
+	@apply flex flex-col items-center relative opacity-90 transition-all duration-500 ease-in-out
+	
+}
+.logo .logo__bg{
+	@apply blur-3xl transition-all duration-500 ease-in-out
+}
+.logo .logo__image{
+	@apply absolute inset-0 transition-all duration-500 ease-in-out
+}
+.logo.start .logo__bg{
+	@apply animate-ping-smooth animate-rotate-infinite
+}
+.logo .logo__confetti{
+	@apply absolute inset-0 flex flex-col items-center justify-center
+}
+.logo.start .logo__image{
+	@apply animate-rotate-infinite 
+}
+.logo.stop .logo__image{
+	@apply opacity-50
+}
+
+
+.animate-rotate-infinite {
+	animation: rotate-infinite 6s linear infinite;
+}
+.animate-ping-smooth {
+	animation: ping-smooth 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes rotate-infinite {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+@keyframes ping-smooth {
+	75%, 100% {
+		transform: scale(1.3);
+		opacity: 0.3;
+	}
+}

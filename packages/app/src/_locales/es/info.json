@@ -1,0 +1,8 @@
+{
+	"subtitle": "Un empaquetador de extensiones multiplataforma fácil de usar",
+	"desc": {
+		"1": "La aplicación BEPP es una herramienta diseñada para simplificar el proceso de empaquetado de extensiones multiplataforma.",
+		"2": "Con BEPP, puedes convertir fácilmente tu extensión para Safari, Chrome, Firefox, Edge, Brave y otros navegadores populares, todo desde una sola plataforma.",
+		"3": "Además, la aplicación te permite buscar extensiones en la web y convertirlas. Olvídate de las complicaciones de adaptar tu extensión para cada navegador por separado; BEPP lo hace rápido y fácil para que puedas concentrarte en lo que realmente importa."
+	}
+}

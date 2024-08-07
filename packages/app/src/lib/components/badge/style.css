@@ -1,0 +1,28 @@
+.badge {
+    @apply px-4 py-1 rounded-full text-xs w-max flex-row flex items-center gap-2
+}
+
+.badge.primary {
+    @apply bg-primary-900/50
+}
+.badge.primary.btn {
+    @apply hover:bg-primary-900/80
+}
+.badge.secondary {
+    @apply bg-primary-900/50
+}
+.badge.purple {
+    @apply bg-purple-500/30 text-purple-50/50
+}
+.badge.red {
+    @apply bg-red-500/30 text-red-50/50
+}
+.badge.yellow {
+    @apply bg-yellow-400/30 text-yellow-50/50
+}
+.badge.green {
+    @apply bg-green-500/30 text-green-50/50
+}
+.badge.gray {
+    @apply bg-gray-500/30
+}

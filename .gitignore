@@ -50,6 +50,10 @@ packages/**/build
 /test-results
 **/test-results
 
+# playwright 
+**/src-tauri/target
+**/src-tauri/bin
+
 # project 
 **/dist
 **/__temp__

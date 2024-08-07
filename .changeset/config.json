@@ -10,9 +10,11 @@
   "fixed": [
 	[
 		"@bepp/bepp",
+		"@bepp/api",
+		"@bepp/app",
 		"@bepp/core", 
-		"@bepp/gh-action",
-		"@bepp/bin"
+		"@bepp/container", 
+		"@bepp/gh-action"
 	]
   ],
   "linked": [

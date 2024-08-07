@@ -16,7 +16,7 @@ import { data as articles } from '../posts.data.ts'
     align-items: center;
 	gap: 10px;
 	max-width: calc(var(--vp-layout-max-width) - 64px);
-	margin: auto 20px;
+	/* margin: auto 20px; */
 }
 @media (min-width: 768px) {
 	.container-posts {

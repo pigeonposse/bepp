@@ -8,6 +8,7 @@
         "christian-kohler.npm-intellisense",
         "jacano.vscode-pnpm",
         "redhat.vscode-yaml",
-        "vue.volar"
+        "lihui.vs-color-picker",
+        "github.vscode-github-actions"
     ]
 }

@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@bepp/gh-action",
-	"version": "1.2.3",
+	"version": "1.3.0",
 	"description": "Github action for package extension with bepp",
 	"scripts": {
 		"build": "ncc build src/main.ts -o ../../action -m -C --target es2020 --license license.txt",
@@ -12,7 +12,6 @@
 		"@bepp/core": "workspace:*"
 	},
 	"devDependencies": {
-		"@bepp/config": "workspace:*",
-		"@vercel/ncc": "0.38.1"
+		"@bepp/config": "workspace:*"
 	}
 }

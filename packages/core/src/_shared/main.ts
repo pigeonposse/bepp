@@ -8,9 +8,10 @@ import { ChildProcess }          from './child-process'
 import type { SpinnerFunct }     from './logger'
 import { Logger }                from './logger'
 import { Vars }                  from './var'
-import { name }                  from '../../../../package.json'
 import type { CmdSharedOptions } from './types'
-
+import {
+	version, name, 
+} from './const'
 export class SuperCore {
 
 	protected readonly fs = new Fs()
@@ -18,6 +19,7 @@ export class SuperCore {
 	protected readonly type = new Vars()
 	protected readonly childProcess = new ChildProcess()
 	protected readonly id = name
+	protected readonly version = version
     
 	protected isMacos(){
 
@@ -32,7 +34,7 @@ export class SuperCore {
 	}
 	globalDataQuestion = {
 		overwrite : {
-			id      : 'override',
+			id      : 'overwrite' as const,
 			default : true,
 		},
 	}
@@ -44,10 +46,11 @@ export class SuperCore {
 				type    : 'confirm',
 				name    : this.globalDataQuestion.overwrite.id,
 				message : 'Configuration file detected. Do you want to overwrite it?',
-				default : this.globalDataQuestion.overwrite.default,
+				initial : this.globalDataQuestion.overwrite.default,
 			},
 		] )
-		return res[this.globalDataQuestion.overwrite.id]
+
+		return this.globalDataQuestion.overwrite.id in res ? res[this.globalDataQuestion.overwrite.id] as boolean : this.globalDataQuestion.overwrite.default
 	
 	}
 

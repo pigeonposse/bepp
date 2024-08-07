@@ -4,5 +4,5 @@ import custom from "./main";
 testBuildBrowser(
     'custom', 
     custom,
-    () => {}
+    async () => {}
 )

@@ -1,0 +1,22 @@
+.post {
+	@apply flex flex-col gap-6 
+}
+
+.post h2 {
+	@apply font-bold text-4xl text-primary-200/90
+}
+.post img {
+	@apply rounded-xl
+}
+.post i {
+	@apply italic
+}
+.post b {
+	@apply font-bold
+}
+.post p {
+	@apply text-primary-100/80
+}
+.post .section {
+	@apply flex flex-row gap-4 w-full flex-wrap	
+}

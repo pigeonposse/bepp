@@ -1,0 +1,23 @@
+{
+	"desc": "Un empaquetador d'extensions multiplataforma fàcil d'usar",
+	"donate": "Donar",
+	"info": "Informació",
+	"settings": "Configuració",
+	"documentation": "Documentació",
+	"issues": "Informar problemes",
+	"contribute": "Contribuir",
+	"convert": "Convertir extensió",
+	"goHome": "Anar a l'inici",
+	"offlineMsg": "Esteu fora de línia. Comproveu la vostra connexió a Internet per navegar i cercar extensions",
+	"apiErrors": {
+		"UNDEFINED": "Sense descripció d'error",
+		"SERVER_URL_FAIL": "Hi va haver un error en establir una connexió amb el servidor. Comprova la connexió amb el teu servidor o contacta amb el desenvolupador.",
+		"SERVER_FETCH_NOT_OK": "La resposta del servidor no és correcta. Comprova la connexió amb el teu servidor o contacta amb el desenvolupador.",
+		"START_SERVER": "No s'ha pogut iniciar el backend. Si us plau, torna-ho a intentar més tard o contacta amb el desenvolupador.",
+		"EXTS_CONVERT": "Error en convertir les extensions. Si us plau, revisa el format i torna-ho a intentar.",
+		"EXTS_GET": "No s'ha pogut recuperar els recursos de l'extensió. Assegura't que el recurs estigui disponible.",
+		"EXTS_SEARCH": "Ha fallat l'operació de cerca. Revisa els teus criteris de cerca i torna-ho a intentar.",
+		"EXTS_GET_FILE_DATA": "No s'ha pogut recuperar les dades del fitxer. Revisa el fitxer i torna-ho a intentar.",
+		"FACTS_RANDOM": "No s'han pogut obtenir dades aleatòries. Si us plau, torna-ho a intentar més tard."
+	}
+}

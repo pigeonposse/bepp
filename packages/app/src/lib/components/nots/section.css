@@ -1,0 +1,9 @@
+.nots-section {
+	@apply fixed z-50 flex items-center flex-col gap-2
+}
+.nots-section.top {
+	@apply top-6 left-0 right-0
+}
+.nots-section.bottom {
+	@apply bottom-6 left-0 right-0
+}

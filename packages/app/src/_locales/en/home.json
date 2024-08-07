@@ -1,0 +1,35 @@
+{
+	"info": {
+		"1": "Convert any type of extension to another type of browser extension, including Safari.",
+		"2": "You can select the extension from a local .zip or search for it in the search engine using keywords or by pasting the extension link from its store (supported stores: Chrome Store, Microsoft Store, Mozilla Store)."
+	},
+	"search": {
+		"title": "Search",
+		"placeholder": "Search...",
+		"results": "Results",
+		"desc": "Search extensions on internet.",
+		"none": "There are not extensions with value:"
+	},
+	"local": {
+		"title": "Upload",
+		"dropzoneDesc": "Drag and drop extension"
+	},
+	"content": {
+		"manifest": "Manifest",
+		"store": "Webstore",
+		"system": "System",
+		"from": "From",
+		"remove": "Remove extension"
+	},
+	"convert": {
+		"loading": "Converting extension...",
+		"success": "Converted extension",
+		"failed": "Error in conversion",
+		"btnStop": "Stop conversion",
+		"btnBack": "Convert another",
+		"btnView": "View converted extension",
+		"dialogSave": "Select the path to save your beep conversion",
+		"log": "Conversion log",
+		"curiosities": "Web curiosities"
+	}
+}

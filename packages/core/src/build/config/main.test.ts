@@ -1,23 +1,70 @@
-import {
-	describe, expect, it, 
-} from '../../_shared/tests'
+import {test} from '@bepp/config/tests'
 import { buildConfig } from './main'
+import type { BuildConfig } from './types'
 
-describe( 'Build [Config file]', () => {
+test( async ( { section, utils } ) => {
 
-	it( 'Error bacause input is not string | undefined', () => {
+	section( {
+		title : 'Build [Config file]',
+		fn    : async ( { addTest, addBooleanTest } ) => {
 
-		// @ts-ignore
-		expect( async () => {
+			await addTest( {
+				title : 'Error bacause input is not string | undefined',
+				fn    : async ( { expect } ) => {
 
-	
-			await buildConfig( {
-				// @ts-ignore
-				file : 2,
+					expect( async () => await buildConfig( {
+						// @ts-ignore
+						config : 2,
+					} )).rejects.toThrowError()
+				
+				},
 			} )
-		
-		} ).rejects.toThrowError()
+			await addBooleanTest( {
+				title    : 'Success with Example config path',
+				expected : true,
+				fn       : async () => {
 
+					try {
+
+						const jsonPath = utils.joinPath(utils.paths.coreDir, 'src','build','config','example.config.json' )
+						const extInput = utils.joinPath(utils.paths.extsDir, 'chromium' )
+						const extsOutput = utils.paths.extsOutputDir
+						const data: BuildConfig = {
+							shared: {
+								compress: "zip",
+								id: "from-data",
+								input: {
+									chromium: extInput
+								},
+								output: extsOutput
+							},
+							build: [
+								{
+									type: "chrome"
+								}
+							]
+						}
+						// console.log({data, jsonPath})
+						await buildConfig({ 
+							// verbose:true,
+							config: jsonPath 
+						})
+						// await buildConfig({
+						// 	verbose:true,
+						// 	config: data,
+						// })
+						return true
+					} catch (e) {
+						console.error({
+							id: 'error',
+							e
+						})
+						return false
+					}
+				
+				},
+			} )
+		},
 	} )
 
 } )

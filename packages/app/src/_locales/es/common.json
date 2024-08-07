@@ -1,0 +1,23 @@
+{
+	"desc": "Un empaquetador de extensiones multiplataforma fácil de usar",
+	"donate": "Donar",
+	"info": "Información",
+	"settings": "Configuración",
+	"documentation": "Documentación",
+	"issues": "Informar problemas",
+	"contribute": "Contribuir",
+	"convert": "Convertir extensión",
+	"goHome": "Ir a inicio",
+	"offlineMsg": "Estás desconectado. Verifica tu conexión a Internet para navegar y buscar extensiones",
+	"apiErrors": {
+		"UNDEFINED": "No hay descripción del error",
+		"SERVER_URL_FAIL": "Hubo un error al establecer una conexión con el servidor. Verifica la conexión con tu servidor o contacta con el desarrollador.",
+		"SERVER_FETCH_NOT_OK": "La respuesta del servidor no es correcta. Verifica la conexión con tu servidor o contacta con el desarrollador.",
+		"START_SERVER": "No se pudo iniciar el backend. Por favor, inténtalo de nuevo más tarde o contacta con el desarrollador.",
+		"EXTS_CONVERT": "Error al convertir las extensiones. Por favor, revisa el formato e inténtalo de nuevo.",
+		"EXTS_GET": "No se pudo recuperar los recursos de la extensión. Asegúrate de que el recurso esté disponible.",
+		"EXTS_SEARCH": "Falló la operación de búsqueda. Revisa tus criterios de búsqueda e inténtalo de nuevo.",
+		"EXTS_GET_FILE_DATA": "No se pudo recuperar los datos del archivo. Revisa el archivo e inténtalo de nuevo.",
+		"FACTS_RANDOM": "No se pudieron obtener datos aleatorios. Por favor, inténtalo de nuevo más tarde."
+	}
+}

@@ -1,0 +1,12 @@
+
+.nots {
+	@apply w-full max-w-xs p-4 text-primary-100/60 shadow gap-3 !rounded-2xl overflow-hidden bg-primary-400/20  border-primary-200/10 border-[1px] backdrop-blur-xl
+}
+
+.nots > .icon {
+	@apply w-8 h-8 rounded-full
+}
+
+.nots > button {
+	@apply rounded-full !text-primary-200/60 hover:!bg-primary-800/50
+}

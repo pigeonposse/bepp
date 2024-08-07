@@ -12,10 +12,11 @@ export class InitCore extends SuperCore {
 		y     : false,
 		id    : this.id,
 		build : [
-			browserTypes.chrome, browserTypes.chromium,
+			browserTypes.chrome, 
+			browserTypes.chromium,
 		],
 	}
-	// @ts-ignore
+
 	dataQuestion = {
 		...this.globalDataQuestion,
 		id : {
@@ -27,24 +28,25 @@ export class InitCore extends SuperCore {
 			default : './exts/chrome',
 		},
 		build : {
-			id      : 'build',
+			id      : 'build' as const,
 			default : this.defaultParams.build,
 		},
 	}
     
-	private async askCreate( values: InitParams ){
+	async #askCreate( values: InitParams ){
         
-		const questions = []
-		const res       = values
+		const questions: Parameters<typeof this.log.ask>[0] = []
+		const res                                           = values
 
 		if ( !values.build ) {
 
 			questions.push( {
-				type    : 'checkbox',
+				type    : 'multiselect',
 				name    : this.dataQuestion.build.id,
 				message : 'Select list of browser for build',
+				// @ts-ignore
 				choices : Object.values( browserTypes ),
-				default : this.dataQuestion.build.default,
+				initial : this.dataQuestion.build.default,
 			} )
 		
 		}
@@ -55,7 +57,7 @@ export class InitCore extends SuperCore {
 				type     : 'input',
 				name     : this.dataQuestion.id.id,
 				message  : 'Write a ID for your build. This is used for package name',
-				default  : this.dataQuestion.id.default,
+				initial  : this.dataQuestion.id.default,
 				validate : ( input: string ) =>{
 
 					if ( input.includes( ' ' ) ) return 'The string cannot contain spaces'
@@ -72,14 +74,15 @@ export class InitCore extends SuperCore {
 				type    : 'input',
 				name    : this.dataQuestion.input.id,
 				message : 'Write a input path for where your Chrome extension is located',
-				default : this.dataQuestion.input.default,
+				initial : this.dataQuestion.input.default,
 			} )
 		
 		}
-
+		const answers = await this.log.ask( questions )
+	
 		return {
 			...res,
-			...await this.log.ask( questions ),
+			...answers,
 		}
 	
 	}
@@ -99,11 +102,12 @@ export class InitCore extends SuperCore {
 			values        : initValues,
 			cb            : async ( { values } ) => {
 
+				// console.log( values )
 				const fileExists      = await this.existsConfigFile()
 				let override: boolean = true
 				
 				// necesary for function mode
-				if( typeof values.input !== 'string' || typeof values.input !== 'undefined' ) throw Error( 'Input must be a string | undefined' )
+				// if( typeof values.input !== 'string' || values.input !== undefined ) throw Error( 'Input must be a string | undefined' )
 				
 				if ( !values.y && fileExists ) override = await this.askOverwriteConfigFile()
                 
@@ -113,15 +117,22 @@ export class InitCore extends SuperCore {
 
 				} else {
         
-					const data  = await this.askCreate( values.y ? {
-						...values, input : this.dataQuestion.input.default,
+					const data = await this.#askCreate( values.y ? {
+						input : this.dataQuestion.input.default,
+						...values, 
 					} : initValues )
+					if( data.input !== 'string' ) this.log.fatal( 'Input must be a string' )
 					const build = data.build ? data.build.map( d => ( {
 						type : d, 
 					} ) ) : []
-                    
+			
+					const schemaUrl = this.version ? 
+						`https://raw.githubusercontent.com/pigeonposse/bepp/${this.version}/packages/core/schema.json` :
+						'https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/src/build/config/schema.json'
+					
 					const defaultConfig = {
-						shared : {
+						$schema : schemaUrl,
+						shared  : {
 							id    : data.id, 
 							input : {
 								chromium : data.input,

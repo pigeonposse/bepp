@@ -1,7 +1,6 @@
 import { createContentLoader } from 'vitepress'
-import { srcDir } from '../config'
 
-export default createContentLoader(srcDir+'/posts/*.md', {
+export default createContentLoader('posts/*.md', {
     excerpt: true,
     transform(raw) {
 		// console.log(raw)

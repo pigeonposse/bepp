@@ -1,0 +1,23 @@
+{
+	"desc": "An easy-to-use Cross-Browser extension packager",
+	"donate": "Donate",
+	"info": "Information",
+	"settings": "Settings",
+	"documentation": "Documentation",
+	"issues": "Report issues",
+	"contribute": "Contribute",
+	"convert": "Convert extension",
+	"goHome": "Go home",
+	"offlineMsg": "You are offline. Check your Internet connection to browse and search for extensions",
+	"apiErrors": {
+		"UNDEFINED": "No error description",
+		"SERVER_URL_FAIL": "There was an error establishing a connection to the server. Check the connection with your server or contact the developer",
+		"SERVER_FETCH_NOT_OK": "Server response is not ok. Check the connection with your server or contact the developer",
+		"START_SERVER": "Failed to start the backend. Please try again later or contact to developer",
+		"EXTS_CONVERT": "Error converting extensions. Please check the format and try again.",
+		"EXTS_GET": "Unable to retrieve extension resources. Please ensure the resource is available.",
+		"EXTS_SEARCH": "Search operation failed. Please check your search criteria and try again.",
+		"EXTS_GET_FILE_DATA": "Failed to retrieve data from the file. Please check the file and try again.",
+		"FACTS_RANDOM": "Unable to fetch random facts. Please try again later."
+	}
+}

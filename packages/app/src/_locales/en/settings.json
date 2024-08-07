@@ -1,0 +1,9 @@
+{
+	"lang": {
+		"title": "Change language"
+	},
+	"autostart": {
+		"title": "Autostart",
+		"desc": "Have the app start when your computer logs in."
+	}
+}

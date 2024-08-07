@@ -56,3 +56,6 @@ export class InitCLI extends SuperCLI {
 	}
 
 }
+
+// const init = new InitCLI()
+// init.run()

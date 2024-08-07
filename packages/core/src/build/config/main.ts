@@ -2,13 +2,13 @@
 import { extTypes, manTypes, manVersions } from "../../_shared/types";
 import { BuildSharedCore } from "../_shared/main";
 import { BuildConfig, BuildConfigParams } from "./types";
-import schema from './schema.json'
+import schema from '../../../schema.json'
 import { resolve } from "path";
 import { allBrowsers } from "../browsers/main";
 
 export class BuildConfigCore extends BuildSharedCore {
     
-    schema = schema.definitions.BuildConfig
+    schema = schema.definitions.BuildConfigSchema
 
     defaultConfigPaths = [
         this.id+'.config.json',
@@ -19,7 +19,7 @@ export class BuildConfigCore extends BuildSharedCore {
 
     defaultParams = {
         ...this.globalDefaultParams,
-        file: undefined
+        config: undefined
     }
 
     async create(v: BuildConfigParams){
@@ -32,34 +32,36 @@ export class BuildConfigCore extends BuildSharedCore {
                 log.start('Staring...')
         
                 let configPath: string | undefined = undefined
-                
-                if(!values.file) {
-    
-                    log.changeText('Searching configuration file automatically...')
-                    for (let index = 0; index < this.defaultConfigPaths.length; index++) {
-                
-                        const file = resolve(this.defaultConfigPaths[index])
-                        const exists = await this.fs.existsFile(file)
-            
-                        if(exists) {
-                            configPath = file
-                            break;
-                        }
-                        
-                    }
-                    
-                    if(!configPath) throw new Error (`There is no supported configuration file. Supported files: ${this.defaultConfigPaths.join(" or ")}`)
-    
-                }else {
+				let configData: BuildConfig
 
-					// necesary for library mode
-					if( typeof values.file !== 'string' ) throw Error( 'File property must be a string' )
-                    configPath = values.file
-                }
-    
-                log.changeText('Getting data from file: '+ configPath)
-                const configData = await this.fs.getDataFromFile(configPath) as BuildConfig
-                
+                if('data' in values && typeof values.config === 'object') configData = values.config
+				else{
+					
+					if(!values.config || typeof values.config !== 'string') {
+		
+						log.changeText('Searching configuration file automatically...')
+						for (let index = 0; index < this.defaultConfigPaths.length; index++) {
+					
+							const file = resolve(this.defaultConfigPaths[index])
+							const exists = await this.fs.existsFile(file)
+				
+							if(exists) {
+								configPath = file
+								break;
+							}
+							
+						}
+						
+						if(!configPath) throw new Error (`There is no supported configuration file. Supported files: ${this.defaultConfigPaths.join(" or ")}`)
+		
+					}else {
+						configPath = values.config
+					}
+					
+					log.changeText('Getting data from file: '+ configPath)
+					configData = await this.fs.getDataFromFile(configPath) as BuildConfig
+				}
+
                 log.verbose({
                     title: 'Config data:',
                     value: configData

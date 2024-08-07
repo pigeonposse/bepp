@@ -54,9 +54,7 @@ jobs:
         run: |
           pnpm build:packages # execute lint. tests and build
           pnpm test:bin # execute special test for bin
-
-      - name: 📢 Notify if successful
-        run: echo "Build on Ubuntu completed successfully."
+          echo "Build on Ubuntu completed successfully."
 
 
   #########################################################################
@@ -170,7 +168,7 @@ jobs:
           draft: false
           prerelease: false
           allowUpdates: true
-          artifacts: "packages/bin/dist/zip/*"
+          artifacts: "packages/core/build/zip/*,packages/api/build/zip/*"
           omitBodyDuringUpdate: true
 
 ###############################################################################

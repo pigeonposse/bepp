@@ -1,12 +1,11 @@
 /**
- * Cli..
+ * Cli.
  *
  * @description File for set cli functions.
  */
 import {
-	name, description, 
-} from '../../../../package.json'
-import { version } from '../../package.json'
+	version, name, description, 
+} from './const'
 
 import {
 	Command, Option, 
@@ -42,6 +41,7 @@ export class SuperCLI {
 
 	protected program
 	protected name = name
+	protected version = version
 	protected log = new Logger()
     
 	constructor( args: CLIParams ){

@@ -1,0 +1,51 @@
+{
+	"name": "@bepp/api",
+	"version": "1.3.0",
+	"type": "module",
+	"license": "GPL-3.0",
+	"homepage": "https://bepp.pigeonposse.com/guide/api",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pigeonposse/bepp/packages/api"
+	},
+	"module": "dist/app.js",
+	"main": "dist/app.js",
+	"types": "dist/app.d.ts",
+	"exports": {
+		".": "./dist/app.js",
+		"./node": "./dist/node.js",
+		"./deno": "./dist/deno.js",
+		"./openapi": "./dist/openapi-schema.json"
+	},
+	"scripts": {
+		"dev": "vite dev",
+		"start": "vite dev",
+		"start:old": "pnpm build:rm && pnpm build:lib && vite preview",
+		"build": "run-s build:*",
+		"build:rm": "rimraf dist && rimraf build",
+		"build:lib": "vite build",
+		"build:schema": "node .dev/schema.js",
+		"build:cjs": "esbuild dist/node.js --bundle --format=cjs --platform=node --outfile=dist/node.cjs",
+		"build:bin-file": "ncc build dist/node.cjs -o build/cjs -m -C",
+		"build:bin": "pkg pkg.config.json --compress GZip",
+		"build:zip": "node .dev/zip.js",
+		"test": "run-s test:*",
+		"test:unit": "vitest run src --passWithNoTests",
+		"test:e2e": "playwright test",
+		"lint": "pnpm eslint src"
+	},
+	"devDependencies": {
+		"@bepp/config": "workspace:*",
+		"@hono/vite-dev-server": "0.13.1",
+		"@types/archiver": "6.0.2"
+	},
+	"dependencies": {
+		"@bepp/core": "workspace:^",
+		"@hono/node-server": "1.12.0",
+		"@hono/swagger-ui": "0.4.0",
+		"@hono/zod-openapi": "0.15.1",
+		"archiver": "7.0.1",
+		"hono": "4.5.3",
+		"jszip": "3.10.1"
+	}
+}

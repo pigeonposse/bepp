@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@bepp/docs",
-	"version": "1.2.7",
+	"version": "1.3.0",
 	"description": "Documentation for bepp",
 	"type": "module",
 	"repository": {
@@ -10,19 +10,23 @@
 		"directory": "packages/docs"
 	},
 	"dependencies": {
+		"@bepp/api": "workspace:^",
 		"markdown-it-task-lists": "2.1.1"
 	},
 	"devDependencies": {
 		"@bepp/config": "workspace:*",
-		"medium-zoom": "^1.1.0",
-		"vitepress": "1.0.0-rc.24",
-		"vue": "3.3.7"
+		"medium-zoom": "1.1.0",
+		"openapi-to-md": "^1.0.24",
+		"vitepress": "1.3.2",
+		"vue": "3.4.36"
 	},
 	"scripts": {
 		"dev": "vitepress dev src",
-		"build": "pnpm copy-docs && vitepress build src --force && pnpm rm-docs",
-		"preview": "vitepress preview src",
-		"copy-docs": "node src/copy-docs.js",
-		"rm-docs": "node src/copy-docs.js --rm-dest"
+		"build": "run-s build:*",
+		"build:openapi": "openapi-to-md -s ../api/dist/openapi-schema.json ../../docs/guide/api/schema.md",
+		"build:copy-docs": "node .dev/copy-docs.js",
+		"build:web": "vitepress build src --force",
+		"build:rm-docs": "node .dev/copy-docs.js --rm-dest",
+		"preview": "vitepress preview src"
 	}
 }

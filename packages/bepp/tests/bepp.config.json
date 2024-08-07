@@ -9,9 +9,6 @@
 	"build": [
 		{
 			"type": "chrome" 
-		},
-		{ 
-			"type": "safari"
 		}
 	]
 }

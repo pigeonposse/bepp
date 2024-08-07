@@ -1,0 +1,9 @@
+{
+	"lang": {
+		"title": "Cambiar idioma"
+	},
+	"autostart": {
+		"title": "Inicio automático",
+		"desc": "Hacer que la aplicación se inicie cuando inicie sesión en su computadora."
+	}
+}

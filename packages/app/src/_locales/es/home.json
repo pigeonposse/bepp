@@ -1,0 +1,35 @@
+{
+	"info": {
+		"1": "Convierte cualquier tipo de extensión a otro tipo de extensión de navegador, incluyendo Safari.",
+		"2": "Puedes seleccionar la extensión desde un .zip local o buscarla en el motor de búsqueda usando palabras clave o pegando el enlace de la extensión desde su tienda (tiendas soportadas: Chrome Store, Microsoft Store, Mozilla Store)."
+	},
+	"search": {
+		"title": "Buscar",
+		"placeholder": "Buscar...",
+		"results": "Resultados",
+		"desc": "Buscar extensiones en internet.",
+		"none": "No hay extensiones con el valor:"
+	},
+	"local": {
+		"title": "Cargar",
+		"dropzoneDesc": "Arrastra y suelta la extensión"
+	},
+	"content": {
+		"manifest": "Manifiesto",
+		"store": "Webstore",
+		"system": "Sistema",
+		"from": "De",
+		"remove": "Eliminar extension"
+	},
+	"convert": {
+		"loading": "Convirtiendo extensión...",
+		"success": "Extensión convertida",
+		"failed": "Error en la conversión",
+		"btnStop": "Detener conversión",
+		"btnBack": "Convertir otra",
+		"btnView": "Ver extensión convertida",
+		"dialogSave": "Selecciona la ruta para guardar la extensión convertida",
+		"log": "Registro de conversión",
+		"curiosities": "Curiosidades web"
+	}
+}

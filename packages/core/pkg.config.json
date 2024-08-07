@@ -1,0 +1,17 @@
+{
+	"bin": "build/cjs/index.cjs",
+	"name": "bepp-core",
+	"pkg": {
+		"outputPath": "build/bin",
+		"targets": [
+			"latest-alpine-arm64",
+			"latest-alpine-x64",
+			"latest-linux-arm64",
+			"latest-linux-x64",
+			"latest-macos-arm64",
+			"latest-macos-x64",
+			"latest-win-arm64",
+			"latest-win-x64"
+		]
+	}
+}

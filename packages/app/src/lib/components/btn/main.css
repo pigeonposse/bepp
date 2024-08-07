@@ -1,0 +1,52 @@
+.button {
+    @apply transition-all duration-200 ease-in-out text-center font-medium inline-flex items-center justify-center px-4 py-2 text-base rounded-full relative outline-0 focus-within:ring-0 focus-within:outline-none border-2 border-transparent overflow-visible
+}
+.button.pulse {
+	@apply animate-ping-btn
+}
+.button.primary {
+    @apply text-primary-50 bg-primary-600 hover:bg-primary-700 border-primary-500/20 hover:border-primary-500/30 [&_svg_g]:fill-primary-50 
+}
+.button.primary-soft {
+    @apply text-primary-50 bg-primary-600/40 hover:bg-primary-700/40 border-primary-500/20 hover:border-primary-500/30 [&_svg_g]:fill-primary-50 
+}
+.button.dark {
+    @apply text-primary-50 bg-primary-900/10 hover:bg-primary-700/50 border-primary-500/10 hover:border-primary-500/20 [&_svg_g]:fill-primary-50 
+}
+.button.secondary {
+    @apply text-secondary-50 bg-secondary-700 hover:bg-secondary-800 border-secondary-500/20 hover:border-secondary-500/30 [&_svg_g]:fill-secondary-50
+}
+.button.transparent {
+    @apply text-secondary-50 bg-transparent [&_svg_g]:fill-primary-50
+}
+.button[disabled] {
+	@apply cursor-not-allowed opacity-50 
+}
+.button[disabled].dark {
+	@apply text-primary-300
+}
+.button[disabled].primary {
+	@apply text-primary-400
+}
+.button.transparent.active {
+    @apply text-primary-500
+}
+.button.dark.active {
+    @apply !bg-primary-700/50
+}
+.button .icon.right {
+    @apply ml-2
+}
+.button .icon.left {
+    @apply mr-2
+}
+
+@keyframes ping {
+    50%{
+        @apply border-transparent
+    }
+}
+
+.animate-ping-btn {
+    animation: ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

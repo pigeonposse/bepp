@@ -91,6 +91,11 @@ export type CompressFunct = {
     outputName: string, 
     format: CompressTypes
 }
+export type UncompressFunct = {
+    inputPath: string, 
+    outputPath: string,  
+    format: CompressTypes
+}
 /**
  * Config Params.
  */

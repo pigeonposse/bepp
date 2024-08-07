@@ -1,0 +1,30 @@
+.dropzone {
+	@apply border border-transparent
+}
+input[type="file"] {
+	display: none;
+}
+.dropzone.drag-over.correct {
+	@apply bg-green-900/10 cursor-copy
+}
+.dropzone.drag-over.incorrect {
+	@apply bg-red-900/10 cursor-not-allowed
+}
+
+.dropzone.drag-over.correct {
+    animation: pulse__correct 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.dropzone.drag-over.incorrect {
+    animation: pulse__incorrect 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse__correct {
+    50% {
+        @apply border-green-500/50
+    }
+}
+@keyframes pulse__incorrect {
+    50% {
+        @apply border-red-500/50
+    }
+}

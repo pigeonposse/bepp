@@ -85,11 +85,16 @@ const index = pkg => {
 	return `
 - [Documentation](${pkg.data.homepage})
 - [Installation](${joinUrl( pkg.data.homepage, 'guide/getting-started#installation' )})
+- [GitHub Action Documentation]( ${joinUrl( pkg.data.homepage, '/guide/gh-action' )} )
+- [Api Documentation]( ${joinUrl( pkg.data.homepage, '/guide/api' )} )
+- [App Documentation]( ${joinUrl( pkg.data.homepage, '/guide/app' )} )
+- [Docker Documentation]( ${joinUrl( pkg.data.homepage, '/guide/container' )} )
+
+Guides:
 - [Init](${joinUrl( pkg.data.homepage, '/guide/init' )})
 - [Build multiple extensions](${joinUrl( pkg.data.homepage, '/guide/build' )})
 - [Build extensions with config file](${joinUrl( pkg.data.homepage, '/guide/build/config-file' )})
 - [Build Safari extension](${joinUrl( pkg.data.homepage, '/guide/build/safari' )})
-- [GitHub action Documentation]( ${joinUrl( pkg.data.homepage, '/guide/gh-action' )} )
 `
 
 }

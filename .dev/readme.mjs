@@ -23,12 +23,24 @@ const dynamicReadme = async () => {
 			await addTextBetweenAMark( filePath, '<!-- PIGEONPOSSE START HEADER -->', '<!-- PIGEONPOSSE END HEADER -->', readmeTemp.header )
 		
 		}
-		await convertReadme( 'README.md' )
-		await convertReadme( 'packages/_config/README.md' )
-		await convertReadme( 'packages/core/README.md' )
-		await convertReadme( 'packages/bepp/README.md' )
-		await convertReadme( 'packages/docs/README.md' )
-		await convertReadme( 'packages/gh-action/README.md' )
+
+		const readmePaths = [
+			'README.md',
+			'packages/_config/README.md',
+			'packages/core/README.md',
+			'packages/bepp/README.md',
+			'packages/docs/README.md',
+			'packages/gh-action/README.md',
+			'packages/api/README.md',
+			'packages/app/README.md',
+			'packages/container/README.md',
+		]
+
+		for ( const path of readmePaths ) {
+
+			await convertReadme( path )
+ 
+		}
 	
 	}catch( e ){
 

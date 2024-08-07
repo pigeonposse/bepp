@@ -1,0 +1,6 @@
+.spinner {
+	@apply flex flex-row items-center justify-center w-full h-full
+}
+.spinner svg {
+	@apply !text-primary-900/40
+}

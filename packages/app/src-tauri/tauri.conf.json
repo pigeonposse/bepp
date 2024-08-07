@@ -1,0 +1,82 @@
+{
+	"$schema": "../node_modules/@tauri-apps/cli/schema.json",
+	"app": {
+		"macOSPrivateApi": true,
+		"security": {
+			"csp": null
+		},
+		"withGlobalTauri": true,
+		"windows": [
+			{
+				"fullscreen": false,
+				"height": 800,
+				"width": 600,
+				"minHeight": 600,
+				"minWidth": 600,
+				"resizable": true,
+				"theme": "Dark",
+				"title": "",
+				"titleBarStyle": "Overlay",
+				"transparent": false,
+				"shadow": true,
+				"dragDropEnabled": false
+			}
+		]
+	},
+	"build": {
+		"beforeBuildCommand": "pnpm build:web",
+		"beforeDevCommand": "pnpm dev:web",
+		"devUrl": "http://localhost:13128",
+		"frontendDist": "../build"
+	},
+	"bundle": {
+		"active": true,
+		"category": "Productivity",
+		"copyright": "Copyright © PigeonPosse",
+		"shortDescription": "",
+		"longDescription": "",
+		"targets": "all",
+		"licenseFile": "../../../LICENSE",
+		"icon": [
+			"icons/32x32.png",
+			"icons/128x128.png",
+			"icons/128x128@2x.png",
+			"icons/icon.icns",
+			"icons/icon.ico"
+		],
+		"iOS": {
+			"developmentTeam": "97JQW2HSHQ"
+		},
+		"macOS": {
+			"entitlements": null,
+			"exceptionDomain": "",
+			"frameworks": [
+			],
+			"providerShortName": null,
+			"signingIdentity": null
+		},
+		"windows": {
+			"certificateThumbprint": null,
+			"digestAlgorithm": "sha256",
+			"timestampUrl": ""
+		},
+		"externalBin": [
+			"bin/bepp-server"
+		]
+	},
+	"identifier": "com.pigeonposse.bepp",
+	"plugins": {
+		"updater": {
+			"active": true,
+			"dialog": true,
+			"endpoints": [
+				"https://github.com/pigeonposse/bepp/releases/latest/download/latest.json"
+			],
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQ2MERBMTBCNzczRjUzQkEKUldTNlV6OTNDNkVOMXY1eVE1bUkzZWNpZzhWdWxXaXdNVGxXd1l6V2lqaU94aFZJY2ZOUFcwdW0K",
+			"windows": {
+				"installMode": "passive"
+			}
+		}
+	},
+	"productName": "bepp"
+}

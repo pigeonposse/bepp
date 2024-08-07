@@ -71,10 +71,16 @@ module.exports = {
 			name : 'bepp', 
 		},
 		{
-			name : 'gh-action', 
+			name : 'api', 
 		},
 		{
-			name : 'bin', 
+			name : 'app', 
+		},
+		{
+			name : 'container', 
+		},
+		{
+			name : 'gh-action', 
 		},
 		{
 			name : 'all', 

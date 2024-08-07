@@ -1,0 +1,31 @@
+.popup {
+    @apply inset-0 w-full flex items-center z-20 justify-center backdrop-blur-[100px] bg-primary-900/20 !border-0 animation-fade-in
+}
+.popup.open.popup__type__full {
+    @apply fixed
+}
+.popup.open.popup__type__content {
+    @apply absolute
+}
+.popup__container {
+    @apply flex flex-col w-full h-full p-4 
+}
+.popup.closable {
+	@apply pt-16
+}
+.popup__close {
+	@apply !text-[28px] !p-0 !absolute top-5 right-5 text-xs !text-primary-200
+}
+.popup__close:hover {
+	@apply opacity-70
+}
+
+
+.animation-fade-in {
+	animation: fadeIn 0.5s ease-in-out
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

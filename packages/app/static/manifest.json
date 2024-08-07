@@ -1,0 +1,22 @@
+{
+	"name": "Bepp App (WPA)",
+	"short_name": "bepp",
+	"description": "A tool for package your extension for multiple browsers quickly and easily (Including Safari)",
+	"icons": [
+		{
+			"src": "/logo-144.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		},
+		{
+			"src": "/logo-460.png",
+			"sizes": "460x460",
+			"type": "image/png"
+		}
+	],
+	"scope": "/",
+	"start_url": "/?source=pwa",
+	"theme_color": "#33b2c8",
+	"background_color": "#33b2c8",
+	"display": "standalone"
+}

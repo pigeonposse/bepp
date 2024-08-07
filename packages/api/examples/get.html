@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bepp conversion with online search</title>
+	<link rel="icon" href="https://bepp.pigeonposse.com/favicon.png">
+	<!-- Bulma CSS -->
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
+	>
+	<!-- Prism.js -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism.css" rel="stylesheet" />
+
+</head>
+<body>
+    <section class="section">
+        <div class="container block">
+            <h1 class="title">Bepp conversion with online search</h1>
+            <form  class="box" id="upload-form">
+                <div class="field">
+					<label class="label" for="search">Search in CHROME, EDGE AND MOZILLA store</label>
+					<div class="control">
+						<input 
+							class="input" 
+							type="search" 
+							id="search" 
+							placeholder="Enter a key string or Store URL"
+							value="https://chromewebstore.google.com/detail/stylegpt-el-mejor-persona/khoggafmiibmeihpkpbkllkkdfhmokoj"
+						>
+					</div>
+                </div>
+				<div class="field">
+                    <label class="label" for="server-url">Server URL</label>
+                    <div class="control">
+                        <input 
+							class="input" 
+							type="text" 
+							id="server-url" 
+							placeholder="Enter url like: http://localhost:13129"
+							value="http://localhost:13129"
+						>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="output">Output Path</label>
+                    <div class="control">
+                        <input class="input" type="text" id="output" placeholder="Enter output path">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Upload</button>
+                    </div>
+                </div>
+            </form>
+		</div>
+		<div class="container block box">
+			<h2 class="subtitle">Response</h2>
+			<article class="message is-info">
+				<div class="message-header">Time taken</div>
+				<div class="message-body">
+					<div id="time"></div>
+				</div>
+			</article>
+			<article class="message is-success">
+				<div class="message-header">GET response</div>
+				<div class="message-body">
+					<div id="get-details"></div>
+					<div id="get-message"></div>
+				</div>
+			</article>
+			<article class="message is-danger">
+				<div class="message-header">Error response</div>
+				<div class="message-body">
+					<div id="error"></div>
+				</div>
+			</article>
+        </div>
+    </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-json.min.js"></script>
+<!-- SCRIPT -->
+<script>
+try {
+
+	const printJSON    = data => {
+
+		return '<pre><code class="language-json">' + 
+	window.Prism.highlight( JSON.stringify( data, null, 2 ), window.Prism.languages.json, 'json' ) + 
+	'</code></pre>'
+
+	}
+	const writeMessage = ( input, message, isFirst = false ) => {
+
+		if( isFirst ) input.innerHTML   = message
+		else input.textContent = input.textContent + message
+		input.scrollTop = input.scrollHeight
+	
+	}
+	document.getElementById( 'upload-form' ).addEventListener( 'submit', async event => {
+
+		event.preventDefault()
+		const startTime = performance.now()
+
+		const timeDiv       = document.getElementById( 'time' )
+		const search        = document.getElementById( 'search' )
+		const serverInput   = document.getElementById( 'server-url' )
+		const outputDiv     = document.getElementById( 'output' )
+		const errorDiv      = document.getElementById( 'error' )
+		const getDetailsDiv = document.getElementById( 'get-details' )
+		const getDiv        = document.getElementById( 'get-message' )
+
+		let res
+	
+		const server    = serverInput.value || 'http://localhost:13129'
+		const url       = server.endsWith( '/' ) ? server + 'exts/' : server + '/exts/'
+		const searchURL = url + 'search'
+		const getURL    = url + 'get'
+
+		getDiv.innerHTML        = 'Uploading...'
+		getDetailsDiv.innerHTML = ''
+		errorDiv.innerHTML      = ''
+		timeDiv.innerHTML       = ''
+
+		try {
+
+			const searchRes = await fetch( searchURL + `?value=${search.value}` )
+			
+			res = searchRes
+			if ( !searchRes.ok ) throw new Error( `Network response in ${searchURL} was not ok ${searchRes.statusText}` )
+
+			const searchData  = await searchRes.json()
+			const searchValue = searchData[0]
+			res               = searchValue
+			console.log( {
+				search : searchData,
+				searchValue,
+			} )
+			const getRes = await fetch( getURL, {
+				method  : 'POST',
+				headers : {
+					'Content-Type' : 'application/json',
+				},
+				body : JSON.stringify( {
+					from  : 'url',
+					value : searchValue,
+				} ),
+			} )
+
+			res = getRes
+
+			if ( !getRes.ok ) throw new Error( `Network response in ${getURL} was not ok ${getRes.statusText}` )
+			const getData = await getRes.json()
+			res           = getData
+			console.log( {
+				get : getData,
+			} )
+			writeMessage(
+				getDiv,
+				printJSON( {
+					...getData, files : '',
+				} ),
+				true,
+			)
+
+		} catch ( error ) {
+
+			writeMessage(
+				errorDiv, 
+				printJSON( {
+					message  : error.message,
+					stack    : error.stack || '',
+					response : res ? res : 'No error in fetch function',
+				} ),
+				true,
+			)
+
+			console.error( error )
+
+		}finally {
+
+			const endTime     = performance.now()
+			const timeTaken   = ( endTime - startTime ).toFixed( 2 )
+			const timeSeconds = ( ( endTime - startTime ) / 1000 ).toFixed( 2 )
+
+			writeMessage(
+				timeDiv,
+				`${timeTaken} ms [${timeSeconds}s]`,
+			)
+			
+			console.log( {
+				output    : outputDiv.value,
+				res       : res,
+				typeofRes : typeof res,
+			} )
+
+		}
+
+	} )
+
+}
+catch( e ){
+
+	const errorDiv     = document.getElementById( 'error' )
+	errorDiv.innerHTML = `[GOBAL] Error: ${e.message}`
+
+}
+
+</script>
+<style>
+	code[class*="language-"], pre[class*="language-"] {
+		text-shadow: none !important;
+	}
+	.message-body > div{
+	    max-height: 400px;
+    	overflow: scroll;
+	}
+</style>
+</body>
+</html>

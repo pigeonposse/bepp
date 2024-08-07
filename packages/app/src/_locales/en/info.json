@@ -1,0 +1,8 @@
+{
+	"subtitle": "An easy-to-use Cross-Browser extension packager",
+	"desc": {
+		"1": "The BEPP app is a tool designed to simplify the process of packaging cross-browser extensions.",
+		"2": "With BEPP, you can easily convert your extension for Safari, Chrome, Firefox, Edge, Brave, and other popular browsers, all from a single platform.",
+		"3": "In addition, the App allows you to search for extensions on the web and convert them. Forget about the complications of adapting your extension for each browser separately; BEPP makes it quick and easy so you can focus on what really matters."
+	}
+}

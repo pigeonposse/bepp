@@ -3,12 +3,11 @@
  *
  * @description File for set logger functions.
  */
-import { Spinner }                 from '@topcli/spinner'
-import pino                        from 'pino'
-import chalk                       from 'chalk'
-import pretty                      from 'pino-pretty'
-import type { QuestionCollection } from 'inquirer'
-import inquirer                    from 'inquirer'
+import { Spinner } from '@topcli/spinner'
+import pino        from 'pino'
+import chalk       from 'chalk'
+import pretty      from 'pino-pretty'
+import enquirer    from 'enquirer'
 
 export type SpinnerFunct = ReturnType< Logger['spinner']>
 
@@ -94,15 +93,15 @@ export class Logger {
 		}
 
 	}
-
-	async ask( questions: QuestionCollection ){
-
-		return await inquirer.prompt( questions )
+	ask = enquirer.prompt
+	// async ask( questions: Parameters<typeof enquirer.prompt>[0] ){
+		
+	// 	return await enquirer.prompt( questions )
 	
-	}
+	// }
     
 	time(){
-        
+
 		let start: number | undefined, 
 			stop: number | undefined
 
