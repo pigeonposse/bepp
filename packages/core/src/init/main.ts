@@ -128,7 +128,7 @@ export class InitCore extends SuperCore {
 			
 					const schemaUrl = this.version ? 
 						`https://raw.githubusercontent.com/pigeonposse/bepp/${this.version}/packages/core/schema.json` :
-						'https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/src/build/config/schema.json'
+						'https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/schema.json'
 					
 					const defaultConfig = {
 						$schema : schemaUrl,

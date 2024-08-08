@@ -45,7 +45,7 @@
 		"@hono/swagger-ui": "0.4.0",
 		"@hono/zod-openapi": "0.15.1",
 		"archiver": "7.0.1",
-		"hono": "4.5.3",
+		"hono": "4.5.4",
 		"jszip": "3.10.1"
 	}
 }

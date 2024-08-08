@@ -68,11 +68,16 @@ This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, 
 
 - [Documentation](https://bepp.pigeonposse.com/)
 - [Installation](https://bepp.pigeonposse.com/guide/getting-started#installation)
+- [GitHub Action Documentation]( https://bepp.pigeonposse.com/guide/gh-action )
+- [Api Documentation]( https://bepp.pigeonposse.com/guide/api )
+- [App Documentation]( https://bepp.pigeonposse.com/guide/app )
+- [Docker Documentation]( https://bepp.pigeonposse.com/guide/container )
+
+Guides:
 - [Init](https://bepp.pigeonposse.com/guide/init)
 - [Build multiple extensions](https://bepp.pigeonposse.com/guide/build)
 - [Build extensions with config file](https://bepp.pigeonposse.com/guide/build/config-file)
 - [Build Safari extension](https://bepp.pigeonposse.com/guide/build/safari)
-- [GitHub action Documentation]( https://bepp.pigeonposse.com/guide/gh-action )
 
 <!-- PIGEONPOSSE END INDEX -->
 

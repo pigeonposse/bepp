@@ -11,7 +11,7 @@
 						"string",
 						"null"
 					],
-					"description": "The JSON schema for the bepp config. Bepp has his own schema in: https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/src/build/config/schema.json"
+					"description": "The JSON schema for the bepp config.  Bepp has his own schema in: https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/schema.json"
 				},
 				"shared": {
 					"type": "object",

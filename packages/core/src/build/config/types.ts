@@ -63,8 +63,9 @@ export type BuildConfig = {
 }
 export type BuildConfigSchema = BuildConfig & {
     /**
-     * The JSON schema for the bepp config. Bepp has his own schema in: https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/src/build/config/schema.json
-     *
+     * The JSON schema for the bepp config. 
+	 * Bepp has his own schema in: https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/schema.json
+     * @example https://raw.githubusercontent.com/pigeonposse/bepp/main/packages/core/schema.json
      */
     $schema?: string | null
 }
