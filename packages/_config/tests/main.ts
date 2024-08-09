@@ -59,7 +59,7 @@ export const test = ( fn: ( args: TestParams ) => Promise<void> ) => {
 								if( !res && !expected ) resolve( false )
 								else resolve( true )
 							
-							}catch( e ){
+							}catch( _e ){
 
 								reject( false )
 							

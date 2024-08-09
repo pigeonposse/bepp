@@ -7,6 +7,7 @@ const workspaceDir     = pkg.dir
 const workspacePkg     = joinPath( workspaceDir, 'package.json' )
 const packagesDir      = joinPath( workspaceDir, 'packages' )
 const documentationDir = joinPath( workspaceDir, 'docs' )
+const todoDir          = joinPath( documentationDir, 'todo' )
 const devDir           = joinPath( workspaceDir, '.dev' )
 
 const coreDir = joinPath( packagesDir, 'core' )
@@ -35,6 +36,7 @@ export const paths = {
 	workspacePkg,
 	packagesDir,
 	documentationDir,
+	todoDir,
 	devDir,
 	coreDir,
 	corePkg,

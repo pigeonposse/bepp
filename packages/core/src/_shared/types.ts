@@ -109,7 +109,8 @@ export type UncompressFunct = {
 /**
  * Super CLI.
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type Program = Command<[], {}>
 
 export type CmdSharedOptions = {
@@ -141,9 +142,9 @@ export type CmdParamsWithValue = CmdSharedParams & {
     name: string
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type CmdActionParam = ( args_0: {}, args_1: Command<[], {}> ) => void | Promise<void>
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type CmdActionWithValueParam = ( args_0: string, args_1: {}, args_2: Command<[string], {}> ) => void | Promise<void>;
 type CmdActionParamType<T> = T extends CmdParamsWithValue ? CmdActionWithValueParam : CmdActionParam
 

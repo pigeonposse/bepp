@@ -63,8 +63,8 @@
 		"update-version-files": "node .dev/update-version/main.mjs",
 		"release-action": "bash ./.dev/action.sh $@",
 		"release": "changeset publish",
-		"todo": "node --experimental-modules .dev/todo.mjs",
-		"readme": "node --experimental-modules .dev/readme.mjs"
+		"todo": "node .dev/todo.mjs",
+		"readme": "node .dev/readme.mjs"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "0.5.0",
@@ -75,8 +75,8 @@
 		"@types/archiver": "6.0.2",
 		"@types/figlet": "^1.5.8",
 		"@types/node": "22.1.0",
-		"@typescript-eslint/eslint-plugin": "7.18.0",
-		"@typescript-eslint/parser": "7.18.0",
+		"@typescript-eslint/eslint-plugin": "8.0.1",
+		"@typescript-eslint/parser": "8.0.1",
 		"@vercel/ncc": "0.38.1",
 		"@yao-pkg/pkg": "5.12.0",
 		"archiver": "7.0.1",
@@ -91,13 +91,13 @@
 		"eslint": "8.57.0",
 		"eslint-plugin-align-assignments": "1.1.2",
 		"eslint-plugin-align-import": "1.0.0",
-		"eslint-plugin-html": "7.1.0",
+		"eslint-plugin-html": "8.1.1",
 		"eslint-plugin-import": "2.29.1",
-		"eslint-plugin-jsdoc": "46.10.1",
-		"eslint-plugin-json": "3.1.0",
+		"eslint-plugin-jsdoc": "50.0.0",
+		"eslint-plugin-json": "4.0.1",
 		"eslint-plugin-jsonc": "2.16.0",
-		"eslint-plugin-promise": "6.6.0",
-		"eslint-plugin-yaml": "0.5.0",
+		"eslint-plugin-promise": "7.1.0",
+		"eslint-plugin-yml": "1.14.0",
 		"figlet": "1.7.0",
 		"git-cz": "4.9.0",
 		"husky": "9.1.4",
@@ -114,8 +114,9 @@
 		"turbo": "2.0.12",
 		"typescript": "5.5.4",
 		"vite": "5.4.0",
-		"vite-plugin-dts": "4.0.1",
-		"vitest": "2.0.5"
+		"vite-plugin-dts": "4.0.2",
+		"vitest": "2.0.5",
+		"yaml-eslint-parser": "1.2.3"
 	},
 	"commitlint": {
 		"extends": [

@@ -84,6 +84,7 @@ export class SuperCore {
 		}catch( e ){
 
 			// @ts-ignore
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 			log.failed( e.message ) || this.log.fatal( e.message )
 
 			if( values.exit ) process.exit( 1 )

@@ -63,7 +63,8 @@ export class SuperCLI {
 		} )
 	
 	}
-	// eslint-disable-next-line @typescript-eslint/ban-types
+
+	// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 	private addOptions<Args extends unknown[] = [], Opts extends OptionValues = {}>( cmdInstance: Command<Args, Opts> ) {
         
 		const baseOption = ( value: string, desc: string, defaultValue: unknown ) => {

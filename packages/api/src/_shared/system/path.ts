@@ -35,7 +35,7 @@ export class Path extends SystemSuper {
 			await this.#access( path )
 			return true
 
-		} catch ( err ) {
+		} catch ( _e ) {
 
 			return false
 

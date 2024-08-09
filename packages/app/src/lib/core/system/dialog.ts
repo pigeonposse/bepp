@@ -6,7 +6,7 @@ export class Dialog {
 
 			return window?.__TAURI__?.dialog ? true : false
 		
-		}catch( e ){
+		}catch( _e ){
 
 			return false
 		

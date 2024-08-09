@@ -128,7 +128,7 @@ export class ExtensionManifest implements ApiSuper{
 				url     : await this.#system.fs.convertBase64ToBlobUrl( iconBase64, 'image/png' ),
 			}
 		
-		}catch( e ){
+		}catch( _e ){
 
 			return undefined
 		

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { prettyJSON }           from 'hono/pretty-json'
 import { cors as corsFunction } from 'hono/cors'
@@ -183,7 +184,7 @@ export class App<Env extends object> extends AppSuper<Env>{
 
 		super()
 
-		if( jsonResponse ) this.#jsonResponse
+		if( jsonResponse ) this.#jsonResponse = jsonResponse
 		if( port ) this.port = port
 		if( version ) this.version = version
 		if( title ) this.title = title

@@ -1,28 +1,34 @@
 /**
- * TODO inquirer.
+ * TODO prompt.
  *
- * @description Add inquirer for edit project TODO List.
+ * @description Add prompt for edit project TODO List.
  */
 
-import inquirer from 'inquirer'
-import path     from 'node:path'
-import fs       from 'node:fs/promises'
-import { exec } from './core/main.mjs'
+import {
+	exec, 
+	getFilteredFileNames, 
+	joinPath, 
+	paths, 
+	prompt,
+} from './core/main.mjs'
 
 const main = async () => {
 
 	try {
 
-		const currentDir       = path.dirname( new URL( import.meta.url ).pathname )
-		const todoFolderPath   = path.resolve( currentDir, '../docs/todo/' )
-		const files            = await fs.readdir( todoFolderPath )
-		const fileNames        = files.map( file => file.replace( '.md', '' ) )
+		const todoFolderPath = paths.todoDir
+		const fileNames      = await getFilteredFileNames( {
+			path       : todoFolderPath,
+			extensions : [
+				'.md',
+			],
+		} )
+
 		const logFilesPathList = async () => {
 
-			const files = await fs.readdir( todoFolderPath )
 			console.group( '\nList of files in the "TODO" folder:' )
-			files.forEach( file =>
-				console.log( '- 🔗 ' + file.replace( '.md', '' ) + ': ' + path.join( todoFolderPath, file ) ),
+			fileNames.forEach( file =>
+				console.log( '- 🔗 ' + file.replace( '.md', '' ) + ': ' + joinPath( todoFolderPath, file ) ),
 			)
 			console.groupEnd()
 
@@ -31,13 +37,13 @@ const main = async () => {
 		const logFilePath    = async fileName => {
 
 			console.group( '\nTODO file path:' )
-			console.log( '- 🔗 ' + fileName + ': ' + path.join( todoFolderPath, fileName + '.md' ) )
+			console.log( '- 🔗 ' + fileName + ': ' + joinPath( todoFolderPath, fileName + '.md' ) )
 			console.groupEnd()
 		
 		}
 		const logFileContent = async fileName => {
 
-			const selectedFilePath = path.join( todoFolderPath, fileName + '.md' )
+			const selectedFilePath = joinPath( todoFolderPath, fileName + '.md' )
 			console.log( '\nFile content:\n' )
 			console.group()
 			await exec( 'md ' + selectedFilePath )
@@ -45,7 +51,7 @@ const main = async () => {
 		
 		}
 
-		const firstAnswers = await inquirer.prompt( [
+		const firstAnswers = await prompt( [
 			{
 				type    : 'list',
 				name    : 'selectedFile',
@@ -58,7 +64,7 @@ const main = async () => {
 
 		if ( firstAnswers.selectedFile !== 'Exit' ) {
 
-			const answers = await inquirer.prompt( [
+			const answers = await prompt( [
 				{
 					type    : 'confirm',
 					name    : 'showInConsole',

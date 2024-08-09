@@ -68,7 +68,7 @@ export class SearchEdgeStore extends SuperSearchBrowserStore implements SearchBr
 
 			return res
 		
-		}catch( e ){
+		}catch( _e ){
 
 			// console.error( e )
 			return undefined
@@ -88,7 +88,7 @@ export class SearchEdgeStore extends SuperSearchBrowserStore implements SearchBr
 			const data = await this.#getExtData( addon ) 
 			return data
 		
-		}catch( e ){
+		}catch( _e ){
 
 			// console.error( e )
 			return undefined
@@ -123,7 +123,7 @@ export class SearchEdgeStore extends SuperSearchBrowserStore implements SearchBr
 				url,
 			}
 		
-		}catch( e ){
+		}catch( _e ){
 
 			return undefined
 	

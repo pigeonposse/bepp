@@ -76,7 +76,7 @@ export class SearchChromeStore extends SuperSearchBrowserStore implements Search
 						downloadURL,
 					}
 				
-				}catch( e ){
+				}catch( _e ){
 	
 					return data
 				
@@ -86,7 +86,7 @@ export class SearchChromeStore extends SuperSearchBrowserStore implements Search
 	
 			return res
 		
-		}catch( e ){
+		}catch( _e ){
 	
 			return undefined
 		
@@ -129,7 +129,7 @@ export class SearchChromeStore extends SuperSearchBrowserStore implements Search
 				url,
 			}
 		
-		}catch( e ){
+		}catch( _e ){
 
 			return undefined
 	

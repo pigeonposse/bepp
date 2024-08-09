@@ -21,8 +21,7 @@ export const platforms = {
 	UNKNOWN   : 'unknown',
 } as const
 
-const platformsArray = Object.values( platforms )
-type Platform = typeof platformsArray[number]
+type Platform = typeof platforms[keyof typeof platforms]
 
 export class System {
 

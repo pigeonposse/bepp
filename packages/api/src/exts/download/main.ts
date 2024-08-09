@@ -36,7 +36,7 @@ export class Download implements ApiSuper{
 			
 			throw new this.Error( this.errorID.unidentified )	
 		
-		}catch( e ){
+		}catch( _e ){
 
 			throw new this.Error( this.errorID.unidentified )	
 		

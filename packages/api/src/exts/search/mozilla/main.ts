@@ -57,7 +57,7 @@ export class SearchMozillaStore extends SuperSearchBrowserStore implements Searc
 				store       : extensionStoreId.mozilla,
 			}
 		
-		}catch( e ){
+		}catch( _e ){
 
 			// console.log( e )
 			return undefined
@@ -101,7 +101,7 @@ export class SearchMozillaStore extends SuperSearchBrowserStore implements Searc
 		
 			return this.#getMozillaAddonData( addon )
 		
-		}catch( e ){
+		}catch( _e ){
 
 			return undefined
 	

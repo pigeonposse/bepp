@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { test } from '@bepp/config/tests'
 import { init } from './main'
 

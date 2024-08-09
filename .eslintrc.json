@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/eslintrc.json",
 	"root": true,
 	"env": {
 		"node": true,
@@ -15,8 +16,7 @@
 		"align-import",
 		"align-assignments",
 		"promise",
-		"jsonc",
-		"yaml"
+		"jsonc"
 	],
 	"extends": [
 		"eslint:recommended",
@@ -306,6 +306,18 @@
 						"disallowTypeAnnotations": false
 					}
 				],
+				"@typescript-eslint/no-unused-vars": [
+					"error",
+					{
+						"args": "all",
+						"argsIgnorePattern": "^_",
+						"caughtErrors": "all",
+						"caughtErrorsIgnorePattern": "^_",
+						"destructuredArrayIgnorePattern": "^_",
+						"varsIgnorePattern": "^_",
+						"ignoreRestSiblings": true
+					}
+				],
 				"@typescript-eslint/ban-ts-comment": "off"
 			}
 		},
@@ -319,8 +331,9 @@
 				"**/*.yml"
 			],
 			"extends": [
-				"plugin:yaml/recommended"
-			]
+				"plugin:yml/recommended"
+			],
+			"parser": "yaml-eslint-parser"
 		},
 		/**
 		 * JSON config.

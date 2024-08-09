@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 type WriteFileParams = {
 	path: string | URL
 	data: string
@@ -22,7 +23,7 @@ export class Fs {
 		try {
 
 			return window?.__TAURI__?.fs && window?.__TAURI__?.path ? true : false
-		
+	
 		}catch( e ){
 
 			return false

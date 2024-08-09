@@ -4,9 +4,10 @@
  * @description Readme.
  */
 
-import { readme }             from './templates/readme.mjs'
+import { readme }        from './templates/readme.mjs'
 import {
-	pkg, addTextBetweenAMark, 
+	pkg, 
+	addTextBetweenAMark, 
 } from './core/main.mjs'
 
 const dynamicReadme = async () => {

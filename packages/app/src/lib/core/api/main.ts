@@ -93,7 +93,7 @@ export class Api extends ApiSuper<ApiError>{
 			} )
 			return data.ok && data.bepp ? true : false
 		
-		}catch( e ){
+		}catch( _e ){
 
 			return false
 		
@@ -138,7 +138,7 @@ export class Api extends ApiSuper<ApiError>{
 			
 			}else if( !existServer ) throw Error( 'Server not found' )
 		
-		}catch( e ){
+		}catch( _e ){
 
 			// console.log( e )
 			this.apiGeneralError.set( this.ERROR.START_SERVER )

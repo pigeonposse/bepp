@@ -1,8 +1,9 @@
 // @ts-nocheck
 import { spawn } from 'node:child_process'
+import inquirer  from 'inquirer'
 
 export const isDev = () => process.env.NODE_ENV !== 'production'
-
+export const prompt = inquirer.prompt
 export const exec = async cmd => {
 
 	console.log( `🐢 CMD: ${cmd}` )

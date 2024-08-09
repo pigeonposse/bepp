@@ -45,6 +45,33 @@ export const writeFile = async ( path, data ) => {
 	await fs.promises.writeFile( path, data, 'utf8' )
 
 }
+
+export const getExtName = path.extname
+export const getBaseName = path.basename
+
+/**
+ * Gets the file names in a directory and filters them by extension.
+ *
+ * @param   {object}            props            - Function props.
+ * @param   {string}            props.path       - Path to the directory.
+ * @param   {string[]}          props.extensions - Array of extensions to filter by, e.g., ['.md', '.txt'].
+ * @returns {Promise<string[]>}                  - A promise that resolves with an array of file names without extensions.
+ */
+export async function getFilteredFileNames( { path, extensions = [] } ) {
+
+	const files = await fs.promises.readdir( path )
+	
+	const filteredFileNames = files.filter( file => {
+
+		const ext = getExtName( file )
+		return extensions.includes( ext )
+			
+	} ).map( file => getBaseName( file, getExtName( file ) ) )
+
+	return filteredFileNames
+
+}
+
 export const readFile = async path => {
 
 	return await fs.promises.readFile( path, 'utf8' )
