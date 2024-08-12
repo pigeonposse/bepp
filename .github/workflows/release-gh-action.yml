@@ -17,6 +17,9 @@ on:
         required: true
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+
 
 ###############################################################################
 # JOBS
@@ -32,7 +35,6 @@ jobs:
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
       MAYOR_VERSION: ${{ github.event.inputs.mayor }}
-      GITHUB_TOKEN: ${{ github.token }}
 
     steps:
 

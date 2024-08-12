@@ -73,7 +73,7 @@ jobs:
       - name: Release binaries
         uses: ncipollo/release-action@v1
         with: 
-          tag: "${{ env.UPDATED_VERSION }}"
+          tag: "BEPP v${{ env.UPDATED_VERSION }}"
           draft: false
           prerelease: false
           allowUpdates: true

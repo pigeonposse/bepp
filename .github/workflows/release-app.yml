@@ -11,6 +11,11 @@ on:
         description: 'Set number for release version'
         type: string
         required: true
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+  REPO_TEST: ${{ github.repository }}:test
+  REPO_LATEST: ${{ github.repository }}:latest
 
 ###############################################################################
 # JOBS
@@ -34,10 +39,6 @@ jobs:
     timeout-minutes: 20
     runs-on: ${{ matrix.settings.platform }}
     env:
-      GITHUB_TOKEN: ${{ github.token }}
-      NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-      REPO_TEST: ${{ github.repository }}:test
-      REPO_LATEST: ${{ github.repository }}:latest
       UPDATED_VERSION: ${{ github.event.inputs.version }}
 
     steps:
@@ -132,7 +133,8 @@ jobs:
           projectPath: 'packages/app'
           tagName: "${{ env.UPDATED_VERSION }}" 
           releaseName: '${{ steps.pkg.outputs.name }} v${{ env.UPDATED_VERSION }}'
-          releaseBody: ${{steps.pkg.outputs.release_body}}
+          releaseBody: |
+            ${{steps.pkg.outputs.release_body}}
           releaseDraft: false
           prerelease: false
           includeUpdaterJson: true
