@@ -29,6 +29,7 @@ export const generateASCII = ( projectName = '', collectiveName = 'PIGEON\nPOSSE
 	} )
 
 }
+
 export const constructorLinks = ( links, type = 'link' ) => {
 	
 	let res = ''
