@@ -82,5 +82,6 @@ jobs:
           prerelease: false
           allowUpdates: true
           artifacts: "packages/core/build/zip/*,packages/api/build/zip/*"
-          body: ${{steps.pkg.outputs.release_body}}
+          body: |
+            ${{steps.pkg.outputs.release_body}}
           omitBodyDuringUpdate: true
