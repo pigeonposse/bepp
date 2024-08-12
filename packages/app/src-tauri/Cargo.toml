@@ -2,7 +2,7 @@
 # Some of this are used in build process of tauri
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 name = "bepp-app"
-version = "1.3.8"
+version = "1.3.9"
 description = "🎬🎨🧩 Add styles to web video like iFrames, YouTube & Vimeo videos, Netflix, Amazon etc"
 authors = ["angelo <angelo@pigeonposse.com>"]
 # license = "GPL-3.0"

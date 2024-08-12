@@ -1,5 +1,14 @@
 # @bepp/docs
 
+## 1.3.9
+
+### Patch Changes
+
+- update ci
+
+- Updated dependencies []:
+  - @bepp/api@1.3.9
+
 ## 1.3.8
 
 ### Patch Changes

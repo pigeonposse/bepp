@@ -72,11 +72,6 @@ jobs:
       - name: 🏗 Run tests
         run: pnpm test 
 
-      - name: test BEPP action
-        uses: ./
-        with:
-          file: 'packages/_config/config/linux-ci.json'
-
       - name: 🚪 Exit here if is pull request
         if: github.event_name == 'pull_request'
         run: |
@@ -168,3 +163,11 @@ jobs:
           workflow: release-app.yml
           inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
         continue-on-error: true
+
+      - name: test BEPP action
+        if: steps.updated.outputs.core_version != ''
+        uses: ./
+        with:
+          file: 'packages/_config/config/linux-ci.json'
+        continue-on-error: true
+		

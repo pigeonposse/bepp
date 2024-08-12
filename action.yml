@@ -18,14 +18,11 @@ runs:
         node-version: 20
         cache: 'pnpm'
     - name: ⬇️📦 Install dependencies
-      run: pnpm install --no-frozen-lockfile
+      run: pnpm install @bepp/core
       shell: bash
 
-    - name: 🧩📦 Build bepp core
-      run: pnpm --filter core build-ci
-      shell: bash
     - name: 🧩📦 Execute bepp
-      run: node packages/core/build/cjs/index.cjs build --verbose -c '${{ inputs.file }}'
+      run: pnpm exec bepp build --verbose -c '${{ inputs.file }}'
       shell: bash
 
 branding:
