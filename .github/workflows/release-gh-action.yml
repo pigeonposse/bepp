@@ -1,0 +1,75 @@
+###############################################################################
+# RELEASE GH ACTION
+###############################################################################
+
+name: 🚀🤖 Release GH Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Set number for release version. Example: 1.2.15, 0.22.1 etc'
+        type: string
+        required: true
+      mayor:
+        description: 'Set MAYOR version number for the release. Example: 1, 2, 3, 4 etc'
+        type: string
+        required: true
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+  deploy:
+    name: 🚀🤖 Release GH Action
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    env:
+      UPDATED_VERSION: ${{ github.event.inputs.version }}
+      MAYOR_VERSION: ${{ github.event.inputs.mayor }}
+      GITHUB_TOKEN: ${{ github.token }}
+
+    steps:
+
+      #########################################################################
+      # INIT 
+      #########################################################################
+
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+        with:
+          access_token: ${{ env.GITHUB_TOKEN }}
+
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      #########################################################################
+      # BUILD PKG
+      #########################################################################
+
+      - name: 🔑 Install PNPM
+        uses: pnpm/action-setup@v2
+
+      - name: 📦 Install pkg dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      ###################################################################
+      # BUILD AND DEPLOY
+      ###################################################################
+
+      - name: 🏗 Build package
+        run: |
+          pnpm build:action 
+
+      - name: Release action
+        run: pnpm release-action '${{env.UPDATED_VERSION }}' '${{env.MAYOR_VERSION }}'
+

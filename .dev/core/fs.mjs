@@ -42,11 +42,18 @@ export const copyFile = async ( { input, output } ) => {
 }
 export const writeFile = async ( path, data ) => {
 
+	const dir = getDirName( path )
+        
+	await fs.promises.mkdir( dir, {
+		recursive : true, 
+	} )
+
 	await fs.promises.writeFile( path, data, 'utf8' )
 
 }
 
 export const getExtName = path.extname
+export const getDirName = path.dirname
 export const getBaseName = path.basename
 
 /**

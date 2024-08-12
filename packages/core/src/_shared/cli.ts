@@ -4,7 +4,7 @@
  * @description File for set cli functions.
  */
 import {
-	version, name, description, 
+	version, name, description, docsPath,
 } from './const'
 
 import {
@@ -17,7 +17,7 @@ import type {
 } from './types'
 import type { OptionValues } from '@commander-js/extra-typings'
 
-const moreInfoLink = ( path: string | undefined = undefined ) => `\nMore info: ${chalk.italic.gray.underline( 'https://bepp.pigeonposse.com/guide/' + ( path ? path : '' ) )}\n`
+const moreInfoLink = ( path: string | undefined = undefined ) => `\nMore info: ${chalk.italic.gray.underline( 'https://bepp.pigeonposse.com' + docsPath + ( path ? path : '' ) )}\n`
 
 export const setupProgram = ( cb: ( program: Program ) => void ) => {
     
@@ -26,7 +26,7 @@ export const setupProgram = ( cb: ( program: Program ) => void ) => {
 	program
 		.name( name )
 		.description( chalk.blackBright( description ) )
-		.addHelpText( 'after', moreInfoLink( 'getting-started' ) )
+		.addHelpText( 'after', moreInfoLink( ) )
 		.version( chalk.green( version ), '-V, --version', chalk.gray( 'Output the version number' ) )
 		.helpOption( '-h, --help',chalk.gray( 'Display help for command' ) )
 		.helpCommand( 'help [command]', chalk.gray( 'Display help for command' ) )

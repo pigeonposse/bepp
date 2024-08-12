@@ -1,0 +1,182 @@
+###############################################################################
+# RELEASE 
+###############################################################################
+
+name: ✅ Tests and check for updates
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+  checks:
+    name: ✅ Test and check for updates
+    runs-on: ubuntu-latest
+    steps:
+
+      #########################################################################
+      # INIT
+      #########################################################################
+
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+        with:
+          access_token: ${{ env.GITHUB_TOKEN }}
+
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐙😺 Check GitHub API Rate Limit
+        id: rate_limit
+        run: |
+          response=$(gh api rate_limit)
+          limit=$(echo $response | jq -r '.resources.core.limit')
+          remaining=$(echo $response | jq -r '.resources.core.remaining')
+          echo "GitHub API Rate Limit: $remaining/$limit"
+
+          if [ "$remaining" -lt 10 ]; then
+              exit 1
+          fi
+        env:
+            GH_TOKEN: ${{ env.GITHUB_TOKEN }}
+
+      - name: ⬇️🟢 Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: ⬇️🥡 Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: ⬇️📦 Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: ⬇️🌐 Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+
+      #########################################################################
+      # BUILD
+      #########################################################################
+
+      - name: 🏗 Build packages
+        run: |
+          pnpm build:packages
+          pnpm test 
+          echo "Build on Ubuntu completed successfully."
+
+      - name: 🚪 Exit here if is pull request
+        if: github.event_name == 'pull_request'
+        run: |
+          gh run cancel ${{ github.run_id }}
+          gh run watch ${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{env.GITHUB_TOKEN }}
+
+
+      #########################################################################
+      #########################################################################
+      # UPDATE VERSIONS
+      #########################################################################
+      #########################################################################
+
+      - name: 📣 Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          title: "chore(release): version packages 🦋"
+          publish: pnpm exec changeset publish
+          version: pnpm exec changeset version
+          commit: "chore(release): version packages 🦋 [skip ci]"
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
+
+      - name: Get updated versions if exists
+        id: updated
+        run: |
+          docs_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "@bepp/docs") | .version')
+          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r 'map(select(.name == "@bepp/gh-action" or .name == "@bepp/core" or .name == "@bepp/bepp")) | .[0].version // empty' )
+          core_version_major=${core_version%%.*}
+          echo Set changesets outputs
+          echo '${{ steps.changesets.outputs }}'
+          echo Set updated versions
+          echo "CORE=$core_version CORE_MAJOR=$core_version_major DOCS=$docs_version"
+          echo "core_version=$core_version" >> $GITHUB_OUTPUT
+          echo "docs_version=$docs_version" >> $GITHUB_OUTPUT
+          echo "core_version_major=$core_version_major" >> $GITHUB_OUTPUT
+
+      #########################################################################
+      # UPDATE REPO INFO
+      #########################################################################
+      - name: Check for changes in package.json
+        run: |
+          git fetch origin main
+          git diff --name-only HEAD origin/main | grep 'package.json' || echo "No changes in package.json"
+        continue-on-error: true
+        id: check_package_json
+
+      - name: ℹ️🐙😺➡️ Update repo info
+        if: steps.check_package_json.outputs.stdout != 'No changes in package.json'
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: update-repo-info.yml
+        continue-on-error: true
+
+      #########################################################################
+      # DOCS
+      #########################################################################
+
+      - name: 📚🐙😺➡️ Call to workflow for deploy Documentation
+        if: steps.updated.outputs.docs_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release-docs.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.docs_version }}"}'
+        continue-on-error: true
+
+      #########################################################################
+      # GH ACTION
+      #########################################################################
+
+      - name: 🤖🐙😺➡️ Call to workflow for deploy gh action
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release-gh-action.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}", "mayor": "${{ steps.updated.outputs.core_version_major }}"}'
+        continue-on-error: true
+
+      #########################################################################
+      # APP & BINS
+      #########################################################################
+
+      - name: 💾🐙😺➡️ Call to workflow for create binary releases
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release-bins.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
+        continue-on-error: true
+
+      - name: 🖥️🐙😺➡️ Call to workflow for create Github app releases
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release-app.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
+        continue-on-error: true

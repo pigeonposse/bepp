@@ -1,12 +1,16 @@
 {
 	"name": "@bepp/api",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"type": "module",
 	"license": "GPL-3.0",
 	"homepage": "https://bepp.pigeonposse.com/guide/api",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/pigeonposse/bepp/packages/api"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
 	},
 	"module": "dist/app.js",
 	"main": "dist/app.js",
@@ -20,8 +24,8 @@
 	"scripts": {
 		"dev": "vite dev",
 		"start": "vite dev",
-		"start:old": "pnpm build:rm && pnpm build:lib && vite preview",
-		"build": "run-s build:*",
+		"start-old": "pnpm build:rm && pnpm build:lib && vite preview",
+		"build": "pnpm run --sequential \"/^build:.*/\"",
 		"build:rm": "rimraf dist && rimraf build",
 		"build:lib": "vite build",
 		"build:schema": "node .dev/schema.js",
@@ -29,7 +33,7 @@
 		"build:bin-file": "ncc build dist/node.cjs -o build/cjs -m -C",
 		"build:bin": "pkg pkg.config.json --compress GZip",
 		"build:zip": "node .dev/zip.js",
-		"test": "run-s test:*",
+		"test": "pnpm run --sequential \"/^test:.*/\"",
 		"test:unit": "vitest run src --passWithNoTests",
 		"test:e2e": "playwright test",
 		"lint": "pnpm eslint src"

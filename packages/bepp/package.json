@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/bepp",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"license": "GPL-3.0",
@@ -31,7 +31,7 @@
 	"scripts": {
 		"dev": "node src/main.js",
 		"dev:bin": "node bin/main.js",
-		"test-bin": "vitest run -r tests"
+		"test": "vitest run -r tests"
 	},
 	"dependencies": {
 		"@bepp/core": "workspace:*"

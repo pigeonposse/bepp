@@ -1,0 +1,76 @@
+###############################################################################
+# RELEASE DOCS
+###############################################################################
+
+name: 🚀📚 Release Documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Set number for release version'
+        type: string
+        required: true
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+  deploy:
+    name: 🚀📚 Release Documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      UPDATED_VERSION: ${{ github.event.inputs.version }}
+
+    steps:
+
+      #########################################################################
+      # INIT
+      #########################################################################
+
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+        with:
+          access_token: ${{ env.GITHUB_TOKEN }}
+
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      #########################################################################
+      # BUILD PKG
+      #########################################################################
+
+      - name: 🔑 Install PNPM
+        uses: pnpm/action-setup@v2
+
+      - name: 📦 Install pkg dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      ###################################################################
+      # BUILD AND DEPLOY
+      ###################################################################
+
+      - name: 🏗 Build package
+        run: pnpm build:docs
+
+      - name: 🌥 Deploy in cloudflare pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          projectName: "bepp"
+          directory: 'packages/docs/dist'
+          wranglerVersion: '3'

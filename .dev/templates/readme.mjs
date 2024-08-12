@@ -84,17 +84,17 @@ const index = pkg => {
 
 	return `
 - [Documentation](${pkg.data.homepage})
-- [Installation](${joinUrl( pkg.data.homepage, 'guide/getting-started#installation' )})
-- [GitHub Action Documentation]( ${joinUrl( pkg.data.homepage, '/guide/gh-action' )} )
-- [Api Documentation]( ${joinUrl( pkg.data.homepage, '/guide/api' )} )
-- [App Documentation]( ${joinUrl( pkg.data.homepage, '/guide/app' )} )
-- [Docker Documentation]( ${joinUrl( pkg.data.homepage, '/guide/container' )} )
+- [Installation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/getting-started#installation' )})
+- [GitHub Action Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.gh )} )
+- [Api Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.api )} )
+- [App Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.app )} )
+- [Docker Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.container )} )
 
 Guides:
-- [Init](${joinUrl( pkg.data.homepage, '/guide/init' )})
-- [Build multiple extensions](${joinUrl( pkg.data.homepage, '/guide/build' )})
-- [Build extensions with config file](${joinUrl( pkg.data.homepage, '/guide/build/config-file' )})
-- [Build Safari extension](${joinUrl( pkg.data.homepage, '/guide/build/safari' )})
+- [Init](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/init' )})
+- [Build multiple extensions](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib,'/build' )})
+- [Build extensions with config file](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib,'/build/config-file' )})
+- [Build Safari extension](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/build/safari' )})
 `
 
 }
@@ -155,8 +155,8 @@ jobs:
   
 \`\`\`
 
-- [GH action documentation](${joinUrl( pkg.data.homepage, '/guide/gh-action' )})
-- [Config file documentation](${joinUrl( pkg.data.homepage, '/guide/build/config-file' )})
+- [GH action documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.gh )})
+- [Config file documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/build/config-file' )})
 `
 
 }

@@ -4,7 +4,8 @@
  *
  * @description Functions for .Utils folder.
  */
-import figlet from 'figlet'
+import figlet     from 'figlet'
+import { marked } from 'marked'
 
 export * from './gh.mjs'
 export * from './compress.mjs'
@@ -13,6 +14,11 @@ export * from './os.mjs'
 export * from './fs.mjs'
 export * from './const.mjs'
 
+export const mdToHTML = string =>{
+
+	return marked( string )
+
+}
 export const generateASCII = ( projectName = '', collectiveName = 'PIGEON\nPOSSE', font = 'ANSI Shadow' ) => {
 
 	return figlet.textSync( `${collectiveName}\n-------\n${projectName}` , {

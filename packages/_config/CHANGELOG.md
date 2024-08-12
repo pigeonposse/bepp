@@ -1,5 +1,11 @@
 # @bepp/config
 
+## 1.2.1
+
+### Patch Changes
+
+- Fix and update documentation
+
 ## 1.2.0
 
 ### Minor Changes

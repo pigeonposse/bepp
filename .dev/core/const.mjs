@@ -6,6 +6,7 @@ import {
 const workspaceDir     = pkg.dir
 const workspacePkg     = joinPath( workspaceDir, 'package.json' )
 const packagesDir      = joinPath( workspaceDir, 'packages' )
+const tempDir          = joinPath( workspaceDir, '__temp__' )
 const documentationDir = joinPath( workspaceDir, 'docs' )
 const todoDir          = joinPath( documentationDir, 'todo' )
 const devDir           = joinPath( workspaceDir, '.dev' )
@@ -32,6 +33,7 @@ const extsDir       = joinPath( confDir, 'exts-examples' )
 const extsOutputDir = joinPath( confDir, 'dist' )
 
 export const paths = {
+	tempDir,
 	workspaceDir,
 	workspacePkg,
 	packagesDir,

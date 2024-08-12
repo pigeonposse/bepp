@@ -11,63 +11,79 @@ import { name, description, funding, extra, repository, bugs, license} from "../
 import MarkdownItTaskList from 'markdown-it-task-lists'
 import {getReleases} from './get-releases'
 import {srcDir, ghActionSVG,npmSVG } from './const'
+import { joinPath, joinUrl } from '@bepp/config/core'
 
 const repoUrl = repository.url.endsWith('/') ? repository.url : repository.url +'/' ;
-
+const guides = [
+	{
+		text: 'JS/Node library & CLI', 
+		link: joinPath(extra.docsPath.lib,'/') 
+	},
+	{
+		text: 'Application', 
+		link: joinPath(extra.docsPath.app,'/') 
+	},
+	{ 
+		text:'API', 
+		link:  joinPath(extra.docsPath.api,'/') 
+	},
+	{ 
+		text: 'Container (Docker)', 
+		link:  joinPath(extra.docsPath.container,'/') },
+	{
+	  text: 'GitHub Action',
+	  link: joinPath(extra.docsPath.gh,'/')
+	},
+]
 const sidebar = [
 	{
 	  text: 'Introduction',
 	  items: [
-		{ text: 'Getting started', link: '/guide/getting-started' },
+		{ text: 'What is BEPP?', link: joinPath(extra.docsPath.guide,'/') },
 	  ]
 	},
 	{
 	  text: 'Reference',
 	  items: [
-		{ text: 'Init', link: '/guide/init' },
+		{ text: 'Getting started', link: joinPath(extra.docsPath.lib,'/') },
+		{ text: 'Init', link: joinPath(extra.docsPath.lib,'/init') },
 		{ 
 		  text: 'Build', 
-		  link: '/guide/build/index', 
+		  link: joinPath(extra.docsPath.lib,'/build/'), 
 		  collapsed: false, 
 		  items: [
-		  { text: 'With Config file', link: '/guide/build/config-file' },
+		  { text: 'Config file', link: joinPath(extra.docsPath.lib,'/build/config-file') },
 		  { 
 			  text: 'Browsers', 
-			  collapsed: false, 
+			  collapsed: true, 
 			  items: [
-				  { text: 'Chromium', link: '/guide/build/chromium' },
-				  { text: 'Chrome', link: '/guide/build/chrome' },
-				  { text: 'Firefox', link: '/guide/build/firefox' },
-				  { text: 'Edge', link: '/guide/build/edge' },
-				  { text: 'Safari', link: '/guide/build/safari' },
-				  { text: 'Brave', link: '/guide/build/brave' },
-				  { text: 'Opera', link: '/guide/build/opera' },
-				  { text: 'Opera GX', link: '/guide/build/opera-gx' },
-				  { text: 'Yandex', link: '/guide/build/yandex' },
-				  { text: 'Custom', link: '/guide/build/custom' },
+				{ text: 'Chromium', link: joinPath(extra.docsPath.lib, '/build/chromium') },
+				{ text: 'Chrome', link: joinPath(extra.docsPath.lib, '/build/chrome') },
+				{ text: 'Firefox', link: joinPath(extra.docsPath.lib, '/build/firefox') },
+				{ text: 'Edge', link: joinPath(extra.docsPath.lib, '/build/edge') },
+				{ text: 'Safari', link: joinPath(extra.docsPath.lib, '/build/safari') },
+				{ text: 'Brave', link: joinPath(extra.docsPath.lib, '/build/brave') },
+				{ text: 'Opera', link: joinPath(extra.docsPath.lib, '/build/opera') },
+				{ text: 'Opera GX', link: joinPath(extra.docsPath.lib, '/build/opera-gx') },
+				{ text: 'Yandex', link: joinPath(extra.docsPath.lib, '/build/yandex') },
+				{ text: 'Custom', link:  joinPath(extra.docsPath.lib,'/build/custom') },
 			  ]
 		  },
-		  { text: 'All', link: '/guide/build/all' },
+		  { text: 'All', link: joinPath(extra.docsPath.lib,'/build/all') },
 		] }
 	  ]
 	},
-	{ text: 'App (web & desktop)', link: '/guide/app/index' },
-	{ text: 'Api (lib & bin)', link: '/guide/api/index' },
-	{ text: 'Container (Docker)', link: '/guide/container/index' },
-	{
-	  text: 'Github Action',
-	  link: '/guide/gh-action' 
-	},
+	...guides,
 	{
 	  text: 'Contribute',
 	  items: [
 		{ text: 'Report issues', link: bugs.url },
-		{ text: 'Todo', link: '/todo/v1' },
+		{ text: 'Todo', link: joinPath(extra.docsPath.todo,'/v1') },
 	  ]
 	},
 	{
 		text: 'Articles, tutorials etc',
-		link: '/posts' 
+		link: joinPath(extra.docsPath.posts)
 	},
 	{
 	  text: 'About',
@@ -109,15 +125,21 @@ export default defineConfig({
       provider: 'local'
     },
 	editLink: {
-		pattern: repoUrl+ 'edit/main/docs/:path',
+		pattern: joinUrl(repoUrl, 'edit/main/docs/:path'),
 	},
 	outline: 'deep',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/getting-started' },
+      { 
+		text: 'Guide', 
+		activeMatch: '/^\/guide\//',
+		items: guides,
+		// link:  joinPath(extra.docsPath.guide),
+	},
 	  {
 		text: 'Articles',
-		link: '/posts',
+		activeMatch: '/^\/posts\//',
+		link: joinPath(extra.docsPath.posts),
 	  },
 		{ 
 			text: 'Download', 
@@ -143,7 +165,10 @@ export default defineConfig({
 			icon: {svg: ghActionSVG}, 
 			link: extra.ghActionUrl 
 		},
-      	{ icon: 'github', link: repository.url },
+      	{ 
+			icon: 'github', 
+			link: repository.url 
+		},
     ],
 	// @ts-ignore
 	collectiveLinks : {

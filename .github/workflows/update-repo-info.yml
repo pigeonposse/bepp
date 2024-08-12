@@ -2,18 +2,13 @@
 # UPDATE REPO INFO
 ###############################################################################
 
-name: ✅ Update repo info
+name: 🚀ℹ️ Update repo info
 
 ###############################################################################
 # ON
 ###############################################################################
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'package.json'
   workflow_dispatch:
 
 ###############################################################################
@@ -22,7 +17,7 @@ on:
 
 jobs:
   build:
-    name: Update repo info
+    name: 🚀ℹ️ Update repo info
     runs-on: ubuntu-latest
 
     ###########################################################################
@@ -38,30 +33,21 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v3
 
+      - name: 🟢 Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 🥡 Install pnpm
+        uses: pnpm/action-setup@v3
 
       #########################################################################
       # UPDATE
       #########################################################################
-
-      - name: Change GitHub data
+      - name: 🧩 Install dependencies
         run: |
-          repo_url=$(echo $(jq -r . ./package.json) | jq -r '.repository.url')
-          description=$(echo $(jq -r . ./package.json) | jq -r '.description')
-          homepage=$(echo $(jq -r . ./package.json) | jq -r '.homepage')
-          keywords=$(echo $(jq -r . ./package.json) | jq -r '.keywords | join(",")')
-
-          if [[ -n $repo_url ]]; then
-            gh repo edit "$repo_url" -d "$description"
-          fi
-
-          if [[ -n e ]]; then
-            gh repo edit "$repo_url" --add-topic "$keywords"
-          fi
-
-          if [[ -n $homepage ]]; then
-            gh repo edit "$repo_url" --homepage "$homepage"
-          fi
-        env:
-           GH_TOKEN: ${{ secrets.GH_API_TOKEN }} # changed github.token needs permissions
+          pnpm install --no-frozen-lockfile
+          pnpm update-gh
+		  
 
 ###############################################################################
