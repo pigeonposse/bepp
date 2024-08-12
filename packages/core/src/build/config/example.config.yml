@@ -1,0 +1,10 @@
+$schema: "../../../schema.json" # no works
+shared:
+  verbose: true
+  compress: "zip"
+  id: "from-file"
+  input:
+    chromium: "../_config/exts-examples/chromium"
+  output: "../_config/dist"
+build:
+  - type: "chrome"

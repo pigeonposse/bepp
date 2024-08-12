@@ -1,0 +1,17 @@
+{
+	"$schema": "../../../schema.json",
+	"shared": {
+		"verbose": true,
+		"compress": "zip",
+		"id": "from-file",
+		"input": {
+			"chromium": "../_config/exts-examples/chromium"
+		},
+		"output": "../_config/dist"
+	},
+	"build": [
+		{
+			"type": "chrome"
+		}
+	]
+}

@@ -6,7 +6,7 @@ test( async ( { section, utils } ) => {
 
 	section( {
 		title : 'Build [Config file]',
-		fn    : async ( { addTest, addBooleanTest } ) => {
+		fn    : async ( { addTest } ) => {
 
 			await addTest( {
 				title : 'Error because input is not string | undefined',

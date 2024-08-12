@@ -23,6 +23,7 @@ dist
 dist-ssr
 /build
 packages/**/build
+!packages/**/src/**/build
 *.local
 
 # misc
