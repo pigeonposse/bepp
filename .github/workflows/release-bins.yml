@@ -24,9 +24,6 @@ jobs:
   deploy:
     name: 🚀💾 Release Bins
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
 
