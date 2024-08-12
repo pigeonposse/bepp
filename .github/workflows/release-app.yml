@@ -113,7 +113,7 @@ jobs:
       #########################################################################
    
       - name: 🏗 Build
-        run: build:app # Is necessary set manually for windows 
+        run: pnpm build:app # Is necessary set manually for windows 
 
       #########################################################################
       # APP - BUILD & RELEASE DESKTOP APP

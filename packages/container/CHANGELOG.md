@@ -1,5 +1,11 @@
 # @bepp/container
 
+## 1.3.6
+
+### Patch Changes
+
+- update ci
+
 ## 1.3.5
 
 ### Patch Changes

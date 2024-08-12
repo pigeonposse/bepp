@@ -1,5 +1,14 @@
 # @bepp/bepp
 
+## 1.3.6
+
+### Patch Changes
+
+- update ci
+
+- Updated dependencies []:
+  - @bepp/core@1.3.6
+
 ## 1.3.5
 
 ### Patch Changes
