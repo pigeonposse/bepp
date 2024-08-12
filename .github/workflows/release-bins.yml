@@ -13,6 +13,8 @@ on:
         required: true
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+env:
+  GITHUB_TOKEN: ${{ github.token }}
 
 ###############################################################################
 # JOBS
@@ -26,7 +28,6 @@ jobs:
       contents: read
       deployments: write
     env:
-      GITHUB_TOKEN: ${{ github.token }}
       UPDATED_VERSION: ${{ github.event.inputs.version }}
 
     steps:
@@ -70,9 +71,7 @@ jobs:
       ###################################################################
 
       - name: 🏗 Build package
-        run: |
-          pnpm build:core 
-          pnpm build:api
+        run: pnpm build:api # this build core and api
 
       - name: Release binaries
         uses: ncipollo/release-action@v1
@@ -81,7 +80,7 @@ jobs:
           draft: false
           prerelease: false
           allowUpdates: true
-          artifacts: "packages/core/build/zip/*,packages/api/build/zip/*"
+          artifacts: "packages/core/build/zip/*.zip,packages/api/build/zip/*.zip"
           body: |
             ${{steps.pkg.outputs.release_body}}
           omitBodyDuringUpdate: true

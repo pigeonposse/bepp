@@ -14,6 +14,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   update_info:
+    name: 🚀ℹ️ Update repo info
     runs-on: ubuntu-latest
     permissions:
       contents: read

@@ -133,7 +133,7 @@ jobs:
         if: steps.check_package_json.outputs.stdout != 'No changes in package.json'
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: update-repo-info.yml
+          workflow: update-repo.yml
         continue-on-error: true
 
       #########################################################################
