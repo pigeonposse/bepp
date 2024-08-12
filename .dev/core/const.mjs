@@ -29,6 +29,9 @@ const apiPkg = joinPath( apiDir, 'package.json' )
 const confDir = joinPath( packagesDir, '_config' )
 const confPkg = joinPath( confDir, 'package.json' )
 
+const containerDir = joinPath( packagesDir, 'container' )
+const containerPkg = joinPath( containerDir, 'package.json' )
+
 const extsDir       = joinPath( confDir, 'exts-examples' )
 const extsOutputDir = joinPath( confDir, 'dist' )
 
@@ -38,6 +41,8 @@ export const paths = {
 	workspacePkg,
 	packagesDir,
 	documentationDir,
+	containerDir,
+	containerPkg,
 	todoDir,
 	devDir,
 	coreDir,

@@ -10,6 +10,7 @@ import { readJSON }                 from '../core/fs.mjs'
 import { updateActionVersion }      from './action.mjs'
 import { updateAppsVersion }        from './apps.mjs'
 import { updateCargoVersion }       from './cargo.mjs'
+import { updateDockerfileVersion }  from './docker.mjs'
 import { updatePigeonposseVersion } from './pigeonposse.mjs'
 
 try {
@@ -23,6 +24,7 @@ try {
 		await updateCargoVersion( newVersion )
 		await updatePigeonposseVersion( newVersion )
 		await updateActionVersion( newVersion )
+		await updateDockerfileVersion( newVersion )
 	
 	}
 

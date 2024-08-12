@@ -1,5 +1,11 @@
 # @bepp/container
 
+## 1.3.11
+
+### Patch Changes
+
+- update docker container
+
 ## 1.3.10
 
 ### Patch Changes

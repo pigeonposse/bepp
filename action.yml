@@ -19,7 +19,7 @@ runs:
         node-version: 20
         cache: 'pnpm'
     - name: ⬇️📦 Install dependencies
-      run: pnpm i -g @bepp/bepp@1.3.10
+      run: pnpm i -g @bepp/bepp@1.3.11
       shell: bash
 
     - name: 🧩📦 Execute bepp

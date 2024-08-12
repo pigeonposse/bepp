@@ -16,6 +16,7 @@ export default defineConfig( {
 		target   : 'node20',
 	},
 	server : {
+		host : '0.0.0.0', // important for docker image
 		port,
 	},
 	preview : {

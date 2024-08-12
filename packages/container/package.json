@@ -1,10 +1,10 @@
 {
 	"name": "@bepp/container",
-	"version": "1.3.10",
+	"version": "1.3.11",
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"c-up": "docker-compose up --build -d",
-		"c-down": "docker-compose down"
+		"c-up": "docker compose up --build -d",
+		"c-down": "docker compose down"
 	}
 }

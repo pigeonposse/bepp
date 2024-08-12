@@ -231,35 +231,35 @@
 			"windowsExe": {
 				"name": "Windows App (.exe)",
 				"logo": "windows",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.10_x64-setup.exe",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.11_x64-setup.exe",
 				"type": "desktop",
 				"update-version": true
 			},
 			"windowsMSI": {
 				"name": "Windows App (.msi)",
 				"logo": "windows",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.10_x64-setup.nsis.zip",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.11_x64-setup.nsis.zip",
 				"type": "desktop",
 				"update-version": true
 			},
 			"linuxAppImage": {
 				"name": "Linux App (.AppImage)",
 				"logo": "linux",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.10_amd64.AppImage.tar.gz",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.11_amd64.AppImage.tar.gz",
 				"type": "desktop",
 				"update-version": true
 			},
 			"linuxDeb": {
 				"name": "Linux App (.deb)",
 				"logo": "linux",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.10_amd64.deb",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.11_amd64.deb",
 				"type": "desktop",
 				"update-version": true
 			},
 			"linuxRpm": {
 				"name": "Linux App (.rpm)",
 				"logo": "linux",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app-1.3.10-1.x86_64.rpm",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app-1.3.11-1.x86_64.rpm",
 				"type": "desktop",
 				"update-version": true
 			},

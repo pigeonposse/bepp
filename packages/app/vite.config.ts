@@ -19,7 +19,7 @@ const host                         = await internalIpV4()
 const server: UserConfig['server'] = {
 	port       : devPort, // important for match with tauri.config.json
 	strictPort : true,
-	host       : mobile ? '0.0.0.0' : false,
+	host       : '0.0.0.0', // important for docker image
 	hmr        : mobile ? {
 		protocol : 'ws',
 		host,

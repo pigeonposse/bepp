@@ -1,5 +1,14 @@
 # @bepp/docs
 
+## 1.3.11
+
+### Patch Changes
+
+- update docker container
+
+- Updated dependencies []:
+  - @bepp/api@1.3.11
+
 ## 1.3.10
 
 ### Patch Changes

@@ -1,7 +1,11 @@
 FROM node:alpine
 
+ENV BEPP_VERSION=1.3.11
+
 RUN apk add --no-cache git
-RUN git clone https://github.com/pigeonposse/bepp.git /usr/src/app
+RUN git clone https://github.com/pigeonposse/bepp.git /usr/src/app && \
+    cd /usr/src/app && \
+    git checkout tags/${BEPP_VERSION}
 
 WORKDIR /usr/src/app
 
