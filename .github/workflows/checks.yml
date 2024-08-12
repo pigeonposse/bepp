@@ -168,6 +168,8 @@ jobs:
         if: steps.updated.outputs.core_version != ''
         uses: ./
         with:
-          file: 'packages/_config/config/linux-ci.json'
+          file: packages/_config/config/linux-ci.json
         continue-on-error: true
-		
+
+
+###############################################################################

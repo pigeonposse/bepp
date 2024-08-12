@@ -42,6 +42,7 @@
 		"build:bin": "pkg pkg.config.json --compress GZip",
 		"build:zip": "node .dev/zip.js",
 		"build-ci": "pnpm run build:schema && pnpm run build:lib && pnpm run build:cjs && pnpm run build:bin-file",
+		"build-container": "pnpm run build:schema && pnpm run build:lib",
 		"lint": "eslint . --ext .ts"
 	},
 	"devDependencies": {

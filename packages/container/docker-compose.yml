@@ -24,7 +24,8 @@ services:
     container_name: ${BEPP_CONTAINER_NAME:-bepp}
     build: .
     ports:
-      - '${BEPP_CONTAINER_PORT:-1312}:13128'
+      - '13128:13128'
+      - '13129:13129'
     restart: always
 
 ######################### BEPP DOCKER-COMPOSE ########################

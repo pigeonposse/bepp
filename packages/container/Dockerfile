@@ -1,16 +1,13 @@
 FROM node:alpine
 
 RUN apk add --no-cache git
-RUN git clone https://github.com/pigeonposse/bepp.git .
-
-RUN npm install -g pnpm
-
-COPY bepp /usr/src/app
+RUN git clone https://github.com/pigeonposse/bepp.git /usr/src/app
 
 WORKDIR /usr/src/app
 
+RUN npm install -g pnpm
 RUN pnpm install --no-frozen-lockfile
-RUN pnpm core build:schema && pnpm core build:lib
+RUN pnpm --filter @bepp/core build-container
 
 EXPOSE 13128 13129
 CMD ["pnpm", "start"]
