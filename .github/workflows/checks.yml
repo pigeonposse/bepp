@@ -73,10 +73,9 @@ jobs:
       #########################################################################
 
       - name: 🏗 Build packages
-        run: |
-          pnpm build:packages
-          pnpm test 
-          echo "Build on Ubuntu completed successfully."
+        run: pnpm build:packages
+      - name: 🏗 Run tests
+        run: pnpm test 
 
       - name: 🚪 Exit here if is pull request
         if: github.event_name == 'pull_request'
