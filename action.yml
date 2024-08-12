@@ -25,7 +25,7 @@ runs:
       run: pnpm --filter core build-ci
       shell: bash
     - name: 🧩📦 Execute bepp
-      run: node packages/core/build/cjs/index.cjs -v build -c '${{ inputs.file }}'
+      run: node packages/core/build/cjs/index.cjs build --verbose -c '${{ inputs.file }}'
       shell: bash
 
 branding:

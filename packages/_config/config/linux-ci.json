@@ -5,9 +5,9 @@
 		"compress": "zip",
 		"id": "linux-ci",
 		"input": {
-			"chromium": "./exts-examples/chromium"
+			"chromium": "packages/_config/exts-examples/chromium"
 		},
-		"output": "../dist"
+		"output": "packages/_config/dist"
 	},
 	"build": [
 		{
