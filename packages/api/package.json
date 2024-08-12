@@ -1,17 +1,21 @@
 {
 	"name": "@bepp/api",
-	"version": "1.3.1",
+	"version": "1.3.3",
 	"type": "module",
 	"license": "GPL-3.0",
 	"homepage": "https://bepp.pigeonposse.com/guide/api",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/pigeonposse/bepp/packages/api"
+		"url": "https://github.com/pigeonposse/bepp",
+		"directory": "packages/api"
 	},
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
 	},
+	"files": [
+		"dist"
+	],
 	"module": "dist/app.js",
 	"main": "dist/app.js",
 	"types": "dist/app.d.ts",
@@ -29,8 +33,8 @@
 		"build:rm": "rimraf dist && rimraf build",
 		"build:lib": "vite build",
 		"build:schema": "node .dev/schema.js",
-		"build:cjs": "esbuild dist/node.js --bundle --format=cjs --platform=node --outfile=dist/node.cjs",
-		"build:bin-file": "ncc build dist/node.cjs -o build/cjs -m -C",
+		"build:cjs": "esbuild dist/node.js --bundle --format=cjs --platform=node --outfile=build/cjs/node.cjs",
+		"build:bin-file": "ncc build build/cjs/node.cjs -o build/cjs -m -C",
 		"build:bin": "pkg pkg.config.json --compress GZip",
 		"build:zip": "node .dev/zip.js",
 		"test": "pnpm run --sequential \"/^test:.*/\"",

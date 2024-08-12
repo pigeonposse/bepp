@@ -1,5 +1,21 @@
 # @bepp/gh-action
 
+## 1.3.3
+
+### Patch Changes
+
+- Fix build issues
+
+- Updated dependencies []:
+  - @bepp/core@1.3.3
+
+## 1.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @bepp/core@1.3.2
+
 ## 1.3.1
 
 ### Patch Changes
