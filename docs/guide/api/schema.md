@@ -1,6 +1,6 @@
 # BEPP API
 
-> Version 0.0.1
+> Version 1.3.2
 
 API documentation for BEPP - A Cross-Browser Extension Builder
 

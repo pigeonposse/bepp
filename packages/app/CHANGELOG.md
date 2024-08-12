@@ -1,5 +1,11 @@
 # @bepp/app
 
+## 1.3.4
+
+### Patch Changes
+
+- Update and fix ci
+
 ## 1.3.3
 
 ### Patch Changes

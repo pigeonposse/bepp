@@ -4,7 +4,7 @@ Package your [**chromium**](https://www.chromium.org/getting-involved/download-c
 
 ## Prerequisites
 
-- **__BEPP_ installation_** [_How to_](/guide/lib#installation)
+- **__BEPP_ installation_** [_How to_](../index.md#installation)
 
 ## Usage
 

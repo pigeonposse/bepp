@@ -100,7 +100,8 @@ jobs:
           echo "homepage=$(jq -r '.homepage' ./package.json)" >> $GITHUB_OUTPUT
           echo "docs=$(jq -r '.extra.docsUrl' ./package.json)" >> $GITHUB_OUTPUT
           echo "repo=$(jq -r '.repository.url' ./package.json)" >> $GITHUB_OUTPUT
-          echo "release_body=$(pnpm get-release-body)" >> $GITHUB_OUTPUT
+          pnpm --silent get-release-body > release_body.html
+          echo "release_body=$(cat release_body.html)" >> $GITHUB_OUTPUT
 
 
       #########################################################################

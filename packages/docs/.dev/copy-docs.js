@@ -13,14 +13,13 @@ import {
 	removePathIfExist, 
 } from '@bepp/config/core'
 
+export const docsSrcPath = joinPath( paths.documentationDir )
+export const docsDestTempPath = joinPath( paths.docsDir, './src/__temp__' )
+
 try{
 
 	const args       = process.argv.slice( 2 )
 	const removeDest = args.includes( '--rm-dest' )
-
-	const docsSrcPath      = joinPath( paths.documentationDir )
-	const docsDestTempPath = joinPath( paths.docsDir, './src/__temp__' )
-	const docsDestPath     = joinPath( paths.docsDir, 'docs' )
 	
 	if ( removeDest ) {
 
@@ -29,7 +28,7 @@ try{
 
 	}else{
 
-		await copyDir( docsSrcPath, docsDestPath )
+		await copyDir( docsSrcPath, docsDestTempPath )
 	
 		console.log( '✨ Documentation Folder copied' )
 	

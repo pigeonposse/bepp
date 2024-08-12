@@ -4,7 +4,7 @@ This **Bepp** feature is exclusively available for `js` and allows packaging ext
 
 ## Prerequisites
 
-- **__BEPP_ installation_** [_How to_](/guide/lib#installation)
+- **__BEPP_ installation_** [_How to_](../index.md#installation)
 
 ## Usage
 

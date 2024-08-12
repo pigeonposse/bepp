@@ -7,11 +7,11 @@ This tool include support for browsers as [_Safari_](lib/build/safari.md), [_Chr
 
 ## JS/Node library
 
-**BEPP** can also be used as a JavaScript library. [*Read more*](/guide/lib).
+**BEPP** can also be used as a JavaScript library. [*Read more*](./lib/index.md).
 
 ## Binary
 
-In addition to its library form, **BEPP** is available as a [binary](/guide/lib).
+In addition to its library form, **BEPP** is available as a [binary](./lib/index.md).
 
 ## GitHub Action
 
@@ -19,12 +19,12 @@ Integrate BEPP into your workflow with the [*Github action*](https://github.com/
 
 ## API
 
-Use **BEPP** as a [server API](/guide/api) for greater flexibility and integration.
+Use **BEPP** as a [server API](./api/index.md) for greater flexibility and integration.
 
 ## Application
 
-***BEPP*** is available as an application for both browsers and desktops. [Find out more](/guide/app).
+***BEPP*** is available as an application for both browsers and desktops. [Find out more](./app/index.md).
 
 ## Container _(Docker)_
 
-Deploy **BEPP** in a [Docker container](/guide/container) for easy and consistent development environments.
+Deploy **BEPP** in a [Docker container](./container/index.md) for easy and consistent development environments.

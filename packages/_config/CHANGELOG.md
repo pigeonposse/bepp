@@ -1,5 +1,11 @@
 # @bepp/config
 
+## 1.2.2
+
+### Patch Changes
+
+- Update and fix ci
+
 ## 1.2.1
 
 ### Patch Changes

@@ -5,7 +5,7 @@ Additionally, compatibility with [**Manifest V2**](<https://developer.chrome.com
 
 ## Prerequisites
 
-- **__BEPP_ installation_** [_How to_](/guide/lib#installation)
+- **__BEPP_ installation_** [_How to_](../index.md#installation)
 
 ## Usage
 

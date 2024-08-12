@@ -20,7 +20,7 @@ You can install the application in the `downloads` section of this website or in
 Also you can use app via:
 - [web](https://bepp.pigeonposse.com)
 - [desktop apps](#Installation) 
-- [docker image](../container)
+- [docker image](../container/index.md)
 
 ## Screenshots
 ![App](/bepp-app.png)
