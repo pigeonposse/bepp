@@ -5,8 +5,9 @@
 name: 🚀ℹ️ Update repo info
 
 on: workflow_dispatch
-
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+env:
+  GITHUB_TOKEN: ${{ github.token }}
 
 ###############################################################################
 # JOBS
@@ -14,36 +15,35 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   update_info:
-    name: 🚀ℹ️ Update repo info
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-
     steps:
 
       #########################################################################
-      # INIT REPO
+      # INIT
       #########################################################################
 
-      - name: 🛎 Checkout
-        uses: actions/checkout@v3
-
-      - name: 🟢 Setup node
-        uses: actions/setup-node@v3
+      - name: ⬇️🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+      - name: ⬇️🛎 Checkout
+        uses: actions/checkout@v4
+      - name: ⬇️🥡 Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: ⬇️🟢 Setup node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'pnpm'
 
-      - name: 🥡 Install pnpm
-        uses: pnpm/action-setup@v3
+      - name: ⬇️📦 Install dependencies
+        run: pnpm install --no-frozen-lockfile
 
       #########################################################################
       # UPDATE
       #########################################################################
-      - name: 🧩 Install dependencies
-        run: |
-          pnpm install --no-frozen-lockfile
-          pnpm update-gh
 
+      - name: ⬇️🧩 Update GitHub info
+        run: pnpm update-gh
+        env:
+            GH_TOKEN: ${{ env.GITHUB_TOKEN }}
 
 ###############################################################################

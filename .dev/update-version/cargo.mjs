@@ -10,22 +10,17 @@ import {
 	paths, 
 	writeFile,
 	readFile,
-	readJSON,
 } from '../core/main.mjs'
 
-export const updateCargoVersion = async () => {
+export const updateCargoVersion = async newVersion => {
 
 	try {
 
-		const pkgAppPath      = paths.appDir
-		const packageJsonPath = paths.appPkg
-		const packageJson     = await readJSON( packageJsonPath )
-		const newVersion      = packageJson.version
-		
+		const pkgAppPath     = paths.appDir
 		const cargoTomlPath  = joinPath( pkgAppPath, 'src-tauri', 'Cargo.toml' )
 		let cargoTomlContent = await readFile( cargoTomlPath )
-
-		const versionRegex = /^version\s*=\s*"(.*)"/m
+		const versionRegex   = /^version\s*=\s*"(.*)"/m
+		
 		if ( versionRegex.test( cargoTomlContent ) ) 
 			cargoTomlContent = cargoTomlContent.replace( versionRegex, `version = "${newVersion}"` )
 		else 

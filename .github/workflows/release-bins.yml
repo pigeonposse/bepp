@@ -22,7 +22,6 @@ env:
 
 jobs:
   deploy:
-    name: 🚀💾 Release Bins
     runs-on: 'macos-14' # this is arm64
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
@@ -30,30 +29,28 @@ jobs:
     steps:
 
       #########################################################################
-      # INIT 
+      # INIT
       #########################################################################
 
-      - name: Cancel Previous Runs
+      - name: ⬇️🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.1
-        with:
-          access_token: ${{ env.GITHUB_TOKEN }}
-
-      - name: 🛎 Checkout
-        uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v4
+      - name: ⬇️🛎 Checkout
+        uses: actions/checkout@v4
+      - name: ⬇️🥡 Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: ⬇️🟢 Setup node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'pnpm'
+
+      - name: ⬇️📦 Install dependencies
+        run: pnpm install --no-frozen-lockfile
 
       #########################################################################
       # BUILD PKG
       #########################################################################
 
-      - name: 🔑 Install PNPM
-        uses: pnpm/action-setup@v2
-
-      - name: 📦 Install pkg dependencies
-        run: pnpm install --no-frozen-lockfile
       - name: 📦📄 Get package.json name
         id: pkg
         run: |

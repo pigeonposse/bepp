@@ -1,6 +1,6 @@
 {
 	"name": "@bepp/core",
-	"version": "1.3.7",
+	"version": "1.3.8",
 	"description": "Package your extension for multiple browsers quickly and easily",
 	"type": "module",
 	"bin": {
@@ -41,12 +41,12 @@
 		"build:bin-file": "ncc build build/cjs/node.cjs -o build/cjs -m -C",
 		"build:bin": "pkg pkg.config.json --compress GZip",
 		"build:zip": "node .dev/zip.js",
+		"build-ci": "pnpm run build:schema && pnpm run build:lib && pnpm run build:cjs && pnpm run build:bin-file",
 		"lint": "eslint . --ext .ts"
 	},
 	"devDependencies": {
 		"@bepp/config": "workspace:*",
-		"@types/js-yaml": "4.0.9",
-		"@types/node": "22.0.0"
+		"@types/js-yaml": "4.0.9"
 	},
 	"dependencies": {
 		"@commander-js/extra-typings": "12.1.0",

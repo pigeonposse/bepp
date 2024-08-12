@@ -23,7 +23,6 @@ env:
 
 jobs:
   checks:
-    name: ✅ Test and check for updates
     runs-on: ubuntu-latest
     steps:
 
@@ -31,13 +30,17 @@ jobs:
       # INIT
       #########################################################################
 
-      - name: Cancel Previous Runs
+      - name: ⬇️🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.1
-        with:
-          access_token: ${{ env.GITHUB_TOKEN }}
-
-      - name: ⬇️ Checkout
+      - name: ⬇️🛎 Checkout
         uses: actions/checkout@v4
+      - name: ⬇️🥡 Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: ⬇️🟢 Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
 
       - name: 🐙😺 Check GitHub API Rate Limit
         id: rate_limit
@@ -52,14 +55,6 @@ jobs:
           fi
         env:
             GH_TOKEN: ${{ env.GITHUB_TOKEN }}
-
-      - name: ⬇️🟢 Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: ⬇️🥡 Install pnpm
-        uses: pnpm/action-setup@v3
 
       - name: ⬇️📦 Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -76,6 +71,11 @@ jobs:
         run: pnpm build:packages
       - name: 🏗 Run tests
         run: pnpm test 
+
+      - name: test BEPP action
+        uses: ./
+        with:
+          file: 'packages/_config/config/linux-ci.json'
 
       - name: 🚪 Exit here if is pull request
         if: github.event_name == 'pull_request'
@@ -122,6 +122,7 @@ jobs:
       #########################################################################
       # UPDATE REPO INFO
       #########################################################################
+
       - name: Check for changes in package.json
         run: |
           git fetch origin main

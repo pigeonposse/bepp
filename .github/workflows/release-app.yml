@@ -47,43 +47,36 @@ jobs:
       # INIT & INSTALL
       #########################################################################
 
-      - name: Cancel Previous Runs
+      - name: ⬇️🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.1
-        with:
-          access_token: ${{ env.GITHUB_TOKEN }}
-
-      - name: ⬇️ Checkout repository
+      - name: ⬇️🛎 Checkout
         uses: actions/checkout@v4
+      - name: ⬇️🥡 Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: ⬇️🟢 Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
 
-      - name: 🦀 Rust setup
+      - name: ⬇️🦀 Rust setup (macos only)
         if: matrix.settings.platform == 'macos-latest'
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: 'aarch64-apple-darwin'
           toolchain: stable
-
-      - name: 🦀 Rust setup
+      - name: ⬇️🦀 Rust setup
         if: matrix.settings.platform != 'macos-latest'
         uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable 
 
-      - name: 🦀 Rust cache
+      - name: ⬇️🦀 Rust cache
         uses: swatinem/rust-cache@v2
         with:
           workspaces: './src-tauri -> target'
 
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-
-      - name: 📦 Sync node version and setup cache
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-          cache: 'pnpm' # Set this to npm, yarn or pnpm.
-
-      - name: 🦀 install dependencies (ubuntu only)
+      - name: ⬇️🦀 install dependencies (ubuntu only)
         if: matrix.settings.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update

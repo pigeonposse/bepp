@@ -1,8 +1,8 @@
 ###############################################################################
-# RELEASE DOCS
+# RELEASE BINS
 ###############################################################################
 
-name: 🚀📚 Release Documentation
+name: 🚀🐳 Release Containers
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 env:
-    GITHUB_TOKEN: ${{ github.token }}
+  GITHUB_TOKEN: ${{ github.token }}
 
 ###############################################################################
 # JOBS
@@ -22,7 +22,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: 'ubuntu-latest' 
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
 
@@ -46,21 +46,3 @@ jobs:
 
       - name: ⬇️📦 Install dependencies
         run: pnpm install --no-frozen-lockfile
-
-      ###################################################################
-      # BUILD AND DEPLOY
-      ###################################################################
-
-      - name: 🏗 Build package
-        run: pnpm build:docs
-
-      - name: 🌥 Deploy in cloudflare pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          projectName: "bepp"
-          directory: 'packages/docs/dist'
-          wranglerVersion: '3'

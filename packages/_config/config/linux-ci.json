@@ -1,0 +1,17 @@
+{
+	"$schema": "../../core/schema.json",
+	"shared": {
+		"verbose": true,
+		"compress": "zip",
+		"id": "linux-ci",
+		"input": {
+			"chromium": "./exts-examples/chromium"
+		},
+		"output": "../dist"
+	},
+	"build": [
+		{
+			"type": "chrome"
+		}
+	]
+}

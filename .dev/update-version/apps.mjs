@@ -6,21 +6,21 @@
  */ 
 
 import {
+	joinPath,
 	object2string,
 	paths,
 	readJSON, 
 	writeFile,
 } from '../core/main.mjs'
 
-export const updateAppsVersion = async ( ) =>{
+export const updateAppsVersion = async newVersion =>{
 
 	try {
 
-		const jsonAppPath    = paths.appPkg
-		const jsonPath       = paths.workspacePkg
-		const fileAppContent = await readJSON( jsonAppPath )
-		const newVersion     = fileAppContent.version
-		const data           = await readJSON( jsonPath )
+		const jsonPath   = paths.workspacePkg
+		const data       = await readJSON( jsonPath )
+		const tariConfig = await readJSON( joinPath( paths.appDir, 'src-tauri', 'tauri.conf.json' ) )
+		const regex      = new RegExp( `(${tariConfig.productName}[_-])[\\d.]+([_-])`, 'g' )
 
 		for ( const key in data.extra.downloadUrl ) {
 
@@ -28,7 +28,7 @@ export const updateAppsVersion = async ( ) =>{
 
 			if ( item.type === 'desktop' && item['update-version'] ) {
 
-				item.url = item.url.replace( /(Super8[_-])[\d.]+([_-])/g, `$1${newVersion}$2` )
+				item.url = item.url.replace( regex, `$1${newVersion}$2` )
 		
 			}
 	

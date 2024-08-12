@@ -1,5 +1,11 @@
 # @bepp/app
 
+## 1.3.8
+
+### Patch Changes
+
+- Update patch version
+
 ## 1.3.7
 
 ### Patch Changes

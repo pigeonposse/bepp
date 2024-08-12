@@ -31,7 +31,7 @@ const dynamicReadme = async () => {
 			'packages/core/README.md',
 			'packages/bepp/README.md',
 			'packages/docs/README.md',
-			'packages/gh-action/README.md',
+			// 'packages/gh-action/README.md',
 			'packages/api/README.md',
 			'packages/app/README.md',
 			'packages/container/README.md',

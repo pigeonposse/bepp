@@ -10,21 +10,22 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install Node.js
-      uses: actions/setup-node@v3
+    - name: ⬇️🥡 Install pnpm
+      uses: pnpm/action-setup@v4
+    - name: ⬇️🟢 Setup node
+      uses: actions/setup-node@v4
       with:
-        node-version: '20' 
-    - name: Install pnpm
-      run: npm install -g pnpm
+        node-version: 20
+        cache: 'pnpm'
+    - name: ⬇️📦 Install dependencies
+      run: pnpm install --no-frozen-lockfile
       shell: bash
-    - name: Install bepp
-      run: pnpm install
+
+    - name: 🧩📦 Build bepp core
+      run: pnpm --filter core build-ci
       shell: bash
-    - name: Build bepp core
-      run: pnpm --filter core build
-      shell: bash
-    - name: Build bepp core
-      run: node packages/core/build/cjs/index.cjs -v build -c '${{ inputs.file }}''
+    - name: 🧩📦 Execute bepp
+      run: node packages/core/build/cjs/index.cjs -v build -c '${{ inputs.file }}'
       shell: bash
 
 branding:

@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "bepp",
-	"description": "A tool for package your extension for multiple browsers quickly and easily (Including Safari)",
+	"description": "A tool to quickly and easily package your extension for multiple browsers (including Safari)",
 	"license": "GPL-3.0",
 	"workspaces": [
 		"packages/*"
@@ -100,7 +100,7 @@
 		"eslint-plugin-align-import": "1.0.0",
 		"eslint-plugin-html": "8.1.1",
 		"eslint-plugin-import": "2.29.1",
-		"eslint-plugin-jsdoc": "50.0.0",
+		"eslint-plugin-jsdoc": "50.0.1",
 		"eslint-plugin-json": "4.0.1",
 		"eslint-plugin-jsonc": "2.16.0",
 		"eslint-plugin-promise": "7.1.0",
@@ -213,53 +213,53 @@
 			"macosUniversal": {
 				"name": "MacOS App (Universal)",
 				"logo": "apple",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_x64.app.tar.gz",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_x64.app.tar.gz",
 				"type": "desktop"
 			},
 			"macosIntel": {
 				"name": "MacOS App (Intel)",
 				"logo": "apple",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_x64.app.tar.gz",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_x64.app.tar.gz",
 				"type": "desktop"
 			},
 			"macosArm": {
 				"name": "MacOS App (ARM)",
 				"logo": "apple",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_aarch64.app.tar.gz",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_aarch64.app.tar.gz",
 				"type": "desktop"
 			},
 			"windowsExe": {
 				"name": "Windows App (.exe)",
 				"logo": "windows",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_x64-setup.exe",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.8_x64-setup.exe",
 				"type": "desktop",
 				"update-version": true
 			},
 			"windowsMSI": {
 				"name": "Windows App (.msi)",
 				"logo": "windows",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_x64-setup.nsis.zip",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.8_x64-setup.nsis.zip",
 				"type": "desktop",
 				"update-version": true
 			},
 			"linuxAppImage": {
 				"name": "Linux App (.AppImage)",
 				"logo": "linux",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_amd64.AppImage.tar.gz",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.8_amd64.AppImage.tar.gz",
 				"type": "desktop",
 				"update-version": true
 			},
 			"linuxDeb": {
 				"name": "Linux App (.deb)",
 				"logo": "linux",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp_0.2.8_amd64.deb",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app_1.3.8_amd64.deb",
 				"type": "desktop",
 				"update-version": true
 			},
 			"linuxRpm": {
 				"name": "Linux App (.rpm)",
 				"logo": "linux",
-				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-0.2.8-1.x86_64.rpm",
+				"url": "https://github.com/pigeonposse/bepp/releases/latest/download/bepp-app-1.3.8-1.x86_64.rpm",
 				"type": "desktop",
 				"update-version": true
 			},
