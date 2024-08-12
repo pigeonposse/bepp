@@ -8,8 +8,25 @@ inputs:
     required: false
     description: 'Path for config file.'
 runs:
-  using: 'node20'
-  main: './action/index.js'
+  using: "composite"
+  steps:
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20' 
+    - name: Install pnpm
+      run: npm install -g pnpm
+      shell: bash
+    - name: Install bepp
+      run: pnpm install
+      shell: bash
+    - name: Build bepp core
+      run: pnpm --filter core build
+      shell: bash
+    - name: Build bepp core
+      run: node packages/core/build/cjs/index.cjs -v build -c '${{ inputs.file }}''
+      shell: bash
+
 branding:
   icon: 'package'
   color: 'purple'

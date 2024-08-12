@@ -149,18 +149,6 @@ jobs:
         continue-on-error: true
 
       #########################################################################
-      # GH ACTION
-      #########################################################################
-
-      - name: 🤖🐙😺➡️ Call to workflow for deploy gh action
-        if: steps.updated.outputs.core_version != ''
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: release-gh-action.yml
-          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}", "mayor": "${{ steps.updated.outputs.core_version_major }}"}'
-        continue-on-error: true
-
-      #########################################################################
       # APP & BINS
       #########################################################################
 

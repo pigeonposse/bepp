@@ -13,8 +13,7 @@
 		"@bepp/api",
 		"@bepp/app",
 		"@bepp/core", 
-		"@bepp/container", 
-		"@bepp/gh-action"
+		"@bepp/container"
 	]
   ],
   "linked": [

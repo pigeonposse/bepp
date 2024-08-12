@@ -23,7 +23,7 @@ env:
 jobs:
   deploy:
     name: 🚀💾 Release Bins
-    runs-on: ubuntu-latest
+    runs-on: 'macos-14' # this is arm64
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
 
