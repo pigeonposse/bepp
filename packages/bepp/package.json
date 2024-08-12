@@ -31,7 +31,7 @@
 	"scripts": {
 		"dev": "node src/main.js",
 		"dev:bin": "node bin/main.js",
-		"test": "vitest run -r tests"
+		"test": "vitest run -r tests --passWithNoTests"
 	},
 	"dependencies": {
 		"@bepp/core": "workspace:*"

@@ -111,7 +111,7 @@ export class ChildProcess {
 
 			const childProcess = spawn( cmd, {
 				shell : true,
-				stdio : 'inherit',
+
 			} )
 
 			childProcess.on( 'close', code => {
