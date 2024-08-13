@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "tauri dev",
-		"start": "pnpm build:web && pnpm preview:web",
+		"start": "pnpm build:web && CONTAINER_ENV=true pnpm preview:web",
 		"build": "pnpm build:icon && pnpm build:bin && pnpm build:app",
 		"tauri": "tauri $@",
 		"build:app": "tauri build",

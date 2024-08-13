@@ -88,9 +88,9 @@ export class Api extends ApiSuper<ApiError>{
 			const res = await this.fetch( url ) 
 			if( !res.ok ) return false
 			const data = await res.json()
-			console.log( {
-				data, url,
-			} )
+			// console.log( {
+			// 	data, url,
+			// } )
 			return data.ok && data.bepp ? true : false
 		
 		}catch( _e ){
@@ -100,12 +100,27 @@ export class Api extends ApiSuper<ApiError>{
 		}
 	
 	}
+	async #validateProxy(){
 
+		this.proxyUrl           = true 
+		this.facts.proxyUrl     = true 
+		this.extension.proxyUrl = true
+		const isValid           = await this.#validateServer()
+		if( isValid ) return true 
+		this.proxyUrl           = false 
+		this.facts.proxyUrl     = false 
+		this.extension.proxyUrl = false
+		return false 
+	
+	}
 	async existsServerOnRange(){
 
 		const maxAttempts   = 10
 		const portIncrement = 1
 		let portNumber      = this.facts.urlDefaultPort
+
+		const isProxyUrl = await this.#validateProxy()
+		if( isProxyUrl ) return true 
 
 		for ( let attempt = 1; attempt <= maxAttempts; attempt++ ) {
 
@@ -122,6 +137,7 @@ export class Api extends ApiSuper<ApiError>{
 		return false
 
 	}
+	
 	async init(){
 
 		try {

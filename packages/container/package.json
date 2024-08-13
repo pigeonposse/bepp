@@ -4,7 +4,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"c-up": "docker compose up --build -d",
-		"c-down": "docker compose down"
+		"c-up": "bash ./src/run.sh up $@",
+		"c-down": "bash ./src/run.sh down $@"
 	}
 }

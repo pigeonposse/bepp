@@ -1,0 +1,16 @@
+############################# BEPP DOCKER-COMPOSE ############################# 
+# 
+# @required    docker >= 27
+# @description File for build and run project with Docker.
+#              use cli 'docker compose -f docker-compose.yml up --build -d'
+# 
+###############################################################################
+
+services:          
+  
+  bepp_cli:
+    container_name: bepp_cli
+    build: .
+    # restart: always
+
+############################# BEPP DOCKER-COMPOSE #############################

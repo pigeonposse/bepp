@@ -115,7 +115,7 @@ jobs:
           echo "core_version_major=$core_version_major" >> $GITHUB_OUTPUT
 
       #########################################################################
-      # UPDATE REPO INFO
+      # CALL TO WORKFLOWS
       #########################################################################
 
       - name: Check for changes in package.json
@@ -132,10 +132,6 @@ jobs:
           workflow: update-repo.yml
         continue-on-error: true
 
-      #########################################################################
-      # DOCS
-      #########################################################################
-
       - name: 📚🐙😺➡️ Call to workflow for deploy Documentation
         if: steps.updated.outputs.docs_version != ''
         uses: benc-uk/workflow-dispatch@v1
@@ -144,9 +140,13 @@ jobs:
           inputs: '{ "version": "${{ steps.updated.outputs.docs_version }}"}'
         continue-on-error: true
 
-      #########################################################################
-      # APP & BINS
-      #########################################################################
+      - name: 🐳🐙😺➡️ Call to workflow for create container releases
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release-container.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
+        continue-on-error: true
 
       - name: 💾🐙😺➡️ Call to workflow for create binary releases
         if: steps.updated.outputs.core_version != ''
@@ -156,7 +156,7 @@ jobs:
           inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
         continue-on-error: true
 
-      - name: 🖥️🐙😺➡️ Call to workflow for create Github app releases
+      - name: 🖥️🐙😺➡️ Call to workflow for create app releases
         if: steps.updated.outputs.core_version != ''
         uses: benc-uk/workflow-dispatch@v1
         with:
@@ -164,11 +164,12 @@ jobs:
           inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
         continue-on-error: true
 
-      - name: test BEPP action
+      - name: 🤖🐙😺➡️ Call to workflow for create Github action
         if: steps.updated.outputs.core_version != ''
-        uses: ./
+        uses: benc-uk/workflow-dispatch@v1
         with:
-          file: packages/_config/config/linux-ci.json
+          workflow: release-action.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
         continue-on-error: true
 
 

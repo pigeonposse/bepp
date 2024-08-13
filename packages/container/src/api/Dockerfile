@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:22-alpine3.20
 
 ENV BEPP_VERSION=1.3.11
 
@@ -13,5 +13,6 @@ RUN npm install -g pnpm
 RUN pnpm install --no-frozen-lockfile
 RUN pnpm --filter @bepp/core build-container
 
-EXPOSE 13128 13129
-CMD ["pnpm", "start"]
+EXPOSE 13129
+
+CMD ["pnpm", "--filter", "@bepp/api", "start"]

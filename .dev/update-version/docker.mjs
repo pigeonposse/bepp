@@ -2,9 +2,10 @@ import {
 	paths, joinPath, readFile, writeFile,
 } from '../core/main.mjs'
 
-export const updateDockerfileVersion = async newVersion => {
+export const updateDockerfileVersion = async ( path, newVersion ) => {
 
-	const file      = await joinPath( paths.containerDir, 'Dockerfile' )
+	const filePaths = joinPath( 'src', path, 'Dockerfile' )
+	const file      = joinPath( paths.containerDir, filePaths )
 	let fileContent = await readFile( file )
 	
 	const prefix       = 'ENV BEPP_VERSION='
@@ -16,6 +17,14 @@ export const updateDockerfileVersion = async newVersion => {
 
 	await writeFile( file, fileContent )
 
-	console.log( `Dockerfile version updated to ${newVersion}` )
+	console.log( `Dockerfile version updated to ${newVersion} in: ${filePaths}` )
+
+}
+
+export const updateDockerfilesVersion = async newVersion => {
+
+	await updateDockerfileVersion( 'api', newVersion )
+	await updateDockerfileVersion( 'app', newVersion )
+	await updateDockerfileVersion( 'cli', newVersion )
 
 }

@@ -329,11 +329,11 @@ export class Extension extends ExtensionStore{
 					
 					}
 					
-					console.log( {
-						last,
-						value,
-						log : this.conversion.log.get(),
-					} )
+					// console.log( {
+					// 	last,
+					// 	value,
+					// 	log : this.conversion.log.get(),
+					// } )
 
 					if( typeof last == 'object' && last.success && last.data.filename )
 						this.outputPath = this.getUrlPath( {
@@ -359,7 +359,7 @@ export class Extension extends ExtensionStore{
 
 			if ( typeof e == 'object' && e !== null && 'name' in e && e.name === 'AbortError' ) {
 
-				console.log( 'Conversion aborted' )
+				// console.log( 'Conversion aborted' )
 				this.abortConvert()	
 			
 			} else {

@@ -14,7 +14,11 @@ import { internalIpV4 } from 'internal-ip'
 
 const devPort = Number( pkg.extra.devPort )
 // @ts-expect-error process is a nodejs global
-const mobile                       = !!/android|ios/.exec( process.env.TAURI_ENV_PLATFORM )
+const mobile      = !!/android|ios/.exec( process.env.TAURI_ENV_PLATFORM )
+const isContainer = process.env.CONTAINER_ENV === 'true'
+console.log( {
+	isContainer,
+} )
 const host                         = await internalIpV4()
 const server: UserConfig['server'] = {
 	port       : devPort, // important for match with tauri.config.json
@@ -25,14 +29,16 @@ const server: UserConfig['server'] = {
 		host,
 		port     : devPort,
 	} : undefined,
-	// proxy : {
-	// 	'/api' : {
-	// 		target       : 'http://localhost:13129',
-	// 		rewrite      : path => path.replace( /^\/api/, '' ),
-	// 		changeOrigin : true,
-	// 		secure       : false,
-	// 	},
-	// },
+	...( isContainer ? {
+		proxy : {
+			'/api' : {
+				target       : 'http://localhost:13129',
+				rewrite      : path => path.replace( /^\/api/, '' ),
+				changeOrigin : true,
+				secure       : false,
+			},
+		},
+	} : {} ),
 }
 
 export default defineConfig( {

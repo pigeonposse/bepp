@@ -33,7 +33,7 @@
 			placement: 'left'
 		}}
 	/>
-	<h3 class="font-extrabold text-xl md:text-4xl">{$ext.title}</h3>
+	<h3 class="font-extrabold text-xl md:text-4xl text-center">{$ext.title}</h3>
 	<img 
 		src={$ext.iconURL || '/logo.png'} 
 		alt="img" 

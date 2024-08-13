@@ -29,6 +29,7 @@ export class ApiSuper<IDS extends Uppercase<string>> implements ApiInterface{
 		domain   : 'localhost',
 		port     : this.urlDefaultPort,
 	}
+	proxyUrl = false
 
 	constructor( args: ApiArgs ){
 
@@ -52,16 +53,31 @@ export class ApiSuper<IDS extends Uppercase<string>> implements ApiInterface{
 		this.error.set( value )
 	
 	}
-	
-	getUrl(){
 
-		return `${this.url.protocol}://${this.url.domain}:${this.url.port}`
+	getProxyUrl(){
+
+		const url = new URL( `${window.location.origin}/api` )
+		if ( url ) return url
 	
 	}
 
-	getUrlPath( { paths, queries }:{paths?: string[], queries?: { [key: string]: string }} ): string | undefined {
+	getUrl(){
 
-		const url = new URL( this.getUrl() )
+		const url = `${this.url.protocol}://${this.url.domain}:${this.url.port}`
+		
+		if( this.proxyUrl ) return this.getProxyUrl() || url
+
+		return url
+	
+	}
+
+	getUrlPath( { paths, queries, customUrl }: {
+		paths?: string[], 
+		queries?: { [key: string]: string },
+		customUrl?: string
+	} ): string | undefined {
+
+		const url = new URL( customUrl || this.getUrl() )
 	
 		if ( !url ) return undefined
 
