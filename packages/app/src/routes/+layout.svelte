@@ -20,7 +20,9 @@
 	const {list: routes, currRouteID } = window.routes
 
 	data.core.initInBrowser()
-
+	// data.core.window.onWindowCreate()
+	data.core.init()
+	// $: console.log($routes, $currRouteID)
 </script>
 <div class="fixed inset-0 blur-[200px] opacity-40">
 

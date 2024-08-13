@@ -6,15 +6,15 @@
 		"main"
 	],
 	"permissions": [
-		"path:default",
-		"event:default",
-		"window:default",
-		"window:allow-start-dragging",
+		"core:path:default",
+		"core:event:default",
+		"core:window:default",
+		"core:window:allow-start-dragging",
+		"core:app:default",
+		"core:resources:default",
+		"core:menu:default",
+		"core:tray:default",
 		"shell:allow-open",
-		"app:default",
-		"resources:default",
-		"menu:default",
-		"tray:default",
 		"fs:allow-app-write",
 		"fs:allow-mkdir",
 		"fs:allow-open",
@@ -25,7 +25,6 @@
 		"autostart:allow-enable",
 		"autostart:allow-is-enabled",
 		"dialog:allow-save",
-		"log:default",
 		{
 			"identifier": "http:default",
 			"allow": [

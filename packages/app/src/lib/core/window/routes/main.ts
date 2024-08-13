@@ -45,9 +45,12 @@ export class RouteService {
 			this.#store.page,
 			$page => {
 	
-				const activeUrl = $page.url.pathname.replace( '/' + $page.data.lang, '' )
+				const activeUrl = $page.data.route.replace( '/', '' )
 				const pageID    = activeUrl === '' ? this.routeIds.home : activeUrl.replace( '/', '' )
-	
+				// console.log( {
+				// 	lang : $page,
+				// 	pageID,
+				// } )
 				return pageID
 			
 			},
@@ -60,7 +63,8 @@ export class RouteService {
 			( [
 				$currLocaleRoute, $t,
 			] ) => {
-	
+
+				// console.log( $currLocaleRoute )
 				const localeRoute = $currLocaleRoute.endsWith( '/' ) ? $currLocaleRoute : $currLocaleRoute + '/'
 				return {
 					home : {

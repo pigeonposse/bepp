@@ -18,8 +18,8 @@ export const load = async ( { url } ) => {
 		const { pathname } = url
 		const { route }    = await core.i18n.layoutFunct( pathname )
 		const platform     = await core.system.getPlatform()
-
-		await core.init()	
+		
+		// await core.init()	
 		
 		return {
 			route,

@@ -40,7 +40,8 @@ export { defaultLocale }
 
 export const currLocaleRoute = derived( locale, $locale => {
 
-	return $locale === defaultLocale ? '/' : '/' + $locale
+	// @before return $locale === defaultLocale ? '/' : '/' + $locale
+	return $locale === defaultLocale ? '/' + $locale : '/' + $locale
 
 } )
 

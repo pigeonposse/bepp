@@ -137,7 +137,11 @@ export class Api extends ApiSuper<ApiError>{
 		return false
 
 	}
-	
+	#sleep( ms:number ) {
+
+		return new Promise( resolve => setTimeout( resolve, ms ) )
+
+	}
 	async init(){
 
 		try {
@@ -149,6 +153,7 @@ export class Api extends ApiSuper<ApiError>{
 				await this.system.shell.invoke( 'start_server', {
 					port : this.facts.urlDefaultPort,
 				} )
+				await this.#sleep( 5000 )
 				const existInvokeServer = await this.existsServerOnRange()
 				if( !existInvokeServer ) throw Error( 'Server invoke not found' )
 			

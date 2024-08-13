@@ -51,9 +51,10 @@ packages/**/build
 /test-results
 **/test-results
 
-# playwright 
+# TAURI 
 **/src-tauri/target
 **/src-tauri/bin
+**/src-tauri/gen
 
 # project 
 **/dist

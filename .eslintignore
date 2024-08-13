@@ -31,6 +31,8 @@ dist
 .svelte-kit/*
 **/.svelte-kit/*
 
+**/src-tauri/gen/*
+
 # ENV
 .env
 .env.*

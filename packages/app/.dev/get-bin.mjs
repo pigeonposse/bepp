@@ -16,6 +16,7 @@ const downloadPath = joinPath( paths.appDir, 'src-tauri', 'bin' )
 const apiPkg       = await readJSON( joinPath( paths.apiDir,'pkg.config.json' ) )
 const binGetName   = apiPkg.name
 
+const onlyOneBin = true
 const binSetName = 'bepp-server'
 const appleMark  = '-apple-darwin'
 const linuxMark  = '-unknown-linux-gnu'
@@ -37,9 +38,14 @@ const run = async () =>{
 	await getBin( {
 		downloadFile    : binGetName + '-macos-arm64',
 		outputFileNames : [
-			binSetName + '-aarch64' + appleMark,
+			...( !onlyOneBin ? [
+				binSetName + '-aarch64' + appleMark,
+			] : [] ),
 			...( platform === 'macos' && arch === 'arm64' ? [
 				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-aarch64' + appleMark,
+				] : [] ),
 			] : [] ),
 		], 
 		outputPath : downloadPath, 
@@ -48,10 +54,15 @@ const run = async () =>{
 	await getBin( {
 		downloadFile    : binGetName + '-macos-x64',
 		outputFileNames : [
-			binSetName + '-universal' + appleMark,
-			binSetName + '-x86_64' + appleMark,
+			...( !onlyOneBin ? [
+				binSetName + '-universal' + appleMark,
+				binSetName + '-x86_64' + appleMark,
+			] : [] ),
 			...( platform === 'macos' && arch !== 'arm64' ? [
 				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-x86_64' + appleMark,
+				] : [] ),
 			] : [] ),
 		], 
 		outputPath : downloadPath, 
@@ -61,9 +72,14 @@ const run = async () =>{
 	await getBin( {
 		downloadFile    : binGetName + '-linux-arm64',
 		outputFileNames : [
-			binSetName + '-aarch64' + linuxMark,
+			...( !onlyOneBin ? [
+				binSetName + '-aarch64' + linuxMark,
+			] : [] ),
 			...( platform === 'linux' && arch === 'arm64' ? [
 				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-aarch64' + linuxMark,
+				] : [] ),
 			] : [] ),
 		], 
 		outputPath : downloadPath, 
@@ -71,9 +87,14 @@ const run = async () =>{
 	await getBin( {
 		downloadFile    : binGetName + '-linux-x64',
 		outputFileNames : [
-			binSetName + '-x86_64' + linuxMark,
+			...( !onlyOneBin ? [
+				binSetName + '-x86_64' + linuxMark,
+			] : [] ),
 			...( platform === 'linux' && arch !== 'arm64' ? [
 				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-x86_64' + linuxMark,
+				] : [] ),
 			] : [] ),
 		], 
 		outputPath : downloadPath, 
@@ -83,10 +104,15 @@ const run = async () =>{
 	await getBin( {
 		downloadFile    : binGetName + '-win-x64.exe',
 		outputFileNames : [
-			binSetName + '-universal' + winMark,
-			binSetName + '-x86_64' + winMark,
+			...( !onlyOneBin ? [
+				binSetName + '-universal' + winMark,
+				binSetName + '-x86_64' + winMark,
+			] : [] ),
 			...( platform === 'windows' && arch === 'arm64' ? [
 				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-x86_64' + winMark,
+				] : [] ),
 			] : [] ),
 		], 
 		outputPath : downloadPath, 
@@ -95,9 +121,14 @@ const run = async () =>{
 	await getBin( {
 		downloadFile    : binGetName + '-win-arm64.exe',
 		outputFileNames : [
-			binSetName + '-aarch64' + winMark,
+			...( !onlyOneBin ? [
+				binSetName + '-aarch64' + winMark,
+			] : [] ),
 			...( platform === 'windows' && arch !== 'arm64' ? [
 				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-aarch64' + winMark,
+				] : [] ),
 			] : [] ),
 		], 
 		outputPath : downloadPath, 
@@ -120,7 +151,10 @@ const run = async () =>{
 			// } )
 			const file   = joinPath( binsPath, downloadFile )
 			const exists = existPath( file )
+			
 			if( !exists ) throw new Error( 'Bin does not exist in ' + file )
+			if( outputFileNames.length <= 0 ) return
+
 			for ( let i = 0; i < outputFileNames.length; i++ ) {
 
 				await copyFile( {

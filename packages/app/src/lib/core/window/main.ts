@@ -51,6 +51,21 @@ export class Window {
 	
 	}
 
+	onWindowCreate(){
+
+		if( !window?.__TAURI__?.event?.listen || !window?.__TAURI__?.event?.TauriEvent?.WINDOW_CREATED ) return 
+		console.log( 'init' )
+		window.__TAURI__.event.listen( 
+			window.__TAURI__.event.TauriEvent.WINDOW_CREATED, 
+			() => {
+
+				console.log( 'La ventana está completamente cargada' )
+	
+			}, 
+		)
+
+	}
+	
 	dragWindow( { element, noDragSelectors }: DragParams = {
 		element         : undefined, 
 		noDragSelectors : undefined,

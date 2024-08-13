@@ -60,8 +60,8 @@
 								}: {}),
 							}}
 							keys={btn.keys ? { value: btn.keys, handle: undefined } : undefined}
-							disabled={ 'id' in btn && btn.id == currRouteID}
-							active={ 'id' in btn && btn.id == currRouteID}
+							disabled={ 'id' in btn && btn.id === currRouteID}
+							active={ 'id' in btn && btn.id === currRouteID}
 							class="image {btn.class ? btn.class : ''}"
 						>
 							<img 
