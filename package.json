@@ -146,7 +146,7 @@
 		}
 	},
 	"lint-staged": {
-		"*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,json}": "eslint"
+		"*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,json,yml,yaml}": "eslint"
 	},
 	"homepage": "https://bepp.pigeonposse.com/",
 	"bugs": {

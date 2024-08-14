@@ -82,7 +82,7 @@ jobs:
         uses: ./
         with:
           file: packages/_config/config/linux-ci.json
-	
+
 
       #########################################################################
       # EXIT IF IS PULL REQUEST
@@ -135,10 +135,10 @@ jobs:
       #########################################################################
 
       - name: Add core version TAG to Github
-	    if: steps.updated.outputs.core_version != ''
+        if: steps.updated.outputs.core_version != ''
         uses: richardsimko/update-tag@v1
         with:
-          tag_name: v${{steps.extract_version.outputs.MAJOR_VERSION}}
+          tag_name: v${{steps.updated.outputs.core_version}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
