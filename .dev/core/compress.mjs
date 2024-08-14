@@ -7,6 +7,8 @@ import {
 import decompress      from 'decompress'
 import decompressTargz from 'decompress-targz'
 import {
+	mkdir,
+	readdir,
 	rename, 
 	rm, 
 } from 'node:fs/promises'
@@ -14,8 +16,6 @@ import archiver from 'archiver'
 import {
 	createWriteStream, 
 	existsSync, 
-	mkdirSync, 
-	readdir, 
 } from 'node:fs'
 
 /**
@@ -108,71 +108,72 @@ export const zipFilesInDirectory = async ( sourceDirectory, outputDirectory ) =>
 	// Check if directory paths are provided
 	if ( !sourceDirectory || !outputDirectory ) {
 
-		console.error( 'Please provide both source directory and output directory paths as arguments.' )
-		process.exit( 1 )
+		throw new Error( 'Please provide both source directory and output directory paths as arguments.' )
 	
 	}
 
 	// Ensure that the output directory exists or create it if it doesn't
 	if ( !existsSync( outputDirectory ) ) {
 
-		mkdirSync( outputDirectory, {
+		await mkdir( outputDirectory, {
 			recursive : true, 
 		} )
 	
 	}
-
-	// Function to create a ZIP file for a given file
 	const createZipForFile = file => {
 
-		const sourceFilePath = join( sourceDirectory, file )
-		const zipName        = `${file}.zip`
-		const output         = createWriteStream( join( outputDirectory, zipName ) )
-		const archive        = archiver( 'zip', {
-			zlib : {
-				level : 9, 
-			}, // Maximum compression level
-		} )
+		return new Promise( ( resolve, reject ) => {
 
-		output.on( 'close', () => {
+			const sourceFilePath = join( sourceDirectory, file )
+			const zipName        = `${file}.zip`
+			const output         = createWriteStream( join( outputDirectory, zipName ) )
+			const archive        = archiver( 'zip', {
+				zlib : {
+					level : 9, 
+				}, // Maximum compression level
+			} )
 
-			console.log( `${zipName} created successfully` )
-		
-		} )
+			output.on( 'close', () => {
 
-		archive.on( 'error', err => {
-
-			console.error( `Error creating ${zipName}:`, err )
-		
-		} )
-
-		// Add the file to the ZIP file
-		archive.pipe( output )
-		archive.file( sourceFilePath, {
-			name : file, 
-		} )
-
-		// Finalize the ZIP file
-		archive.finalize()
+				console.log( `${zipName} created successfully` )
+				resolve()
 	
-	}
+			} )
 
-	// Read the source directory
-	readdir( sourceDirectory, ( err, files ) => {
+			archive.on( 'error', err => {
 
-		if ( err ) {
+				console.error( `Error creating ${zipName}:`, err )
+				reject( err )
+	
+			} )
 
-			console.error( 'Error reading source directory:', err )
-			return
+			archive.pipe( output )
+			archive.file( sourceFilePath, {
+				name : file, 
+			} )
+	
+			archive.finalize()
 		
-		}
+		} )
 
+	}
+	
+	try {
+
+		// Read the source directory
+		const files = await readdir( sourceDirectory )
+	
 		// Filter out invisible files
 		const visibleFiles = files.filter( filter )
-
-		// Create a ZIP file for each visible file
-		visibleFiles.forEach( createZipForFile )
 	
-	} )
+		// Create a ZIP file for each visible file
+		await Promise.all( visibleFiles.map( createZipForFile ) )
+
+	} catch ( error ) {
+
+		console.error( 'Error processing files:', error )
+		throw error
+
+	}
 
 }

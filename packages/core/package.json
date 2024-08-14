@@ -37,11 +37,8 @@
 		"build": "pnpm run --sequential \"/^build:.*/\"",
 		"build:schema": "node .dev/schema.js",
 		"build:lib": "rimraf dist && vite build",
-		"build:cjs": "esbuild dist/main.js --bundle --format=cjs --platform=node --outfile=build/cjs/node.cjs",
-		"build:bin-file": "ncc build build/cjs/node.cjs -o build/cjs -m -C",
-		"build:bin": "pkg pkg.config.json --compress GZip",
-		"build:zip": "node .dev/zip.js",
-		"build-ci": "pnpm run build:schema && pnpm run build:lib && pnpm run build:cjs && pnpm run build:bin-file",
+		"build:bin": "rimraf build && node .dev/bin.js",
+		"build-ci": "pnpm run build:schema && pnpm run build:lib && pnpm build:bin -- --build=cjs",
 		"build-container": "pnpm run build:schema && pnpm run build:lib",
 		"lint": "eslint . --ext .ts"
 	},

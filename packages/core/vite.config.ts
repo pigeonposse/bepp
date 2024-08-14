@@ -12,20 +12,21 @@ import { defineConfig } from 'vite'
 import dts              from 'vite-plugin-dts'
 import { name }         from '../../package.json'
 // @ts-ignore
-import dmgScript from './assets/create-dmg.txt'
+import dmgScript  from './assets/create-dmg.txt'
+import { target } from '@bepp/config/consts'
 
 export default defineConfig( {
 	esbuild : { 
 		platform : 'node',
-		target   : 'node18',
+		target,
 	},
 	assetsInclude : [
 		'**/*.png',
 	],
 	build : {
-		ssr    : true,
-		target : 'node18',
-		lib    : {
+		ssr : true,
+		target,
+		lib : {
 			entry : [
 				'src/cli.ts',
 				'src/main.ts',

@@ -9,11 +9,12 @@ import dts              from 'vite-plugin-dts'
 import { name }         from '../../package.json'
 import { port }         from './src/app'
 import devServer        from '@hono/vite-dev-server'
+import { target }       from '@bepp/config/consts'
 
 export default defineConfig( {
 	esbuild : { 
 		platform : 'node',
-		target   : 'node20',
+		target,
 	},
 	server : {
 		host : '0.0.0.0', // important for docker image
@@ -23,9 +24,9 @@ export default defineConfig( {
 		port,
 	},
 	build : {
-		ssr    : true,
-		target : 'node20',
-		lib    : {
+		ssr : true,
+		target,
+		lib : {
 			entry : [
 				'src/app.ts',
 				'src/deno.ts',

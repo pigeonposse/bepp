@@ -10,6 +10,8 @@
 	"exports": {
 		"./tsconfig.json": "./tsconfig.json",
 		"./tests": "./tests/main.ts",
-		"./core": "./src/core.mjs"
+		"./core": "./src/core.mjs",
+		"./consts": "./src/const.mjs",
+		"./bin": "./src/bin.mjs"
 	}
 }

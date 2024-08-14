@@ -33,10 +33,7 @@
 		"build:rm": "rimraf dist && rimraf build",
 		"build:lib": "vite build",
 		"build:schema": "node .dev/schema.js",
-		"build:cjs": "esbuild dist/node.js --bundle --format=cjs --platform=node --outfile=build/cjs/node.cjs",
-		"build:bin-file": "ncc build build/cjs/node.cjs -o build/cjs -m -C",
-		"build:bin": "pkg pkg.config.json --compress GZip",
-		"build:zip": "node .dev/zip.js",
+		"build:bin": "node .dev/bin.js",
 		"test": "pnpm run --sequential \"/^test:.*/\"",
 		"test:unit": "vitest run src --passWithNoTests",
 		"test:e2e": "playwright test",
@@ -44,16 +41,16 @@
 	},
 	"devDependencies": {
 		"@bepp/config": "workspace:*",
-		"@hono/vite-dev-server": "0.13.1",
+		"@hono/vite-dev-server": "0.14.0",
 		"@types/archiver": "6.0.2"
 	},
 	"dependencies": {
 		"@bepp/core": "workspace:^",
 		"@hono/node-server": "1.12.0",
 		"@hono/swagger-ui": "0.4.0",
-		"@hono/zod-openapi": "0.15.1",
+		"@hono/zod-openapi": "0.15.3",
 		"archiver": "7.0.1",
-		"hono": "4.5.4",
+		"hono": "4.5.5",
 		"jszip": "3.10.1"
 	}
 }

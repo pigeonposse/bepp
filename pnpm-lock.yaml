@@ -168,16 +168,16 @@ importers:
         version: 1.12.0
       '@hono/swagger-ui':
         specifier: 0.4.0
-        version: 0.4.0(hono@4.5.4)
+        version: 0.4.0(hono@4.5.5)
       '@hono/zod-openapi':
-        specifier: 0.15.1
-        version: 0.15.1(hono@4.5.4)(zod@3.23.8)
+        specifier: 0.15.3
+        version: 0.15.3(hono@4.5.5)(zod@3.23.8)
       archiver:
         specifier: 7.0.1
         version: 7.0.1
       hono:
-        specifier: 4.5.4
-        version: 4.5.4
+        specifier: 4.5.5
+        version: 4.5.5
       jszip:
         specifier: 3.10.1
         version: 3.10.1
@@ -186,8 +186,8 @@ importers:
         specifier: workspace:*
         version: link:../_config
       '@hono/vite-dev-server':
-        specifier: 0.13.1
-        version: 0.13.1(hono@4.5.4)
+        specifier: 0.14.0
+        version: 0.14.0(hono@4.5.5)
       '@types/archiver':
         specifier: 6.0.2
         version: 6.0.2
@@ -1075,14 +1075,14 @@ packages:
     peerDependencies:
       hono: '*'
 
-  '@hono/vite-dev-server@0.13.1':
-    resolution: {integrity: sha512-AK0yQkGwoQvcbf0MeBDDslVnVvzlKjAT00Z2A4Oqyh0RYhLQyCT1aSJzz3eZj7tYytG0B6EGt92DjrkB0tsy1A==}
+  '@hono/vite-dev-server@0.14.0':
+    resolution: {integrity: sha512-rhd+hxIIG6wSS73WQxXF7/CiOHBlxdynrRUihSwEszpysB0HWOMN2Q7QprnPHsZSNmGohoTXZxwo7iM4hukGzw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: '*'
 
-  '@hono/zod-openapi@0.15.1':
-    resolution: {integrity: sha512-2Un3D5xD1j4tIvUwzQ/XkB6xwrEA0Ne23TRjB8UVw0PgUWzsB3xiB8Hl/y2ZEMfcIfrA15/ga4P6Bkct8uYaLg==}
+  '@hono/zod-openapi@0.15.3':
+    resolution: {integrity: sha512-9oc4Bbs+L5oGjUOCrApCrx8BSWa5ctOBjRcwxplxkWPYFPhyOhdkMg47QKenGkESfFz0K6zb4F/c0LGPEmR62g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       hono: '>=4.3.6'
@@ -3287,8 +3287,8 @@ packages:
   homedir@0.6.0:
     resolution: {integrity: sha512-KZFBHenkVuyyG4uaqRSXqWJr3HTxcaPguM7rU1BlH/mtbDlzaXNSXTa9AhV+fXEjrNemHu9vtLRIaM8/8OW0xA==}
 
-  hono@4.5.4:
-    resolution: {integrity: sha512-k2IguJfRgNCpDbAfpxk+o+fZBLFHl4+eIZUpjc1ItZWHeZ37SmT3efA1UpkIaC0hSf1NJg0E79/wWn6g9LQ4Cw==}
+  hono@4.5.5:
+    resolution: {integrity: sha512-fXBXHqaVfimWofbelLXci8pZyIwBMkDIwCa4OwZvK+xVbEyYLELVP4DfbGaj1aEM6ZY3hHgs4qLvCO2ChkhgQw==}
     engines: {node: '>=16.0.0'}
 
   hookable@5.5.3:
@@ -6463,14 +6463,14 @@ snapshots:
 
   '@hono/node-server@1.12.0': {}
 
-  '@hono/swagger-ui@0.4.0(hono@4.5.4)':
+  '@hono/swagger-ui@0.4.0(hono@4.5.5)':
     dependencies:
-      hono: 4.5.4
+      hono: 4.5.5
 
-  '@hono/vite-dev-server@0.13.1(hono@4.5.4)':
+  '@hono/vite-dev-server@0.14.0(hono@4.5.5)':
     dependencies:
       '@hono/node-server': 1.12.0
-      hono: 4.5.4
+      hono: 4.5.5
       miniflare: 3.20240725.0
       minimatch: 9.0.5
     transitivePeerDependencies:
@@ -6478,16 +6478,16 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@hono/zod-openapi@0.15.1(hono@4.5.4)(zod@3.23.8)':
+  '@hono/zod-openapi@0.15.3(hono@4.5.5)(zod@3.23.8)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 7.1.1(zod@3.23.8)
-      '@hono/zod-validator': 0.2.2(hono@4.5.4)(zod@3.23.8)
-      hono: 4.5.4
+      '@hono/zod-validator': 0.2.2(hono@4.5.5)(zod@3.23.8)
+      hono: 4.5.5
       zod: 3.23.8
 
-  '@hono/zod-validator@0.2.2(hono@4.5.4)(zod@3.23.8)':
+  '@hono/zod-validator@0.2.2(hono@4.5.5)(zod@3.23.8)':
     dependencies:
-      hono: 4.5.4
+      hono: 4.5.5
       zod: 3.23.8
 
   '@humanwhocodes/config-array@0.11.14':
@@ -9111,7 +9111,7 @@ snapshots:
 
   homedir@0.6.0: {}
 
-  hono@4.5.4: {}
+  hono@4.5.5: {}
 
   hookable@5.5.3: {}
 
