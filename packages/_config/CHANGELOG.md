@@ -1,5 +1,11 @@
 # @bepp/config
 
+## 1.2.11
+
+### Patch Changes
+
+- Update new release
+
 ## 1.2.10
 
 ### Patch Changes

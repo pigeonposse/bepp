@@ -1,5 +1,14 @@
 # @bepp/bepp
 
+## 1.3.13
+
+### Patch Changes
+
+- Update new release
+
+- Updated dependencies []:
+  - @bepp/core@1.3.13
+
 ## 1.3.12
 
 ### Patch Changes

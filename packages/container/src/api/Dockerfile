@@ -1,6 +1,6 @@
 FROM node:22-alpine3.20
 
-ENV BEPP_VERSION=1.3.12
+ENV BEPP_VERSION=1.3.13
 
 RUN apk add --no-cache git
 RUN git clone https://github.com/pigeonposse/bepp.git /usr/src/app && \

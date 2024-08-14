@@ -1,5 +1,11 @@
 # @bepp/container
 
+## 1.3.13
+
+### Patch Changes
+
+- Update new release
+
 ## 1.3.12
 
 ### Patch Changes
