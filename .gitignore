@@ -55,6 +55,7 @@ packages/**/build
 **/src-tauri/target
 **/src-tauri/bin
 **/src-tauri/gen
+**/src-tauri/icons
 
 # project 
 **/dist

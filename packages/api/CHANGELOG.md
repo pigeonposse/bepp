@@ -1,5 +1,14 @@
 # @bepp/api
 
+## 1.3.12
+
+### Patch Changes
+
+- Update build process and change ci
+
+- Updated dependencies []:
+  - @bepp/core@1.3.12
+
 ## 1.3.11
 
 ### Patch Changes

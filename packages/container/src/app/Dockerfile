@@ -1,6 +1,6 @@
 FROM node:22-alpine3.20
 
-ENV BEPP_VERSION=1.3.11
+ENV BEPP_VERSION=1.3.12
 
 RUN apk add --no-cache git
 RUN git clone https://github.com/pigeonposse/bepp.git /usr/src/app && \
@@ -13,6 +13,6 @@ RUN npm install -g pnpm
 RUN pnpm install --no-frozen-lockfile
 RUN pnpm --filter @bepp/core build-container
 
-EXPOSE 13128 13129
+EXPOSE 13128
 
 CMD ["pnpm", "start"]

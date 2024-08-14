@@ -1,5 +1,11 @@
 # @bepp/container
 
+## 1.3.12
+
+### Patch Changes
+
+- Update build process and change ci
+
 ## 1.3.11
 
 ### Patch Changes

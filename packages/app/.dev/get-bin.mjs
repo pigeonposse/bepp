@@ -151,8 +151,8 @@ const run = async () =>{
 			// } )
 			const file   = joinPath( binsPath, downloadFile )
 			const exists = existPath( file )
-			
-			if( !exists ) throw new Error( 'Bin does not exist in ' + file )
+			if( !exists ) return
+			// if( !exists ) throw new Error( 'Bin does not exist in ' + file )
 			if( outputFileNames.length <= 0 ) return
 
 			for ( let i = 0; i < outputFileNames.length; i++ ) {

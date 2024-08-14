@@ -44,5 +44,85 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: ⬇️📦 Install dependencies
-        run: pnpm install --no-frozen-lockfile
+    #   - name: ⬇️📦 Install dependencies
+    #     run: pnpm install --no-frozen-lockfile
+
+      - name: ⬇️🐳 Set up QEMU	
+        uses: docker/setup-qemu-action@v1
+      - name: ⬇️🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: 🐳☑️ Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+      - name: 🐳☑️ Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      #########################################################################
+      # PUSH IMAGE
+      #########################################################################
+
+      - name: 🐳🚀 Build and push [APP] image 
+        uses: docker/build-push-action@v4
+        with:
+          context: packages/container/src/app
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ github.repository }}:${{ env.UPDATED_VERSION }}
+			${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
+			${{ github.repository }}:latest-app
+            ${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}
+            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
+            ghcr.io/${{ github.repository }}:latest-app
+            ghcr.io/${{ github.repository }}:latest
+
+      - name: 🐳🚀 Build and push [API] image
+        uses: docker/build-push-action@v4
+        with:
+          context: packages/container/src/api
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ github.repository }}:${{ env.UPDATED_VERSION }}-api
+            ${{ github.repository }}:latest-api
+            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}-api
+            ghcr.io/${{ github.repository }}:latest-api
+
+      - name: 🐳🚀 Build and push [CLI] image
+        uses: docker/build-push-action@v4
+        with:
+          context: packages/container/src/cli
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ github.repository }}:${{ env.UPDATED_VERSION }}-cli
+            ${{ github.repository }}:latest-cli
+            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}-cli
+            ghcr.io/${{ github.repository }}:latest-cli
+
+      #########################################################################
+      # UPDATE DOCKERHUB DATA
+      #########################################################################
+
+      - name: 🐳📝 Update Docker Hub repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          # @see https://github.com/peter-evans/dockerhub-description  
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}
+          short-description: ${{ steps.pkg.outputs.description }}
+          readme-filepath: ./README.md
+
+
+###############################################################################
