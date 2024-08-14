@@ -177,6 +177,7 @@
 		"libraryUrl": "https://www.npmjs.com/package/@bepp/bepp",
 		"libraryId": "@bepp/bepp",
 		"defaultApiPort": "13129",
+		"defaultAppPort": "13128",
 		"rawRepoUrl": "https://raw.githubusercontent.com/pigeonposse/bepp",
 		"ghActionUrl": "https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder",
 		"docsUrl": "https://bepp.pigeonposse.com",

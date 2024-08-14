@@ -31,9 +31,6 @@
 		"update:cargo": "cargo update --manifest-path src-tauri/Cargo.toml",
 		"coverage": "browserslist --coverage"
 	},
-	"extra": {
-		"devPort": "13128"
-	},
 	"devDependencies": {
 		"@bepp/api": "workspace:",
 		"@bepp/config": "workspace:",

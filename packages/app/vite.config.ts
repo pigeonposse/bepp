@@ -12,12 +12,12 @@ import mainPkg          from '../../package.json'
 import pkg              from './package.json'
 import { internalIpV4 } from 'internal-ip'
 
-const devPort = Number( pkg.extra.devPort )
 // @ts-expect-error process is a nodejs global
 const mobile      = !!/android|ios/.exec( process.env.TAURI_ENV_PLATFORM )
 const isContainer = process.env.CONTAINER_ENV === 'true'
+const devPort     = Number( mainPkg.extra.defaultAppPort )
+const host        = await internalIpV4()
 
-const host                         = await internalIpV4()
 const server: UserConfig['server'] = {
 	port       : devPort, // important for match with tauri.config.json
 	strictPort : true,
