@@ -125,10 +125,6 @@ jobs:
           echo "docs_version=$docs_version" >> $GITHUB_OUTPUT
           echo "core_version_major=$core_version_major" >> $GITHUB_OUTPUT
 
-      #########################################################################
-      # CALL TO WORKFLOWS
-      #########################################################################
-
       - name: Add core version TAG to Github
         if: steps.updated.outputs.core_version != ''
         uses: richardsimko/update-tag@v1
@@ -143,6 +139,11 @@ jobs:
           git diff --name-only HEAD origin/main | grep 'package.json' || echo "No changes in package.json"
         continue-on-error: true
         id: check_package_json
+
+
+      #########################################################################
+      # CALL TO WORKFLOWS
+      #########################################################################
 
       - name: ℹ️🐙😺➡️ Update repo info
         if: steps.check_package_json.outputs.stdout != 'No changes in package.json'

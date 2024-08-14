@@ -58,7 +58,9 @@ jobs:
             echo 'release_body<<EOF'
             pnpm --silent get-release-body
             echo EOF
-           } >> "$GITHUB_OUTPUT"
+          } >> "$GITHUB_OUTPUT"
+          echo "ORG=pigeonposse" >> $GITHUB_OUTPUT
+          echo "REPO=bepp" >> $GITHUB_OUTPUT
 
       ###################################################################
       # BUILD AND DEPLOY
@@ -79,5 +81,14 @@ jobs:
             ${{steps.pkg.outputs.release_body}}
           omitBodyDuringUpdate: true
 
+    #   - name: Bump Brew
+    #     env: 
+    #       HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.BREW_TOKEN }}
+    #     run: |
+    #       brew tap ${{ steps.pkg.outputs.ORG }}/tap
+    #       brew bump-formula-pr -f --version=${{ env.UPDATED_VERSION }} --no-browse --no-audit \
+    #       --sha256=${{ steps.pkg.outputs.SHA }} \
+    #       --url="https://github.com/${{ steps.pkg.outputs.ORG }}/${{ steps.pkg.outputs.REPO }}/releases/download/${{ env.UPDATED_VERSION }}/bepp-core-macos-x64.zip" \
+    #       ${{ steps.pkg.outputs.ORG }}/tap/${{ steps.pkg.outputs.REPO }}
 
 ###############################################################################

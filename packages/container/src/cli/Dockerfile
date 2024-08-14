@@ -1,6 +1,6 @@
 FROM node:22-alpine3.20
 
-ENV BEPP_VERSION=1.3.14
+ENV BEPP_VERSION=1.3.15
 
 RUN npm install -g @bepp/bepp@${BEPP_VERSION}
 RUN bepp --help
