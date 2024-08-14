@@ -78,11 +78,6 @@ jobs:
       - name: ✅ Run [e2e & unit] tests
         run: pnpm test 
 
-      - name: ✅ test BEPP action
-        uses: ./
-        with:
-          file: packages/_config/config/linux-ci.json
-
 
       #########################################################################
       # EXIT IF IS PULL REQUEST

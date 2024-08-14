@@ -44,6 +44,11 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+      - name: ✅ test BEPP action
+        uses: ./
+        with:
+          file: packages/_config/config/linux-ci.json
+
       #########################################################################
       # EXTRACT AND UPDATE VERSION
       #########################################################################
