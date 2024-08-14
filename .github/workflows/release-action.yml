@@ -45,15 +45,6 @@ jobs:
           cache: 'pnpm'
 
       #########################################################################
-      # TEST
-      #########################################################################
-
-      - name: test BEPP action
-        uses: ./
-        with:
-          file: packages/_config/config/linux-ci.json
-
-      #########################################################################
       # EXTRACT AND UPDATE VERSION
       #########################################################################
 
@@ -64,26 +55,33 @@ jobs:
           major_version=$(echo "${{ env.UPDATED_VERSION }}" | cut -d '.' -f 1)
           echo "MAJOR_VERSION=$major_version" >> $GITHUB_OUTPUT
 
-      - name: Check and Update Release Tag
-        id: update_tag
-        run: |
-          # Fetch all tags
-          git fetch --tags
-          
-          # Check if a tag for the major version exists
-          existing_tag=$(git tag -l "v${{ steps.extract_version.outputs.MAJOR_VERSION }}")
-          
-          if [ -z "$existing_tag" ]; then
-            echo "No existing tag found for v${{ steps.extract_version.outputs.MAJOR_VERSION }}."
-            echo "Creating new tag v${{ steps.extract_version.outputs.MAJOR_VERSION }}."
-            # Create new tag for the major version
-            git tag "v${{ steps.extract_version.outputs.MAJOR_VERSION }}"
-            git push origin "v${{ steps.extract_version.outputs.MAJOR_VERSION }}"
-          else
-            echo "Tag v${{ steps.extract_version.outputs.MAJOR_VERSION }} already exists."
-          fi
+      - name: Tag Repo
+        uses: richardsimko/update-tag@v1
+        with:
+          tag_name: v${{steps.extract_version.outputs.MAJOR_VERSION}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    #   - name: Check and Update Release Tag
+    #     id: update_tag
+    #     run: |
+    #       # Fetch all tags
+    #       git fetch --tags
+          
+    #       # Check if a tag for the major version exists
+    #       existing_tag=$(git tag -l "v${{ steps.extract_version.outputs.MAJOR_VERSION }}")
+          
+    #       if [ -z "$existing_tag" ]; then
+    #         echo "No existing tag found for v${{ steps.extract_version.outputs.MAJOR_VERSION }}."
+    #         echo "Creating new tag v${{ steps.extract_version.outputs.MAJOR_VERSION }}."
+    #         # Create new tag for the major version
+    #         git tag "v${{ steps.extract_version.outputs.MAJOR_VERSION }}"
+    #         git push origin "v${{ steps.extract_version.outputs.MAJOR_VERSION }}"
+    #       else
+    #         echo "Tag v${{ steps.extract_version.outputs.MAJOR_VERSION }} already exists."
+    #       fi
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 ###############################################################################

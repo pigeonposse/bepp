@@ -69,8 +69,24 @@ jobs:
 
       - name: 🏗 Build packages
         run: pnpm build:packages
-      - name: 🏗 Run tests
+
+
+      #########################################################################
+      # TEST
+      #########################################################################
+
+      - name: ✅ Run [e2e & unit] tests
         run: pnpm test 
+
+      - name: ✅ test BEPP action
+        uses: ./
+        with:
+          file: packages/_config/config/linux-ci.json
+	
+
+      #########################################################################
+      # EXIT IF IS PULL REQUEST
+      #########################################################################
 
       - name: 🚪 Exit here if is pull request
         if: github.event_name == 'pull_request'
@@ -118,7 +134,15 @@ jobs:
       # CALL TO WORKFLOWS
       #########################################################################
 
-      - name: Check for changes in package.json
+      - name: Add core version TAG to Github
+	    if: steps.updated.outputs.core_version != ''
+        uses: richardsimko/update-tag@v1
+        with:
+          tag_name: v${{steps.extract_version.outputs.MAJOR_VERSION}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ℹ️➡️ Check for changes in package.json
         run: |
           git fetch origin main
           git diff --name-only HEAD origin/main | grep 'package.json' || echo "No changes in package.json"
@@ -138,14 +162,6 @@ jobs:
         with:
           workflow: release-docs.yml
           inputs: '{ "version": "${{ steps.updated.outputs.docs_version }}"}'
-        continue-on-error: true
-
-      - name: 🐳🐙😺➡️ Call to workflow for create container releases
-        if: steps.updated.outputs.core_version != ''
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: release-container.yml
-          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
         continue-on-error: true
 
       - name: 💾🐙😺➡️ Call to workflow for create binary releases
@@ -169,6 +185,14 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: release-action.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
+        continue-on-error: true
+
+      - name: 🐳🐙😺➡️ Call to workflow for create container releases
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release-container.yml
           inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
         continue-on-error: true
 

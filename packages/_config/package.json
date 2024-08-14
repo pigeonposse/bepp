@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@bepp/config",
-	"version": "1.2.11",
+	"version": "1.2.12",
 	"description": "Configuration files for monorepo",
 	"type": "module",
 	"scripts": {

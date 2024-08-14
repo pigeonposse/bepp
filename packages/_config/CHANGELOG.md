@@ -1,5 +1,11 @@
 # @bepp/config
 
+## 1.2.12
+
+### Patch Changes
+
+- Fix build issues
+
 ## 1.2.11
 
 ### Patch Changes

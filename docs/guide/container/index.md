@@ -4,7 +4,7 @@
 
 You can also use Bepp from a container to abstract it from your local environment. The web app, API, and CLI are available as images, and you can use any of them.
 
-> The idea is to create a specific image in the future for building Safari extensions from a Linux environment. If you have ideas on how to implement this, please let us know [here]((https://github.com/pigeonposse/bepp/issues)).
+> The idea is to create a specific image in the future for building Safari extensions from a Linux environment. If you have ideas on how to implement this, please let us know [here](https://github.com/pigeonposse/bepp/issues).
 
 ## Images
 

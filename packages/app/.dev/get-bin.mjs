@@ -28,110 +28,87 @@ const run = async () =>{
 
 	const platform = await getPlatform()
 	const arch     = await getArch()
+
+	const getDownloadFileName = ( name, ext ) => `${binGetName}-${name}${arch === 'arm64' ? `-${ext}` : '' }${name === 'win' ? '.exe' : ''}`
+	const getOutputsArm       = ( mark, plat ) => {
+
+		return [
+			...( !onlyOneBin ? [
+				binSetName + '-aarch64' + mark,
+			] : [] ),
+			...( platform === plat && arch === 'arm64' ? [
+				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-aarch64' + mark,
+				] : [] ),
+			] : [] ),
+		] 
+
+	}
+	const getOutputsx86       = ( mark, plat ) => {
+
+		return [
+			...( !onlyOneBin ? [
+				binSetName + '-universal' + mark,
+				binSetName + '-x86_64' + mark,
+			] : [] ),
+			...( platform === plat && arch !== 'arm64' ? [
+				binSetName,
+				...( onlyOneBin ? [
+					binSetName + '-x86_64' + mark,
+				] : [] ),
+			] : [] ),
+		] 
+
+	}
+	const binData             = [
+		// MACOS
+		{
+			downloadFile    : getDownloadFileName( 'macos', 'arm64' ),
+			outputFileNames : getOutputsArm( appleMark, 'macos' ), 
+			outputPath      : downloadPath, 
+		},
+		{
+			downloadFile    : getDownloadFileName( 'macos', 'x64' ),
+			outputFileNames : getOutputsx86( appleMark, 'macos' ), 
+			outputPath      : downloadPath, 
+		},
+		// LINUX
+		{
+			downloadFile    : getDownloadFileName( 'linux', 'arm64' ),
+			outputFileNames : getOutputsArm( linuxMark, 'linux' ), 
+			outputPath      : downloadPath, 
+		},
+		{
+			downloadFile    : getDownloadFileName( 'linux', 'x64' ),
+			outputFileNames : getOutputsx86( linuxMark, 'linux' ), 
+			outputPath      : downloadPath, 
+		},
+		// WIN
+		{
+			downloadFile    : getDownloadFileName( 'win', 'arm64' ),
+			outputFileNames : getOutputsArm( winMark, 'windows' ), 
+			outputPath      : downloadPath, 
+		},
+		{
+			downloadFile    : getDownloadFileName( 'win', 'x64' ),
+			outputFileNames : getOutputsx86( winMark, 'windows' ), 
+			outputPath      : downloadPath, 
+		},
+	]
 	
 	console.log( {
-		arch, platform,
+		arch, 
+		platform,
+		binData,
 	} )
 
-	// MACOS
-	await getBin( {
-		downloadFile    : binGetName + '-macos-arm64',
-		outputFileNames : [
-			...( !onlyOneBin ? [
-				binSetName + '-aarch64' + appleMark,
-			] : [] ),
-			...( platform === 'macos' && arch === 'arm64' ? [
-				binSetName,
-				...( onlyOneBin ? [
-					binSetName + '-aarch64' + appleMark,
-				] : [] ),
-			] : [] ),
-		], 
-		outputPath : downloadPath, 
-	} )
+	for ( let index = 0; index < binData.length; index++ ) {
 
-	await getBin( {
-		downloadFile    : binGetName + '-macos-x64',
-		outputFileNames : [
-			...( !onlyOneBin ? [
-				binSetName + '-universal' + appleMark,
-				binSetName + '-x86_64' + appleMark,
-			] : [] ),
-			...( platform === 'macos' && arch !== 'arm64' ? [
-				binSetName,
-				...( onlyOneBin ? [
-					binSetName + '-x86_64' + appleMark,
-				] : [] ),
-			] : [] ),
-		], 
-		outputPath : downloadPath, 
-	} )
-
-	// LINUX
-	await getBin( {
-		downloadFile    : binGetName + '-linux-arm64',
-		outputFileNames : [
-			...( !onlyOneBin ? [
-				binSetName + '-aarch64' + linuxMark,
-			] : [] ),
-			...( platform === 'linux' && arch === 'arm64' ? [
-				binSetName,
-				...( onlyOneBin ? [
-					binSetName + '-aarch64' + linuxMark,
-				] : [] ),
-			] : [] ),
-		], 
-		outputPath : downloadPath, 
-	} )
-	await getBin( {
-		downloadFile    : binGetName + '-linux-x64',
-		outputFileNames : [
-			...( !onlyOneBin ? [
-				binSetName + '-x86_64' + linuxMark,
-			] : [] ),
-			...( platform === 'linux' && arch !== 'arm64' ? [
-				binSetName,
-				...( onlyOneBin ? [
-					binSetName + '-x86_64' + linuxMark,
-				] : [] ),
-			] : [] ),
-		], 
-		outputPath : downloadPath, 
-	} )
+		const data = binData[index]
+		if( data.outputFileNames ) await getBin( data )
 	
-	// WIN
-	await getBin( {
-		downloadFile    : binGetName + '-win-x64.exe',
-		outputFileNames : [
-			...( !onlyOneBin ? [
-				binSetName + '-universal' + winMark,
-				binSetName + '-x86_64' + winMark,
-			] : [] ),
-			...( platform === 'windows' && arch === 'arm64' ? [
-				binSetName,
-				...( onlyOneBin ? [
-					binSetName + '-x86_64' + winMark,
-				] : [] ),
-			] : [] ),
-		], 
-		outputPath : downloadPath, 
-	} )
-
-	await getBin( {
-		downloadFile    : binGetName + '-win-arm64.exe',
-		outputFileNames : [
-			...( !onlyOneBin ? [
-				binSetName + '-aarch64' + winMark,
-			] : [] ),
-			...( platform === 'windows' && arch !== 'arm64' ? [
-				binSetName,
-				...( onlyOneBin ? [
-					binSetName + '-aarch64' + winMark,
-				] : [] ),
-			] : [] ),
-		], 
-		outputPath : downloadPath, 
-	} )
+	}
 
 	/**
 	 * GetBin..
@@ -156,10 +133,15 @@ const run = async () =>{
 
 			for ( let i = 0; i < outputFileNames.length; i++ ) {
 
-				await copyFile( {
-					input  : file,
-					output : joinPath( outputPath, outputFileNames[i] ),
-				} )
+				const output = joinPath( outputPath, outputFileNames[i] )
+				const exist  = existPath( output )
+
+				if( exist )
+					await copyFile( {
+						input : file,
+						output,
+					} )
+				else console.log( output + ' no exists' )
 		
 			}
 

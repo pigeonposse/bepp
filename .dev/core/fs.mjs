@@ -184,7 +184,7 @@ export const existPath = async pathToCheck => {
 
 	try {
 
-		const stats = await fs.promises.stat( pathToCheck )
+		const stats = await stat( pathToCheck )
 		if( stats ) return true
 		return false
 	
@@ -203,6 +203,7 @@ export const existPath = async pathToCheck => {
 	}
 
 }
+
 export const removePathIfExist = async path => {
 
 	try {

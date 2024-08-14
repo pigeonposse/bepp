@@ -97,6 +97,6 @@ export const createBins = async ({ binName, projectDir, inputFile, build = 'all'
 		projectBuildZip,
 	)
 
-	stop();
+	stop()
+	
 }
-
