@@ -75,16 +75,14 @@ Library guides:
 <!-- PIGEONPOSSE START INDEX -->
 
 - [Documentation](https://bepp.pigeonposse.com/)
+	- 📙 [JS/NODE Library](https://bepp.pigeonposse.com/guide/lib)
+	- 💾 [Bin](https://bepp.pigeonposse.com/guide/lib)
+	- 🤖 [GitHub Action]( https://bepp.pigeonposse.com/guide/gh-action )
+	- 🔌 [Api]( https://bepp.pigeonposse.com/guide/api )
+	- 🖥️ [App]( https://bepp.pigeonposse.com/guide/app )
+	- 🐳 [Docker]( https://bepp.pigeonposse.com/guide/container )
 - [Installation](https://bepp.pigeonposse.com/guide/lib/#installation)
 - [Articles](https://bepp.pigeonposse.com/posts)
-
-- [📙 JS/NODE Library Documentation](https://bepp.pigeonposse.com/guide/lib)
-- [💾 Bin Documentation](https://bepp.pigeonposse.com/guide/lib)
-- [🤖 GitHub Action Documentation]( https://bepp.pigeonposse.com/guide/gh-action )
-- [🔌 Api Documentation]( https://bepp.pigeonposse.com/guide/api )
-- [🖥️ App Documentation]( https://bepp.pigeonposse.com/guide/app )
-- [🐳 Docker Documentation]( https://bepp.pigeonposse.com/guide/container )
-
 <!-- PIGEONPOSSE END INDEX -->
 
 <!-- PIGEONPOSSE START ORG -->

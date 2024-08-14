@@ -83,16 +83,14 @@ const index = pkg => {
 
 	return `
 - [Documentation](${pkg.data.homepage})
+	- 📙 [JS/NODE Library](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib )})
+	- 💾 [Bin](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib )})
+	- 🤖 [GitHub Action]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.gh )} )
+	- 🔌 [Api]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.api )} )
+	- 🖥️ [App]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.app )} )
+	- 🐳 [Docker]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.container )} )
 - [Installation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '#installation' )})
-- [Articles](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.posts )})
-
-- [📙 JS/NODE Library Documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib )})
-- [💾 Bin Documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib )})
-- [🤖 GitHub Action Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.gh )} )
-- [🔌 Api Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.api )} )
-- [🖥️ App Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.app )} )
-- [🐳 Docker Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.container )} )
-`
+- [Articles](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.posts )})`
 
 }
 
