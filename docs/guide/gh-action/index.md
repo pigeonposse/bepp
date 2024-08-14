@@ -36,7 +36,7 @@ jobs:
           node-version: 20
 
       - name: Build extension with BEPP
-        uses: pigeonposse/bepp@v1.1.0
+        uses: pigeonposse/bepp@v1
         ##########################################################################################
         # For custom config file input
         # Default looks for file in workspace path bepp.config.json, bepp.config.yaml, bepp.config.toml

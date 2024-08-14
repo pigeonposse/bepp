@@ -133,7 +133,7 @@ jobs:
         if: steps.updated.outputs.core_version != ''
         uses: richardsimko/update-tag@v1
         with:
-          tag_name: v${{steps.updated.outputs.core_version}}
+          tag_name: ${{steps.updated.outputs.core_version}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

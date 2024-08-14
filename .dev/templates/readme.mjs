@@ -70,8 +70,7 @@ ${
 		url   : '/LICENSE',
 	} )
 }
-[![NPM Version](https://img.shields.io/npm/v/${pkg.data.extra.libraryId}?color=blue&style=for-the-badge&logo=npm&logoColor=white)](${pkg.data.extra.libraryUrl})
-[![GitHub Marketplace](https://img.shields.io/github/v/release/${pkg.data.extra.collective.id}/${pkg.data.name}?color=blue&style=for-the-badge&logo=github)](${pkg.data.extra.ghActionUrl})
+[![Version](https://img.shields.io/npm/v/${pkg.data.extra.libraryId}?color=blue&style=for-the-badge&label=Version)](${pkg.data.extra.libraryUrl})
 
 A tool for package your extension for multiple browsers quickly and easily _(Including Safari)_
 
@@ -84,17 +83,15 @@ const index = pkg => {
 
 	return `
 - [Documentation](${pkg.data.homepage})
-- [Installation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/getting-started#installation' )})
-- [GitHub Action Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.gh )} )
-- [Api Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.api )} )
-- [App Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.app )} )
-- [Docker Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.container )} )
+- [Installation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '#installation' )})
+- [Articles](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.posts )})
 
-Guides:
-- [Init](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/init' )})
-- [Build multiple extensions](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib,'/build' )})
-- [Build extensions with config file](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib,'/build/config-file' )})
-- [Build Safari extension](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/build/safari' )})
+- [📙 JS/NODE Library Documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib )})
+- [💾 Bin Documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib )})
+- [🤖 GitHub Action Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.gh )} )
+- [🔌 Api Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.api )} )
+- [🖥️ App Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.app )} )
+- [🐳 Docker Documentation]( ${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.container )} )
 `
 
 }
@@ -103,60 +100,11 @@ const content = pkg => {
 
 	return `[![SCHEMA](${joinUrl( pkg.data.extra.rawRepoUrl, '/main/docs/public/schema.png' )})](${pkg.data.homepage})
 
-## Installation _(CLI and Library)_
-
-\`\`\`bash
-npm install @bepp/bepp 
-# or
-pnpm i @bepp/bepp
-# or
-yarn add @bepp/bepp 
-\`\`\`
-
-## Preview
-
-**Bepp** is easy and fast 🚀🌈
-> Build 13 types of extensions _(including Safari)_ in **21s**
-
-![demo](${joinUrl( pkg.data.extra.rawRepoUrl, '/main/docs/public/demo.gif' )})
-
-## Github action
-
-You can use bepp as a **GitHub action**.
-
-- [Read more](${joinUrl( pkg.data.homepage, '/guide/gh-action' )})
-
-## Example
-
-\`\`\`yaml
-name: Build extensions
-on:
-  push:
-    branches:
-      - main
-jobs:
-  build:
-    name: Build extensions with bepp
-    runs-on: macos-latest # Must be macos for Safari extension build
-    steps:
-
-      - name: 🛎 Checkout
-        uses: actions/checkout@v4
-  
-      - name: Build extension with BEPP
-        uses: pigeonposse/bepp@v1.1.0
-        ##########################################################################################
-        # For custom config file input
-        # Default looks for file in workspace path bepp.config.json, bepp.config.yaml, bepp.config.toml
-        # More info for config file: ${joinUrl( pkg.data.homepage, '/guide/build/config-file' )}
-        ##########################################################################################
-        # with:
-        #   file: './custom-bepp.config.json'
-  
-\`\`\`
-
-- [GH action documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.gh )})
-- [Config file documentation](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/build/config-file' )})
+Library guides:
+- [Init configuration](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/init' )})
+- [Build multiple extensions](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib,'/build' )})
+- [Build extensions with config file](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib,'/build/config-file' )})
+- [Build Safari extension](${joinUrl( pkg.data.homepage, pkg.data.extra.docsPath.lib, '/build/safari' )})
 `
 
 }

@@ -53,8 +53,7 @@ DEVELOPED BY Angelo 🐦🌈
 [![Medium](https://img.shields.io/badge/Medium-black?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@pigeonposse)
 
 [![License](https://img.shields.io/github/license/pigeonposse/bepp?color=green&style=for-the-badge&logoColor=white)](/LICENSE)
-[![NPM Version](https://img.shields.io/npm/v/@bepp/bepp?color=blue&style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@bepp/bepp)
-[![GitHub Marketplace](https://img.shields.io/github/v/release/pigeonposse/bepp?color=blue&style=for-the-badge&logo=github)](https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder)
+[![Version](https://img.shields.io/npm/v/@bepp/bepp?color=blue&style=for-the-badge&label=Version)](https://www.npmjs.com/package/@bepp/bepp)
 
 A tool for package your extension for multiple browsers quickly and easily _(Including Safari)_
 
@@ -65,77 +64,26 @@ This tool include support for browsers as Safari, Chrome, Firefox, Edge, Brave, 
 <!-- PIGEONPOSSE START CONTENT -->
 [![SCHEMA](https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/schema.png)](https://bepp.pigeonposse.com/)
 
-## Installation _(CLI and Library)_
-
-```bash
-npm install @bepp/bepp 
-# or
-pnpm i @bepp/bepp
-# or
-yarn add @bepp/bepp 
-```
-
-## Preview
-
-**Bepp** is easy and fast 🚀🌈
-> Build 13 types of extensions _(including Safari)_ in **21s**
-
-![demo](https://raw.githubusercontent.com/pigeonposse/bepp/main/docs/public/demo.gif)
-
-## Github action
-
-You can use bepp as a **GitHub action**.
-
-- [Read more](https://bepp.pigeonposse.com/guide/gh-action)
-
-## Example
-
-```yaml
-name: Build extensions
-on:
-  push:
-    branches:
-      - main
-jobs:
-  build:
-    name: Build extensions with bepp
-    runs-on: macos-latest # Must be macos for Safari extension build
-    steps:
-
-      - name: 🛎 Checkout
-        uses: actions/checkout@v4
-  
-      - name: Build extension with BEPP
-        uses: pigeonposse/bepp@v1.1.0
-        ##########################################################################################
-        # For custom config file input
-        # Default looks for file in workspace path bepp.config.json, bepp.config.yaml, bepp.config.toml
-        # More info for config file: https://bepp.pigeonposse.com/guide/build/config-file
-        ##########################################################################################
-        # with:
-        #   file: './custom-bepp.config.json'
-  
-```
-
-- [GH action documentation](https://bepp.pigeonposse.com/guide/gh-action)
-- [Config file documentation](https://bepp.pigeonposse.com/guide/lib/build/config-file)
+Library guides:
+- [Init configuration](https://bepp.pigeonposse.com/guide/lib/init)
+- [Build multiple extensions](https://bepp.pigeonposse.com/guide/lib/build)
+- [Build extensions with config file](https://bepp.pigeonposse.com/guide/lib/build/config-file)
+- [Build Safari extension](https://bepp.pigeonposse.com/guide/lib/build/safari)
 
 <!-- PIGEONPOSSE END CONTENT -->
 
 <!-- PIGEONPOSSE START INDEX -->
 
 - [Documentation](https://bepp.pigeonposse.com/)
-- [Installation](https://bepp.pigeonposse.com/guide/lib/getting-started#installation)
-- [GitHub Action Documentation]( https://bepp.pigeonposse.com/guide/gh-action )
-- [Api Documentation]( https://bepp.pigeonposse.com/guide/api )
-- [App Documentation]( https://bepp.pigeonposse.com/guide/app )
-- [Docker Documentation]( https://bepp.pigeonposse.com/guide/container )
+- [Installation](https://bepp.pigeonposse.com/guide/lib/#installation)
+- [Articles](https://bepp.pigeonposse.com/posts)
 
-Guides:
-- [Init](https://bepp.pigeonposse.com/guide/lib/init)
-- [Build multiple extensions](https://bepp.pigeonposse.com/guide/lib/build)
-- [Build extensions with config file](https://bepp.pigeonposse.com/guide/lib/build/config-file)
-- [Build Safari extension](https://bepp.pigeonposse.com/guide/lib/build/safari)
+- [📙 JS/NODE Library Documentation](https://bepp.pigeonposse.com/guide/lib)
+- [💾 Bin Documentation](https://bepp.pigeonposse.com/guide/lib)
+- [🤖 GitHub Action Documentation]( https://bepp.pigeonposse.com/guide/gh-action )
+- [🔌 Api Documentation]( https://bepp.pigeonposse.com/guide/api )
+- [🖥️ App Documentation]( https://bepp.pigeonposse.com/guide/app )
+- [🐳 Docker Documentation]( https://bepp.pigeonposse.com/guide/container )
 
 <!-- PIGEONPOSSE END INDEX -->
 
