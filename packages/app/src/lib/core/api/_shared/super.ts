@@ -22,7 +22,7 @@ export class ApiSuper<IDS extends Uppercase<string>> implements ApiInterface{
 	error
 	Error
 	
-	readonly urlDefaultPort = 13129
+	readonly urlDefaultPort = Number( MAIN_PKG.extra.defaultApiPort )
 
 	url = {
 		protocol : 'http',

@@ -30,7 +30,7 @@ const server: UserConfig['server'] = {
 	...( isContainer ? {
 		proxy : {
 			'/api' : {
-				target       : 'http://localhost:13129',
+				target       : `http://localhost:${mainPkg.extra.defaultApiPort}`,
 				rewrite      : path => path.replace( /^\/api/, '' ),
 				changeOrigin : true,
 				secure       : false,

@@ -1,11 +1,15 @@
 import facts       from './facts/endpoint'
 import extensions  from './exts/endpoint'
 import health      from './health/endpoint'
-import { version } from '../package.json'
-import { bugs }    from '../../../package.json'
 import { App }     from './_shared/app'
+import { version } from '../package.json'
+import {
+	bugs,
+	extra, 
+} from '../../../package.json'
 
 export type * from './types'
+
 const getPortFromArgs = () => {
 
 	const portArgIndex = process.argv.findIndex( arg => arg.startsWith( '--port=' ) )
@@ -18,7 +22,7 @@ const getPortFromArgs = () => {
 	
 	}
   
-	return 13129
+	return Number( extra.defaultApiPort )
 
 }
 export const port = getPortFromArgs()
