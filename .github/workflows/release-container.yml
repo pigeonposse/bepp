@@ -77,22 +77,6 @@ jobs:
       # PUSH IMAGE
       #########################################################################
 
-      - name: 🐳🚀 Build and push [APP] image 
-        uses: docker/build-push-action@v4
-        with:
-          context: packages/container/src/app
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: |
-            ${{ github.repository }}:${{ env.UPDATED_VERSION }}
-            ${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
-            ${{ github.repository }}:latest-app
-            ${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}
-            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
-            ghcr.io/${{ github.repository }}:latest-app
-            ghcr.io/${{ github.repository }}:latest
-
       - name: 🐳🚀 Build and push [API] image
         uses: docker/build-push-action@v4
         with:
@@ -116,6 +100,23 @@ jobs:
             ${{ github.repository }}:latest-cli
             ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}-cli
             ghcr.io/${{ github.repository }}:latest-cli
+
+      # Build last for get tag 'latest' first in dockerhub 
+      - name: 🐳🚀 Build and push [APP] image 
+        uses: docker/build-push-action@v4
+        with:
+          context: packages/container/src/app
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ github.repository }}:${{ env.UPDATED_VERSION }}
+            ${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
+            ${{ github.repository }}:latest-app
+            ${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}
+            ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
+            ghcr.io/${{ github.repository }}:latest-app
+            ghcr.io/${{ github.repository }}:latest
 
       #########################################################################
       # UPDATE DOCKERHUB DATA

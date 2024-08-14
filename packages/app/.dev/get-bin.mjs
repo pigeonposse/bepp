@@ -8,13 +8,12 @@ import {
 	getPlatform,
 	getArch, 
 	paths,
-	readJSON,
 } from '@bepp/config/core'
+import { binName } from '../../api/.dev/const.js'
 
 const binsPath     = joinPath( paths.apiDir, 'build', 'bin' )
 const downloadPath = joinPath( paths.appDir, 'src-tauri', 'bin' )
-const apiPkg       = await readJSON( joinPath( paths.apiDir,'pkg.config.json' ) )
-const binGetName   = apiPkg.name
+const binGetName   = binName
 
 const onlyOneBin = true
 const binSetName = 'bepp-server'

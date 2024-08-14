@@ -1,5 +1,7 @@
 # BEPP GitHub Action
 
+![HEADER](/banner/bepp-githubaction-banner.png)
+
 Package your extensions using the official GitHub Action `bepp`.
 This is perfect for when you don't have access to a macOS operating system but still want to package your extension for Safari.
 

@@ -1,9 +1,8 @@
 # BEPP App 
 
-The `BEPP application` is a tool designed to simplify the process of packaging cross-platform extensions.
+![HEADER](/banner/bepp-app-banner.png)
 
-<!-- ![HEADER](/bepp-app-conversion.mp4) -->
-<video src="/bepp-app-conversion.mp4" controls />
+The `BEPP application` is a tool designed to simplify the process of packaging cross-platform extensions.
 
 
 ## Description
@@ -11,6 +10,9 @@ The `BEPP application` is a tool designed to simplify the process of packaging c
 With **BEPP**, you can easily convert your extension for _Safari_, _Chrome_, _Firefox_, _Edge_, _Brave_ and other popular browsers, all from a single platform.
 In addition, the application allows you to search for extensions on the web and convert them. Forget about the complications of adapting your extension for each browser separately; **BEPP** makes it quick and easy so you can focus on what really matters.
 
+## Preview
+
+<video src="/app/bepp-app-conversion.mp4" controls />
 
 ## Installation
 
@@ -23,11 +25,11 @@ Also you can use app via:
 - [docker image](../container/index.md)
 
 ## Screenshots
-![App](/bepp-app.png)
-![Search](/bepp-app-search.png)
+![App](/app/bepp-app.png)
+![Search](/app/bepp-app-search.png)
 
 ## Examples
 
 ### Convert extensions (including _Safari_)
 
-<video src="/bepp-app-conversion-safari.mp4" controls />
+<video src="/app/bepp-app-conversion-safari.mp4" controls />

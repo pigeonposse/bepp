@@ -2,7 +2,7 @@
 date: 2024-03-21
 title: How to allow unsigned safari extensions in macOS
 description: How to allow and open unsigned safari extensions in macOS
-image: '/allow-unsigned-safari-extensions-in-macos--banner.png'
+image: '/posts/banner/allow-unsigned-safari-extensions-in-macos--banner.png'
 author: 
   name: Angelo
   github: angelespejo
@@ -29,50 +29,50 @@ If you wish, you can use this same extension and follow the steps one by one. [D
 
 ## 1. Download _Safari_ extension
 
-![Download](/super8-safari-extension--github-download.png){data-zoomable}
+![Download](/posts/super8-safari-extension--github-download.png){data-zoomable}
 
 ## 2. Decompress extension
 
-![TGZ](/super8-safari-extension--open-tgz.png){data-zoomable}
+![TGZ](/posts/super8-safari-extension--open-tgz.png){data-zoomable}
 
 ## 3. Open DMG
 
-![DMG OPENED](/super8-safari-extension--dmg.png){data-zoomable}
+![DMG OPENED](/posts/super8-safari-extension--dmg.png){data-zoomable}
 
 ## 4. Drag the app to the `Applications` folder
 
 In the DMG window, drag the app to the Applications folder
 
-![DMG open](/super8-safari-extension--dmg-open.png){data-zoomable}
+![DMG open](/posts/super8-safari-extension--dmg-open.png){data-zoomable}
 
 ::: tip Info
 If you open an extension built with **bepp**, by default it will come with a **readme file** that explains the activation process.
 
 File content:
 
-![DMG open](/super8-safari-extension--dmg-readme.png){data-zoomable}
+![DMG open](/posts/super8-safari-extension--dmg-readme.png){data-zoomable}
 
 :::
 
 ## 5. Go to lauchpad and click app
 
-![Launchpad](/super8-safari-extension--app-launchpad.png){data-zoomable}
+![Launchpad](/posts/super8-safari-extension--app-launchpad.png){data-zoomable}
 
 ## 6. Allow _Safari_ extension app
 
 An alert appears when I open the _Safari_ extension app:
 
-![alert](/super8-safari-extension--macos-permisions.png){data-zoomable}
+![alert](/posts/super8-safari-extension--macos-permisions.png){data-zoomable}
 
 Go to `settings` and click on `privacy and security` then allow _macOS_ to open **application**.
 
-![settings](/super8-safari-extension--macos-settings-privacy.png){data-zoomable}
+![settings](/posts/super8-safari-extension--macos-settings-privacy.png){data-zoomable}
 
 You can read more about this on the Apple support page. [Read more](https://support.apple.com/guide/mac-help/mh40616/mac)
 
 ## 7. Open _Safari_ extension app
 
-![Open App](/super8-safari-extension--open-app+dock.png){data-zoomable}
+![Open App](/posts/super8-safari-extension--open-app+dock.png){data-zoomable}
 
 Once you open the app and click the button to open _Safari_, it is normal that your extension does not appear, for it to appear you will have to follow the next step.
 
@@ -81,7 +81,7 @@ Once you open the app and click the button to open _Safari_, it is normal that y
 1. Open Safari and choose `Safari` > `Settings`.
 2. Select the `Advanced` tab, then select the `Show Develop menu in menu bar` checkbox.
 
-![dev options](/super8-safari-extension-safari-settings-allow-developer-options.png){data-zoomable}
+![dev options](/posts/super8-safari-extension-safari-settings-allow-developer-options.png){data-zoomable}
 
 3. Choose `Develop` > `Allow Unsigned Extensions`, enter your password, and click `OK`.
 
@@ -89,7 +89,7 @@ Once you open the app and click the button to open _Safari_, it is normal that y
 If you are using _Safari 17 or later_, click the Developer tab in Safari Settings, and select the "Allow unsigned extensions" option. The Allow Unsigned Extensions setting resets when a user quits Safari, so you need to set it again the next time you launch Safari.
 :::
 
-![Unsigned](/super8-safari-extension--safari-settings-prerequisits.png){data-zoomable}
+![Unsigned](/posts/super8-safari-extension--safari-settings-prerequisits.png){data-zoomable}
 
 [Apple documentation](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension#2957925)
 
@@ -99,23 +99,23 @@ If you are using _Safari 17 or later_, click the Developer tab in Safari Setting
 2. Find your new extension in the list on the left, and enable it by selecting its checkbox.
 3. Close Safari Settings.
 
-![Activate](/super8-safari-extension--safari-settings-activate.png){data-zoomable}
+![Activate](/posts/super8-safari-extension--safari-settings-activate.png){data-zoomable}
 
 ## 10. Extension is activated
 
-![Preview](/super8-safari-extension--extension-preview.gif){data-zoomable}
+![Preview](/posts/super8-safari-extension--extension-preview.gif){data-zoomable}
 
 ### Extension popup
 
-![extension popup](/super8-safari-extension--extension-popup.png){data-zoomable}
+![extension popup](/posts/super8-safari-extension--extension-popup.png){data-zoomable}
 
 ### Extension options page
 
-![extension options](/super8-safari-extension--extension-options.png){data-zoomable}
+![extension options](/posts/super8-safari-extension--extension-options.png){data-zoomable}
 
 ### Extension content
 
-![extension content](/super8-safari-extension--extension-content.png){data-zoomable}
+![extension content](/posts/super8-safari-extension--extension-content.png){data-zoomable}
 
 ---
 

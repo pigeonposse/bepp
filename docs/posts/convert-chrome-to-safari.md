@@ -2,7 +2,7 @@
 date: 2024-03-20
 title: Convert a Chrome extension to Safari extension
 description: Convert a Chrome extension to Safari (easy and fast)
-image: '/convert-chrome-to-safari-banner.png'
+image: '/posts/banner/convert-chrome-to-safari--banner.png'
 author: 
   name: Angelo
   github: angelespejo
@@ -174,27 +174,27 @@ Once the conversion is done we will have our extension ready. Below I put images
 
 ### Open compressed extension
 
-![TGZ](/super8-safari-extension--open-tgz.png)
+![TGZ](/posts/super8-safari-extension--open-tgz.png)
 
 ### Open DMG
 
-![DMG OPENED](/super8-safari-extension--dmg.png)
+![DMG OPENED](/posts/super8-safari-extension--dmg.png)
 
 ### In the DMG window, drag the app to the `Applications` folder
 
-![DMG open](/super8-safari-extension--dmg-open.png)
+![DMG open](/posts/super8-safari-extension--dmg-open.png)
 
 ### Go to lauchpad
 
-![Launchpad](/super8-safari-extension--app-launchpad.png)
+![Launchpad](/posts/super8-safari-extension--app-launchpad.png)
 
 ### Open safari extension app
 
-![Open App](/super8-safari-extension--open-app+dock.png)
+![Open App](/posts/super8-safari-extension--open-app+dock.png)
 
 ### In safari settings, allow unsigned extension
 
-![Unsigned](/super8-safari-extension--safari-settings-prerequisits.png)
+![Unsigned](/posts/super8-safari-extension--safari-settings-prerequisits.png)
 
 ::: warning
 Maybe this option does not appear, to make it appear you can read more about this in:
@@ -203,23 +203,23 @@ Maybe this option does not appear, to make it appear you can read more about thi
 
 ### Now you can activate extension in safari settings
 
-![DMG OPENED](/super8-safari-extension--safari-settings-activate.png)
+![DMG OPENED](/posts/super8-safari-extension--safari-settings-activate.png)
 
 ### Extension in use
 
-![Preview](/super8-safari-extension--extension-preview.gif)
+![Preview](/posts/super8-safari-extension--extension-preview.gif)
 
 #### Extension popup
 
-![extension popup](/super8-safari-extension--extension-popup.png)
+![extension popup](/posts/super8-safari-extension--extension-popup.png)
 
 #### Extension options page
 
-![extension options](/super8-safari-extension--extension-options.png)
+![extension options](/posts/super8-safari-extension--extension-options.png)
 
 #### Extension content
 
-![extension content](/super8-safari-extension--extension-content.png)
+![extension content](/posts/super8-safari-extension--extension-content.png)
 
 As you can see, everything works perfectly. ✨
 

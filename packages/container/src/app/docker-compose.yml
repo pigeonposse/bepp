@@ -13,7 +13,6 @@ services:
     build: .
     ports:
       - "13122:13128/tcp"
-    #   - "13123:13129/tcp"
     restart: always
 
 #   bepp_app_macos:

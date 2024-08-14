@@ -212,7 +212,7 @@
 			},
 			"containerGithub": {
 				"name": "Github package",
-				"url": "https://github.com/orgs/pigeonposse/packages?repo_name=bepp",
+				"url": "https://github.com/pigeonposse/bepp/pkgs/container/bepp",
 				"type": "container"
 			},
 			"macosUniversal": {

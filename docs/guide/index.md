@@ -7,24 +7,43 @@ This tool include support for browsers as [_Safari_](lib/build/safari.md), [_Chr
 
 ## JS/Node library
 
+![HEADER](/banner/bepp-lib-banner.png)
+
 **BEPP** can also be used as a JavaScript library. [*Read more*](./lib/index.md).
 
 ## Binary
+
+![HEADER](/banner/bepp-cli-banner.png)
 
 In addition to its library form, **BEPP** is available as a [binary](./lib/index.md).
 
 ## GitHub Action
 
+![HEADER](/banner/bepp-githubaction-banner.png)
+
 Integrate BEPP into your workflow with the [*Github action*](https://github.com/marketplace/actions/bepp-a-cross-browser-extension-builder).
 
 ## API
 
+![HEADER](/banner/bepp-api-banner.png)
+
 Use **BEPP** as a [server API](./api/index.md) for greater flexibility and integration.
 
-## Application
+## Desktop App
 
-***BEPP*** is available as an application for both browsers and desktops. [Find out more](./app/index.md).
+![HEADER](/banner/bepp-app-banner.png)
+
+***BEPP*** is available as a desktop application. [Find out more](./app/index.md).
+
+## Web App
+
+![HEADER](/banner/bepp-web-banner.png)
+
+***BEPP*** is available as a web application. [Find out more](./app/index.md).
+
 
 ## Container _(Docker)_
+
+![HEADER](/banner/bepp-docker-banner.png)
 
 Deploy **BEPP** in a [Docker container](./container/index.md) for easy and consistent development environments.

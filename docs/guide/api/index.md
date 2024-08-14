@@ -1,5 +1,7 @@
 # BEPP Api 
 
+![HEADER](/banner/bepp-api-banner.png)
+
 The `bepp API` is used by the bepp application, but it can be downloaded and used independently in your own project.
 
 ## Installation
