@@ -66,6 +66,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: 📦📄 Get package.json data
+        id: pkg
+        run: |
+          echo "name=$(jq -r '.extra.productName' ./package.json)" >> $GITHUB_OUTPUT
+          echo "description=$(jq -r '.description' ./package.json)" >> $GITHUB_OUTPUT
+          echo "homepage=$(jq -r '.homepage' ./package.json)" >> $GITHUB_OUTPUT
+
       #########################################################################
       # PUSH IMAGE
       #########################################################################
@@ -78,8 +85,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ${{ github.repository }}:${{ env.UPDATED_VERSION }}
-			${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
-			${{ github.repository }}:latest-app
+            ${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
+            ${{ github.repository }}:latest-app
             ${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}
             ghcr.io/${{ github.repository }}:${{ env.UPDATED_VERSION }}-app
