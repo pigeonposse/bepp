@@ -1,5 +1,7 @@
 ###############################################################################
 # RELEASE APP IN LINUX ARM64
+# @description This must be on macos-14 since it is arm and makes the execution faster. 
+#              Running on Linux x65 is too slow
 ###############################################################################
 
 name: 🚀🖥️ Release APP in linux arm64
@@ -48,6 +50,8 @@ jobs:
           cache: 'pnpm'
       - name: ⬇️🐳 Set up Docker
         uses: crazy-max/ghaction-setup-docker@v3
+        env:
+          LIMA_START_ARGS: --cpus 4 --memory 8
       - name: ⬇️🐳 Set up Docker Buildx (linux arm64)
         uses: docker/setup-buildx-action@v1
       - name: ⬇️📦 Install dependencies
