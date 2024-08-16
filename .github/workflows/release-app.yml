@@ -50,7 +50,7 @@ jobs:
     steps:
 
       #########################################################################
-      # INIT & INSTALL
+      # SETUP
       #########################################################################
 
       - name: ⬇️🛑 Cancel Previous Runs
@@ -64,32 +64,49 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
+      - name: ⬇️🦀 Rust setup (macos only)
+        if: runner.os == 'macOS'
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # Note that compiling an universal macOS application requires both `aarch64-apple-darwin` and `x86_64-apple-darwin` targets to be installed.
+          targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
+          toolchain: stable
+      - name: ⬇️🦀 Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+      - name: ⬇️🐳 Set up QEMU (linux arm64)
+        if: runner.os == 'macOS'
+        uses: docker/setup-qemu-action@v1
+      - name: ⬇️🐳 Set up Docker Buildx (linux arm64)
+        if: runner.os == 'macOS'
+        uses: docker/setup-buildx-action@v1
 
       #########################################################################
       # PLATFORM CHECK
       #########################################################################
 
       - name: 📜 Check Target Platform
-        id: check_platform
+        if: runner.os != 'Windows'
         run: |
           if [ "${{ env.TARGET_PLATFORM }}" != "" ] && [ "${{ matrix.settings.platform }}" != "${{ env.TARGET_PLATFORM }}" ]; then
             echo "##[error] Platform ${matrix.settings.platform} does not match the target platform ${TARGET_PLATFORM}. Skipping steps."
             exit 1
           fi
         shell: bash
+      - name: 📜 Check Target Platform (Windows)
+        if: runner.os == 'Windows'
+        id: check_platform_windows
+        run: |
+          if ($env:TARGET_PLATFORM -ne "" -and $env:TARGET_PLATFORM -ne $env:PLATFORM) {
+            Write-Host "Platform $($env:PLATFORM) does not match the target platform $($env:TARGET_PLATFORM). Skipping steps."
+            exit 1
+          } 
+        shell: pwsh
 
-      - name: ⬇️🦀 Rust setup (macos only)
-        if: matrix.settings.platform == 'macos-14'
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          # Note that compiling an universal macOS application requires both `aarch64-apple-darwin` and `x86_64-apple-darwin` targets to be installed.
-          targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
-          toolchain: stable
-
-      - name: ⬇️🦀 Rust cache
-        uses: swatinem/rust-cache@v2
-        with:
-          workspaces: './src-tauri -> target'
+      #########################################################################
+      # INSTALL AND INIT
+      #########################################################################
 
       - name: ⬇️🦀 install dependencies (ubuntu only)
         if: matrix.settings.platform == 'ubuntu-22.04'
@@ -155,7 +172,7 @@ jobs:
       # BUILD macos arm64/x64
       #########################################################################
       - name: 🖥️ Build app (macos x64)
-        if: matrix.settings.platform == 'macos-14'
+        if: runner.os == 'macOS'
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -176,7 +193,7 @@ jobs:
           args: '--target x86_64-apple-darwin'
 
       - name: 🖥️ Build app (macos arm64)
-        if: matrix.settings.platform == 'macos-14'
+        if: runner.os == 'macOS'
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -198,17 +215,12 @@ jobs:
 
       # BUILD linux arm64
       #########################################################################
-      - name: ⬇️🐳 Set up QEMU (linux arm64)
-        if: matrix.settings.platform == 'macos-14'
-        uses: docker/setup-qemu-action@v1
-      - name: ⬇️🐳 Set up Docker Buildx (linux arm64)
-        if: matrix.settings.platform == 'macos-14'
-        uses: docker/setup-buildx-action@v1
+
       - name: 🖥️ Build app (linux arm64)
-        if: matrix.settings.platform == 'macos-14'
+        if: runner.os == 'macOS'
         run: pnpm app build:linux-arm64
       - name: 🖥️ Release app (linux arm64)
-        if: matrix.settings.platform == 'macos-14'
+        if: runner.os == 'macOS'
         uses: ncipollo/release-action@v1
         with: 
           tag: "${{ env.UPDATED_VERSION }}"
@@ -217,5 +229,6 @@ jobs:
           allowUpdates: true
           artifacts: "${{ env.BUNDLE_LINUX_ARM64_PATH }}/appimage/*.AppImage,${{ env.BUNDLE_LINUX_ARM64_PATH }}/deb/*.deb,${{ env.BUNDLE_LINUX_ARM64_PATH }}/rpm/*.rpm"
           omitBodyDuringUpdate: true
+
 
 ############################################################################### 
