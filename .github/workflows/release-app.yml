@@ -65,7 +65,7 @@ jobs:
         if: matrix.settings.platform == 'macos-latest'
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: 'aarch64-apple-darwin'
+          targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
           toolchain: stable
 
     #   - name: ⬇️🦀 Rust setup

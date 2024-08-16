@@ -1,6 +1,6 @@
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-	use tauri::Manager;
+	// use tauri::Manager;
     tauri::Builder::default()
 		.plugin(tauri_plugin_log::Builder::new().targets([
 			tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::Stdout),
@@ -14,10 +14,10 @@ pub fn run() {
 		.plugin(tauri_plugin_dialog::init())
 		.plugin(tauri_plugin_autostart::init(tauri_plugin_autostart::MacosLauncher::LaunchAgent, Some(vec!["--flag1", "--flag2"])))
         .setup(|app| {
-			#[cfg(debug_assertions)] // only include this code on debug builds
-			{
-				app.get_webview_window("main").unwrap().open_devtools();
-			}
+			// #[cfg(debug_assertions)] // only include this code on debug builds
+			// {
+			// 	app.get_webview_window("main").unwrap().open_devtools();
+			// }
             #[cfg(desktop)]
             app.handle().plugin(tauri_plugin_updater::Builder::new().build())?;
             Ok(())

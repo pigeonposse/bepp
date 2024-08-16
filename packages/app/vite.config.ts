@@ -4,14 +4,16 @@
  * @description Vite config.
  * @see https://vitejs.dev/config/
  */
-import { sveltekit }               from '@sveltejs/kit/vite'
-import {
-	defineConfig, type UserConfig, 
-} from 'vite'
+// @ts-ignore
+import legacy           from '@vitejs/plugin-legacy'
+import { sveltekit }    from '@sveltejs/kit/vite'
+import { internalIpV4 } from 'internal-ip'
 import mainPkg          from '../../package.json'
 import pkg              from './package.json'
-import { internalIpV4 } from 'internal-ip'
-import legacy           from '@vitejs/plugin-legacy'
+import {
+	defineConfig, 
+	type UserConfig, 
+} from 'vite'
 
 // @ts-expect-error process is a nodejs global
 const mobile      = !!/android|ios/.exec( process.env.TAURI_ENV_PLATFORM )
