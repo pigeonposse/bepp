@@ -62,7 +62,7 @@ jobs:
           cache: 'pnpm'
 
       - name: ⬇️🦀 Rust setup (macos only)
-        if: matrix.settings.platform == 'macos-latest'
+        if: matrix.settings.platform == 'macos-14'
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
