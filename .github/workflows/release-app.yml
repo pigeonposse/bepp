@@ -76,10 +76,10 @@ jobs:
         with:
           workspaces: './src-tauri -> target'
       - name: ⬇️🐳 Set up QEMU (linux arm64)
-        if: runner.os == 'macOS'
+        if: runner.os == 'Linux'
         uses: docker/setup-qemu-action@v1
       - name: ⬇️🐳 Set up Docker Buildx (linux arm64)
-        if: runner.os == 'macOS'
+        if: runner.os == 'Linux'
         uses: docker/setup-buildx-action@v1
 
       #########################################################################
@@ -217,10 +217,10 @@ jobs:
       #########################################################################
 
       - name: 🖥️ Build app (linux arm64)
-        if: runner.os == 'macOS'
+        if: runner.os == 'Linux'
         run: pnpm app build:linux-arm64
       - name: 🖥️ Release app (linux arm64)
-        if: runner.os == 'macOS'
+        if: runner.os == 'Linux'
         uses: ncipollo/release-action@v1
         with: 
           tag: "${{ env.UPDATED_VERSION }}"
