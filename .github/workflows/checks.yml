@@ -176,6 +176,14 @@ jobs:
           inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
         continue-on-error: true
 
+      - name: 🖥️🐙😺➡️ Call to workflow for create LINUX ARM64 app releases
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release-app-linux-arm.yml
+          inputs: '{ "version": "${{ steps.updated.outputs.core_version }}"}'
+        continue-on-error: true
+
       - name: 🤖🐙😺➡️ Call to workflow for create Github action
         if: steps.updated.outputs.core_version != ''
         uses: benc-uk/workflow-dispatch@v1
