@@ -1,5 +1,5 @@
 services:
-  tauri-build-arm64:
+  compose-tauri-linux-arm64:
     platform: linux/arm64
     build:
       context: .

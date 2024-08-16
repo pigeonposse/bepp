@@ -24,6 +24,11 @@ const main = async () => {
 				default : 'main',
 				message : 'push origin',
 			},
+		] )
+
+		await exec( `git add ${answers.add} && pnpm cm && git push -f origin ${answers.origin}` )
+		
+		const answersAfter = await prompt( [
 			{
 				type    : 'confirm',
 				name    : 'workflow',
@@ -31,10 +36,7 @@ const main = async () => {
 				message : 'Run workflow',
 			},
 		] )
-
-		await exec( `git add ${answers.add} && pnpm cm && git push -f origin ${answers.origin}` )
-
-		if( answers.workflow ){
+		if( answersAfter.workflow ){
 
 			await exec( 'pnpm run-workflow' )
 		
