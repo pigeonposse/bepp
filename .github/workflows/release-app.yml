@@ -11,6 +11,11 @@ on:
         description: 'Set number for release version'
         type: string
         required: true
+      platform:
+        description: 'Specify platform to target (optional). If not set, all platforms will be processed.'
+        type: string
+        required: false
+
 env:
   GITHUB_TOKEN: ${{ github.token }}
   APP_PATH: packages/app
@@ -41,7 +46,7 @@ jobs:
     runs-on: ${{ matrix.settings.platform }}
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
-
+      TARGET_PLATFORM: ${{ github.event.inputs.platform }}
     steps:
 
       #########################################################################
@@ -59,6 +64,18 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
+
+      #########################################################################
+      # PLATFORM CHECK
+      #########################################################################
+
+      - name: 📜 Check Target Platform
+        id: check_platform
+        run: |
+          if [ "${{ env.TARGET_PLATFORM }}" != "" ] && [ "${{ matrix.settings.platform }}" != "${{ env.TARGET_PLATFORM }}" ]; then
+            echo "##[error] Platform ${matrix.settings.platform} does not match the target platform ${TARGET_PLATFORM}. Skipping steps."
+            exit 1
+          fi
 
       - name: ⬇️🦀 Rust setup (macos only)
         if: matrix.settings.platform == 'macos-14'
