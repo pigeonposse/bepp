@@ -1,5 +1,6 @@
 services:
   tauri-build-arm64:
+    platform: linux/arm64
     build:
       context: .
       args:

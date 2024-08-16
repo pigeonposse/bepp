@@ -140,6 +140,24 @@ jobs:
       - name: 🏗 Build
         run: pnpm build:app # Is necessary set manually for windows 
 
+      # BUILD linux arm64
+      #########################################################################
+
+      - name: 🖥️ Build app (linux arm64)
+        if: runner.os == 'Linux'
+        run: pnpm app build:linux-arm64
+      - name: 🖥️ Release app (linux arm64)
+        if: runner.os == 'Linux'
+        uses: ncipollo/release-action@v1
+        with: 
+          tag: "${{ env.UPDATED_VERSION }}"
+          draft: false
+          prerelease: false
+          allowUpdates: true
+          artifacts: "${{ env.BUNDLE_LINUX_ARM64_PATH }}/appimage/*.AppImage,${{ env.BUNDLE_LINUX_ARM64_PATH }}/deb/*.deb,${{ env.BUNDLE_LINUX_ARM64_PATH }}/rpm/*.rpm"
+          omitBodyDuringUpdate: true
+
+
       #########################################################################
       # APP - BUILD & RELEASE DESKTOP APP
       #
@@ -212,23 +230,6 @@ jobs:
           includeRelease: true
           tauriScript: pnpm exec tauri 
           args: '--target aarch64-apple-darwin'
-
-      # BUILD linux arm64
-      #########################################################################
-
-      - name: 🖥️ Build app (linux arm64)
-        if: runner.os == 'Linux'
-        run: pnpm app build:linux-arm64
-      - name: 🖥️ Release app (linux arm64)
-        if: runner.os == 'Linux'
-        uses: ncipollo/release-action@v1
-        with: 
-          tag: "${{ env.UPDATED_VERSION }}"
-          draft: false
-          prerelease: false
-          allowUpdates: true
-          artifacts: "${{ env.BUNDLE_LINUX_ARM64_PATH }}/appimage/*.AppImage,${{ env.BUNDLE_LINUX_ARM64_PATH }}/deb/*.deb,${{ env.BUNDLE_LINUX_ARM64_PATH }}/rpm/*.rpm"
-          omitBodyDuringUpdate: true
 
 
 ############################################################################### 
