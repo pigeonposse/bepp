@@ -8,6 +8,7 @@ const ERROR = {
 	START_SERVER : 'START_SERVER',
 } as const
 type ApiGeneralError = typeof ERROR[keyof typeof ERROR]
+
 export type ApiError = 
 	WebFacts['ERROR'][keyof WebFacts['ERROR']] |	
 	Extension['ERROR'][keyof Extension['ERROR']] |
@@ -73,6 +74,11 @@ export class Api extends ApiSuper<ApiError>{
 		} )
 	
 	}
+	#sleep( ms:number ) {
+
+		return new Promise( resolve => setTimeout( resolve, ms ) )
+
+	}
 
 	async #validateServer(){
 
@@ -85,7 +91,7 @@ export class Api extends ApiSuper<ApiError>{
 			} )
 
 			if( !url ) return false
-			const res = await this.fetch( url ) 
+			const res = await this.http.fetch( url ) 
 			if( !res.ok ) return false
 			const data = await res.json()
 			// console.log( {
@@ -100,6 +106,7 @@ export class Api extends ApiSuper<ApiError>{
 		}
 	
 	}
+
 	async #validateProxy(){
 
 		this.proxyUrl           = true 
@@ -113,7 +120,8 @@ export class Api extends ApiSuper<ApiError>{
 		return false 
 	
 	}
-	async existsServerOnRange(){
+
+	async #existsServerOnRange(){
 
 		const maxAttempts   = 10
 		const portIncrement = 1
@@ -137,24 +145,62 @@ export class Api extends ApiSuper<ApiError>{
 		return false
 
 	}
-	#sleep( ms:number ) {
 
-		return new Promise( resolve => setTimeout( resolve, ms ) )
+	async #invoke( { port }: {port: number} ){
 
+		return await new Promise<boolean>( ( resolve, reject ) => {
+
+			return this.system.shell.execute( {
+				program : this.data.appBin.beppServer,
+				args    : [
+					`--port=${port}`,
+				],
+				on : async v => {
+
+					this.log.trace( {
+						id   : this.data.logID.serverData,
+						data : v,
+					} )
+
+					if ( v.type === 'error' ) reject( false ) 
+					if ( v.type === 'close' ) resolve( true )
+				
+				},
+			} ).catch( e => {
+				
+				this.log.error( {
+					id   : this.data.logID.serverError,
+					data : e,
+				} )
+				reject( false ) 
+			
+			} )
+		
+		} )
+	
 	}
+
 	async init(){
 
 		try {
 			
-			const existServer = await this.existsServerOnRange()
+			const existServer = await this.#existsServerOnRange()
 			const isTauri     = await this.window.isTauri()
 			if( !existServer && isTauri ){
 
-				await this.system.shell.invoke( 'start_server', {
+				const invokeServer = await this.#invoke( {
 					port : this.facts.urlDefaultPort,
 				} )
+				this.log.trace( {
+					id   : this.data.logID.serverInvoke,
+					data : {
+						port : this.facts.urlDefaultPort,
+						res  : invokeServer,
+					},
+				} )
+
 				await this.#sleep( 5000 )
-				const existInvokeServer = await this.existsServerOnRange()
+				const existInvokeServer = await this.#existsServerOnRange()
 				if( !existInvokeServer ) throw Error( 'Server invoke not found' )
 			
 			}else if( !existServer ) throw Error( 'Server not found' )

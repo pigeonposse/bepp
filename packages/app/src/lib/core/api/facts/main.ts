@@ -22,7 +22,7 @@ export class WebFacts extends ApiSuper<typeof ERROR[keyof typeof ERROR]>{
 			} )
 
 			if( !url ) throw new this.Error( this.ERROR.SERVER_URL_FAIL )
-			const res = await this.fetch( url ) 
+			const res = await this.http.fetch( url ) 
 
 			if( !res.ok ) throw new this.Error( this.ERROR.SERVER_FETCH_NOT_OK )
 			const data = await res.json()

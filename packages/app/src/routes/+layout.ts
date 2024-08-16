@@ -4,21 +4,18 @@
  * @description LAYOUT FILE.
  */
 
-import { dev }       from '$app/environment'
-import { Core }      from '$lib/core/main'
-import { shortcuts } from '$lib/core/shortcuts/main.js'
-import { error }     from '@sveltejs/kit'
-
 export const load = async ( { url } ) => {
 
-	const core = new Core()
+	const { error } = await import( '@sveltejs/kit' )
+	const { Core }  = await import( '$lib/core/main' )
+	const core      = new Core()
 
 	try{
 		
 		const { pathname } = url
 		const { route }    = await core.i18n.layoutFunct( pathname )
 		const platform     = await core.system.getPlatform()
-		
+		//  throw Error( 'Not found' )
 		// await core.init()	
 		
 		return {
@@ -29,26 +26,23 @@ export const load = async ( { url } ) => {
 			currLocaleRoute : core.i18n.currLocaleRoute,
 			platform,
 			core,
-			shortcuts,
+			shortcuts       : core.data.appShortcuts,
 		}
 	
 	}catch( e ){
-
-		let msg
-		if( typeof e === 'string' ) msg = e
-		else msg = typeof e === 'object' && e !== null &&
-			'message' in e && typeof e.message === 'string' 
-			? e.message : ''
 		
-		if( dev ) console.log( {
-			'app-error' : msg,
+		await core.log.error( {
+			id   : core.data.logID.layoutInitError, 
+			data : e,
 		} )
-		return error( 404, msg )
+
+		// redirect( 307, '/error' )
+		throw error( 404, 'layout error' )
 	
 	}
 
 } 
 
 export type GeneralLayoutData = Awaited<ReturnType<typeof load>>
-export const prerender = 'auto' // must be true for i18n
+// export const prerender = false // must be true for i18n
 export const ssr = false

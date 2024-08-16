@@ -2,15 +2,21 @@
     
     import { page } from '$app/stores'
     import { Btn, Seo, faBug, faHome, Section } from '$lib';
+	import type { GeneralLayoutData } from './+layout';
 
 
-	export let data
+	export let data: GeneralLayoutData
 
     const { status, error } = $page
 	const { t, core } = data
 	const { window, mainPkg } = core
 	const {list: routes} = window.routes
-	// console.log({id: 'errorPage', error})
+	
+	core.log.error({
+		id: core.data.logID.pageError, 
+		error
+	})
+
 </script>
 
 <Seo
@@ -42,6 +48,7 @@
 	alt="Error gif" 
 	width="150px"
 	height="150px"
+	loading="lazy"
 />
 <section class="flex flex-row gap-4">
 	<Btn 

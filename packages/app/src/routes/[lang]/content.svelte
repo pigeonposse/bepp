@@ -38,6 +38,7 @@
 		src={$ext.iconURL || '/logo.png'} 
 		alt="img" 
 		width="40%" 
+		loading="lazy"
 		class="rounded-xl bg-primary-700/20 backdrop-blur-2xl p-2"
 	>
 	<div class="flex flex-row gap-2">

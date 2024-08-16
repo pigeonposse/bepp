@@ -1,12 +1,10 @@
 /**
  * Export File.
  *
- * @description Export all components and functions in package.
+ * @description Export all components and functions in package. 
+ *  It is important to export only what is necessary to have a lighter construction.
  */
 
-export * as flowbite from 'flowbite-svelte'
-
-// COMPONENTS
 export { default as Seo } from './seo/main.svelte'
 export { default as Accordion } from './accordion/main.svelte'
 export { default as Popup } from './popup/main.svelte'

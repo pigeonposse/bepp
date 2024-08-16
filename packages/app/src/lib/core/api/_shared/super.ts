@@ -3,12 +3,18 @@ import type { Window as Win } from '$lib/core/window/main'
 import type { Store }         from '$lib/core/store/main'
 import { ApiError }           from './error'
 import type { t }             from '$lib/core/i18n/main'
+import type { Log }           from '$lib/core/log/main'
+import type { Http }          from '$lib/core/http/main'
+import type * as Data         from '$lib/data/main'
 
 export type ApiArgs = ApiInterface 
 export type ApiInterface = {
 	system: System
+	log: Log
 	window: Win
 	store: Store
+	http: Http
+	data: typeof Data
 	t: typeof t
 }
 
@@ -17,7 +23,10 @@ export class ApiSuper<IDS extends Uppercase<string>> implements ApiInterface{
 	system
 	window
 	store
+	http
+	log
 	t
+	data
 	// errors
 	error
 	Error
@@ -34,8 +43,11 @@ export class ApiSuper<IDS extends Uppercase<string>> implements ApiInterface{
 	constructor( args: ApiArgs ){
 
 		this.system = args.system
+		this.log    = args.log
 		this.store  = args.store
+		this.http   = args.http
 		this.window = args.window
+		this.data   = args.data
 		this.t      = args.t
 		// this.errors = this.store.writable<IDS[]>( [] )
 		this.error = this.store.writable<IDS | undefined>( undefined )
@@ -96,15 +108,6 @@ export class ApiSuper<IDS extends Uppercase<string>> implements ApiInterface{
 			} )
 
 		return url.toString()
-	
-	}
-
-	async fetch ( 
-		...args: Parameters<typeof window.__TAURI__.http.fetch > 
-	){
-	
-		if ( window.__TAURI__?.http?.fetch ) return window.__TAURI__.http.fetch( ...args )
-		return fetch( ...args )
 	
 	}
 

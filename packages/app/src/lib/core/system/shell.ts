@@ -35,7 +35,7 @@ export class Shell {
 	async execute( { program, args, on }:ExecuteParams ){
 
 		if( !window?.__TAURI__?.shell?.Command ) return 
-		const command = await window.__TAURI__.shell.Command.sidecar( program, args )
+		const command = window.__TAURI__.shell.Command.sidecar( program, args )
 		command.on( 'close', async data => {
 
 			if( on ) await on( {
@@ -44,6 +44,7 @@ export class Shell {
 			} )
 
 		} )
+
 		command.on( 'error', async data => {
 
 			if( on ) await on( {
@@ -69,7 +70,7 @@ export class Shell {
 
 		} )
 		
-		const child = await command.spawn()
+		const child = await command.execute()
 		return child
 	
 	}

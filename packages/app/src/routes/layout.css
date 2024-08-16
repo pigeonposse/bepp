@@ -92,11 +92,12 @@ body {
 	::view-transition-new(*) {
 		animation: none !important;
 	}
-} */
+} 
 
 .header {
     view-transition-name: bottom;
 }
+*/
 
 /* DARKMODE */
 

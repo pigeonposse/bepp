@@ -1,6 +1,6 @@
 <script lang="ts">
 	
-	import { Btn, InputSearch, Popup,Badge, Icon, faPuzzlePiece,faGlobe, LoadingSpinner } from "$lib/components";
+	import { Btn, InputSearch, Popup,Badge, Icon, faPuzzlePiece, faGlobe, LoadingSpinner } from "$lib/components";
 	import type { LayoutData } from "../$types";
  
 	export let data: LayoutData
@@ -61,6 +61,8 @@
 						src={'iconURL' in result ? result.iconURL : '/logo.png'} 
 						alt="img" 
 						width="100" 
+						height="100"
+						loading="lazy"
 						class="rounded-xl bg-primary-700/20 backdrop-blur-2xl p-2 max-[450px]:w-10"
 					>	
 					

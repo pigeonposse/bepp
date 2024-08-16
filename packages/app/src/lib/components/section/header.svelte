@@ -68,6 +68,8 @@
 								src={btn.imgSrc}
 								alt={btn.imgAlt} 
 								height="50px"
+								width="50px"
+								loading="lazy"
 							/>
 						</Btn>
 					{:else}

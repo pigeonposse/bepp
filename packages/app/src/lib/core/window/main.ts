@@ -11,6 +11,7 @@ import { browser }      from '$app/environment'
 import { OnDropEvent }  from './on-drop'
 import type { Store }   from '../store/main'
 import type { System }  from '../system/main'
+import type { Log }     from '../log/main'
 
 /**
  * TYPES.
@@ -20,6 +21,7 @@ type DragParams = {
     noDragSelectors?: string
 } 
 type WindowProps = {
+	log: Log
 	store: Store
 	system: System
 }
@@ -31,12 +33,14 @@ export class Window {
 
 	routes
 	#system
+	#log
 	constructor( args: WindowProps ) {
 
 		this.routes  = new RouteService( {
 			store : args.store,
 		} )
 		this.#system = args.system
+		this.#log    = args.log
 	
 	}
 
@@ -54,12 +58,26 @@ export class Window {
 	onWindowCreate(){
 
 		if( !window?.__TAURI__?.event?.listen || !window?.__TAURI__?.event?.TauriEvent?.WINDOW_CREATED ) return 
-		console.log( 'init' )
+
 		window.__TAURI__.event.listen( 
 			window.__TAURI__.event.TauriEvent.WINDOW_CREATED, 
 			() => {
 
-				console.log( 'La ventana está completamente cargada' )
+				this.#log.info( {
+					id   : window.__TAURI__.event.TauriEvent.WINDOW_CREATED,
+					data : 'success',
+				} )
+	
+			}, 
+		)
+		window.__TAURI__.event.listen( 
+			window.__TAURI__.event.TauriEvent.WEBVIEW_CREATED, 
+			() => {
+
+				this.#log.info( {
+					id   : window.__TAURI__.event.TauriEvent.WEBVIEW_CREATED,
+					data : 'success',
+				} )
 	
 			}, 
 		)
@@ -107,30 +125,43 @@ export class Window {
 
 	viewTransitions(){
 
-		onNavigate( navigation => {
+		if( this.isTauri() ) return
 
-			this.isNavigation.set( true )
+		try {
+
+			onNavigate( navigation => {
+
+				this.isNavigation.set( true )
 			
-			if ( !document.startViewTransition ) return
+				if ( !document.startViewTransition ) return
 	
-			return new Promise( resolve => {
+				return new Promise( resolve => {
 
-				document.startViewTransition( async () => {
+					document.startViewTransition( async () => {
 
-					resolve()
-					await navigation.complete
+						resolve()
+						await navigation.complete
 				
-				} )
+					} )
 			
+				} )
+		
 			} )
 		
-		} )
+		}catch( e ){
+
+			this.#log.error( {
+				id   : 'view-transition',
+				data : e,
+			} )
+		
+		}
 	
 	}
 	
-	printLogo(){
+	async printLogo(){
 
-		this.#system.log.info( `
+		await this.#log.info( `
 	.:--==========++========-:.      
 	-======+==++++++++++=+====--:     
 	====+++++*+++++**++*+=====---     

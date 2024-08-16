@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import { Button, Toggle } from "flowbite-svelte";
+    import { Toggle } from "flowbite-svelte";
     import { Fa, faGear, faInfo, type IconDefinition, Btn } from "$lib";
     
     export let icon: IconDefinition | undefined | string= undefined
@@ -22,7 +22,14 @@
                     {#if typeof icon !== 'string'}
                         <Fa {icon} class="w-[20px] h-[20px]"/>
                     {:else}
-                        <img src="{icon}" alt="{title}"  class="w-[20px] h-[20px]"/>
+                        <img 
+							src="{icon}"
+							alt="{title}"  
+							class="w-[20px] h-[20px]" 
+							width="20px"
+							height="20px"
+							loading="lazy"
+						/>
                     {/if}
                 </div>
             {/if}

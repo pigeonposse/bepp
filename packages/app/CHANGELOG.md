@@ -1,5 +1,11 @@
 # @bepp/app
 
+## 1.3.16
+
+### Patch Changes
+
+- Fix performace and change functions
+
 ## 1.3.15
 
 ### Patch Changes

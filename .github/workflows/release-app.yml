@@ -32,9 +32,11 @@ jobs:
         # @see https://github.com/actions/runner-images
         settings:
           - platform: 'macos-14' # this is arm64
-          - platform: 'macos-13' 
+            args: '--target universal-apple-darwin' # build x64, arm64 and universal
           - platform: 'ubuntu-22.04'
+            args: ''
           - platform: 'windows-latest'
+            args: ''
 
     timeout-minutes: 20
     runs-on: ${{ matrix.settings.platform }}
@@ -65,11 +67,12 @@ jobs:
         with:
           targets: 'aarch64-apple-darwin'
           toolchain: stable
-      - name: ⬇️🦀 Rust setup
-        if: matrix.settings.platform != 'macos-latest'
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable 
+
+    #   - name: ⬇️🦀 Rust setup
+    #     if: matrix.settings.platform != 'macos-latest'
+    #     uses: dtolnay/rust-toolchain@stable
+    #     with:
+    #       toolchain: stable 
 
       - name: ⬇️🦀 Rust cache
         uses: swatinem/rust-cache@v2
@@ -134,7 +137,7 @@ jobs:
           updaterJsonKeepUniversal: true 
           includeRelease: true
           tauriScript: pnpm exec tauri # This is because the tauri script has $@ and Windows does not support it.
-        #   args: ${{ matrix.settings.args }}
+          args: ${{ matrix.settings.args }}
 
       #########################################################################
       # APP - BUILD & RELEASE ARM LINUX

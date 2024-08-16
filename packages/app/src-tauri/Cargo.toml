@@ -2,8 +2,8 @@
 # Some of this are used in build process of tauri
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 name = "bepp-app"
-version = "1.3.15"
-description = "🎬🎨🧩 Add styles to web video like iFrames, YouTube & Vimeo videos, Netflix, Amazon etc"
+version = "1.3.16"
+description = "A tool for package your extension for multiple browsers quickly and easily (Including Safari)"
 authors = ["angelo <angelo@pigeonposse.com>"]
 # license = "GPL-3.0"
 license-file = "../../../LICENSE"
@@ -13,14 +13,28 @@ homepage = "https://bepp.pigeonposse.com/"
 documentation = "https://bepp.pigeonposse.com/"
 readme = "../../../README.md"
 keywords = [
-    "super-8",
-    "youtube",
-    "styles",
-    "video",
-    "iframe",
-    "browser-extension",
-    "chrome-extension",
-    "web"
+	"converter",
+	"packager",
+	"chrome-extension",
+	"firefox-extension",
+	"safari-extension",
+	"opera-extension",
+	"opera-gx-extension",
+	"brave-extension",
+	"yandex-extension",
+	"edge-extension",
+	"chromium-extension",
+	"browser-extension",
+	"extension",
+	"safari",
+	"chrome",
+	"firefox",
+	"node",
+	"js",
+	"bin",
+	"web",
+	"app",
+	"cli"
 ]
 
 [lib]
@@ -28,18 +42,18 @@ name = "bepp_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.0.0-rc.0", features = [] }
+tauri-build = { version = "2.0.0-beta.13", features = [] }
 
 [dependencies]
 serde_json = "1.0"
-tauri = { version = "2.0.0-rc.0", features = ["macos-private-api"] }
+tauri = { version = "2.0.0-beta.13", features = ["macos-private-api"] }
 tauri-plugin-shell = "2.0.0-rc.0"
-tauri-plugin-http = "2.0.0-rc.0"
+tauri-plugin-http = { version = "2.0.0-rc.0", features = ["rustls-tls"] }
 tauri-plugin-fs = "2.0.0-rc.0"
 tauri-plugin-os = "2.0.0-rc.0"
 tauri-plugin-autostart = "2.0.0-rc.0"
 tauri-plugin-dialog = "2.0.0-rc.0"
-# tauri-plugin-log = "2.0.0-rc.0"
+tauri-plugin-log = "2.0.0-rc.0"
 
 [target."cfg(not(any(target_os = \"android\", target_os = \"ios\")))".dependencies]
 tauri-plugin-updater = "2.0.0-rc.0"

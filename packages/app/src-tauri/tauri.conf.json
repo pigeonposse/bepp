@@ -2,23 +2,19 @@
 	"$schema": "../node_modules/@tauri-apps/cli/schema.json",
 	"app": {
 		"macOSPrivateApi": true,
-		"security": {
-			"csp": null
-		},
 		"withGlobalTauri": true,
 		"windows": [
 			{
-				"fullscreen": false,
 				"height": 800,
 				"width": 600,
 				"minHeight": 600,
 				"minWidth": 600,
+				"fullscreen": false,
 				"resizable": true,
-				"theme": "Dark",
-				"title": "",
-				"titleBarStyle": "Overlay",
-				"transparent": false,
-				"dragDropEnabled": false
+				"hiddenTitle": true,
+				"dragDropEnabled": false,
+				"transparent": true,
+				"titleBarStyle": "Overlay"
 			}
 		]
 	},

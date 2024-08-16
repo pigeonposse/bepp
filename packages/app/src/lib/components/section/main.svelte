@@ -30,6 +30,8 @@
 						alt="section logo"
 						class="opacity-70"
 						width="40px"
+						height="40px"
+						loading="lazy"
 					/>
 				{/if}
 				<h1>{title}</h1>

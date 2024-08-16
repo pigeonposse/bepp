@@ -39,6 +39,8 @@ const run = async () =>{
 			...( platform === plat && arch === 'arm64' ? [
 				binSetName,
 				...( onlyOneBin ? [
+					binSetName + '-universal' + mark,
+					binSetName + '-x86_64' + mark,
 					binSetName + '-aarch64' + mark,
 				] : [] ),
 			] : [] ),

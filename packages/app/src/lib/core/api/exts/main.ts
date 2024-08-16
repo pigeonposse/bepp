@@ -49,7 +49,7 @@ export class Extension extends ExtensionStore{
 				},
 			} )
 			if( !url ) throw new this.Error( this.ERROR.SERVER_URL_FAIL )
-			const res = await this.fetch( url ) 
+			const res = await this.http.fetch( url ) 
 			if( !res.ok ) throw new Error( this.ERROR.SERVER_FETCH_NOT_OK )
 			const data = await res.json()
 			return data
@@ -149,7 +149,7 @@ export class Extension extends ExtensionStore{
 			// 	isWindow : window ? true : false,
 			// } )
 			
-			const res = await this.fetch( url, {
+			const res = await this.http.fetch( url, {
 				method  : 'POST',
 				headers : {
 					'Content-Type' : 'application/json',
@@ -226,7 +226,7 @@ export class Extension extends ExtensionStore{
 		} )
 
 		if( !outputPath && outputPath == null ) return
-		const response = await this.fetch( serverUrl )
+		const response = await this.http.fetch( serverUrl )
 
 		if ( !response.ok ) throw new this.Error( this.ERROR.SERVER_FETCH_NOT_OK )
 		const arrayBuffer = await response.arrayBuffer()

@@ -1,7 +1,6 @@
 import { Autostart } from './autostart'
 import { Dialog }    from './dialog'
 import { Fs }        from './fs'
-import { Log }       from './log'
 import { Shell }     from './shell'
 
 /**
@@ -30,7 +29,6 @@ export class System {
 	dialog = new Dialog()
 	fs = new Fs()
 	shell = new Shell()
-	log = new Log()
 
 	async getPlatform(): Promise<Platform> {
 

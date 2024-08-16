@@ -1,6 +1,6 @@
 <script lang="ts">
 
-	import { Fab, operaGxSVG, BtnGroup, yandexSVG} from "$lib"
+	import { operaGxSVG, BtnGroup, yandexSVG, faSafari, faChrome, faBrave, faEdge, faOpera, faFirefoxBrowser} from "$lib"
 	import type { ComponentProps } from "svelte";
 	import type { LayoutData } from "../$types";
 	import type { ExtsGetResponse } from "@bepp/api";
@@ -29,7 +29,7 @@
 		if(platform === system.platform.MACOS){
 			res.push({
 				id: 'safari',
-				icon: Fab.faSafari,
+				icon: faSafari,
 				tooltip: {title: 'Safari'},
 				disabled: extension?.type !== 'chromium' || extension?.manifestVersion !== 3,
 			})
@@ -38,19 +38,19 @@
 			...res,
 			{
 				id: `chrome${manSuffix}` as const,
-				icon: Fab.faChrome,
+				icon: faChrome,
 				tooltip: {title: 'Chrome'},
 				disabled: extension?.type !== 'chromium' || (extension?.browsersAllowed.chrome === false &&  extension?.browsersAllowed["chrome-mv2"] === false),
 			},
 			{
 				id: `edge${manSuffix}`,
-				icon: Fab.faEdge,
+				icon: faEdge,
 				tooltip: {title: 'Edge'},
 				disabled: extension?.type !== 'chromium' || (extension?.browsersAllowed.edge === false &&  extension?.browsersAllowed["edge-mv2"] === false),
 			},
-			{
+			{ 
 				id: 'brave',
-				icon: Fab.faBrave,
+				icon: faBrave,
 				tooltip: {title: 'Brave'},
 				disabled: extension?.type !== 'chromium' || extension?.browsersAllowed.brave === false,
 			},
@@ -61,9 +61,9 @@
 				disabled: extension?.type !== 'chromium' || extension?.browsersAllowed["opera-gx"] === false,
 				class:'[&_svg]:stroke-primary-100 [&_svg]:scale-125 opacity-90'
 			},
-			{
+			{ 
 				id: 'opera',
-				icon: Fab.faOpera,
+				icon: faOpera,
 				tooltip: {title: 'Opera'},
 				disabled: extension?.type !== 'chromium' || extension?.browsersAllowed.opera === false || extension?.manifestVersion !== 2,
 			},
@@ -75,7 +75,7 @@
 			},
 			{
 				id: `firefox${manSuffix}`,
-				icon: Fab.faFirefoxBrowser,
+				icon: faFirefoxBrowser,
 				tooltip: {title: 'Firefox'},
 				disabled: extension?.type !== 'firefox' || (extension?.browsersAllowed.firefox === false &&  extension?.browsersAllowed["firefox-mv2"] === false),
 			},

@@ -1,7 +1,6 @@
 <script lang="ts" >
 
     import {
-		faInfo,
 		Section,
 		Btn,
 		faBook,
@@ -31,6 +30,7 @@
 		alt="bepp banner"
 		width="100%"
 		height="100px"
+		loading="lazy"
 	/>
 	<p>
 		{$t('info.desc.1')}

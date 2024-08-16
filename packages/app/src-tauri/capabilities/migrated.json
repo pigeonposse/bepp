@@ -14,6 +14,7 @@
 		"core:resources:default",
 		"core:menu:default",
 		"core:tray:default",
+		"log:allow-log",
 		"shell:allow-open",
 		"fs:allow-app-write",
 		"fs:allow-mkdir",
@@ -29,7 +30,49 @@
 			"identifier": "http:default",
 			"allow": [
 				{
-					"url": "http://localhost:*" 
+					"url": "http://localhost:*",
+					"request": true
+				},
+				{
+					"request": true,
+					"url": "https://edge.microsoft.com/*" 
+				},
+				{
+					"request": true,
+					"url": "https://microsoftedge.microsoft.com/addons/*" 
+				},
+				{
+					"request": true,
+					"url": "https://chrome.google.com/*" 
+				},
+				{
+					"request": true,
+					"url": "https://chromewebstore.google.com/*" 
+				},
+				{
+					"request": true,
+					"url": "https://lh3.googleusercontent.com/*" 
+				},
+				{
+					"request": true,
+					"url": "https://clients2.google.com/*" 
+				},
+				{
+					"request": true,
+					"url": "https://update.googleapis.com/*" 
+				},
+				{
+					"request": true,
+					"url": "https://addons.mozilla.org/*" 
+				}
+			]
+		},
+		{
+			"identifier": "http:allow-fetch-send",
+			"allow": [
+				{
+					"url": "http://localhost:*",
+					"request": true
 				},
 				{
 					"request": true,
@@ -70,7 +113,12 @@
 			"allow": [
 				{
 					"name": "bin/bepp-server",
-					"sidecar": true
+					"sidecar": true,
+					"args": [
+						{
+							"validator": "\\S+"
+						}
+					]
 				}
 			]
 		}

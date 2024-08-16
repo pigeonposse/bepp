@@ -21,6 +21,7 @@
 		{width}
 		alt="Loading logo background fixed" 
 		class="logo__bg"
+		loading="lazy"
 	/>
 	{#if stopped && confetti }
 		<div class="logo__confetti">
@@ -33,5 +34,6 @@
 		{width}
 		alt="Loading logo" 
 		class="logo__image"
+		loading="lazy"
 	/>
 </div>
