@@ -15,7 +15,7 @@ const binsPath     = joinPath( paths.apiDir, 'build', 'bin' )
 const downloadPath = joinPath( paths.appDir, 'src-tauri', 'bin' )
 const binGetName   = binName
 
-const onlyOneBin = true
+const onlyOneBin = process.argv.slice( 2 ) == '--only-one-bin'
 const binSetName = 'bepp-server'
 const appleMark  = '-apple-darwin'
 const linuxMark  = '-unknown-linux-gnu'

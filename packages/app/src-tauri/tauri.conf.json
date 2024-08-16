@@ -19,18 +19,25 @@
 		]
 	},
 	"build": {
-		"beforeBuildCommand": "pnpm build:web",
+		"beforeBuildCommand": "",
 		"beforeDevCommand": "pnpm dev:web",
 		"devUrl": "http://localhost:13128",
 		"frontendDist": "../build"
 	},
 	"bundle": {
+		"macOS": {
+			"files": {},
+			"hardenedRuntime": true,
+			"minimumSystemVersion": "10.13",
+			"exceptionDomain": "localhost"
+		},
 		"active": true,
 		"category": "Productivity",
 		"copyright": "Copyright © PigeonPosse",
 		"shortDescription": "A Cross-Browser Extension Builder",
 		"longDescription": "A tool to quickly and easily package your extension for multiple browsers (including Safari)",
 		"targets": "all",
+		"homepage": "https://bepp.pigeonposse.com",
 		"licenseFile": "../../../LICENSE",
 		"icon": [
 			"icons/32x32.png",
@@ -39,17 +46,6 @@
 			"icons/icon.icns",
 			"icons/icon.ico"
 		],
-		"iOS": {
-			"developmentTeam": "97JQW2HSHQ"
-		},
-		"macOS": {
-			"entitlements": null,
-			"exceptionDomain": "",
-			"frameworks": [
-			],
-			"providerShortName": null,
-			"signingIdentity": null
-		},
 		"windows": {
 			"certificateThumbprint": null,
 			"digestAlgorithm": "sha256",

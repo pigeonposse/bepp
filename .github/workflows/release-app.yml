@@ -13,7 +13,8 @@ on:
         required: true
 env:
   GITHUB_TOKEN: ${{ github.token }}
-
+  APP_PATH: packages/app
+  BUNDLE_LINUX_ARM64_PATH: packages/app/src-tauri/target/aarch64-unknown-linux-gnu/release/bundle
 
 ###############################################################################
 # JOBS
@@ -36,7 +37,7 @@ jobs:
           - platform: 'windows-latest'
             args: ''
 
-    timeout-minutes: 20
+    timeout-minutes: 25
     runs-on: ${{ matrix.settings.platform }}
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
@@ -120,7 +121,7 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
-          projectPath: 'packages/app'
+          projectPath: ${{ env.APP_PATH }}
           tagName: "${{ env.UPDATED_VERSION }}" 
           releaseName: '${{ steps.pkg.outputs.name }} v${{ env.UPDATED_VERSION }}'
           releaseBody: |
@@ -133,6 +134,8 @@ jobs:
           tauriScript: pnpm exec tauri # This is because the tauri script has $@ and Windows does not support it.
           args: ${{ matrix.settings.args }}
 
+      # BUILD macos arm64/x64
+      #########################################################################
       - name: 🖥️ Build app (macos x64)
         if: matrix.settings.platform == 'macos-14'
         uses: tauri-apps/tauri-action@v0
@@ -143,7 +146,7 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
-          projectPath: 'packages/app'
+          projectPath: ${{ env.APP_PATH }}
           tagName: "${{ env.UPDATED_VERSION }}"
           releaseName: '${{ steps.pkg.outputs.name }} v${{ env.UPDATED_VERSION }}'
           releaseDraft: false
@@ -164,7 +167,7 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
-          projectPath: 'packages/app'
+          projectPath: ${{ env.APP_PATH }}
           tagName: "${{ env.UPDATED_VERSION }}"
           releaseName: '${{ steps.pkg.outputs.name }} v${{ env.UPDATED_VERSION }}'
           releaseDraft: false
@@ -175,5 +178,26 @@ jobs:
           tauriScript: pnpm exec tauri 
           args: '--target aarch64-apple-darwin'
 
+      # BUILD linux arm64
+      #########################################################################
+      - name: ⬇️🐳 Set up QEMU (linux arm64)
+        if: matrix.settings.platform == 'macos-14'
+        uses: docker/setup-qemu-action@v1
+      - name: ⬇️🐳 Set up Docker Buildx (linux arm64)
+        if: matrix.settings.platform == 'macos-14'
+        uses: docker/setup-buildx-action@v1
+      - name: 🖥️ Build app (linux arm64)
+        if: matrix.settings.platform == 'macos-14'
+        run: pnpm app build:linux-arm64
+      - name: 🖥️ Release app (linux arm64)
+        if: matrix.settings.platform == 'macos-14'
+        uses: ncipollo/release-action@v1
+        with: 
+          tag: "${{ env.UPDATED_VERSION }}"
+          draft: false
+          prerelease: false
+          allowUpdates: true
+          artifacts: "${{ env.BUNDLE_LINUX_ARM64_PATH }}/appimage/*.AppImage,${{ env.BUNDLE_LINUX_ARM64_PATH }}/deb/*.deb,${{ env.BUNDLE_LINUX_ARM64_PATH }}/rpm/*.rpm"
+          omitBodyDuringUpdate: true
 
 ############################################################################### 

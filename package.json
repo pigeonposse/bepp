@@ -46,7 +46,7 @@
 		"build:core": "pnpm --filter core build && pnpm --filter bepp build",
 		"build:api": "pnpm build:core && pnpm --filter api build",
 		"build:docs": "pnpm build:api && pnpm --filter docs build",
-		"build:app": "pnpm build:api && pnpm --filter app build:icon && pnpm --filter app build:bin",
+		"build:app": "pnpm build:api && pnpm --filter app prepare-app",
 		"build:packages": "pnpm build:api && pnpm --filter docs build && pnpm --filter app build:web",
 		"start": "pnpm run \"/^start:.*/\"",
 		"start:api": "pnpm --filter api start",

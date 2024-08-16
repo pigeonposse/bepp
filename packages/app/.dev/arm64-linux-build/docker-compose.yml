@@ -1,0 +1,9 @@
+services:
+  tauri-build-arm64:
+    build:
+      context: .
+      args:
+        - WORKDIR_SRC_TAURI=packages/app/src-tauri # default = src-tauri
+    volumes:
+      - ../../../../:/app # workspace of repo (monorepo or single repo)
+
