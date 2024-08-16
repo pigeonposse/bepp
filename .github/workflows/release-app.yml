@@ -3,6 +3,7 @@
 # @observations: Only compatible commands must be entered for all platforms. 
 #                For example: avoid $@, since windows does not accept it
 ###############################################################################
+
 name: 🚀🖥️ Release APPs
 on:
   workflow_dispatch:
@@ -42,7 +43,7 @@ jobs:
           - platform: 'windows-latest'
             args: ''
 
-    timeout-minutes: 25
+    timeout-minutes: 40
     runs-on: ${{ matrix.settings.platform }}
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}

@@ -66,13 +66,16 @@
 		"prepush-main": "pnpm readme && pnpm --filter core build:schema && pnpm --filter api build:schema",
 		"push-main": "pnpm push-origin main",
 		"push-dev": "pnpm push-origin dev",
+		"prepush": "pnpm prepush-main",
+		"push": "node .dev/push.mjs",
 		"update-version": "changeset && changeset version && pnpm update-version-files",
 		"update-version-files": "node .dev/update-version/main.mjs",
 		"update-gh": "node .dev/update-gh.mjs",
 		"release": "changeset publish",
 		"get-release-body": "node .dev/release-body.mjs",
 		"todo": "node .dev/todo.mjs",
-		"readme": "node .dev/readme.mjs"
+		"readme": "node .dev/readme.mjs",
+		"run-workflow": "node .dev/workflow.mjs"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "0.5.0",
