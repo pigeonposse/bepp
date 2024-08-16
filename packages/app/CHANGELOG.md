@@ -1,5 +1,11 @@
 # @bepp/app
 
+## 1.3.17
+
+### Patch Changes
+
+- change deps
+
 ## 1.3.16
 
 ### Patch Changes

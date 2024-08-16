@@ -68,12 +68,6 @@ jobs:
           targets: 'aarch64-apple-darwin,x86_64-apple-darwin'
           toolchain: stable
 
-    #   - name: ⬇️🦀 Rust setup
-    #     if: matrix.settings.platform != 'macos-latest'
-    #     uses: dtolnay/rust-toolchain@stable
-    #     with:
-    #       toolchain: stable 
-
       - name: ⬇️🦀 Rust cache
         uses: swatinem/rust-cache@v2
         with:
@@ -105,7 +99,7 @@ jobs:
 
 
       #########################################################################
-      # BUILD
+      # BUILD REQUERIMENTS FOR APP
       #########################################################################
    
       - name: 🏗 Build
@@ -113,6 +107,9 @@ jobs:
 
       #########################################################################
       # APP - BUILD & RELEASE DESKTOP APP
+      #
+      # @see https://github.com/tauri-apps/tauri-action?tab=readme-ov-file#inputs
+      # @see https://github.com/tauri-apps/tauri-action?tab=readme-ov-file#build-options
       #########################################################################
 
       - name: 🖥️ Build the app
@@ -123,8 +120,6 @@ jobs:
           TAURI_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-        # @see https://github.com/tauri-apps/tauri-action?tab=readme-ov-file#inputs
-        # @see https://github.com/tauri-apps/tauri-action?tab=readme-ov-file#build-options
         with:
           projectPath: 'packages/app'
           tagName: "${{ env.UPDATED_VERSION }}" 
@@ -139,17 +134,45 @@ jobs:
           tauriScript: pnpm exec tauri # This is because the tauri script has $@ and Windows does not support it.
           args: ${{ matrix.settings.args }}
 
-      #########################################################################
-      # APP - BUILD & RELEASE ARM LINUX
-      #########################################################################
-    #   - name: 🖥️ Build linux APP ARM
-    #     if: matrix.settings.platform == 'ubuntu-22.04'
-    #     uses: Shiritai/xc-tauri-rasp-action@v0.1.2
-    #     with:
-    #         path: packages/app
-    #         arch: arm64
-    #         project-name: super8-aarch64
-    #     continue-on-error: true
+      - name: 🖥️ Build the app (macos x64)
+        if: matrix.settings.platform == 'macos-14'
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: 'packages/app'
+          tagName: "${{ env.UPDATED_VERSION }}"
+          releaseDraft: false
+          prerelease: false
+          includeUpdaterJson: true
+          updaterJsonKeepUniversal: true 
+          includeRelease: true
+          tauriScript: pnpm exec tauri 
+          args: '--target x86_64-apple-darwin'
+
+      - name: 🖥️ Build the app (macos arm64)
+        if: matrix.settings.platform == 'macos-14'
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: 'packages/app'
+          tagName: "${{ env.UPDATED_VERSION }}"
+          releaseDraft: false
+          prerelease: false
+          includeUpdaterJson: true
+          updaterJsonKeepUniversal: true 
+          includeRelease: true
+          tauriScript: pnpm exec tauri 
+          args: '--target aarch64-apple-darwin'
 
 
 ############################################################################### 
