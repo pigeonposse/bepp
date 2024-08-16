@@ -27,7 +27,6 @@
 	"bundle": {
 		"macOS": {
 			"files": {},
-			"hardenedRuntime": true,
 			"minimumSystemVersion": "10.13",
 			"exceptionDomain": "localhost"
 		},
@@ -37,7 +36,6 @@
 		"shortDescription": "A Cross-Browser Extension Builder",
 		"longDescription": "A tool to quickly and easily package your extension for multiple browsers (including Safari)",
 		"targets": "all",
-		"homepage": "https://bepp.pigeonposse.com",
 		"licenseFile": "../../../LICENSE",
 		"icon": [
 			"icons/32x32.png",
