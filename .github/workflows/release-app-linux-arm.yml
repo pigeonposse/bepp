@@ -54,7 +54,6 @@ jobs:
             apt-get upgrade -y
             apt-get autoremove -y
             apt-get -y --no-install-recommends \
-                   g++-aarch64-linux-gnu \
                    build-essential \
                    curl \
                    wget \
