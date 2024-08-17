@@ -20,7 +20,6 @@ on:
 env:
   GITHUB_TOKEN: ${{ github.token }}
   APP_PATH: packages/app
-  BUNDLE_LINUX_ARM64_PATH: packages/app/src-tauri/target/aarch64-unknown-linux-gnu/release/bundle
 
 ###############################################################################
 # JOBS
@@ -43,7 +42,7 @@ jobs:
           - platform: 'windows-latest'
             args: ''
 
-    timeout-minutes: 90
+    timeout-minutes: 30
     runs-on: ${{ matrix.settings.platform }}
     env:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
@@ -76,20 +75,6 @@ jobs:
         uses: swatinem/rust-cache@v2
         with:
           workspaces: './src-tauri -> target'
-      - name: ⬇️🐳 Set up QEMU (linux arm64)
-        if: runner.os == 'Linux'
-        uses: docker/setup-qemu-action@v1
-      - name: ⬇️🐳 Set up Docker Buildx (linux arm64)
-        if: runner.os == 'Linux'
-        uses: docker/setup-buildx-action@v1
-      - name: Cache Docker layers
-        if: runner.os == 'Linux'
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
 
 
       #########################################################################
@@ -149,23 +134,6 @@ jobs:
    
       - name: 🏗 Build
         run: pnpm build:app # Is necessary set manually for windows 
-
-      # BUILD linux arm64
-      #########################################################################
-
-      - name: 🖥️ Build app (linux arm64)
-        if: runner.os == 'Linux'
-        run: pnpm app build:linux-arm64
-      - name: 🖥️ Release app (linux arm64)
-        if: runner.os == 'Linux'
-        uses: ncipollo/release-action@v1
-        with: 
-          tag: "${{ env.UPDATED_VERSION }}"
-          draft: false
-          prerelease: false
-          allowUpdates: true
-          artifacts: "${{ env.BUNDLE_LINUX_ARM64_PATH }}/appimage/*.AppImage,${{ env.BUNDLE_LINUX_ARM64_PATH }}/deb/*.deb,${{ env.BUNDLE_LINUX_ARM64_PATH }}/rpm/*.rpm"
-          omitBodyDuringUpdate: true
 
 
       #########################################################################
