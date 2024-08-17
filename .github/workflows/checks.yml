@@ -5,7 +5,7 @@
 name: ✅ Tests and check for updates
 
 on:
-  push:
+  pull_request:
     branches:
       - main
   workflow_dispatch:

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ## Written to be executed from the build:linux-arm64 script in package.json
+## recomended execute this in arm64 machine for best performace
 
 # Define VARS
 IMAGE_NAME=tauri-linux-arm64

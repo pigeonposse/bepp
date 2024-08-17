@@ -7,15 +7,16 @@
 
 import { paths }                    from '../core/const.mjs'
 import { readJSON }                 from '../core/fs.mjs'
+import { execProcess }              from '../core/process.mjs'
 import { updateActionVersion }      from './action.mjs'
 import { updateAppsVersion }        from './apps.mjs'
 import { updateCargoVersion }       from './cargo.mjs'
 import { updateDockerfilesVersion } from './docker.mjs'
 import { updatePigeonposseVersion } from './pigeonposse.mjs'
 
-try {
-
-	const run = async () => {
+await execProcess( {
+	name : 'UPDATE VERSION FILES',
+	on   : async ( ) => {
 
 		const packageJsonPath = paths.appPkg
 		const packageJson     = await readJSON( packageJsonPath )
@@ -26,12 +27,5 @@ try {
 		await updateActionVersion( newVersion )
 		await updateDockerfilesVersion( newVersion )
 	
-	}
-
-	run()
-
-}catch( e ){
-
-	console.error( 'Error in update version: ' + e )
-
-}
+	},
+} )
