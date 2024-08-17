@@ -49,11 +49,8 @@ await execProcess( {
 				message : 'Run workflow',
 			},
 		] )
-		if( answersAfter.workflow ){
 
-			await exec( 'pnpm run-workflow' )
-		
-		}
+		if( answersAfter.workflow ) await import( './workflow.mjs' )
 	
 	},
 } )

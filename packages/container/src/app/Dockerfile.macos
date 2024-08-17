@@ -1,6 +1,0 @@
-docker run -it \          
-    -p 50922:10022 \
-    -v "${PWD}/mac_hdd_ng.img:/image" \                                                 
-    -e EXTRA="-monitor telnet::45454,server,nowait -nographic -serial null" \
-	-e "DISPLAY=${DISPLAY:-:0.0}" \
-    sickcodes/docker-osx:naked

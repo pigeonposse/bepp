@@ -62,11 +62,7 @@
 		"test:app": "pnpm --filter app test",
 		"test:docs": "pnpm --filter docs test",
 		"test-file": "vitest run $@",
-		"push-origin": "git add . && pnpm cm && git push -f origin $@",
-		"prepush-main": "pnpm readme && pnpm --filter core build:schema && pnpm --filter api build:schema",
-		"push-main": "pnpm push-origin main",
-		"push-dev": "pnpm push-origin dev",
-		"prepush": "pnpm prepush-main",
+		"prepush": "pnpm readme && pnpm --filter core build:schema && pnpm --filter api build:schema",
 		"push": "node .dev/push.mjs",
 		"update-version": "changeset && changeset version && pnpm update-version-files",
 		"update-version-files": "node .dev/update-version/main.mjs",
@@ -75,7 +71,7 @@
 		"get-release-body": "node .dev/release-body.mjs",
 		"todo": "node .dev/todo.mjs",
 		"readme": "node .dev/readme.mjs",
-		"run-workflow": "node .dev/workflow.mjs"
+		"workflow": "node .dev/workflow.mjs"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "0.5.0",
