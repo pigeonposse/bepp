@@ -34,8 +34,12 @@ jobs:
       UPDATED_VERSION: ${{ github.event.inputs.version }}
     steps:
 
-      - uses: actions/checkout@v3
-      - uses: pguyot/arm-runner-action@v2.5.2
+      - name: ⬇️🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+      - name: ⬇️🛎 Checkout
+        uses: actions/checkout@v4
+      - name: 🐧📱 Run arm runner
+        uses: pguyot/arm-runner-action@v2.5.2
         with:
           base_image: https://dietpi.com/downloads/images/DietPi_RPi-ARMv8-Bullseye.img.xz
           cpu: cortex-a53
@@ -53,7 +57,9 @@ jobs:
             apt-get update -y --allow-releaseinfo-change
             apt-get upgrade -y
             apt-get autoremove -y
-            apt-get update -y && apt-get install -y --no-install-recommends g++-aarch64-linux-gnu build-essential curl wget patchelf pkg-config libc6-dev-arm64-cross libssl-dev libwebkit2gtk-4.0-dev libgtk-3-dev librsvg2-dev libayatana-appindicator3-dev libglib2.0-dev
+            apt-get install -y g++-aarch64-linux-gnu build-essential curl wget patchelf pkg-config libc6-dev-arm64-cross libssl-dev libwebkit2gtk-4.0-dev libgtk-3-dev librsvg2-dev libayatana-appindicator3-dev libglib2.0-dev
+            # Check
+            pkg-config --libs --cflags glib-2.0
             #########################################################################
             # SETUP: RUST
             #########################################################################
@@ -81,37 +87,6 @@ jobs:
             # build app with tauri
             pnpm app build:app
             #########################################################################
-
-    #   #########################################################################
-    #   # SETUP
-    #   #########################################################################
-
-    #   - name: ⬇️🛑 Cancel Previous Runs
-    #     uses: styfle/cancel-workflow-action@0.12.1
-    #   - name: ⬇️🛎 Checkout
-    #     uses: actions/checkout@v4
-    #   - name: ⬇️🥡 Install pnpm
-    #     uses: pnpm/action-setup@v4
-    #   - name: ⬇️🟢 Setup node
-    #     uses: actions/setup-node@v4
-    #     with:
-    #       node-version: 20
-    #       cache: 'pnpm'
-    #    - name: ⬇️🐳 Set up QEMU	
-    #     uses: docker/setup-qemu-action@v1
-    #   - name: ⬇️🐳 Set up Docker Buildx
-    #     uses: docker/setup-buildx-action@v1
-    #   - name: ⬇️📦 Install dependencies
-    #     run: |
-    #       pnpm install --no-frozen-lockfile
-
-
-    #   #########################################################################
-    #   # BUILD REQUERIMENTS FOR APP
-    #   #########################################################################
-   
-    #   - name: 🏗 Build
-    #     run: pnpm build:app 
 
       #########################################################################
       # RELEASE linux arm64
