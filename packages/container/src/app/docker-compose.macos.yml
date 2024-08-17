@@ -1,0 +1,19 @@
+############################# BEPP DOCKER-COMPOSE ############################# 
+# 
+# @required    docker >= 27
+# @description File for build and run project with Docker.
+#              use cli 'docker compose -f docker-compose.yml up --build -d'
+# 
+###############################################################################
+
+services:          
+
+  bepp_app_macos:
+    container_name: bepp_app_macos
+    build:
+      context: .
+      dockerfile: Dockerfile.macos
+    ports:
+      - "13122:13128/tcp"
+
+############################# BEPP DOCKER-COMPOSE #############################

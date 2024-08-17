@@ -1,7 +1,7 @@
 #!/bin/bash
 
 action=""
-custom_compose_file=""
+custom_compose_name=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -16,8 +16,8 @@ while [[ $# -gt 0 ]]; do
         *)
             if [ -z "$dirname" ]; then
                 dirname="$1"
-            elif [ -z "$custom_compose_file" ]; then
-                custom_compose_file="$1"
+            elif [ -z "$custom_compose_name" ]; then
+                custom_compose_name="$1"
             fi
             shift
             ;;
@@ -29,15 +29,15 @@ if [ -z "$action" ] || [ -z "$dirname" ]; then
 	echo
     echo 'Run the containers from the src directory of this package quickly and easily'
 	echo
-    echo "Usage: $0 {--up|--down} <dirname> [docker-compose-file].yml"
+    echo "Usage: $0 {--up|--down} <dirname> docker-compose.[docker-compose-name].yml"
 	echo
 	echo "Example: $0 app --up"
     exit 0
 fi
 
 
-if [ -n "$custom_compose_file" ]; then
-    compose_file="src/$custom_compose_file.yml"
+if [ -n "$custom_compose_name" ]; then
+    compose_file="src/$dirname/docker-compose.$custom_compose_name.yml"
 else
     compose_file="src/$dirname/docker-compose.yml"
 fi

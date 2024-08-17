@@ -1,55 +1,6 @@
-# Usa una imagen base de Alpine
-FROM --platform=linux/amd64 alpine:3.20
-
-RUN apk update && apk upgrade && apk add --no-cache \
-    cmake \
-    clang \
-    bison \
-    flex \
-    xz \
-    fuse-dev \
-    pkgconfig \
-    libcap \
-    git \
-    git-lfs \
-    python3 \
-    glu-dev \
-    cairo-dev \
-    mesa-gl \
-    tiff-dev \
-    freetype-dev \
-    libxml2-dev \
-    fontconfig-dev \
-    libbsd-dev \
-    libxrandr-dev \
-    libxcursor-dev \
-    giflib-dev \
-    pulseaudio-dev \
-    ffmpeg-dev \
-    dbus-dev \
-    libxkbfile-dev \
-    openssl-dev \
-    make \
-    gcc \
-    g++ \
-    build-base \
-    nodejs \
-    npm \
-    llvm \
-    clang-dev \
-    vulkan-headers \
-    vulkan-tools
-
-
-# Clona el repositorio de Darling
-RUN GIT_CLONE_PROTECTION_ACTIVE=false git clone --recursive https://github.com/darlinghq/darling.git /darling
-
-# Configura y construye Darling
-WORKDIR /darling
-RUN mkdir build 
-WORKDIR /darling/build
-RUN cmake -DCOMPONENTS=cli_dev -DTARGET_i386=OFF .. || { echo 'CMake configuration failed'; exit 1; }
-RUN make || { echo 'Make failed'; exit 1; }
-RUN make install || { echo 'Make install failed'; exit 1; }
-
-ENTRYPOINT ["/bin/bash"]
+docker run -it \          
+    -p 50922:10022 \
+    -v "${PWD}/mac_hdd_ng.img:/image" \                                                 
+    -e EXTRA="-monitor telnet::45454,server,nowait -nographic -serial null" \
+	-e "DISPLAY=${DISPLAY:-:0.0}" \
+    sickcodes/docker-osx:naked
