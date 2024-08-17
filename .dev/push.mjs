@@ -6,13 +6,24 @@
 
 import {
 	exec, 
+	execProcess, 
+	joinUrl, 
+	paths, 
 	prompt,
+	readJSON,
 } from './core/main.mjs'
 
-const main = async () => {
+await execProcess( {
+	name : 'PUSH REPO',
+	on   : async ( { log } ) => {
 
-	try {
+		const getRepoUrl = async () => {
 
+			const packageJsonPath = paths.workspacePkg
+			const packageJson     = await readJSON( packageJsonPath )
+			return joinUrl( packageJson.repository.url )
+		
+		}
 		const answers = await prompt( [
 			{
 				name    : 'add',
@@ -27,6 +38,8 @@ const main = async () => {
 		] )
 
 		await exec( `git add ${answers.add} && pnpm cm && git push -f origin ${answers.origin}` )
+
+		log.success( `Successfully commit to ${await getRepoUrl()}\n` )
 		
 		const answersAfter = await prompt( [
 			{
@@ -42,12 +55,6 @@ const main = async () => {
 		
 		}
 	
-	} catch ( error ) {
+	},
+} )
 
-		console.error( '❌ Error in push script:', error )
-	
-	}
-
-}
-
-main()

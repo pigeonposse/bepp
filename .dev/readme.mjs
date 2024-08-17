@@ -4,15 +4,16 @@
  * @description Readme.
  */
 
-import { readme }        from './templates/readme.mjs'
+import { readme } from './templates/readme.mjs'
 import {
 	pkg, 
-	addTextBetweenAMark, 
+	addTextBetweenAMark,
+	execProcess, 
 } from './core/main.mjs'
 
-const dynamicReadme = async () => {
-
-	try{
+await execProcess( {
+	name : 'CHANGE README',
+	on   : async ( ) => {
 
 		const readmeTemp    = readme( pkg )
 		const convertReadme = async filePath => {
@@ -43,20 +44,6 @@ const dynamicReadme = async () => {
  
 		}
 	
-	}catch( e ){
+	},
+} )
 
-		throw '📝 ' + e
-
-	}
-
-}
-
-try {
-	
-	dynamicReadme()
-
-}catch( e ){
-
-	console.log( '❌ ' + e )
-
-}

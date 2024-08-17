@@ -6,15 +6,16 @@
 
 import {
 	exec, 
+	execProcess, 
 	getFilteredFileNames, 
 	joinPath, 
 	paths, 
 	prompt,
 } from './core/main.mjs'
 
-const main = async () => {
-
-	try {
+await execProcess( {
+	name : 'TODO',
+	on   : async ( ) => {
 
 		const todoFolderPath = paths.todoDir
 		const fileNames      = await getFilteredFileNames( {
@@ -95,18 +96,8 @@ const main = async () => {
 			
 			}
 
-		} else {
-
-			console.log( '✨ Exit from TODOs' )
-
-		}
+		} else console.log( '✨ Exit from TODOs' )
 	
-	} catch ( error ) {
+	},
 
-		console.error( '❌ Error reading the "TODO" folder:', error )
-	
-	}
-
-}
-
-main()
+} )

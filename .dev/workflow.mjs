@@ -6,6 +6,7 @@
 
 import {
 	exec, 
+	execProcess, 
 	getFilteredFileNames, 
 	joinUrl, 
 	paths, 
@@ -27,10 +28,12 @@ const getActionsUrl = async () => {
 	return joinUrl( packageJson.repository.url, 'actions' )
 
 }
+const version   = await getAppVersion()
+const actionUrl = await getActionsUrl()
 
-const main = async () => {
-
-	try {
+await execProcess( {
+	name : 'WORKFLOW',
+	on   : async ( ) => {
 
 		const fileNames = await getFilteredFileNames( {
 			path       : paths.worksflowsDir,
@@ -38,9 +41,8 @@ const main = async () => {
 				'.yml',
 			],
 		} )
-		const version   = await getAppVersion()
-		const actionUrl = await getActionsUrl()
-		const answers   = await prompt( [
+
+		const answers = await prompt( [
 			{
 				type    : 'list',
 				name    : 'selectedFile',
@@ -70,16 +72,9 @@ const main = async () => {
 				.join( ' ' )
 		
 		}
+
 		await exec( `gh workflow run ${answers.selectedFile}.yml ${formattedInputs}` )
-
-		console.log( `See action progress: ${actionUrl}` )
 	
-	} catch ( error ) {
-
-		console.error( '❌ Error in workflow script:', error )
-	
-	}
-
-}
-
-main()
+	},
+	onSuccess : ( { log } ) => log.success( `See action progress: ${actionUrl}` ),
+} )

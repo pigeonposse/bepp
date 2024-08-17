@@ -210,6 +210,35 @@
 				"medium": "https://medium.com/@pigeonposse"
 			}
 		},
+		"scopes": [
+			{
+				"name": "config"
+			},
+			{
+				"name": "core"
+			},
+			{
+				"name": "docs"
+			},
+			{
+				"name": "bepp"
+			},
+			{
+				"name": "api"
+			},
+			{
+				"name": "app"
+			},
+			{
+				"name": "container"
+			},
+			{
+				"name": "gh-action"
+			},
+			{
+				"name": "all"
+			}
+		],		
 		"downloadUrl": {
 			"containerDocker": {
 				"name": "Docker image",

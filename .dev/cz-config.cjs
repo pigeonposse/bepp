@@ -4,8 +4,8 @@
  * @description Cz-customizable config.
  * @see https://github.com/leoforfree/cz-customizable
  */
-
-module.exports = {
+const { extra } = require( '../package.json' )
+module.exports  = {
 	types : [
 		{
 			value : ':sparkles: feat', 
@@ -57,36 +57,7 @@ module.exports = {
 		},
 	],
 	
-	scopes : [
-		{
-			name : 'config', 
-		},
-		{
-			name : 'core', 
-		},
-		{
-			name : 'docs', 
-		},
-		{
-			name : 'bepp', 
-		},
-		{
-			name : 'api', 
-		},
-		{
-			name : 'app', 
-		},
-		{
-			name : 'container', 
-		},
-		{
-			name : 'gh-action', 
-		},
-		{
-			name : 'all', 
-		},
-	],
-
+	scopes         : extra.scopes,
 	scopeOverrides : {
 		fix : [
 			{
