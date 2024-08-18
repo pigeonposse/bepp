@@ -14,7 +14,7 @@ hero:
       link: /guide
     - theme: alt
       text: View on GitHub
-      link: https://pigeonposse.com
+      link: https://github.com/pigeonposse/bepp
 
 features:
 
