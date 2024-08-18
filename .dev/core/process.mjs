@@ -7,7 +7,7 @@ export const prompt = inquirer.prompt
 
 export const exec = async cmd => {
 
-	console.log( `🐢 CMD: ${cmd}` )
+	// console.log( `🐢 CMD: ${cmd}` )
  
 	await new Promise( ( resolve, reject ) => {
 
@@ -69,7 +69,8 @@ export const execChild = async cmd => {
 			if ( code === 0 ) {
 
 				resolve( {
-					stdout, stderr, 
+					stdout, 
+					stderr, 
 				} )
 			
 			} else {

@@ -29,7 +29,7 @@ if [ -z "$action" ] || [ -z "$dirname" ]; then
 	echo
     echo 'Run the containers from the src directory of this package quickly and easily'
 	echo
-    echo "Usage: $0 {--up|--down} <dirname> docker-compose.[docker-compose-name].yml"
+    echo "Usage: $0 {--up|--down} <dirname> docker-compose.[name].yml"
 	echo
 	echo "Example: $0 app --up"
     exit 0

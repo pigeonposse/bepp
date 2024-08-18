@@ -7,12 +7,23 @@
 ###############################################################################
 
 services:          
-  
-  bepp_app:
-    container_name: bepp_app
-    build: .
+
+  macos:
+    image: dockurr/macos
+    container_name: bepp_app_macos_test2
+    environment:
+      VERSION: "ventura"
+      DISK_SIZE: "40G"
+      RAM_SIZE: "4G"
+      CPU_CORES: "2"
+    # devices:
+    #   - /dev/kvm
+    cap_add:
+      - NET_ADMIN
     ports:
-      - "13122:13128/tcp"
-    restart: always
+      - 8026:8006
+      - 5902:5900/tcp
+      - 5902:5900/udp
+    stop_grace_period: 2m
 
 ############################# BEPP DOCKER-COMPOSE #############################

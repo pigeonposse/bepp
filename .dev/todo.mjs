@@ -4,6 +4,7 @@
  * @description Add prompt for edit project TODO List.
  */
 
+import { initCache } from './core/cache.mjs'
 import {
 	exec, 
 	execProcess, 
@@ -15,7 +16,7 @@ import {
 
 await execProcess( {
 	name : 'TODO',
-	on   : async ( ) => {
+	on   : async ( { log } ) => {
 
 		const todoFolderPath = paths.todoDir
 		const fileNames      = await getFilteredFileNames( {
@@ -24,65 +25,90 @@ await execProcess( {
 				'.md',
 			],
 		} )
-
+		const data           = {
+			selectedFile  : 'selectedFile',
+			showInConsole : 'showInConsole',
+		}
+		const cache          = initCache( {
+			id     : 'todo',
+			values : {
+				[data.selectedFile]  : fileNames[0],
+				[data.showInConsole] : true,
+			},
+		} )
+		
 		const logFilesPathList = async () => {
+			
+			const list = fileNames.map( file => ( {
+				name : file.replace( '.md', '' ),
+				path : joinPath( todoFolderPath, file ),
+			} ) )
 
-			console.group( '\nList of files in the "TODO" folder:' )
-			fileNames.forEach( file =>
-				console.log( '- 🔗 ' + file.replace( '.md', '' ) + ': ' + joinPath( todoFolderPath, file ) ),
-			)
-			console.groupEnd()
+			log.info( {
+				description : 'List of files in the "TODO" folder:',
+				list,
+			} )
 
 		}
 
-		const logFilePath    = async fileName => {
+		const logFilePath = async fileName => {
 
-			console.group( '\nTODO file path:' )
-			console.log( '- 🔗 ' + fileName + ': ' + joinPath( todoFolderPath, fileName + '.md' ) )
-			console.groupEnd()
+			const list =  {
+				name : fileName,
+				path : joinPath( todoFolderPath, fileName + '.md' ) ,
+			} 
+
+			log.info( {
+				description : 'List of files in the "TODO" folder:',
+				list,
+			} )
 		
 		}
 		const logFileContent = async fileName => {
 
 			const selectedFilePath = joinPath( todoFolderPath, fileName + '.md' )
-			console.log( '\nFile content:\n' )
+
 			console.group()
 			await exec( 'md ' + selectedFilePath )
 			console.groupEnd()
 		
 		}
-
+		let secondAns 
 		const firstAnswers = await prompt( [
 			{
 				type    : 'list',
-				name    : 'selectedFile',
+				name    : data.selectedFile,
 				message : 'Select a file from the "TODO" folder:',
 				choices : [
-					...fileNames, 'All','Exit',
+					...fileNames, 
+					'All'
+					,'Exit',
 				],
+				default : cache.get( data.selectedFile ),
 			},
 		] )
 
 		if ( firstAnswers.selectedFile !== 'Exit' ) {
 
-			const answers = await prompt( [
+			secondAns = await prompt( [
 				{
 					type    : 'confirm',
-					name    : 'showInConsole',
+					name    : data.showInConsole,
 					message : 'Do you want to show the selected file in the console?',
+					default : cache.get( data.showInConsole ),
 				},
 			] )
 
 			if ( firstAnswers.selectedFile !== 'All' ) {
 
-				if ( answers.showInConsole ) 
+				if ( secondAns.showInConsole ) 
 					await logFileContent( firstAnswers.selectedFile )
 
 				await logFilePath( firstAnswers.selectedFile )
 			
 			}else {
 
-				if ( answers.showInConsole ) {
+				if ( secondAns.showInConsole ) {
 
 					for ( const fileName of fileNames ) {
 
@@ -96,7 +122,12 @@ await execProcess( {
 			
 			}
 
-		} else console.log( '✨ Exit from TODOs' )
+		} else log.info( '✨ Exit from TODOs' )
+
+		cache.set( {
+			[data.selectedFile]  : firstAnswers.selectedFile,
+			[data.showInConsole] : typeof secondAns.showInConsole == 'boolean' ? secondAns.showInConsole : true,
+		} )
 	
 	},
 

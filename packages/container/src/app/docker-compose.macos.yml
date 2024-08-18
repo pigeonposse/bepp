@@ -8,12 +8,23 @@
 
 services:          
 
-  bepp_app_macos:
-    container_name: bepp_app_macos
-    build:
-      context: .
-      dockerfile: Dockerfile.macos
+  osx:
+    container_name: docker-osx
+    image: sickcodes/docker-osx:big-sur
+    platform: linux/amd64 
+    environment:
+      - DISPLAY=${DISPLAY:-:0.0}
+    #   - EXTRA="-display none -vnc 0.0.0.0:99,password=on"
+    #   - USERNAME=test
+    #   - PASSWORD=test
+    #   - "OSX_COMMANDS=/bin/bash -c \"echo Hola desde macos\""
     ports:
-      - "13122:13128/tcp"
+      - 54922:10022
+      - 5499:5999 
+    # stdin_open: true
+    # tty: true
+    privileged: true
+    # volumes:
+    #   - /tmp/.X11-unix:/tmp/.X11-unix
 
 ############################# BEPP DOCKER-COMPOSE #############################

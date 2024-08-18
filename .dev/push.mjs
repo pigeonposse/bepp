@@ -12,10 +12,25 @@ import {
 	prompt,
 	readJSON,
 } from './core/main.mjs'
+import { initCache } from './core/cache.mjs'
 
 await execProcess( {
 	name : 'PUSH REPO',
 	on   : async ( { log } ) => {
+
+		const data  = {
+			add      : 'add',
+			origin   : 'origin',
+			workflow : 'workflow',
+		}
+		const cache = initCache( {
+			id     : 'push',
+			values : {
+				[data.add]      : '.',
+				[data.origin]   : 'main',
+				[data.workflow] : false,
+			},
+		} )
 
 		const getRepoUrl = async () => {
 
@@ -26,14 +41,16 @@ await execProcess( {
 		}
 		const answers = await prompt( [
 			{
-				name    : 'add',
+				type    : 'input',
+				name    : data.add,
+				default : cache.get( data.add ),
 				message : 'Git add',
-				default : '.',
 			},
 			{
-				name    : 'origin',
-				default : 'main',
-				message : 'push origin',
+				type    : 'input',
+				name    : data.origin,
+				default : cache.get( data.origin ),
+				message : 'Add origin branch',
 			},
 		] )
 
@@ -44,12 +61,13 @@ await execProcess( {
 		const answersAfter = await prompt( [
 			{
 				type    : 'confirm',
-				name    : 'workflow',
-				default : false,
+				name    : data.workflow,
+				default : cache.get( data.workflow ),
 				message : 'Run workflow',
 			},
 		] )
 
+		cache.set( answers )
 		if( answersAfter.workflow ) await import( './workflow.mjs' )
 	
 	},
